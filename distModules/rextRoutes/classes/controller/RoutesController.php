@@ -232,7 +232,7 @@ class RoutesController {
         $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
         /*echo "<pre>";
         var_dump( $polygon->getGeomType() );
-        echo "<br>--------------------<br>";
+        echo "<br>-----<br>";
         var_dump( json_encode( $this->extractPoints( $polygon )) );*/
         $isValid = true;
       }
