@@ -1,5 +1,6 @@
 *.log
 
+
 /0-backups/
 /phpdoc/
-
+/test/
