@@ -14,7 +14,7 @@ class Cogumelo extends CogumeloClass {
     ),
     array(
      "id" => "bootstrap",
-     "params" => array("bootstrap#v3.3"),
+     "params" => array("bootstrap#v3.4"),
      "installer" => "bower"
     ),
     array(
