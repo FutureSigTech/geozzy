@@ -38,18 +38,40 @@ class geozzyUser extends Module {
   );
 
   function __construct() {
-    $this->addUrlPatterns( '#^geozzyuser/logout(\/.+)?$#', 'view:GeozzyUserView::sendLogout' );
-    $this->addUrlPatterns( '#^geozzyuser/login$#', 'view:GeozzyUserView::loginForm' );
-    $this->addUrlPatterns( '#^geozzyuser/senduserlogin$#', 'view:GeozzyUserView::sendLoginForm' );
-    $this->addUrlPatterns( '#^geozzyuser/register$#', 'view:GeozzyUserView::registerForm' );
-    $this->addUrlPatterns( '#^geozzyuser/wv/register$#', 'view:GeozzyUserView::registerWVForm' );
-    $this->addUrlPatterns( '#^geozzyuser/senduserregister$#', 'view:GeozzyUserView::sendRegisterForm' );
-    $this->addUrlPatterns( '#^geozzyuser/profile#', 'view:GeozzyUserView::myProfileForm' );
-    $this->addUrlPatterns( '#^geozzyuser/senduserbaseprofile#', 'view:GeozzyUserView::sendUserBaseProfileForm' );
-    $this->addUrlPatterns( '#^geozzyuser/resource/sendresource#', 'view:GeozzyUserView::sendUserProfileResourceForm' );
-    $this->addUrlPatterns( '#^geozzyuser/verify/(\d+)/(.+)$#', 'view:GeozzyUserView::checkVerifyLink' );
-    $this->addUrlPatterns( '#^geozzyuser/unknownpass/(\d+)/(.+)$#', 'view:GeozzyUserView::checkUnknownPass' );
-    $this->addUrlPatterns( '#^geozzyuser/recoveryPassword/#', 'view:GeozzyUserView::checkUnknownPass' );
+
+    if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyUser.php') ) {
+      require_once APP_BASE_PATH.'/conf/inc/geozzyUser.php';
+
+      if( Cogumelo::getSetupValue('geozzyUser:allowLogin') == true ) {
+        // login
+        $this->addUrlPatterns( '#^geozzyuser/logout(\/.+)?$#', 'view:GeozzyUserView::sendLogout' );
+        $this->addUrlPatterns( '#^geozzyuser/login$#', 'view:GeozzyUserView::loginForm' );
+        $this->addUrlPatterns( '#^geozzyuser/senduserlogin$#', 'view:GeozzyUserView::sendLoginForm' );
+      }
+
+      if( Cogumelo::getSetupValue('geozzyUser:allowRegister') == true ) {
+        // register
+        $this->addUrlPatterns( '#^geozzyuser/register$#', 'view:GeozzyUserView::registerForm' );
+        $this->addUrlPatterns( '#^geozzyuser/wv/register$#', 'view:GeozzyUserView::registerWVForm' );
+        $this->addUrlPatterns( '#^geozzyuser/senduserregister$#', 'view:GeozzyUserView::sendRegisterForm' );
+      }
+
+      if( Cogumelo::getSetupValue('geozzyUser:allowEditProfile') == true ) {
+        // edit profile
+        $this->addUrlPatterns( '#^geozzyuser/profile#', 'view:GeozzyUserView::myProfileForm' );
+        $this->addUrlPatterns( '#^geozzyuser/senduserbaseprofile#', 'view:GeozzyUserView::sendUserBaseProfileForm' );
+        $this->addUrlPatterns( '#^geozzyuser/resource/sendresource#', 'view:GeozzyUserView::sendUserProfileResourceForm' );
+      }
+
+      if( Cogumelo::getSetupValue('geozzyUser:allowPasswordRecover') == true ) {
+        // password recover
+        $this->addUrlPatterns( '#^geozzyuser/verify/(\d+)/(.+)$#', 'view:GeozzyUserView::checkVerifyLink' );
+        $this->addUrlPatterns( '#^geozzyuser/unknownpass/(\d+)/(.+)$#', 'view:GeozzyUserView::checkUnknownPass' );
+        $this->addUrlPatterns( '#^geozzyuser/recoveryPassword/#', 'view:GeozzyUserView::checkUnknownPass' );
+      }
+
+
+    }
 
   }
 
