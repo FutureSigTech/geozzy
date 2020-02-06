@@ -16,6 +16,7 @@ Cogumelo::load('coreController/Cache.php');
  *
  * PHPMD: Suppress all warnings from these rules.
  * @SuppressWarnings(PHPMD.Superglobals)
+ * @SuppressWarnings(PHPMD.LongVariable)
  * @SuppressWarnings(PHPMD.ElseExpression)
  * @SuppressWarnings(PHPMD.StaticAccess)
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
