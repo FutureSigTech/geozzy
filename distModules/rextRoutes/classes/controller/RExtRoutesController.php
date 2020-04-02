@@ -42,7 +42,8 @@ class RExtRoutesController extends RExtController implements RExtInterface {
 
       // Cargo todos los TAX terms del recurso agrupados por idName de Taxgroup
       $termsGroupedIdName = $this->defResCtrl->getTermsInfoByGroupIdName( $resId );
-      if( $termsGroupedIdName !== false ) {
+
+      if( $termsGroupedIdName !== false && $this->taxonomies) {
         foreach( $this->taxonomies as $tax ) {
           if( isset( $termsGroupedIdName[ $tax[ 'idName' ] ] ) ) {
             $rExtData[ $tax['idName'] ] = $termsGroupedIdName[ $tax[ 'idName' ] ];
