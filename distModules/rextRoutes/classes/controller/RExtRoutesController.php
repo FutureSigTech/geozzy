@@ -333,7 +333,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
     }
 
 
-    if( !$form->existErrors() ) {
+    if( !$form->existErrors() && $this->taxonomies ) {
       foreach( $this->taxonomies as $tax ) {
         $taxFieldName = $this->addPrefix( $tax[ 'idName' ] );
         if( !$form->existErrors() && $form->isFieldDefined( $taxFieldName ) ) {
