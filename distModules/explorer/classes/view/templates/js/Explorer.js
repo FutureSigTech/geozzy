@@ -112,7 +112,7 @@ geozzy.explorer = function( opts ) {
           that.triggerEvent('minimalLoadSuccess',{});
           // render filters
           that.renderFilters();
-          that.triggerEvent('filtersRenderSuccess',{});          
+          that.triggerEvent('filtersRenderSuccess',{});
         }
       }
 
@@ -306,11 +306,12 @@ geozzy.explorer = function( opts ) {
       }
     }
 
+    var dataFetch = that.options.aditionalParameters;
+    dataFetch.ids = resourcesToLoad;
     that.resourcePartialList.fetchByIds({
-      ids: resourcesToLoad,
+      data: dataFetch,
       success: function() {
         fetchSuccess();
-
       }
     });
   };

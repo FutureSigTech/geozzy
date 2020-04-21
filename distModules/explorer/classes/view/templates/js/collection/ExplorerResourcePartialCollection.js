@@ -25,13 +25,13 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
     if( that.lastCacheUpdate === false ) {
 
-      if( params.ids.length === 1 && that.get(params.ids[0]) ){
+      if( params.data.ids.length === 1 && that.get(params.data.ids[0]) ){
         if(params.success) { params.success(); }
       }
       else
       if( that.allResourcesLoaded === false ) {
         that.fetch({
-          data: {ids: params.ids},
+          data: params.data,
           type: 'POST',
           remove: false,
           success: function( list ) {
@@ -49,13 +49,14 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
       }
     }
     else {
-      that.fetchFull( that.lastCacheUpdate );
+      params.data.lastCacheUpdate = that.lastCacheUpdate
+      that.fetchFull( params.data );
       params.success(  );
     }
 
   },
 
-  fetchFull: function( updatedfrom ) {
+  fetchFull: function( data ) {
     var that = this;
 
 
@@ -66,7 +67,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
       that.fetch({
         type: 'POST',
         remove: false,
-        data:{updatedfrom: updatedfrom},
+        data: data,
         success: function( list ) {
 
           that.allResourcesLoaded = true;
