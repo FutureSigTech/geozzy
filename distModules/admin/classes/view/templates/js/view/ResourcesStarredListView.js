@@ -25,6 +25,7 @@ var ResourcesStarredListView = Backbone.View.extend({
         data: { taxonomyterm: that.starredTerm.get('id') },
         success: function() {
           that.updateList();
+          that.saveInitWeight();
         }
       }
     );
@@ -56,28 +57,37 @@ var ResourcesStarredListView = Backbone.View.extend({
       'maxDepth': 1,
       'dragClass': "gzznestable dd-dragel",
       callback: function(l, e) {
-        that.saveList();
+        that.saveNestableList();
       }
     });
 
   },
 
-  saveList: function(){
-
+  saveList: function () {
     var that = this;
     var jsonNestableResult = $('#resourcesStarredListContainer').nestable('serialize');
     var itemWeight = 0;
 
-    _.each( jsonNestableResult , function( e , i ){
+    _.each(jsonNestableResult, function (e, i) {     
       var element = that.resourcesStarred.get(e.id);
-      element.set({ weight: itemWeight });
+      element.set({
+        weight: itemWeight
+      });
       itemWeight++;
     });
-
-    that.saveChangesVisible(true);
   },
 
+  saveNestableList: function(){
+    var that = this;
+    that.saveList();
+    that.saveChangesVisible(true);
+  }, 
 
+  saveInitWeight: function(){
+    var that = this;    
+    that.saveList();
+    that.resourcesStarred.save(that.starredTerm.id);
+  },
 
   removeResourceStarred: function( el ) {
 
