@@ -82,12 +82,11 @@ geozzy.explorer = function( opts ) {
 
       if( that.options.useUrlRouter == true ){
         that.navigateUrl( param.id );
-        that.triggerEvent('resourceAccess', {id: param.id});
-        //that.parentExplorer.options.resourceAccess(id);
-        if(that.explorerTouchDevice) {
-          that.triggerEvent('resourceMouseOut', {id:0});
-        }
-
+      }
+      that.triggerEvent('resourceAccess', {id: param.id});
+      //that.parentExplorer.options.resourceAccess(id);
+      if(that.explorerTouchDevice) {
+        that.triggerEvent('resourceMouseOut', {id:0});
       }
     });
 
