@@ -213,6 +213,8 @@ class ResourceModel extends Model {
     //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $resourcetopic =  new ResourceTaxonomytermModel(array("resource" => $resourceId, "taxonomyterm" => $starredId));
     $resourcetopic->save();
+    $cacheCtrl = new Cache();
+    $cacheCtrl->flush();
     //$this->dataFacade->transactionEnd();
 
     return true;
