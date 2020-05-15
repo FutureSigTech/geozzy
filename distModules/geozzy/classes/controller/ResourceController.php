@@ -902,8 +902,8 @@ class ResourceController {
           }
           break;
         case 'REPLACE':
-          Cogumelo::debug( 'To Model - fileInfoPrev: '. print_r( $fileField['prev'], true ) );
           $prevFiledataId = $modelObj->getter( $colName );
+          Cogumelo::debug( 'To Model - REPLACE prevFiledataId: '. $prevFiledataId );
           if( $fileField['privateMode'] > 0 ) {
             $fileField['values']['privateMode'] = $fileField['privateMode'];
           }
