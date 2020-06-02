@@ -114,6 +114,8 @@ class AdminViewMaster extends View {
     $this->template->assign( 'pagePermission' , $pagePermission);
     $settingPermission = $useraccesscontrol->checkPermissions('setting:list', 'admin:full');
     $this->template->assign( 'settingPermission' , $settingPermission);
+    $menuPermission = $useraccesscontrol->checkPermissions('menu:list', 'admin:full');
+    $this->template->assign( 'menuPermission' , $menuPermission);
 
 
     if( class_exists( 'rextComment' ) ) {

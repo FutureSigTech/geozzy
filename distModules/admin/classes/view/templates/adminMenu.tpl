@@ -78,9 +78,11 @@
             </ul>
           </li>
 
+          {if $menuPermission}
           <li class="menu">
             <a href="/admin#menu"><i class="fas fa-bars fa-sm fa-fw" aria-hidden="true"></i> {t}Menu{/t} </a>
           </li>
+          {/if}
 
           <!-- Categories -->
           <li class="categories">
