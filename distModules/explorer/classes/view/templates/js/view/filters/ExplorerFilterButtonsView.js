@@ -17,6 +17,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
       template: geozzy.explorerComponents.filterButtonsViewTemplate,
       templateOption: geozzy.explorerComponents.filterButtonsViewOption,
       multiple:false,
+      useOrFilter: true,
       elSummaryContainer:false,
       onChange: function(){}
     };
@@ -36,10 +37,26 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
       var terms =  model.get('terms');
 
-      if( typeof terms != "undefined") {
-        var diff = $( terms ).not( that.selectedTerms );
-        //cogumelo.log(diff.length, terms.length);
-        ret = (diff.length != terms.length );
+      if( that.options.useOrFilter == true) {
+        var matches = 0;
+        ret = false;
+
+        $( that.selectedTerms).each( function(it,et){
+          if( $.inArray(et, terms ) != -1 ){
+            matches++;
+          }
+        });
+        if( that.selectedTerms.length == matches ) {
+          ret = true;
+        }
+      }
+      else {
+        if( typeof terms != "undefined") {
+          var diff = $( terms ).not( that.selectedTerms );
+          //cogumelo.log(diff.length, terms.length);
+          ret = (diff.length != terms.length );
+        }
+
       }
 
     }
