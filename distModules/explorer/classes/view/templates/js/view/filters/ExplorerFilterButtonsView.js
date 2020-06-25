@@ -21,7 +21,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
       template: geozzy.explorerComponents.filterButtonsViewTemplate,
       templateOption: geozzy.explorerComponents.filterButtonsViewOption,
       multiple:false,
-      useOrFilter: false,
+      useAndFilter: true,
       onChange: function(){}
     };
 
@@ -39,7 +39,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
       var terms =  model.get('terms');
 
-      if( that.options.useOrFilter == true) {
+      if( that.options.useAndFilter == true) {
         var matches = 0;
         ret = false;
 
