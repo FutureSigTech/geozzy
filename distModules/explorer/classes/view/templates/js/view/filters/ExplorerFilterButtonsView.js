@@ -34,7 +34,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   filterAction: function( model ) {
     var that = this;
     var ret = false;
-
+console.log('selectedterms',that.selectedTerms);
     if( that.selectedTerms != false ) {
 
       var terms =  model.get('terms');
@@ -128,6 +128,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
 
             delete  that.selectedTerms[$.inArray( parseInt( termid ) , that.selectedTerms )];
 
+            that.selectedTerms = that.selectedTerms.filter(Boolean);
             termLi.removeClass('selected');
           }
           else {
