@@ -34,7 +34,7 @@ geozzy.explorerComponents.filters.filterButtonsView = geozzy.filterView.extend({
   filterAction: function( model ) {
     var that = this;
     var ret = false;
-console.log('selectedterms',that.selectedTerms);
+
     if( that.selectedTerms != false ) {
 
       var terms =  model.get('terms');
