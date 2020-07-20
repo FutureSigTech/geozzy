@@ -11,36 +11,36 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:51
 msgid "Address"
-msgstr ""
+msgstr "Dirección"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:55
 msgid "City"
-msgstr ""
+msgstr "Cidade"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:59
 msgid "Postal code"
-msgstr ""
+msgstr "Código postal"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:63
 msgid "Province"
-msgstr ""
+msgstr "Provincia"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:67
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:71
 msgid "Contact email"
-msgstr ""
+msgstr "Email de contacto"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:76
 msgid "How to arrive"
-msgstr ""
+msgstr "Cómo chegar"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:81
 msgid "Opening times"
-msgstr ""
+msgstr "Horario de apertura"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:85
 msgid "Contact url"
-msgstr ""
+msgstr "Url de contacto"

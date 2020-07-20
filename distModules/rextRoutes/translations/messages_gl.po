@@ -257,7 +257,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:86
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
 msgid "Difficulty"
-msgstr ""
+msgstr "Dificultade"
 
 #: /home/proxectos/geozzy/classes/view/templates/rextRoutes_classes_view_templates_rExtBasicInfoViewBlock.tpl:129
 #: /home/proxectos/geozzy/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
