@@ -47,7 +47,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       if( typeof( geozzy.explorerComponents.routesCollectionInstance.get( params.id ) ) != 'undefined' ){
         geozzy.explorerComponents.routesCollectionInstance.get( params.id ).get('routeViewInstance').showRoute();
       }
-      else {
+      else if( that.parentExplorer.resourceMinimalList.get(params.id).get('isRoute') == 1 ) {
         //var routesCollectionProvisional = new geozzy.rextRoutes.routeCollection();
         //routesCollectionProvisional.url = '/api/routes/id/' + params.id + '/resolution/' + that.options.routeResolution;
         geozzy.explorerComponents.routesCollectionInstance.fetchOne(
