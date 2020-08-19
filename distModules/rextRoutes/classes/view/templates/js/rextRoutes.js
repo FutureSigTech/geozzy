@@ -39,7 +39,6 @@ var rextRoutesJs = {
 
 
 
-
     routesCollection.fetch( {
       success: function( res ) {
         if( geozzy.rExtMapInstance.url == routesMapInstanceCheck ) {
