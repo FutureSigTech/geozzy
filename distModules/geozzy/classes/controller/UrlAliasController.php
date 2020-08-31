@@ -11,7 +11,7 @@ class UrlAliasController {
 
 
   public function getAlternative( $urlFrom ) {
-    Cogumelo::debug( 'UrlAliasController::getAlternative urlFrom='. $urlFrom );
+    // Cogumelo::debug( __METHOD__.' urlFrom='. $urlFrom );
 
     $alternative = false;
 
@@ -31,14 +31,14 @@ class UrlAliasController {
     }
 
     if( empty( $alternative ) ) {
-      // Cogumelo::debug('(Notice) UrlAliasController: SIN cache ('.$cacheKey.')');
-      Cogumelo::log( __METHOD__.': SIN cache ('.$urlFrom.')', 'cache' );
+      // Cogumelo::debug( __METHOD__.' (Notice) SIN cache ('.$urlFrom.')' );
+      Cogumelo::log( __METHOD__.' SIN cache ('.$urlFrom.')', 'cache' );
 
       $urlFromParts = explode( '?', $urlFrom, 2 );
       if( isset( $urlFromParts['1'] ) ) {
         $urlFrom = $urlFromParts['0'];
         $urlParams = '?'.$urlFromParts['1'];
-        // Cogumelo::debug( 'UrlAliasController::getAlternative From tocado: '. $urlFrom );
+        Cogumelo::debug( __METHOD__.' From tocado: '. $urlFrom );
       }
 
       $aliasData = false;
@@ -52,19 +52,19 @@ class UrlAliasController {
         $urlAliasList = $urlAliasModel->listItems( [ 'filters' => [ 'urlFrom' => '/'.$urlFrom ] ] );
         if( is_object( $urlAliasList ) && $urlAlias = $urlAliasList->fetch() ) {
           $aliasData = $urlAlias->getAllData( 'onlydata' );
-          Cogumelo::debug( '(Notice) UrlAliasController: aliasData sin idioma: ' . print_r( $aliasData, true ) );
+          Cogumelo::debug( __METHOD__.' (Notice) aliasData sin idioma: ' . print_r( $aliasData, true ) );
         }
       }
 
       if( !empty( $aliasData ) ) {
-        // Cogumelo::debug( '(Notice) UrlAliasController: aliasData: ' . print_r( $aliasData, true ) );
+        // Cogumelo::debug( __METHOD__.' (Notice) aliasData: ' . print_r( $aliasData, true ) );
 
         $langUrl = '';
         if( isset( $aliasData['lang'] ) && $aliasData['lang'] !== '' && $aliasData['lang'] !== $defLang ) {
           // El idioma por defecto no se añade
           $langUrl = '/' . $aliasData['lang'];
         }
-        Cogumelo::debug( '(Notice) UrlAliasController: langUrl: '.$aliasData['lang'].' - '. $langUrl );
+        // Cogumelo::debug( __METHOD__.' (Notice) langUrl: '.$aliasData['lang'].' - '. $langUrl );
 
 
         if( !empty( $aliasData['resource'] ) ) {
@@ -77,7 +77,7 @@ class UrlAliasController {
 
         if( empty( $aliasData['http'] ) || $aliasData['http'] <= 200 || $aliasData['http'] >= 600 ) {
 
-          Cogumelo::debug( 'UrlAliasController::getAlternative - Es un ALIAS' );
+          // Cogumelo::debug( __METHOD__.' Es un ALIAS' );
           // Es un alias
           $alternative = array(
             'code' => 'alias',
@@ -86,7 +86,7 @@ class UrlAliasController {
         }
         else {
 
-          Cogumelo::debug( 'UrlAliasController::getAlternative - Es un REDIRECT' );
+          // Cogumelo::debug( __METHOD__.' Es un REDIRECT' );
           // Es un Redirect
           if( !empty( $aliasData['resource'] ) ) {
             $canonicalList = $urlAliasModel->listItems([
@@ -97,7 +97,7 @@ class UrlAliasController {
               $canonicalData = $canonicalObj->getAllData( 'onlydata' );
               $baseUrl = $langUrl.$canonicalData['urlFrom'];
 
-              Cogumelo::debug( 'UrlAliasController::getAlternative - Es un REDIRECT baseUrl:'.$baseUrl );
+              // Cogumelo::debug( __METHOD__.' Es un REDIRECT baseUrl:'.$baseUrl );
             }
           }
           else {
@@ -118,7 +118,7 @@ class UrlAliasController {
       }
     }
 
-    Cogumelo::debug( '(Notice) UrlAliasController::getAlternative urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
+    // Cogumelo::debug( __METHOD__.' (Notice) urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
 
     return $alternative;
   }
