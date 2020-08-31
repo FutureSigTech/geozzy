@@ -13,17 +13,6 @@ Cogumelo::load('coreController/Cache.php');
 
 /**
  * Controller de Recursos
- *
- * PHPMD: Suppress all warnings from these rules.
- * @SuppressWarnings(PHPMD.Superglobals)
- * @SuppressWarnings(PHPMD.LongVariable)
- * @SuppressWarnings(PHPMD.ElseExpression)
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
- * @SuppressWarnings(PHPMD.CamelCaseVariableName)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.NPathComplexity)
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  **/
 class ResourceController {
 
@@ -932,7 +921,7 @@ class ResourceController {
           }
           break;
         default:
-          Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
+          // Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
           Cogumelo::debug( 'To Model: DEFAULT='.$fileField['status'] );
           break;
       } // switch
@@ -1034,7 +1023,7 @@ class ResourceController {
 
 
             default:
-              Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
+              // Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
               Cogumelo::debug( 'To Model: DEFAULT='.$fileField['status'] );
               break;
           }
@@ -1494,10 +1483,11 @@ class ResourceController {
   }
 
   public function getCollectionSonInfo( $resIds, $extraFields = false ) {
-    // error_log( __METHOD__.' '.json_encode($resIds) );
+    error_log( __METHOD__.' '.json_encode($resIds) );
     $resSonInfo = [];
 
-    $resourceViewModel = new RExtUrlResourceViewModel();
+    // $resourceViewModel = new RExtUrlResourceViewModel();
+    $resourceViewModel = new RExtUrlResourceTplModel();
     $resourceViewList = $resourceViewModel->listItems([
       'filters' => [ 'idIn' => $resIds, 'published' => 1 ],
       'cache' => $this->cacheQuery
