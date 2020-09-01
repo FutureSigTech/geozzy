@@ -1483,7 +1483,7 @@ class ResourceController {
   }
 
   public function getCollectionSonInfo( $resIds, $extraFields = false ) {
-    error_log( __METHOD__.' '.json_encode($resIds) );
+    // error_log( __METHOD__.' '.json_encode($resIds) );
     $resSonInfo = [];
 
     // $resourceViewModel = new RExtUrlResourceViewModel();
