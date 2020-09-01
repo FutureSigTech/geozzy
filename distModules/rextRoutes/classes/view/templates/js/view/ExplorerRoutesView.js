@@ -118,8 +118,10 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           if( that.options.showMarkerEnd == false ) {
             routeOpts.markerEnd = false;
           }
-          r.get('routeViewInstance').showRoute();
+
           r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
+          r.get('routeViewInstance').showRoute();
+          
           if( that.getLoadingPromise(id) ) {
             r.get('routeViewInstance').hideRoute();
           }
