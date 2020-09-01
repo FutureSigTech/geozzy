@@ -36,9 +36,11 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       drawYGrid: true,
       showLabels: true,
       pixelsPerLabel: 15,
-      allowsTrackHover: true
-      //tpl: geozzy.explorerComponents.routesViewTemplate ,
-
+      allowsTrackHover: true,
+      hoverTrackMarker: true,
+      onMouseover: function(id) {},
+      onMouseOut: function(id) {},
+      onMouseClick: function(id) {}
     });
     that.options = $.extend(true, {}, options, opts);
 
@@ -168,14 +170,25 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       });
 
 
+      that.polylineBG2.addListener('click', function(ev){
+        that.options.onMouseClick(that.options.routeModel.get('id'));
+      });
+      that.polylineBG1.addListener('click', function(ev){
+        that.options.onMouseClick(that.options.routeModel.get('id'));
+      });
+      that.polyline.addListener('click', function(ev){
+        that.options.onMouseClick(that.options.routeModel.get('id'));
+      });
+
+
       that.polylineBG2.addListener('mouseout', function(ev){
-        that.outRecorrido();
+        that.outRecorrido(that.options.routeModel.get('id'));
       });
       that.polylineBG1.addListener('mouseout', function(ev){
-        that.outRecorrido();
+        that.outRecorrido(that.options.routeModel.get('id'));
       });
       that.polyline.addListener('mouseout', function(ev){
-        that.outRecorrido();
+        that.outRecorrido(that.options.routeModel.get('id'));
       });
     }
 
@@ -346,13 +359,14 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-  outRecorrido: function( ) {
+  outRecorrido: function( id ) {
     var that = this;
 
     if( that.trackMarker ) {
       that.trackMarker.setMap(null);
     }
 
+    that.options.onMouseOut( id );
   },
 
 
@@ -387,6 +401,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var route = that.options.routeModel;
     var map = that.options.map;
 
+    that.options.onMouseover(that.options.routeModel.get('id'));
+
     //grafico.setSelection(id);
     if( that.grafico ) {
       that.grafico.setSelection(id) ;
@@ -398,19 +414,22 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
       if(that.trackMarker === false) {
-        that.trackMarker = new google.maps.Marker({
-              position: {lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]},
-              icon: {
-                url: cogumelo.publicConf.media + '/module/rextRoutes/img/markerTrack.png' ,
-                anchor: new google.maps.Point(10,27)
-              },
-              zIndex: 4,
-              map: that.options.map
-          });
 
-        that.trackMarker.addListener('mouseover', function() {
-          //that.trackMarker.setMap(null);
-        });
+        if( that.options.hoverTrackMarker == true ){
+          that.trackMarker = new google.maps.Marker({
+                position: {lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]},
+                icon: {
+                  url: cogumelo.publicConf.media + '/module/rextRoutes/img/markerTrack.png' ,
+                  anchor: new google.maps.Point(10,27)
+                },
+                zIndex: 4,
+                map: that.options.map
+            });
+
+          that.trackMarker.addListener('mouseover', function() {
+            //that.trackMarker.setMap(null);
+          });
+        }
       }
       else {
         that.trackMarker.setPosition({lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]});

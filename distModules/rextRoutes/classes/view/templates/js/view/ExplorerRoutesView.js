@@ -103,12 +103,20 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
             showGraph: routeAltitudeShow,
             graphContainer: that.options.hoverGraphDiv ,
             showLabels: false,
-            allowsTrackHover:false,
             ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
             drawXGrid: false,
             drawYGrid: false,
             pixelsPerLabel:100,
-            axisLineColor: 'transparent'
+            axisLineColor: 'transparent',
+            allowsTrackHover: true,
+            hoverTrackMarker: false,
+            onMouseover: function(resId) {that.parentExplorer.triggerEvent('resourceHover', { id: resId }); },
+            onMouseOut: function(resId) { that.parentExplorer.triggerEvent('resourceMouseOut', {id: resId }); },
+            onMouseClick: function( resId ) {
+              if( that.options.avoidClick != true ) {
+                that.parentExplorer.triggerEvent('resourceClick', { id: resId });
+              }
+            }
           };
 
           if( that.options.showMarkerStart == false ) {
@@ -121,7 +129,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
           r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
           r.get('routeViewInstance').showRoute();
-          
+
           if( that.getLoadingPromise(id) ) {
             r.get('routeViewInstance').hideRoute();
           }
