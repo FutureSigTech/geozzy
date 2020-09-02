@@ -13,7 +13,7 @@ interface RExtInterface {
    *
    * @return array OR false
    */
-  public function getRExtData( $resId );
+  public function getRExtData( $resId = false );
   // @todo Esto ten que controlar os idiomas
 
   /**
