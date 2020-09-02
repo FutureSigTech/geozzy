@@ -124,7 +124,7 @@ class ResourceController {
    *
    * @param $resId integer
    *
-   * @return array OR false
+   * @return object OR false
    */
   public function loadResourceObject( $resId = false ) {
     $resourceobj = null;
