@@ -39,7 +39,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     that.parentExplorer = parentExplorer;
 
     that.parentExplorer.bindEvent('zoomChanged', function(){
-      that.hideRoutes();
+      //that.refreshHideRoutes();
     });
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
@@ -48,39 +48,46 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      that.hideRoutes( );
+      that.refreshHideRoutes( );
     });
 
 
     that.parentExplorer.bindEvent('resourceClick', function( params ){
-      //that.show(params.id);
+      that.refreshHideRoutes();
     });
-
 
 
     that.parentExplorer.bindEvent('minimalLoadSuccess', function(ev){
-      console.log('minimalLoadSuccess')
-      that.parentExplorer.resourceMinimalList.each( function(r,i) {
-        var routeInExplorerHoverShow = ( ( that.options.interactionKeys.routeInExplorerHoverShow == false || r.get(that.options.interactionKeys.routeInExplorerHoverShow ) == 1 ) || that.options.alwaysShow == true )? true: false;
+      that.showPermanentRoutes();
+    });
 
-
-        if(routeInExplorerHoverShow == false) {
-          console.log('mostrar ruta', r.get('id'));
-          that.showRoute(r.get('id'));
-        }
-
-      });
+    that.parentExplorer.bindEvent('applyFilters', function(ev){
+      /*that.refreshHideRoutes( );
+      that.showVisibleRoutes();*/
     });
 
 
+
+
+
   },
+
+  showPermanentRoutes: function() {
+    var that = this;
+    that.parentExplorer.resourceMinimalList.each( function(r,i) {
+      var routeAttributes = that.getRouteAttributes(r.get('id'));
+      if(routeAttributes.routeInExplorerHoverShow == false) {
+        that.showRoute(r.get('id'));
+      }
+    });
+  },
+
 
 
   showRoute: function( id ) {
     var that = this;
     var r = that.parentExplorer.resourceMinimalList.get(id);
-    var isRoute = ( (that.options.interactionKeys.isRoute == false) || r.get(that.options.interactionKeys.isRoute) != false )? true: false;
-    var routeAltitudeShow = ((that.options.interactionKeys.routeAltitudeShow == false || r.get(that.options.interactionKeys.routeAltitudeShow)) && that.options.showGraph == true )? true: false;
+    var routeAttributes = that.getRouteAttributes(r.get('id'));
 
 
     if( geozzy.explorerComponents.routesCollectionInstance === false ) {
@@ -91,47 +98,18 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     if( typeof( geozzy.explorerComponents.routesCollectionInstance.get( id ) ) != 'undefined' ){
       geozzy.explorerComponents.routesCollectionInstance.get( id ).get('routeViewInstance').showRoute();
     }
-    else if( isRoute  ) {
-      geozzy.explorerComponents.routesCollectionInstance.fetchOne(
-        'id/' + id + '/resolution/' + that.options.routeResolution ,
-        function(  ) {
-
-          var r = geozzy.explorerComponents.routesCollectionInstance.get(id);
-          var routeOpts = {
-            map: that.parentExplorer.displays.map.map,
-            routeModel: r,
-            showGraph: routeAltitudeShow,
-            graphContainer: that.options.hoverGraphDiv ,
-            showLabels: false,
-            ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
-            drawXGrid: false,
-            drawYGrid: false,
-            pixelsPerLabel:100,
-            axisLineColor: 'transparent',
-            allowsTrackHover: true,
-            hoverTrackMarker: false,
-            onMouseover: function(resId) {that.parentExplorer.triggerEvent('resourceHover', { id: resId }); },
-            onMouseOut: function(resId) { that.parentExplorer.triggerEvent('resourceMouseOut', {id: resId }); },
-            onMouseClick: function( resId ) {
-              if( that.options.avoidClick != true ) {
-                that.parentExplorer.triggerEvent('resourceClick', { id: resId });
-              }
-            }
-          };
-
-          if( that.options.showMarkerStart == false ) {
-            routeOpts.markerStart = false;
+    else if( routeAttributes.isRoute  ) {
+      that.fetchRoute(id, function( route ) {
+/*
+          if( r.get('mapMarker').visible == false ){
+            route.get('routeViewInstance').hideRoute();
           }
-
-          if( that.options.showMarkerEnd == false ) {
-            routeOpts.markerEnd = false;
+          else {
+            route.get('routeViewInstance').showRoute();
           }
-
-          r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
-          r.get('routeViewInstance').showRoute();
-
+*/
           if( that.getLoadingPromise(id) ) {
-            r.get('routeViewInstance').hideRoute();
+            route.get('routeViewInstance').hideRoute();
           }
 
       });
@@ -140,23 +118,26 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
   hideRoute: function( id ) {
+
     var that = this;
     var r = that.parentExplorer.resourceMinimalList.get(id);
-    var routeInExplorerHoverShow = ( (that.options.interactionKeys.routeInExplorerHoverShow != false || r.get(that.options.interactionKeys.routeInExplorerHoverShow ) != false) && that.options.alwaysShow == false )? true: false;
-    var route = false;
+    var routeAttributes = that.getRouteAttributes(id);
+    var route = geozzy.explorerComponents.routesCollectionInstance.get(id);
+
     if(geozzy.explorerComponents.routesCollectionInstance != false) {
       route = geozzy.explorerComponents.routesCollectionInstance.get(id);
-      if( route &&  typeof route.get('routeViewInstance') != 'undefined' && routeInExplorerHoverShow == true ) {
+      route.get('routeViewInstance').hideRoute();
+      if( (route &&  typeof route.get('routeViewInstance') != 'undefined' && routeAttributes.routeInExplorerHoverShow == true)  ) {
         route.get('routeViewInstance').hideRoute();
       }
       else {
         that.setLoadingPromise(id);
       }
+
     }
   },
 
-
-  hideRoutes: function() {
+  refreshHideRoutes: function() {
     var that = this;
 
     if(geozzy.explorerComponents.routesCollectionInstance) {
@@ -193,10 +174,66 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     that.hideLoadingPromises = endLoadingPromises;
 
     return found;
+  },
+
+
+  fetchRoute: function(id, onLoad) {
+    var that = this;
+    var routeAttributes = that.getRouteAttributes(id);
+
+    geozzy.explorerComponents.routesCollectionInstance.fetchOne(
+      'id/' + id + '/resolution/' + that.options.routeResolution ,
+      function() {
+        var route = geozzy.explorerComponents.routesCollectionInstance.get(id);
+
+        var routeOpts = {
+          map: that.parentExplorer.displays.map.map,
+          routeModel: route,
+          showGraph: routeAttributes.routeAltitudeShow,
+          graphContainer: that.options.hoverGraphDiv ,
+          showLabels: false,
+          ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
+          drawXGrid: false,
+          drawYGrid: false,
+          pixelsPerLabel:100,
+          axisLineColor: 'transparent',
+          allowsTrackHover: false,
+          hoverTrackMarker: false,
+          //onMouseover: function(id) {that.parentExplorer.triggerEvent('resourceHover', { id: id }); },
+          //onMouseOut: function(id) { that.parentExplorer.triggerEvent('resourceMouseOut', {id: id }); },
+          onMouseClick: function( id ) {
+            if( that.options.avoidClick != true ) {
+              that.parentExplorer.triggerEvent('resourceClick', { id: id });
+            }
+          }
+        };
+
+        if( that.options.showMarkerStart == false ) {
+          routeOpts.markerStart = false;
+        }
+
+        if( that.options.showMarkerEnd == false ) {
+          routeOpts.markerEnd = false;
+        }
+        if( typeof route.get('routeViewInstance') == 'undefined' ) {
+          route.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
+          onLoad( route );
+        }
+
+      }
+    );
+  },
+
+  getRouteAttributes: function(id) {
+    var that = this;
+    var r = that.parentExplorer.resourceMinimalList.get(id);
+
+    return {
+      isLoading: false,
+      isRoute: ( (that.options.interactionKeys.isRoute == false) || r.get(that.options.interactionKeys.isRoute) != false )? true: false,
+      routeInExplorerHoverShow: ( (that.options.interactionKeys.routeInExplorerHoverShow != false || r.get(that.options.interactionKeys.routeInExplorerHoverShow ) != false) && that.options.alwaysShow == false )? true: false,
+      routeAltitudeShow: ((that.options.interactionKeys.routeAltitudeShow == false || r.get(that.options.interactionKeys.routeAltitudeShow)) && that.options.showGraph == true )? true: false
+    };
   }
-
-
-
-
 
 });
