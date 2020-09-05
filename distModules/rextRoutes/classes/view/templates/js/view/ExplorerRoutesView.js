@@ -76,7 +76,6 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     that.parentExplorer.resourceMinimalList.each( function(r,i) {
 
       var routeAttributes = that.getRouteAttributes(r.get('id') );
-        console.log('mostrar ruta permanente',r.get('id'), routeAttributes.routeInExplorerHoverShow);
       if( routeAttributes.isRoute && routeAttributes.routeInExplorerHoverShow == false) {
         //console.log('mostrar ruta permanente',r.get('id'));
         that.showRoute(r.get('id'));
@@ -212,8 +211,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           axisLineColor: 'transparent',
           allowsTrackHover: false,
           hoverTrackMarker: false,
-          //onMouseover: function(id) {that.parentExplorer.triggerEvent('resourceHover', { id: id }); },
-          //onMouseOut: function(id) { that.parentExplorer.triggerEvent('resourceMouseOut', {id: id }); },
+          onMouseover: function(id) {that.parentExplorer.triggerEvent('resourceHover', { id: id }); },
+          onMouseOut: function(id) { that.parentExplorer.triggerEvent('resourceMouseOut', {id: id }); },
           onMouseClick: function( id ) {
             if( that.options.avoidClick != true ) {
               that.parentExplorer.triggerEvent('resourceClick', { id: id });
