@@ -214,9 +214,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
             }
           },
           onMouseOut: function(id) {
-            if(routeAttributes.routeInExplorerHoverShow == false ) {
-              that.parentExplorer.triggerEvent('resourceMouseOut', {id: id });
-            }
+            that.parentExplorer.triggerEvent('resourceMouseOut', {id: id });
           },
           onMouseClick: function( id ) {
             if( that.options.avoidClick != true && routeAttributes.routeInExplorerHoverShow == false ) {
