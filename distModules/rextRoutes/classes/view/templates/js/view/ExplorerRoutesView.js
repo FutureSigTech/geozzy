@@ -216,7 +216,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           drawYGrid: false,
           pixelsPerLabel:100,
           axisLineColor: 'transparent',
-          allowsTrackHover: true,
+          allowsTrackHover: routeAttributes.routeInExplorerHoverShow ,
           hoverTrackMarker: false,
           onMouseover: function(id) {
             if(routeAttributes.routeInExplorerHoverShow == false ) {
