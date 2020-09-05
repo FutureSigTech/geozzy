@@ -39,7 +39,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     that.parentExplorer = parentExplorer;
 
     that.parentExplorer.bindEvent('zoomChanged', function(){
-      //that.refreshVisibleRoutes();
+      that.refreshVisibleRoutes();
     });
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
@@ -147,10 +147,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         var routeAttributes = that.getRouteAttributes(r.get('id'));
 
         e.get('routeViewInstance').hideRoute();
-        if( routeAttributes.routeInExplorerHoverShow == false && r.get('mapMarker').visible == false ){
-          e.get('routeViewInstance').hideRoute();
-        }
-        else if(  routeAttributes.routeInExplorerHoverShow == false && r.get('mapMarker').visible == true  ) {
+        if(  routeAttributes.routeInExplorerHoverShow == false && r.get('mapMarker').visible == true  ) {
           e.get('routeViewInstance').showRoute();
         }
 
@@ -209,13 +206,21 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           drawYGrid: false,
           pixelsPerLabel:100,
           axisLineColor: 'transparent',
-          allowsTrackHover: true,
+          allowsTrackHover: false,
           hoverTrackMarker: false,
-          onMouseover: function(id) { that.parentExplorer.triggerEvent('resourceHover', { id: id }); },
-          onMouseOut: function(id) { that.parentExplorer.triggerEvent('resourceMouseOut', {id: id }); },
+          onMouseover: function(id) {
+            if(routeAttributes.routeInExplorerHoverShow == false ) {
+              //that.parentExplorer.triggerEvent('resourceHover', { id: id });
+            }
+          },
+          onMouseOut: function(id) {
+            if(routeAttributes.routeInExplorerHoverShow == false ) {
+              //that.parentExplorer.triggerEvent('resourceMouseOut', {id: id });
+            }
+          },
           onMouseClick: function( id ) {
-            if( that.options.avoidClick != true ) {
-              that.parentExplorer.triggerEvent('resourceClick', { id: id });
+            if( that.options.avoidClick != true && routeAttributes.routeInExplorerHoverShow == false ) {
+              //that.parentExplorer.triggerEvent('resourceClick', { id: id });
             }
           }
         };

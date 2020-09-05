@@ -4,6 +4,8 @@ if(!geozzy.rextRoutes) geozzy.rextRoutes={};
 
 geozzy.rextRoutes.routeView = Backbone.View.extend({
 
+  polyline:false,
+
   options: false,
   trackMarker: false,
   grafico: false,
@@ -114,31 +116,36 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       });
     }
 
-    that.polyline = new google.maps.Polyline({
-      path: routeData,
-      geodesic: true,
-      strokeColor: that.options.strokeColor,
-      strokeOpacity: that.options.strokeOpacity,
-      strokeWeight: that.options.strokeWeight,
-      zIndex:3
-    });
+    if( that.polyline == false ) {
 
-    that.polylineBG1 = new google.maps.Polyline({
-      path: routeData,
-      geodesic: true,
-      strokeOpacity: 0,
-      strokeWeight: 20,
-      zIndex:2
-    });
+      that.polyline = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeColor: that.options.strokeColor,
+        strokeOpacity: that.options.strokeOpacity,
+        strokeWeight: that.options.strokeWeight,
+        zIndex:3
+      });
 
-    that.polylineBG2 = new google.maps.Polyline({
-      path: routeData,
-      geodesic: true,
-      strokeColor: that.options.strokeBorderColor,
-      strokeOpacity: that.options.strokeOpacity,
-      strokeWeight: that.options.strokeBorderWeight,
-      zIndex:1
-    });
+      that.polylineBG1 = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeOpacity: 0,
+        strokeWeight: 20,
+        zIndex:2
+      });
+
+      that.polylineBG2 = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeColor: that.options.strokeBorderColor,
+        strokeOpacity: that.options.strokeOpacity,
+        strokeWeight: that.options.strokeBorderWeight,
+        zIndex:1
+      });
+    }
+
+
 
 
     that.mapRoute = routeMap;
