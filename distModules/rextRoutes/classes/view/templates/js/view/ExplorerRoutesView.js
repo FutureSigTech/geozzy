@@ -43,12 +43,22 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     });
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
-      that.showRoute(params.id);
+      var r = that.parentExplorer.resourceMinimalList.get(params.id);
+      var routeAttributes = that.getRouteAttributes(r.get('id'));
+
+      if(  routeAttributes.routeInExplorerHoverShow != false ) {
+        that.showRoute(params.id);
+      }
     });
 
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      that.refreshVisibleRoutes( );
+      var r = that.parentExplorer.resourceMinimalList.get(params.id);
+      var routeAttributes = that.getRouteAttributes(r.get('id'));
+
+      if(  routeAttributes.routeInExplorerHoverShow != false ) {
+        that.refreshVisibleRoutes( );
+      }
     });
 
 
