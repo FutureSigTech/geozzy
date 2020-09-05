@@ -211,7 +211,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           axisLineColor: 'transparent',
           allowsTrackHover: false,
           hoverTrackMarker: false,
-          onMouseover: function(id) {that.parentExplorer.triggerEvent('resourceHover', { id: id }); },
+          onMouseover: function(id) { alert(0);that.parentExplorer.triggerEvent('resourceHover', { id: id }); },
           onMouseOut: function(id) { that.parentExplorer.triggerEvent('resourceMouseOut', {id: id }); },
           onMouseClick: function( id ) {
             if( that.options.avoidClick != true ) {
