@@ -53,12 +53,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      var r = that.parentExplorer.resourceMinimalList.get(params.id);
-      var routeAttributes = that.getRouteAttributes(r.get('id'));
-
-      if(  routeAttributes.routeInExplorerHoverShow != false ) {
-        that.refreshVisibleRoutes( );
-      }
+      that.refreshVisibleRoutes( );
     });
 
 
@@ -216,7 +211,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           drawYGrid: false,
           pixelsPerLabel:100,
           axisLineColor: 'transparent',
-          allowsTrackHover: routeAttributes.routeInExplorerHoverShow ,
+          allowsTrackHover: !routeAttributes.routeInExplorerHoverShow ,
           hoverTrackMarker: false,
           onMouseover: function(id) {
             if(routeAttributes.routeInExplorerHoverShow == false ) {
