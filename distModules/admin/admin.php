@@ -10,64 +10,72 @@ class admin extends Module {
 
   public $dependences = array(
     array(
-     "id" =>"underscore",
-     "params" => array("underscore#1.8.3"),
-     "installer" => "bower",
-     "includes" => array("underscore-min.js")
+      "id" =>"underscore",
+      // https://github.com/jashkenas/underscore
+      // underscore 1.8.3 Apr.2015 --> 1.11.0 Aug.2020
+      "params" => array("underscore#1.8.3"),
+      "installer" => "bower",
+      "includes" => array("underscore-min.js")
     ),
     array(
-     "id" =>"backbonejs",
-     "params" => array("backbone#1.1.2"),
-     "installer" => "bower",
-     "includes" => ['backbone.js']
+      "id" =>"backbonejs",
+      // https://github.com/jashkenas/backbone/
+      // backbone 1.1.2 Feb.2014 --> 1.4.0 Feb.2019
+      "params" => array("backbone#1.1.2"),
+      "installer" => "bower",
+      "includes" => ['backbone.js']
     ),
-    /*array(
-     "id" => "bootstrap",
-     "params" => array("bootstrap#v3.4"),
-     "installer" => "bower",
-     "includes" => array("dist/js/bootstrap.min.js")
-   ),*/
+    /*
+      array(
+        "id" => "bootstrap",
+        "params" => array("bootstrap#v3.4"),
+        "installer" => "bower",
+        "includes" => array("dist/js/bootstrap.min.js")
+      ),
+    */
     array(
-     "id" => "font-awesome",
-     "params" => array("Font-Awesome#v4.7.0"),
-     "installer" => "bower",
-     "includes" => array("css/font-awesome.min.css")
-    ),
-    array(
-     "id" =>"html5shiv",
-     "params" => array("html5shiv"),
-     "installer" => "bower",
-     "includes" => ['dist/html5shiv.min.js']
-    ),
-    array(
-     "id" =>"respond",
-     "params" => array("respond"),
-     "installer" => "bower",
-     "includes" => array("src/respond.js")
+      "id" => "font-awesome",
+      // https://github.com/FortAwesome/Font-Awesome
+      // Font-Awesome 4.7.0 Oct.2016 --> 5.14.0 Jul.2020
+      "params" => array("Font-Awesome#v4.7.0"),
+      "installer" => "bower",
+      "includes" => array("css/font-awesome.min.css")
     ),
     array(
-     "id" =>"metismenu",
-     "params" => array("metisMenu"),
-     "installer" => "bower",
-     "includes" => array("dist/metisMenu.min.css", "dist/metisMenu.min.js")
+      "id" =>"html5shiv",
+      "params" => array("html5shiv"),
+      "installer" => "bower",
+      "includes" => ['dist/html5shiv.min.js']
     ),
     array(
-     "id" =>"raphael",
-     "params" => array("raphael"),
-     "installer" => "bower",
-     "includes" => array("raphael.min.js")
+      "id" =>"respond",
+      "params" => array("respond"),
+      "installer" => "bower",
+      "includes" => array("src/respond.js")
     ),
     array(
-     "id" =>"select2",
-     "params" => array("select2#4"),
-     "installer" => "bower",
-     "includes" => [ 'dist/js/select2.full.min.js', 'dist/css/select2.min.css' ]
+      "id" =>"metismenu",
+      "params" => array("metisMenu"),
+      "installer" => "bower",
+      "includes" => array("dist/metisMenu.min.css", "dist/metisMenu.min.js")
     ),
     array(
-     "id" =>"placeholders",
-     "params" => array("placeholders"),
-     "installer" => "bower",
-     "includes" => array("dist/placeholders.jquery.min.js")
+      "id" =>"raphael",
+      "params" => array("raphael"),
+      "installer" => "bower",
+      "includes" => array("raphael.min.js")
+    ),
+    array(
+      "id" =>"select2",
+      "params" => array("select2#4"),
+      "installer" => "bower",
+      "includes" => [ 'dist/js/select2.full.min.js', 'dist/css/select2.min.css' ]
+    ),
+    array(
+      "id" =>"placeholders",
+      "params" => array("placeholders"),
+      "installer" => "bower",
+      "includes" => array("dist/placeholders.jquery.min.js")
     ),
     array(
       "id" =>"nestable2",
@@ -94,37 +102,41 @@ class admin extends Module {
       "includes" => array("raleway.css")
     ),
     array(
-     "id" =>"moment",
-     "params" => array("moment"),
-     "installer" => "bower",
-     "includes" => array('min/moment-with-locales.min.js')
+      "id" =>"moment",
+      "params" => array("moment"),
+      "installer" => "bower",
+      "includes" => array('min/moment-with-locales.min.js')
     ),
     array(
-     "id" =>"eonasdan-bootstrap-datetimepicker",
-     "params" => array("eonasdan-bootstrap-datetimepicker"),
-     "installer" => "bower",
-     "includes" => array("build/css/bootstrap-datetimepicker.min.css", "build/js/bootstrap-datetimepicker.min.js")
+      "id" =>"eonasdan-bootstrap-datetimepicker",
+      "params" => array("eonasdan-bootstrap-datetimepicker"),
+      "installer" => "bower",
+      "includes" => array("build/css/bootstrap-datetimepicker.min.css", "build/js/bootstrap-datetimepicker.min.js")
     ),
     array(
-     "id" =>"moment-timezone",
-     "params" => array("moment-timezone"),
-     "installer" => "bower",
-     "includes" => array("builds/moment-timezone-with-data.min.js")
+      "id" =>"moment-timezone",
+      "params" => array("moment-timezone"),
+      "installer" => "bower",
+      "includes" => array("builds/moment-timezone-with-data.min.js")
     ),
     array( // required by elFinder
       "id" =>"jquery-ui",
+      // https://jqueryui.com/
+      // 1.12.1 Sep.2016 sin novedades
       "params" => array("jquery-ui#1.12.1"),
       "installer" => "bower",
       "includes" => [ 'jquery-ui.min.js', '/themes/smoothness/jquery-ui.min.css' ]
     ),
     array(
-     'id' => 'elfinder',
-     'params' => array('studio-42/elfinder', '2.1.17'),
-     'installer' => 'composer',
-     'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
+      'id' => 'elfinder',
+      // studio-42/elfinder2.1.17
+      // https://github.com/Studio-42/elFinder
+      // 2020-06-05  (2.1.57):
+      'params' => array('studio-42/elfinder', '2.1.17'),
+      'installer' => 'composer',
+      'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
     )
   );
-
 
 
   public $includesCommon = array(
@@ -147,6 +159,7 @@ class admin extends Module {
     'js/view/MenuEditorView.js',
     'js/view/ResourcesStarredListView.js'
   );
+
 
   public function __construct() {
     $this->addUrlPatterns( '#^admin$#', 'view:AdminViewMaster::commonAdminInterface' );
@@ -265,6 +278,7 @@ class admin extends Module {
 
   }
 
+
   function getGeozzyDocAPI() {
     $ret = [];
 
@@ -304,6 +318,4 @@ class admin extends Module {
 
     return $ret;
   }
-
-
 }
