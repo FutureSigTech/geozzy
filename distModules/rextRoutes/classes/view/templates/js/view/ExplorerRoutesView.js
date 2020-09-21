@@ -49,8 +49,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
           r.get('routeObj').routeInstance.showRoute();
         }
         if( that.options.showGraph && r.get('routeObj').altitudeShow == true ) {
+          $(that.options.hoverGraphDiv).show();
           r.get('routeObj').routeInstance.renderGraphRoute(true);
-          console.log('graph')
         }
         else {
           $(that.options.hoverGraphDiv).hide();
