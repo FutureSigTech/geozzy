@@ -78,13 +78,29 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     });
 
     that.parentExplorer.bindEvent('applyFilters', function(ev){
-
+      that.refreshRoutes();
     });
 
 
 
   },
 
+
+  refreshRoutes: function() {
+    var that = this;
+
+    that.parentExplorer.resourceMinimalList.each( function(r,i) {
+
+      if(r.get('routeObj') && r.get('routeObj').routeInstance) {
+        if( r.get('routeObj').inExplorerHoverShow == true || r.get('mapMarker').visible == false ) {
+          r.get('routeObj').routeInstance.hideRoute();
+        }
+        else {
+          r.get('routeObj').routeInstance.showRoute();
+        }
+      }
+    });
+  },
 
   setRoutesOnResources: function() {
     var that = this;
@@ -114,7 +130,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         r.get('routeObj').routeInstanceModel = routeInstanceModel;
         r.get('routeObj').routeInstance = that.createRouteInstance(r.get('routeObj').routeInstanceModel, r.get('routeObj').inExplorerHoverShow, r.get('routeObj').altitudeShow );
 
-        if( r.get('routeObj').inExplorerHoverShow == true ) {
+        if( r.get('routeObj').inExplorerHoverShow == true || r.get('mapMarker').visible == false ) {
           r.get('routeObj').routeInstance.hideRoute();
         }
       });
