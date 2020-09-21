@@ -498,5 +498,19 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       that.polylineBG2.setMap(null);
     }
 
+  },
+
+  strokeColorCustom: function( customColor ) {
+    var that = this;
+
+    that.polyline.setOptions({strokeColor: customColor});
+
+
+  },
+
+  strokeColorOriginal: function( ) {
+    var that = this;
+    that.polyline.setOptions({strokeColor: that.options.strokeColor});
+
   }
 });

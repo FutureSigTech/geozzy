@@ -16,6 +16,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
+      strokeHoverColor: '#249c00',
       showGraph: false,
       hoverGraphDiv: false,
       ShowRouteInZoomLevel: 10,
@@ -48,6 +49,11 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         if(r.get('routeObj').inExplorerHoverShow == true) {
           r.get('routeObj').routeInstance.showRoute();
         }
+        else {
+          r.get('routeObj').routeInstance.strokeColorCustom(that.options.strokeHoverColor);
+        }
+
+
         if( that.options.showGraph && r.get('routeObj').altitudeShow == true ) {
           $(that.options.hoverGraphDiv).show();
           r.get('routeObj').routeInstance.renderGraphRoute(true);
@@ -62,9 +68,16 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
       var r = that.parentExplorer.resourceMinimalList.get(params.id);
-      if( r && r.get('routeObj') && r.get('routeObj').routeInstance && r.get('routeObj').inExplorerHoverShow == true) {
-        r.get('routeObj').routeInstance.hideRoute();
+      if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
+        if(r.get('routeObj') && r.get('routeObj').routeInstance && r.get('routeObj').inExplorerHoverShow == true) {
+          r.get('routeObj').routeInstance.hideRoute();
+        }
+        else {
+          r.get('routeObj').routeInstance.strokeColorOriginal();
+        }
       }
+
+
     });
 
 
@@ -91,7 +104,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     that.parentExplorer.resourceMinimalList.each( function(r,i) {
 
-      if(r.get('routeObj') && r.get('routeObj').routeInstance) {
+      if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
         if( r.get('routeObj').inExplorerHoverShow == true || r.get('mapMarker').visible == false ) {
           r.get('routeObj').routeInstance.hideRoute();
         }
