@@ -80,7 +80,9 @@ class RTypeViewCore extends View {
   public function __construct( ResourceController $defResCtrl, Module $rTypeModule ) {
     // error_log( 'RTypeViewCore: __construct() para '.$rTypeModule->name.' - '. debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 )[0]['file'] );
 
-    $this->defResCtrl = $defResCtrl;
+    $this->defResCtrl = !empty( $defResCtrl ) ? $defResCtrl : new ResourceController();
+    // $this->defResCtrl = $defResCtrl;
+
     $rTypeName = $this->rTypeName = $rTypeModule->name;
     $this->rTypeModule = $rTypeModule;
 
