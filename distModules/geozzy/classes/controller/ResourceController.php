@@ -6,14 +6,14 @@ Cogumelo::load('coreController/Cache.php');
 
 
 /**
-  METODOS A CAMBIAR/ELIMINAR
-  loadResourceObject
-  getResourceData: Controlar ben translate e cargar a maioria dos datos
-**/
+ * METODOS A CAMBIAR/ELIMINAR
+ * loadResourceObject
+ * getResourceData: Controlar ben translate e cargar a maioria dos datos
+ */
 
 /**
  * Controller de Recursos
- **/
+ */
 class ResourceController {
 
   public $rTypeCtrl = null;
@@ -238,7 +238,7 @@ class ResourceController {
         $resourceData[ 'topic' ] = current( $resourceData[ 'topics' ] );
 
         $topicModel = new TopicModel();
-        foreach( $topicsArray as $i => $topicId ) {
+        foreach( $topicsArray as $topicId ) {
           if( $t = $topicModel->listItems( [ 'filters' => [ 'id' => $topicId ], 'cache' => $this->cacheQuery ] )->fetch() ) {
             $resourceTopicList[$topicId] = $t->getter('name');
           }
@@ -561,7 +561,11 @@ class ResourceController {
 
     $form = $this->getBaseFormObj( $formName, $urlAction, $successArray, $valuesArray );
 
-    $rType = $form->getFieldValue( 'rTypeIdName' ) | $form->getFieldValue( 'rTypeId' );
+    // $rType = $form->getFieldValue( 'rTypeIdName' ) | $form->getFieldValue( 'rTypeId' );
+    $rType = $form->getFieldValue( 'rTypeIdName' );
+    if( empty( $rType ) ) {
+      $rType = $form->getFieldValue( 'rTypeId' );
+    }
     if( $this->getRTypeCtrl( $rType ) ) {
       $this->rTypeCtrl->manipulateForm( $form );
     }
@@ -631,7 +635,7 @@ class ResourceController {
     }
 
     $urlAdminAliasFieldNames = $form->multilangFieldNames( 'urlAdminAlias' );
-    $fieldName = is_array( $urlAliasFieldNames ) ? $urlAliasFieldNames['0'] : $urlAliasFieldNames;
+    $fieldName = is_array( $urlAdminAliasFieldNames ) ? $urlAdminAliasFieldNames['0'] : $urlAdminAliasFieldNames;
     if( $form->isFieldDefined( $fieldName ) ) {
       $this->evalFormUrlAlias( $form, 'urlAdminAlias' );
     }
@@ -1931,13 +1935,18 @@ class ResourceController {
     // "Aplanamos" caracteres no ASCII7
     $text = str_replace( $this->urlTranslate['from'], $this->urlTranslate['to'], $text );
 
-    // Solo admintimos a-z A-Z 0-9 _ - / El resto pasan a ser -
-    $text = preg_replace( '/[^a-z0-9_\-\/]/iu', '-', $text );
+    // Solo admintimos a-z A-Z 0-9 _ - . / El resto pasan a ser -
+    $text = preg_replace( '/[^a-z0-9_\-\.\/]/iu', '-', $text );
 
     // Limpiamos sobrantes
     // $text = preg_replace( '/--+/u', '-', $text );
     $text = preg_replace( '/-*([_\-\/])-*/u', '${1}', $text );
-    $text = trim( $text, '-' );
+    $text = preg_replace( '/\.\.+/', '.', $text );
+    $text = preg_replace( '/\/[_\-\.]+/', '/', $text );
+    $text = preg_replace( '/[_\-\.]+\//', '/', $text );
+    $text = preg_replace( '/\/\/*/', '/', $text );
+    $text = rtrim( $text, '/' );
+    $text = trim( $text, '-.' );
 
     return $text;
   }
