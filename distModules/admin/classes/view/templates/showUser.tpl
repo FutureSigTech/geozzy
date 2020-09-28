@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-4">
     {if array_key_exists('avatar', $user['data'])}
-      <img class="userAvatar img-responsive img-rounded" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$user['data']['avatar']}">
+      <img class="userAvatar img-responsive img-rounded" src="{$cogumelo.publicConf.mediaHost}cgmlImg/{$user.data.avatar}">
     {/if}
   </div>
   <div class="col-md-8">
@@ -38,7 +38,9 @@
       <div class="form-group">
         <label class="col-sm-4 control-label">Description:</label>
         <div class="col-sm-8">
-          <p class="form-control-static">{$user['data']['description_es']}</p>
+          {if array_key_exists('description_es', $user['data'])}
+            <p class="form-control-static">{$user.data.description_es}</p>
+          {/if}
         </div>
       </div>
 
