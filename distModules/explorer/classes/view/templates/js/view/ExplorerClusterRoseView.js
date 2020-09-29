@@ -74,16 +74,35 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
       $( markers ).each( function(i,e){
 
         currentAngle += angle;
+        var icono;
+        var customClusterIcon;
 
-        var icono = $('<img data-resource-id="'+e.explorerResourceId+'" src="'+e.getIcon().url+'">');
-        icono.css('position', 'absolute');
-        //icono.css('background', 'green');
-        icono.css('width', e.getIcon().size.width + 'px');
-        icono.css('height', e.getIcon().size.height + 'px');
-        icono.css("border-radius", 300);
+        if(that.options.mapView.parentExplorer.resourceMinimalList.get(e.explorerResourceId).clusterIcon) {
+          customClusterIcon = that.options.mapView.parentExplorer.resourceMinimalList.get(e.explorerResourceId).clusterIcon;
+          icono = $('<img data-resource-id="'+e.explorerResourceId+'" src="'+customClusterIcon.url+'">');
+          icono.css('position', 'absolute');
+          //icono.css('background', 'green');
+          icono.css('width', customClusterIcon.width + 'px');
+          icono.css('height', customClusterIcon.height + 'px');
+          icono.css("border-radius", 300);
+          //icono.css("border", '1px solid black');
+          icono.css("zIndex", 10);
 
-        //icono.css("border", '1px solid black');
-        icono.css("zIndex", 10);
+        }
+        else {
+          icono = $('<img data-resource-id="'+e.explorerResourceId+'" src="'+e.getIcon().url+'">');
+
+          icono.css('position', 'absolute');
+          //icono.css('background', 'green');
+          icono.css('width', e.getIcon().size.width + 'px');
+          icono.css('height', e.getIcon().size.height + 'px');
+          icono.css("border-radius", 300);
+
+          //icono.css("border", '1px solid black');
+          icono.css("zIndex", 10);
+
+        }
+
 
 
         var iconTopOrigin = that.markerClustererHover.height()/2 - icono.height()/2;
