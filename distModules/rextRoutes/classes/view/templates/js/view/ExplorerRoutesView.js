@@ -45,6 +45,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
       var r = that.parentExplorer.resourceMinimalList.get(params.id);
+      console.log('quensoneu',r.get('routeObj').routeInstance);
       if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
         if(r.get('routeObj').inExplorerHoverShow == true) {
           r.get('routeObj').routeInstance.showRoute();
@@ -140,12 +141,16 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       });
 
       that.fetchRoute( r.get('id') , function( routeInstanceModel ) {
-        r.get('routeObj').routeInstanceModel = routeInstanceModel;
-        r.get('routeObj').routeInstance = that.createRouteInstance(r.get('routeObj').routeInstanceModel, r.get('routeObj').inExplorerHoverShow, r.get('routeObj').altitudeShow );
 
-        if( r.get('routeObj').inExplorerHoverShow == true || r.get('mapMarker').visible == false ) {
-          r.get('routeObj').routeInstance.hideRoute();
+        if(routeInstanceModel) {
+          r.get('routeObj').routeInstanceModel = routeInstanceModel;
+          r.get('routeObj').routeInstance = that.createRouteInstance(r.get('routeObj').routeInstanceModel, r.get('routeObj').inExplorerHoverShow, r.get('routeObj').altitudeShow );
+
+          if( r.get('routeObj').inExplorerHoverShow == true || r.get('mapMarker').visible == false ) {
+            r.get('routeObj').routeInstance.hideRoute();
+          }
         }
+
       });
 
 
