@@ -68,18 +68,16 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      var r = that.parentExplorer.resourceMinimalList.get(params.id);
-      if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
-        if(r.get('routeObj') && r.get('routeObj').routeInstance && r.get('routeObj').inExplorerHoverShow == true) {
-          r.get('routeObj').routeInstance.hideRoute();
-        }
-        else {
-          r.get('routeObj').routeInstance.strokeColorOriginal();
-        }
+
+      if( params.id == 0 ) {
+        that.parentExplorer.resourceMinimalList.each(function(e,i){that.hideRoute( e.get('id')) });
+      }
+      else {
+        that.hideRoute( params.id );
       }
 
-
     });
+
 
 
     that.parentExplorer.bindEvent('resourceClick', function( params ){
@@ -96,6 +94,20 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     });
 
 
+
+  },
+
+  hideRoute: function( paramId ) {
+    var that = this;
+    var r = that.parentExplorer.resourceMinimalList.get(paramId);
+    if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
+      if(r.get('routeObj') && r.get('routeObj').routeInstance && r.get('routeObj').inExplorerHoverShow == true) {
+        r.get('routeObj').routeInstance.hideRoute();
+      }
+      else {
+        r.get('routeObj').routeInstance.strokeColorOriginal();
+      }
+    }
 
   },
 
