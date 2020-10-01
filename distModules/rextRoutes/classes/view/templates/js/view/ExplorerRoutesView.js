@@ -80,6 +80,17 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
 
+    that.parentExplorer.bindEvent('mapInfoWindowMobileClose', function( params ){
+      if( params.id == 0 ) {
+        that.parentExplorer.resourceMinimalList.each(function(e,i){that.hideRoute( e.get('id')) });
+      }
+      else {
+        that.hideRoute( params.id );
+      }
+    });
+
+
+
     that.parentExplorer.bindEvent('resourceClick', function( params ){
 
     });
