@@ -207,7 +207,10 @@ class CommentView extends View {
     if( !$form->existErrors() ){
       $valuesArray = $form->getValuesArray();
 
-      $valuesArray['timeCreation'] = date("Y-m-d H:i:s", time());
+      $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
+      $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
+      $valuesArray[ 'timeCreation' ] = $date->format( 'Y-m-d H:i:s' );
+      // $valuesArray['timeCreation'] = date("Y-m-d H:i:s", time());
 
       if(!empty($valuesArray['rate']) && $valuesArray['rate']!== 0){
         $valuesArray['rate'] = $valuesArray['rate'] * 20;
