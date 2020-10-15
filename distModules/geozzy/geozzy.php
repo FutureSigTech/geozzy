@@ -269,7 +269,7 @@ class geozzy extends Module {
 
 
     // only add menu items when not deploy
-    if( $isDeploy == false ) {
+
       $GEOZZY_TAXONOMYGROUPS['menu'] = array(
         'idName' => 'menu',
         'name' => array(
@@ -286,7 +286,7 @@ class geozzy extends Module {
         require_once APP_BASE_PATH.'/conf/inc/geozzyMenu.php';
         $GEOZZY_TAXONOMYGROUPS['menu']['initialTerms'] = $GEOZZY_MENU;
       }
-    }
+    
 
     /*
     Creamos las taxonomías definidas
@@ -296,7 +296,14 @@ class geozzy extends Module {
         foreach( $tax['name'] as $langKey => $name ) {
           $tax['name_'.$langKey] = $name;
         }
+        if(isset($tax['mediumDescription'] )) {
+          foreach( $tax['mediumDescription'] as $langKey => $desc ) {
+            $tax['mediumDescription_'.$langKey] = $desc;
+          }
+        }
+
         unset($tax['name']);
+        unset($tax['mediumDescription']);
         $existTaxonomygroupModel = ( new TaxonomygroupModel() )->listItems(['filters'=>['idName'=> $tax['idName'] ]])->fetch();
         if( $existTaxonomygroupModel ) {
           $tax['id'] = $existTaxonomygroupModel->getter('id');
