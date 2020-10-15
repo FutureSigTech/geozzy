@@ -1979,6 +1979,7 @@ class geozzyAPIView extends View {
     while ($valueobject = $result->fetch() ) {
       $allData = array('id' => $valueobject->getter('id'), 'idName' => $valueobject->getter('idName'),
         'name' => $valueobject->getter('name', false), 'taxgroup' => $valueobject->getter('taxgroup'),
+        'mediumDescription' => $valueobject->getter('mediumDescription', false),
         'icon' => $valueobject->getter('icon'),
         'iconAKey' => $valueobject->getter('iconAKey'),
         'img' => $valueobject->getter('iconName'),
