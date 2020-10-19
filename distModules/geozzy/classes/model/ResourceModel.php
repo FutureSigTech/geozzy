@@ -42,7 +42,7 @@ class ResourceModel extends Model {
     ),
     'shortDescription' => array(
       'type' => 'VARCHAR',
-      'size' => 100,
+      'size' => 160,
       'multilang' => true
     ),
     'mediumDescription' => array(
@@ -103,6 +103,12 @@ class ResourceModel extends Model {
   );
 
   var $deploySQL = array(
+    array(
+      'version' => 'geozzy#10',
+      'sql'=> '
+        {multilang: ALTER table geozzy_resource modify COLUMN shortDescription_$lang varchar (160);}
+      '
+    ),
     array(
       'version' => 'geozzy#1.6',
       'sql'=> '

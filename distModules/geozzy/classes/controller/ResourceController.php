@@ -377,7 +377,7 @@ class ResourceController {
       'shortDescription' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'Short description' ) ),
-        'rules' => array( 'maxlength' => '100' )
+        'rules' => array( 'maxlength' => '160' )
       ),
       'mediumDescription' => array(
         'translate' => true,
