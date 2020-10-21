@@ -64,8 +64,8 @@ class RExtKMLController extends RExtController implements RExtInterface {
           'placeholder' => __( 'File' ), 'destDir' => RExtKMLModel::$cols['file']['uploadDir']
         ],
         'rules' => [
-          'maxfilesize' => '5242880',
-          'accept' => ',application/xml,application/vnd.google\-earth.kml\+xml,application/vnd.google\-earth.kmz,application/zip'
+          'maxfilesize' => '5242880'//,
+          //'accept' => ',application/xml,application/vnd.google\-earth.kml\+xml,application/vnd.google\-earth.kmz,application/zip'
         ]
       ]
     ];
