@@ -888,10 +888,14 @@ class ResourceController {
             $fileField['values']['privateMode'] = $fileField['privateMode'];
           }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
-          Cogumelo::debug( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
+            Cogumelo::debug( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
             $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
             $result = $newFiledataObj;
+          }
+          else {
+            Cogumelo::log( 'To Model - LOADED newFiledataObj ERROR' );
+            Cogumelo::debug( 'To Model - LOADED newFiledataObj ERROR' );
           }
           break;
         case 'REPLACE':
