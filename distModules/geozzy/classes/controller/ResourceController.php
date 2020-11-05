@@ -1942,15 +1942,19 @@ class ResourceController {
     // Solo admintimos a-z A-Z 0-9 _ - . / El resto pasan a ser -
     $text = preg_replace( '/[^a-z0-9_\-\.\/]/iu', '-', $text );
 
-    // Limpiamos sobrantes
-    // $text = preg_replace( '/--+/u', '-', $text );
-    $text = preg_replace( '/-*([_\-\/])-*/u', '${1}', $text );
-    $text = preg_replace( '/\.\.+/', '.', $text );
-    $text = preg_replace( '/\/[_\-\.]+/', '/', $text );
-    $text = preg_replace( '/[_\-\.]+\//', '/', $text );
-    $text = preg_replace( '/\/\/*/', '/', $text );
-    $text = rtrim( $text, '/' );
-    $text = trim( $text, '-.' );
+    // Limpiamos repetidos
+    $text = preg_replace( '/__+/u', '_', $text );
+    $text = preg_replace( '/--+/u', '-', $text );
+    $text = preg_replace( '/\.\.+/u', '.', $text );
+
+    // Quita / repetidas o con puntos en medio: //+ y /.+/
+    $text = preg_replace( '/\/[\.\/]+\//u', '/', $text );
+
+    // Quita \ - o . finales dejando / inicial y algun caracter
+    // $text = preg_replace( '/^(\/.+)[\/\.\-]+$/u', '${1}', $text );
+    // if( $text !== '/' ) {
+    //   $text = rtrim( $text, '/' );
+    // }
 
     return $text;
   }
@@ -1972,6 +1976,7 @@ class ResourceController {
       if( $url !== null && $url !== '' ) {
         $url = $this->sanitizeUrl( $url );
 
+        error_log( __METHOD__.' url='.$url );
         if( strpos( $url, '/' ) !== 0 ) {
           $error = 'La URL tiene que comenzar con una barra /';
         }
