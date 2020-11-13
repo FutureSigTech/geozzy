@@ -153,7 +153,12 @@
       </div>
       <div class="dd-content">
         <div class="info clearfix">
-          <div class="title"><%- resource.title %></div>
+          <div class="title">
+            <%- resource.title %>
+            <% if(resource.rextmodels.ContactModel.timetable){ %>
+              <i class="fa fa-clock-o fa-rotate-180" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="<%- resource.rextmodels.ContactModel.timetable %>"></i>
+            <% } %>
+          </div>
           <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
           <div class="infoTimeRoute"></div>
         </div>
@@ -176,7 +181,12 @@
       </div>
       <div class="dd-content">
         <div class="info clearfix">
-          <div class="title"><%- resource.title %></div>
+          <div class="title">
+            <%- resource.title %>
+            <% if(resource.rextmodels.ContactModel.timetable){ %>
+              <i class="fa fa-clock-o fa-rotate-180" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="<%- resource.rextmodels.ContactModel.timetable %>"></i>
+            <% } %>
+          </div>
           <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
           <div class="infoTimeRoute"></div>
         </div>
@@ -195,7 +205,17 @@
   <div class="resourceTp" data-resource-id="<%- resource.id %>">
     <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
-
+    <% if(resource.rextmodels.ContactModel.timetable){ %>
+    <div class="timetableTitle">
+      {t}Attention{/t}
+      <br/>
+      <span>{t}Keep in mind the timetable for your planning{/t}:</span>
+    </div>  
+    <div class="timetable">
+      <%- resource.rextmodels.ContactModel.timetable %>
+    </div>
+    <% } %>
+    
     <form>
       <div class="labelText">{t}Select date to visit this place or event{/t}</div>
       <ul class="selectorDays clearfix">
@@ -231,6 +251,17 @@
   <div class="resourceTp" data-resource-id="<%- resource.id %>">
     <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
+
+    <% if(resource.rextmodels.ContactModel.timetable){ %>
+    <div class="timetableTitle">
+      {t}Attention{/t}
+      <br/>
+      <span>{t}Keep in mind the timetables for your planning{/t}:</span>
+    </div>  
+    <div class="timetable">
+      <%- resource.rextmodels.ContactModel.timetable %>
+    </div>
+    <% } %>
 
     <form>
       <div class="labelText">{t}How long?{/t}</div>
