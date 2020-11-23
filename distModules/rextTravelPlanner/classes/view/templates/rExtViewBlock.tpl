@@ -143,8 +143,12 @@
     </div>
   </div>
 </script>
+
 <!-- *************************** NESTABLE ITEM ************************************** -->
 <script type="text/template" id="resourcePlanItemTemplate">
+
+
+
   <li class="dd-item" data-id="<%- resource.serializedData %>">
     <div class="dd-item-container clearfix">
       <div class="dd-handle">
@@ -155,8 +159,8 @@
         <div class="info clearfix">
           <div class="title">
             <%- resource.title %>
-            <% if(resource.rextmodels.ContactModel.timetable){ %>
-              <i class="fa fa-clock-o fa-rotate-180" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="<%- resource.rextmodels.ContactModel.timetable %>"></i>
+            <% if(resource.rextmodels.ContactModel && resource.rextmodels.ContactModel.timetable){ %>
+              <i class="fa fa-calendar" aria-hidden="true" data-html="true" data-toggle="tooltip" data-placement="top" title='<%= resource.rextmodels.ContactModel.timetable.replaceAll("\n", "<br/>") %>'></i>
             <% } %>
           </div>
           <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
@@ -183,8 +187,8 @@
         <div class="info clearfix">
           <div class="title">
             <%- resource.title %>
-            <% if(resource.rextmodels.ContactModel.timetable){ %>
-              <i class="fa fa-clock-o fa-rotate-180" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="<%- resource.rextmodels.ContactModel.timetable %>"></i>
+            <% if(resource.rextmodels.ContactModel && resource.rextmodels.ContactModel.timetable){ %>
+              <i class="fa fa-calendar" aria-hidden="true" data-html="true" data-toggle="tooltip" data-placement="top" title='<%= resource.rextmodels.ContactModel.timetable.replaceAll("\n", "<br />") %>'></i>
             <% } %>
           </div>
           <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> <%- resource.timeFormated %></div>
@@ -205,14 +209,15 @@
   <div class="resourceTp" data-resource-id="<%- resource.id %>">
     <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
-    <% if(resource.rextmodels.ContactModel.timetable){ %>
+
+    <% if(resource.rextmodels.ContactModel && resource.rextmodels.ContactModel.timetable){ %>
     <div class="timetableTitle">
       {t}Attention{/t}
       <br/>
       <span>{t}Keep in mind the timetable for your planning{/t}:</span>
     </div>  
     <div class="timetable">
-      <%- resource.rextmodels.ContactModel.timetable %>
+      <%= resource.rextmodels.ContactModel.timetable.replaceAll("\n", "<br />") %>
     </div>
     <% } %>
     
@@ -252,14 +257,14 @@
     <div class="image"><img class="img-responsive" src="/cgmlImg/<%- resource.image %>/travelPlannerListBig/<%- resource.image %>.jpg"></div>
     <div class="title"><%- resource.title %></div>
 
-    <% if(resource.rextmodels.ContactModel.timetable){ %>
+    <% if(resource.rextmodels.ContactModel && resource.rextmodels.ContactModel.timetable){ %>
     <div class="timetableTitle">
       {t}Attention{/t}
       <br/>
       <span>{t}Keep in mind the timetables for your planning{/t}:</span>
     </div>  
     <div class="timetable">
-      <%- resource.rextmodels.ContactModel.timetable %>
+      <%= resource.rextmodels.ContactModel.timetable.replaceAll("\n", "<br />") %>
     </div>
     <% } %>
 
