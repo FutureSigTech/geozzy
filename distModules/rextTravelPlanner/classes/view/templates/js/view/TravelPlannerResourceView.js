@@ -46,7 +46,7 @@ geozzy.travelPlannerComponents.TravelPlannerResourceView = Backbone.View.extend(
     that.$el = $(that.el);
 
     item = that.parentTp.resources.get(that.idResource).toJSON();
- console.log(item.rextmodels.ContactModel.timetable);
+    
     if(that.mode === 'edit'){
       //Edit
       that.dataRes.minutes = (that.dataRes.time % 60);
