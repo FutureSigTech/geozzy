@@ -9,10 +9,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
+msgid "Print Day"
+msgstr ""
+
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
 msgid "Select Dates"
 msgstr "Selecciona datas"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
+msgid "Add to Plan"
+msgstr "Adicionar ao Plano"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:134
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:133
+msgid "Introduce entre 0 y 23 horas"
+msgstr "Introduz entre 0 e 23 horas"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:135
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:134
+msgid "Introduce entre 0 y 59 minutos"
+msgstr "Introduz entre 0 e 59 minutos"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
@@ -25,22 +43,6 @@ msgstr "Selecciona datas"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
 msgid "Day"
 msgstr "Dia"
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
-msgid "Add to Plan"
-msgstr "Adicionar ao Plano"
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:133
-msgid "Introduce entre 0 y 23 horas"
-msgstr "Introduz entre 0 e 23 horas"
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:134
-msgid "Introduce entre 0 y 59 minutos"
-msgstr "Introduz entre 0 e 59 minutos"
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
-msgid "Print Day"
-msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
@@ -164,6 +166,8 @@ msgstr "Otimizar rota do día"
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:305
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:310
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:310
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:346
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:346
 msgid ""
 "The route between the first and the last place of the day will be optimized."
 msgstr ""
@@ -181,6 +185,8 @@ msgstr "Otimizar"
 #: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:91
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:91
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
 msgid "Plan"
 msgstr ""
 
@@ -367,7 +373,27 @@ msgstr "Chegada"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:293
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:293
 msgid ""
-"IMPORTANT: Before optimizing the route, the desired place of departure should be placed "
-"as the first element and the desired arrival place as the last one. Both "
-"elements could be the same place."
-msgstr "IMPORTANTE: Antes de otimizar a rota, o local de partida desejado deve ser colocado como o primeiro elemento e o local de chegada desejado como o último. Ambos os elementos podem ser o mesmo lugar."
+"IMPORTANT: Before optimizing the route, the desired place of departure "
+"should be placed as the first element and the desired arrival place as the "
+"last one. Both elements could be the same place."
+msgstr ""
+"IMPORTANTE: Antes de otimizar a rota, o local de partida desejado deve ser "
+"colocado como o primeiro elemento e o local de chegada desejado como o "
+"último. Ambos os elementos podem ser o mesmo lugar."
+
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:215
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:262
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:215
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:262
+msgid "Attention"
+msgstr ""
+
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:217
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:217
+msgid "Keep in mind the timetable for your planning"
+msgstr ""
+
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rExtViewBlock.tpl:264
+#: /home/proxectos/ribeirasacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:264
+msgid "Keep in mind the timetables for your planning"
+msgstr ""
