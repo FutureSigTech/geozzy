@@ -240,9 +240,9 @@ class RExtEventController extends RExtController implements RExtInterface {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      if(!empty($valuesArray['initDateFirst'])){
+      if(isset($valuesArray['initDateFirst'])){
         $initDateFirst = date_create( $valuesArray['initDateFirst'] );
-        if( !empty( $initDateFirst ) && !empty( $valuesArray['initDateFirst'] ) ) {
+        if( isset( $initDateFirst ) && isset( $valuesArray['initDateFirst'] ) ) {
           $valuesArray[ 'initDateFirst' ] = date_format( $initDateFirst, "Y-m-d H:i:s" );
         }
         else {
@@ -255,9 +255,9 @@ class RExtEventController extends RExtController implements RExtInterface {
         }
       }
 
-      if(!empty($valuesArray['initDateSecond'])){
+      if(isset($valuesArray['initDateSecond'])){
         $initDateSecond = date_create( $valuesArray['initDateSecond'] );
-        if( !empty( $initDateSecond ) && !empty( $valuesArray['initDateSecond'] ) ) {
+        if( isset( $initDateSecond ) && isset( $valuesArray['initDateSecond'] ) ) {
           $valuesArray[ 'initDateSecond' ] = date_format( $initDateSecond, "Y-m-d H:i:s" );
         }
         else {
@@ -270,9 +270,9 @@ class RExtEventController extends RExtController implements RExtInterface {
         }
       }
 
-      if(!empty($valuesArray[ 'dateRange' ]) ) {
+      if(isset($valuesArray[ 'dateRange' ]) ) {
         $endDateFirst = date_create( $valuesArray['endDateFirst'] );
-        if( !empty( $endDateFirst ) && !empty( $valuesArray['endDateFirst'] ) ) {
+        if( isset( $endDateFirst ) && isset( $valuesArray['endDateFirst'] ) ) {
           $valuesArray[ 'endDateFirst' ] = date_format( $endDateFirst, "Y-m-d H:i:s" );
         }
         else {
@@ -285,7 +285,7 @@ class RExtEventController extends RExtController implements RExtInterface {
         }
 
         $endDateSecond = date_create( $valuesArray['endDateSecond'] );
-        if( !empty( $endDateSecond ) && !empty( $valuesArray['endDateSecond'] ) ) {
+        if( isset( $endDateSecond ) && isset( $valuesArray['endDateSecond'] ) ) {
           $valuesArray[ 'endDateSecond' ] = date_format( $endDateSecond, "Y-m-d H:i:s" );
         }
         else {
