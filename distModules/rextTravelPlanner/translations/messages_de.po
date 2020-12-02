@@ -9,14 +9,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
-msgid "Print Day"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
 msgid "Select Dates"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:32
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:67
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
+msgid "Day"
+msgstr "Tag"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
 msgid "Add to Plan"
@@ -32,17 +40,9 @@ msgstr "Geben Sie zwischen 0 und 23 Stunden ein"
 msgid "Introduce entre 0 y 59 minutos"
 msgstr "Geben Sie zwischen 0 und 59 Minuten ein"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:32
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:67
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
-msgid "Day"
-msgstr "Tag"
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
+msgid "Print Day"
+msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7

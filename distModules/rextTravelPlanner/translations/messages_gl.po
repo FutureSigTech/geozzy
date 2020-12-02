@@ -9,14 +9,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
-msgid "Print Day"
-msgstr ""
-
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerOptimizeDayView.js:26
 msgid "Select Dates"
 msgstr "Selecciona as datas"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:32
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:67
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
+#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:32
+#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:67
+#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
+msgid "Day"
+msgstr "Día"
 
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerResourceView.js:44
 msgid "Add to Plan"
@@ -34,20 +45,9 @@ msgstr "Introduce entre 0 e 23 horas"
 msgid "Introduce entre 0 y 59 minutos"
 msgstr "Introduce entre 0 e 59 minutos"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:168
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:32
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:67
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
-#: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:32
-#: /home/proxectos/canlers/app/tmp/tpl/rExtViewBlock.tpl:67
-#: /home/proxectos/galiciaagochada/app/tmp/tpl/rExtViewBlock.tpl:55
-msgid "Day"
-msgstr "Día"
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
+msgid "Print Day"
+msgstr ""
 
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rExtViewBlock.tpl:7
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
