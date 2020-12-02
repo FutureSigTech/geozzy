@@ -306,8 +306,10 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
         $newResources = array($newResources);
       }
 
+      $affectsDependences = false;
+
       // Si estamos editando, repasamos y borramos recursos sobrantes
-      if( isset($elemId) ) {
+      if( !empty($elemId) ) {
 
         $CollectionResourcesModel = new CollectionResourcesModel();
 
@@ -327,29 +329,30 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
             }
           }
         }
-      }
 
-      $affectsDependences = false;
-      // Creamos-Editamos todas las relaciones con los recursos
+        // Creamos-Editamos todas las relaciones con los recursos
 
-      if( $newResources !== false ) {
-        $affectsDependences = true;
-        $weight = 0;
-        foreach( $newResources as $resource ) {
-          $weight++;
-          if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
-            $collection->setterDependence( 'id',
-              new CollectionResourcesModel( array( 'weight' => $weight,
-                'collection' => $elemId, 'resource' => $resource)) );
-          }
-          else {
-            $collection->setterDependence( 'id',
-              new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
-                'weight' => $weight, 'collection' => $elemId, 'resource' => $resource))
-            );
+        if( $newResources !== false ) {
+          $affectsDependences = true;
+          $weight = 0;
+          foreach( $newResources as $resource ) {
+            $weight++;
+            if( $oldResources === false || !isset( $oldResources[ $resource ] ) ) {
+              $collection->setterDependence( 'id',
+                new CollectionResourcesModel( array( 'weight' => $weight,
+                  'collection' => $elemId, 'resource' => $resource)) );
+            }
+            else {
+              $collection->setterDependence( 'id',
+                new CollectionResourcesModel( array( 'id' => $oldResources[ $resource ],
+                  'weight' => $weight, 'collection' => $elemId, 'resource' => $resource))
+              );
+            }
           }
         }
+
       }
+
       $collection->save( array( 'affectsDependences' => $affectsDependences ));
     }
   }
