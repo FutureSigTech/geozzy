@@ -378,7 +378,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         gridSize: that.options.clustererGridSize, //90,
         zoomOnClick: that.options.clustererZoomOnClick, //true,
         styles: that.options.clustererStyles,
-        isTouchDevice: that.parentExplorer.explorerTouchDevice
+        isTouchDevice: false//that.parentExplorer.explorerTouchDevice
       });
 
       var roseta = new geozzy.explorerComponents.clusterRoseView({mapView: that});
@@ -867,7 +867,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     that.parentExplorer.triggerEvent('mapResourceHover', {
       id: id
-    }); 
+    });
 
     that.parentExplorer.triggerEvent('resourceHover', { id: id, section: 'Explorer: '+that.parentExplorer.options.explorerSectionName});
 
