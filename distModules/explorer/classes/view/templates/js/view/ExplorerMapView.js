@@ -33,7 +33,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       clustererStyles: false,
       clustererMaxZoom: 15,
       clustererGridSize: 90,
-      clustererZoomOnClick: true,
+      clustererZoomOnClick: false,
       markerzIndex: 100,
       chooseMarkerIcon: function() {return false;},
       mapZones: {

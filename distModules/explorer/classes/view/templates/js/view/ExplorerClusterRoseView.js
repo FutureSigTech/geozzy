@@ -133,18 +133,18 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
         icono.bind('click', function(iconoRoseta){
           that.hide();
-/*
+
           if(that.options.mapView.parentExplorer.explorerTouchDevice){
 
             that.options.mapView.parentExplorer.triggerEvent('mobileTouch', {
               id: $(iconoRoseta.target).attr('data-resource-id')
             });
           }
-          else {*/
+          else {
             that.options.mapView.markerClick( $(iconoRoseta.target).attr('data-resource-id') );
-/*
+
           }
-*/
+
           //that.options.mapView.parentExplorer.triggerEvent('resourceClick', {id: $(iconoRoseta.target).attr('data-resource-id') });
           //that.options.mapView.parentExplorer.triggerEvent('resourceMouseOut', {id: $(iconoRoseta.target).attr('data-resource-id') });
         });
