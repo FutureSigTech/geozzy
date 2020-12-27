@@ -33,7 +33,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       clustererStyles: false,
       clustererMaxZoom: 15,
       clustererGridSize: 90,
-      clustererZoomOnClick: false,
+      clustererZoomOnClick: true,
       markerzIndex: 100,
       chooseMarkerIcon: function() {return false;},
       mapZones: {
@@ -378,7 +378,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         gridSize: that.options.clustererGridSize, //90,
         zoomOnClick: that.options.clustererZoomOnClick, //true,
         styles: that.options.clustererStyles,
-        isTouchDevice: false//that.parentExplorer.explorerTouchDevice
+        isTouchDevice: that.parentExplorer.explorerTouchDevice
       });
 
       var roseta = new geozzy.explorerComponents.clusterRoseView({mapView: that});
