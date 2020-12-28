@@ -49,9 +49,9 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
       that.blocked = true;
       that.hide();
-      that.options.mapView.map.setCenter(pos);
+      //that.options.mapView.map.setCenter(pos);
       //that.options.mapView.map.setZoom( that.options.mapView.map.getZoom() + 1 );
-
+      that.markerClustererHover.show();
       setTimeout( function(){
         that.blocked= false;
       }, 100);
