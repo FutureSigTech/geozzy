@@ -159,9 +159,9 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
         icono.bind('mouseleave', function(iconoRoseta){
         //  that.options.mapView.markerOut( $(iconoRoseta.target).attr('data-resource-id') );
-
-          that.options.mapView.parentExplorer.triggerEvent('resourceMouseOut', {id: $(iconoRoseta.target).attr('data-resource-id') });
-
+          if(!that.options.mapView.parentExplorer.explorerTouchDevice){
+            that.options.mapView.parentExplorer.triggerEvent('resourceMouseOut', {id: $(iconoRoseta.target).attr('data-resource-id') });
+          }
           icono.css('margin', '0px');
           icono.css( 'cursor', 'arrow' );
         });
