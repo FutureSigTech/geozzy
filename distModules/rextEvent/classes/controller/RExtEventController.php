@@ -240,39 +240,35 @@ class RExtEventController extends RExtController implements RExtInterface {
       $valuesArray = $this->getRExtFormValues( $form->getValuesArray(), $this->numericFields );
       $valuesArray[ 'resource' ] = $resource->getter( 'id' );
 
-      if(isset($valuesArray['initDateFirst'])){
-        $initDateFirst = date_create( $valuesArray['initDateFirst'] );
-        if( isset( $initDateFirst ) && isset( $valuesArray['initDateFirst'] ) ) {
-          $valuesArray[ 'initDateFirst' ] = date_format( $initDateFirst, "Y-m-d H:i:s" );
+      $initDateFirst = date_create( $valuesArray['initDateFirst'] );
+      if( !empty( $initDateFirst ) && !empty( $valuesArray['initDateFirst'] ) ) {
+        $valuesArray[ 'initDateFirst' ] = date_format( $initDateFirst, "Y-m-d H:i:s" );
+      }
+      else {
+        if( strpos($valuesArray[ 'initDateFirst' ],'-') ) {
+          unset($valuesArray[ 'initDateFirst' ]);
         }
         else {
-          if( strpos($valuesArray[ 'initDateFirst' ],'-') ) {
-            unset($valuesArray[ 'initDateFirst' ]);
-          }
-          else {
-            $valuesArray[ 'initDateFirst' ] = null;
-          }
+          $valuesArray[ 'initDateFirst' ] = null;
         }
       }
 
-      if(isset($valuesArray['initDateSecond'])){
-        $initDateSecond = date_create( $valuesArray['initDateSecond'] );
-        if( isset( $initDateSecond ) && isset( $valuesArray['initDateSecond'] ) ) {
-          $valuesArray[ 'initDateSecond' ] = date_format( $initDateSecond, "Y-m-d H:i:s" );
+      $initDateSecond = date_create( $valuesArray['initDateSecond'] );
+      if( !empty( $initDateSecond ) && !empty( $valuesArray['initDateSecond'] ) ) {
+        $valuesArray[ 'initDateSecond' ] = date_format( $initDateSecond, "Y-m-d H:i:s" );
+      }
+      else {
+        if( strpos($valuesArray[ 'initDateSecond' ],'-') ) {
+          unset($valuesArray[ 'initDateSecond' ]);
         }
         else {
-          if( strpos($valuesArray[ 'initDateSecond' ],'-') ) {
-            unset($valuesArray[ 'initDateSecond' ]);
-          }
-          else {
-            $valuesArray[ 'initDateSecond' ] = null;
-          }
-        }
-      }
+         $valuesArray[ 'initDateSecond' ] = null;
+       }
+     }
 
-      if(isset($valuesArray[ 'dateRange' ]) ) {
+       if( $valuesArray[ 'dateRange' ] ) {
         $endDateFirst = date_create( $valuesArray['endDateFirst'] );
-        if( isset( $endDateFirst ) && isset( $valuesArray['endDateFirst'] ) ) {
+        if( !empty( $endDateFirst ) && !empty( $valuesArray['endDateFirst'] ) ) {
           $valuesArray[ 'endDateFirst' ] = date_format( $endDateFirst, "Y-m-d H:i:s" );
         }
         else {
@@ -285,7 +281,7 @@ class RExtEventController extends RExtController implements RExtInterface {
         }
 
         $endDateSecond = date_create( $valuesArray['endDateSecond'] );
-        if( isset( $endDateSecond ) && isset( $valuesArray['endDateSecond'] ) ) {
+         if( !empty( $endDateSecond ) && !empty( $valuesArray['endDateSecond'] ) ) {
           $valuesArray[ 'endDateSecond' ] = date_format( $endDateSecond, "Y-m-d H:i:s" );
         }
         else {
