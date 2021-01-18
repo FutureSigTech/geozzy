@@ -22,12 +22,15 @@
       <p>{t}Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la url de la página se debe poner #URL#:{/t}</p>
     </div>
   </div>
-  {* <div class="network gplus">
-    {$rExt.dataForm.formFieldsArray['rExtSocialNetwork_activeGplus']}
+  <div class="network linkedin">
+    {$rExt.dataForm.formFieldsArray['rExtSocialNetwork_activeLinkedin']}
+    {foreach $textLinkedin as $text}
+      {$rExt.dataForm.formFieldsArray[$text]}
+    {/foreach}
     <div class="defaultBox">
-      <p>{t}Google+ compartira automáticamente la URL del recurso{/t}</p>
+      <p>{t}Si no se especifica ningún texto, se utilizará por defecto el texto en el recuadro.{/t} </p>
     </div>
-  </div> *}
+  </div>
 </div>
 
 <!-- /rExtFormBasic.tpl en rExtContact module -->

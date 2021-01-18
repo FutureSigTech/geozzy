@@ -15,13 +15,13 @@
         </a>
       </li>
     {/if}
-    {*if isset($rExt.data.activeGplus) && $rExt.data.activeGplus}
-      <li class="share-net gplus">
-        <a class="icon-share" target="_blank" rel="nofollow" href="https://plus.google.com/share?url={$rExt.data.url}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=420');return false;">
-          <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+    {if isset($rExt.data.activeLinkedin) && $rExt.data.activeLinkedin}
+      <li class="share-net linkedin">
+        <a class="icon-share" target="_blank" rel="nofollow" href="https://www.linkedin.com/sharing/share-offsite/?url={$rExt.data.url}&title={$rExt.data.textLinkedin|escape:'url'}" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=420');return false;">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
         </a>
       </li>
-    {/if*}
+    {/if}
   </ul>
 
 {/if}

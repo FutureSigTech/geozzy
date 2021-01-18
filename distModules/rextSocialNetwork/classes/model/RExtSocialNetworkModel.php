@@ -26,10 +26,18 @@ class RExtSocialNetworkModel extends Model {
       'size' => 500,
       'multilang' => true
     ),
-    'activeGplus' => array(
+/*  'activeGplus' => array(
       'type' => 'INT'
     ),
     'textGplus' => array(
+      'type' => 'VARCHAR',
+      'size' => 500,
+      'multilang' => true
+    ),*/
+    'activeLinkedin' => array(
+          'type' => 'INT'
+    ),
+    'textLinkedin' => array(
       'type' => 'VARCHAR',
       'size' => 500,
       'multilang' => true
@@ -64,8 +72,14 @@ class RExtSocialNetworkModel extends Model {
       'version' => 'rextSocialNetwork#1.3',
       'sql'=> '
         {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork MODIFY COLUMN textFb_$lang VARCHAR(500) default NULL;}
-        {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork MODIFY COLUMN textGplus_$lang VARCHAR(500) default NULL;}
         {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork MODIFY COLUMN textTwitter_$lang VARCHAR(500) default NULL;}
+      '
+    ],
+    [
+      'version' => 'rextSocialNetwork#2',
+      'sql'=> '
+        {multilang:ALTER TABLE geozzy_resource_rext_socialnetwork ADD COLUMN textLinkedin_$lang VARCHAR(500) default NULL;}
+        ALTER TABLE geozzy_resource_rext_socialnetwork ADD COLUMN activeLinkedin INT default 0;
       '
     ],
   ];

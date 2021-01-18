@@ -71,17 +71,22 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
         'translate' => true,
         'params' => [ 'type' => 'textarea', 'label' => __( 'Text to share on twitter' ), 'placeholder' => '#TITLE#' ],
         'rules' => [ 'maxlength' => '1000' ]
-      ]/*,
-      'activeGplus' => [
-        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on Google+') ] ]
-      ]*/
+      ],
+      'activeLinkedin' => [
+        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on Linkedin') ] ]
+      ],
+      'textLinkedin' => [
+        'translate' => true,
+        'params' => [ 'type' => 'textarea', 'label' => __( 'Text to share on linkedin' ), 'placeholder' => '#TITLE#' ],
+        'rules' => [ 'maxlength' => '1000' ]
+      ]
     ];
 
     $shareSocialNetwork = Cogumelo::getSetupValue('shareSocialNetwork:default');
     if( !empty( $shareSocialNetwork ) ){
       $fieldsInfo['activeFb']['params']['value'] = 1;
       $fieldsInfo['activeTwitter']['params']['value'] = 1;
-      // $fieldsInfo['activeGplus']['params']['value'] = 1;
+      $fieldsInfo['activeLinkedin']['params']['value'] = 1;
     }
 
     // $i18nCtrl = new I18nController();
@@ -165,7 +170,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     $templates['basic']->assign('rExt', $formBlockInfo );
     $templates['basic']->assign('textFb', $form->multilangFieldNames( 'rExtSocialNetwork_textFb' ));
     $templates['basic']->assign('textTwitter', $form->multilangFieldNames( 'rExtSocialNetwork_textTwitter' ));
-    //$templates['basic']->assign('textGplus', $form->multilangFieldNames( 'rExtSocialNetwork_textGplus' ));
+    $templates['basic']->assign('textLinkedin', $form->multilangFieldNames( 'rExtSocialNetwork_textLinkedin' ));
 
     $formBlockInfo['template'] = $templates;
 
@@ -213,17 +218,17 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
           }
         }
       }
-/*
-      if (isset($valuesArray['activeGplus'])){
-        $textGplus = $form->multilangFieldNames( 'textGplus' );
-        foreach( $textGplus as $text ) {
+
+      if (isset($valuesArray['activeLinkedin'])){
+        $textLinkedin = $form->multilangFieldNames( 'textLinkedin' );
+        foreach( $textLinkedin as $text ) {
           if( $valuesArray[$text]=="" ) {
             $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
             $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
           }
         }
       }
-*/
+
       $rExtModel = new RExtSocialNetworkModel( $valuesArray );
 
       if( $rExtModel === false ) {
