@@ -57,7 +57,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
 
     $fieldsInfo = [
       'activeFb' => [
-        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on facebook') ] ]
+        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'value'=>true, 'options'=> [ '1' => __('Activate share on facebook') ] ]
       ],
       'textFb' => [
         'translate' => true,
@@ -65,7 +65,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
         'rules' => [ 'maxlength' => '1000' ]
       ],
       'activeTwitter' => [
-        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on twitter') ] ]
+        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'value'=>true, 'options'=> [ '1' => __('Activate share on twitter') ] ]
       ],
       'textTwitter' => [
         'translate' => true,
@@ -73,7 +73,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
         'rules' => [ 'maxlength' => '1000' ]
       ],
       'activeLinkedin' => [
-        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'options'=> [ '1' => __('Activate share on Linkedin') ] ]
+        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'value'=>true, 'options'=> [ '1' => __('Activate share on Linkedin') ] ]
       ],
       'textLinkedin' => [
         'translate' => true,
