@@ -28,6 +28,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
+      categories: false,
       tpl: geozzy.explorerComponents.mapInfoViewMobileTemplate,
     });
 
@@ -123,6 +124,28 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
          var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
          var element = $.extend( true, partJSON, minJSON );
+         var elementCategory = false;
+
+         if(  that.options.categories != false) {
+           that.options.categories.each( function(e2){
+             //cogumelo.log(e.get('id'));
+             //console.debug(markerData.get('terms'));
+             if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( id ).get('terms')  ) > -1 ) {
+
+               elementCategory = e2;
+               if(e2) {
+                 elementCategory = e2.toJSON();
+               }
+               return false;
+               /*
+               if( jQuery.isNumeric( e2.get('icon') )  ){
+                 return false;
+               }*/
+             }
+           });
+
+         }
+         element.category = elementCategory;
 
          element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
