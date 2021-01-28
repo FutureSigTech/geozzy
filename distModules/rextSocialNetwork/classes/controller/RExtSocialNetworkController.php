@@ -222,7 +222,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       if (isset($valuesArray['activeLinkedin'])){
         $textLinkedin = $form->multilangFieldNames( 'textLinkedin' );
         foreach( $textLinkedin as $text ) {
-          if( $valuesArray[$text]=="" ) {
+          if( empty($valuesArray[$text])) {
             $valuesArray[$text] = $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder');
             $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
           }
