@@ -1,4 +1,4 @@
-{if ($rExt.data.activeFb || $rExt.data.activeTwitter || $rExt.data.activeGplus)}
+{if ($rExt.data.activeFb || $rExt.data.activeTwitter || $rExt.data.activeLinkedin)}
 
   <ul class="rextSocialNetworkContainer clearfix">
     {if isset($rExt.data.activeFb) && $rExt.data.activeFb}
