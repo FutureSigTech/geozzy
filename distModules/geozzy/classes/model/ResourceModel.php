@@ -42,7 +42,7 @@ class ResourceModel extends Model {
     ),
     'shortDescription' => array(
       'type' => 'VARCHAR',
-      'size' => 100,
+      'size' => 160,
       'multilang' => true
     ),
     'mediumDescription' => array(
@@ -104,6 +104,12 @@ class ResourceModel extends Model {
 
   var $deploySQL = array(
     array(
+      'version' => 'geozzy#10',
+      'sql'=> '
+        {multilang: ALTER table geozzy_resource modify COLUMN shortDescription_$lang varchar (160);}
+      '
+    ),
+    array(
       'version' => 'geozzy#1.6',
       'sql'=> '
         ALTER TABLE geozzy_resource
@@ -136,12 +142,12 @@ class ResourceModel extends Model {
     ',
     'find{multilang}' => ' ( UPPER( geozzy_resource.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR geozzy_resource.id = ? )',
     //'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
-    'nottopic' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
-    'intopic' => '  geozzy_resource.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'nottopic' => ' geozzy_resource.id NOT IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'intopic' => '  geozzy_resource.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
 
-    'inTopicTaxonomyterm' => '  geozzy_resource.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
+    'inTopicTaxonomyterm' => '  geozzy_resource.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
 
-    'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
+    'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select geozzy_resource_taxonomyterm.resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
     'inRtype' => ' geozzy_resource.rTypeId IN (?) ',
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
     'ids' => ' geozzy_resource.id IN (?) ',
@@ -154,9 +160,9 @@ class ResourceModel extends Model {
     'notInCollectionId' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)',
     'notAsigned' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources)',
 
-    'distance2K' => ' geozzy_resource.loc IS NOT NULL AND ST_Distance_Sphere( geozzy_resource.loc, ST_GeomFromText( ? ) ) < 2000 ',
-    'idGt' => ' id > (?) ',
-    'idLt' => ' id < (?) '
+    'distance2K' => ' geozzy_resource.loc IS NOT NULL AND ST_Distance( geozzy_resource.loc, ST_GeomFromText( ? ) ) < 2000 ',
+    'idGt' => ' geozzy_resource.id > (?) ',
+    'idLt' => ' geozzy_resource.id < (?) '
   );
 
 
@@ -188,18 +194,22 @@ class ResourceModel extends Model {
    * @return boolean
    */
   public function deleteTopicRelation( $topicId, $resourceId ) {
-    $deleted = false;
-
     //$this->dataFacade->transactionStart();
     //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $resourcetopic =  new ResourceTopicModel();
     $resourceRel = $resourcetopic->listItems( array('filters' => array('resource' => $resourceId, 'topic'=> $topicId)))->fetch();
 
+    $deleted = false;
     if ($resourceRel){
       $deleted = $resourceRel->delete();
     }
 
-    return $deleted;
+    if ($deleted){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
   /**
@@ -213,8 +223,6 @@ class ResourceModel extends Model {
     //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $resourcetopic =  new ResourceTaxonomytermModel(array("resource" => $resourceId, "taxonomyterm" => $starredId));
     $resourcetopic->save();
-    $cacheCtrl = new Cache();
-    $cacheCtrl->flush();
     //$this->dataFacade->transactionEnd();
 
     return true;
@@ -243,59 +251,61 @@ class ResourceModel extends Model {
    *
    * @return boolean
    */
-  public function delete( array $parameters = [] ) {
+  public function delete( array $parameters = array() ) {
+
 
     Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.
       $this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() )  );
 
-    $resId = $this->getter('id');
+
 
     // Remove resource taxonomy term
-    $resTaxModel = new ResourceTaxonomytermModel();
-    $resTaxList = $resTaxModel->listItems( array('filters'=> array('resource'=> $resId ) ) );
-    while( $resTaxObj = $resTaxList->fetch()  ) {
-      $resTaxObj->delete();
+    $resourceTaxonomytermControl = new ResourceTaxonomytermModel();
+    $resourceTaxonomyTermList = $resourceTaxonomytermControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    while( $resourceTaxonomyTerm = $resourceTaxonomyTermList->fetch()  ) {
+      $resourceTaxonomyTerm->delete();
     }
 
 
     // Remove resource Topic
-    $resTopicModel = new ResourceTopicModel();
-    $resTopicList = $resTopicModel->listItems( array('filters'=> array('resource'=> $resId ) ) );
-    while( $resTopicObj = $resTopicList->fetch()  ) {
-      $resTopicObj->delete();
+    $resourceTopicControl = new ResourceTopicModel();
+    $resourceTopicList = $resourceTopicControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    while( $resourceTopic = $resourceTopicList->fetch()  ) {
+      $resourceTopic->delete();
     }
 
 
-    // Remove all relation between Resource and COLLECTIONS
-    $resCollModel = new ResourceCollectionsModel();
-    $resCollList = $resCollModel->listItems( array('filters'=> array('resource'=> $resId ) ) );
-    while( $resourceCollections = $resCollList->fetch()  ) {
+    // remove all relation between Resource and COLLECTIONS
+    $resourceCollectionsControl = new ResourceCollectionsModel();
+    $resourceCollectionsList = $resourceCollectionsControl->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    $collectionsToRemove = array();
+
+    while( $resourceCollections = $resourceCollectionsList->fetch()  ) {
       $resourceCollections->delete();
     }
 
-    // $collectionsToRemove = [];
-    $collResModel = new CollectionResourcesModel();
-    $collResList = $collResModel->listItems( array('filters'=> array('resource'=> $resId ) ) );
-    while( $collResObj = $collResList->fetch()  ) {
-      // $collectionsToRemove[] = $collResObj->getter('collection');
-      $collResObj->delete();
+
+    $collectionResourcesModel = new CollectionResourcesModel();
+    $CollectionResourcesList = $collectionResourcesModel->listItems( array('filters'=> array('resource'=> $this->getter('id') ) ) );
+
+    while( $CollectionResources = $CollectionResourcesList->fetch()  ) {
+      $collectionsToRemove[] = $CollectionResources->getter('collection');
+      $CollectionResources->delete();
     }
 
 
     // Remove all REXT related models
     $relatedModels = $this->getRextModels();
-    foreach( $relatedModels as $relModel ) {
+
+    foreach( $relatedModels as $relModelIdName => $relModel ) {
       if($relModel) {
         $relModel->delete();
       }
     }
-
-
-    // Remove URLs
-    $urlModel = new UrlAliasModel();
-    $urlModel->deleteByResource( $resId );
-
 
     return true;
   }
@@ -304,16 +314,18 @@ class ResourceModel extends Model {
 
 
   public function getRextModels() {
+
     $rextModelArray = array();
 
     geozzy::load('model/ResourcetypeModel.php');
 
-    $relatedModels = $this->dependencesByResourcetypeId( $this->getter('rTypeId') );
+    $relatedModels =  $this->dependencesByResourcetypeId( $this->getter('rTypeId') );
 
     if( $relatedModels ) {
       foreach( $relatedModels as $relModel ) {
         $rextModelArray[$relModel] = $this->getRextModel( $relModel );
       }
+
     }
 
     return $rextModelArray;
@@ -390,6 +402,7 @@ class ResourceModel extends Model {
 
 
   public function deleteResource( $resourceId ) {
+
     $resource = (new ResourceModel())->listItems( array('filters' => array('id' => $resourceId)))->fetch();
     $resource->delete();
   }
