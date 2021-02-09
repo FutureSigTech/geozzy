@@ -126,7 +126,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
          var element = $.extend( true, partJSON, minJSON );
          var elementCategory = false;
 
-         if(  that.options.categories != false) {
+         if( that.options.categories && that.options.categories.length>1) {
            that.options.categories.each( function(e2){
              //cogumelo.log(e.get('id'));
              //console.debug(markerData.get('terms'));
