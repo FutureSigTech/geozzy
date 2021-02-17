@@ -167,11 +167,11 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
           that.moveInfoMapDivWhenBehindMouse();
 
           $('#' + that.divId + ' button.buttonTabletClose').on('click', function(ev){
-            that.hide();
+            that.hideTablet();
           });
 
           $('#' + that.divId + ' button.buttonTabletAccess').on('click', function(ev){
-            that.hide();
+            that.hideTablet();
             //that.parentExplorer.navigateUrl( $(ev.target).attr('dataResourceAccessButton') );
             //that.parentExplorer.triggerEvent( 'resourceAccess' , {id: id } );
             that.parentExplorer.triggerEvent('resourceClick',{
@@ -197,6 +197,11 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
         //$('#'+that.divId+ ' *').remove();
       }
     }, 250);
+  },
+
+  hideTablet: function() {
+    var that = this;
+    $('#'+that.divId).hide();
   },
 
   getTopLeftPosition: function() {
