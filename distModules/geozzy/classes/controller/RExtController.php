@@ -13,7 +13,7 @@ interface RExtInterface {
    *
    * @return array OR false
    */
-  public function getRExtData( $resId );
+  public function getRExtData( $resId = false );
   // @todo Esto ten que controlar os idiomas
 
   /**
@@ -169,7 +169,7 @@ class RExtController {
     if( $defRTypeCtrl ) {
       $this->defRTypeCtrl = $defRTypeCtrl;
       $this->defResCtrl = $defRTypeCtrl->defResCtrl;
-      $this->cacheQuery = $defRTypeCtrl->cacheQuery;
+      $this->cacheQuery = isset( $defRTypeCtrl->cacheQuery ) ? $defRTypeCtrl->cacheQuery : false;
     }
     $this->rExtName = $rExtModule->name;
     $this->prefix = ( $prefix ) ? $prefix : $this->rExtName.'_';

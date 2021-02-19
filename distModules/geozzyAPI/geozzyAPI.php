@@ -10,13 +10,12 @@ class geozzyAPI extends Module {
 
 
   public $dependences = array(
-
     array(
      "id" =>"swagger-ui",
      "params" => array("swagger-ui@2.0.24"),
      "installer" => "yarn",
      "includes" => array("")
-   )
+    )
 
   );
 
@@ -26,7 +25,6 @@ class geozzyAPI extends Module {
       $this->addUrlPatterns( '#^api/?$#', 'view:DocAPIView::main' );
       $this->addUrlPatterns( '#^api/doc/index.json$#', 'view:DocAPIView::apidocJson' ); // Main swagger JSON
     }
-
 
     global $COGUMELO_IS_EXECUTING_FROM_SCRIPT;
 

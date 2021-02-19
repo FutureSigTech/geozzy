@@ -22,17 +22,17 @@ class rextReservation extends Module {
      'includes' => array( 'min/moment-with-locales.min.js' )
     ),
     array(
-     "id" =>"moment-timezone",
-     "params" => array("moment-timezone"),
-     "installer" => "yarn",
-     "includes" => array("builds/moment-timezone-with-data.min.js")
+     'id' =>'moment-timezone',
+     'params' => array( 'moment-timezone' ),
+     'installer' => 'yarn',
+     'includes' => array( 'builds/moment-timezone-with-data.min.js' )
     ),
     array(
      'id' =>'bootstrap-daterangepicker',
      'params' => array( 'bootstrap-daterangepicker' ),
      'installer' => 'yarn',
      'includes' => array( 'daterangepicker.js', 'daterangepicker.css' )
-    )
+    ),
   );
 
   public $includesCommon = array(

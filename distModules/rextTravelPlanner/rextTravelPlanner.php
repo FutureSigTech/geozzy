@@ -26,10 +26,10 @@ class rextTravelPlanner extends Module {
      'includes' => array( 'min/moment-with-locales.min.js' )
     ),
     array(
-     "id" =>"moment-timezone",
-     "params" => array("moment-timezone"),
-     "installer" => "yarn",
-     "includes" => array("builds/moment-timezone-with-data.min.js")
+     'id' =>'moment-timezone',
+     'params' => array( 'moment-timezone' ),
+     'installer' => 'yarn',
+     'includes' => array( 'builds/moment-timezone-with-data.min.js' )
     ),
     array(
      'id' =>'bootstrap-daterangepicker',
@@ -48,7 +48,7 @@ class rextTravelPlanner extends Module {
       "params" => array("jQuery.print"),
       "installer" => "bower",
       "includes" => array("jQuery.print.js")
-    )
+    ),
   );
   public $taxonomies = array();
 

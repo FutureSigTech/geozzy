@@ -361,7 +361,7 @@ class AdminViewResource extends AdminViewMaster {
     $form->setFieldParam('published', 'type', 'reserved');
     $form->setFieldParam('published', 'value', '1');
     $urlAliasLang = $form->multilangFieldNames('urlAlias');
-    foreach( $urlAliasLang as $key => $field ) {
+    foreach( $urlAliasLang as $field ) {
       $form->removeField( $field);
     }
     $form->removeField('externalUrl');
@@ -403,7 +403,7 @@ class AdminViewResource extends AdminViewMaster {
     $form->setFieldParam('published', 'type', 'reserved');
     $form->setFieldParam('published', 'value', '1');
     $urlAliasLang = $form->multilangFieldNames('urlAlias');
-    foreach( $urlAliasLang as $key => $field ) {
+    foreach( $urlAliasLang as $field ) {
       $form->removeField( $field);
     }
     $form->removeField('externalUrl');

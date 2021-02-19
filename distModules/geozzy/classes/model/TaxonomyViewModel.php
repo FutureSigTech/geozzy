@@ -64,6 +64,7 @@ class TaxonomyViewModel extends Model {
   static $extraFilters = [
     'idIn' => ' geozzy_taxonomy_view.id IN (?) ',
     'idNameIn' => ' geozzy_taxonomy_view.idName IN (?) ',
+    'idNameLike' => ' geozzy_taxonomy_view.idName LIKE (?) ',
     'taxgroupIn' => ' geozzy_taxonomy_view.taxgroup IN (?) ',
     'taxGroupIdNameIn' => ' geozzy_taxonomy_view.taxGroupIdName IN (?) ',
   ];
