@@ -1,5 +1,5 @@
 var geozzy = geozzy || {};
-if (! geozzy.rextRoutes) { geozzy.rextRoutes= {} }
+if (! geozzy.rextRoutes) { geozzy.rextRoutes= {}; }
 
 geozzy.rextRoutes.routeCollection = Backbone.Collection.extend({
   url: '/api/routes',
@@ -14,10 +14,10 @@ geozzy.rextRoutes.routeCollection = Backbone.Collection.extend({
     col.fetch({
       success: function(res){
 
-        if( res.toJSON()[0].id  ) {
+
+        if( typeof res.toJSON()[0] != 'undefined' ) {
           that.add( res.toJSON()[0] );
           callback();
-
         }
 
 

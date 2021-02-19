@@ -32,6 +32,12 @@ class rextTravelPlanner extends Module {
      'includes' => array( 'builds/moment-timezone-with-data.min.js' )
     ),
     array(
+     'id' =>'bootstrap-daterangepicker',
+     'params' => array( 'bootstrap-daterangepicker' ),
+     'installer' => 'bower',
+     'includes' => array( 'daterangepicker.js', 'daterangepicker.css' )
+    ),
+    array(
       "id" =>"nestable2",
       "params" => array("nestable2-old"),
       "installer" => "bower",
@@ -43,12 +49,6 @@ class rextTravelPlanner extends Module {
       "installer" => "bower",
       "includes" => array("jQuery.print.js")
     ),
-    array(
-     'id' =>'bootstrap-daterangepicker',
-     'params' => array( 'bootstrap-daterangepicker' ),
-     'installer' => 'bower',
-     'includes' => array( 'daterangepicker.js', 'daterangepicker.css' )
-    )
   );
   public $taxonomies = array();
 
