@@ -32,7 +32,7 @@ geozzy.favouritesView = geozzy.favouritesView || {
     $wrap.remove();
 
   }
-} // geozzy.favouritesView
+}; // geozzy.favouritesView
 
 
 

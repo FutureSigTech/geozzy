@@ -15,7 +15,7 @@ class AdminViewElfinder extends AdminViewMaster {
       @mkdir( $filePathPublic, 0770 );
     }
 
-    
+
 
     // Documentation for connector options:
     // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options

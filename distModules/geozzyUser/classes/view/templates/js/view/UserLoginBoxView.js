@@ -56,7 +56,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
   },
   render: function() {
     var that = this;
-    //that.$el.html( that.tpl({ content: contentHtml }) )
+    //that.$el.html( that.tpl({ content: contentHtml }) );
   },
   goToRegister: function() {
     var that = this;
@@ -88,7 +88,7 @@ geozzy.userSessionComponents.userLoginView = Backbone.View.extend({
         $('#loginModal .recoveryCaptchaError').show();
       }
     });
-    
+
   }
 
 });

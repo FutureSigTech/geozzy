@@ -26,7 +26,7 @@ geozzy.story = function( opts ) {
     background: false,
     list: false,
     plugins: []
-  }
+  };
 
   /*
   *   exec
@@ -86,7 +86,7 @@ geozzy.story = function( opts ) {
       lang = '/'+cogumelo.publicConf.C_LANG;
     }
     return lang;
-  }
+  };
 
   that.triggerEvent = function( eventName, parameters) {
     var that = this;
@@ -132,4 +132,4 @@ geozzy.story = function( opts ) {
     }
 
   };
-}
+};

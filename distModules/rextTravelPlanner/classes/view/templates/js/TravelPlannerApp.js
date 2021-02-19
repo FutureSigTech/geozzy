@@ -213,4 +213,4 @@ geozzy.travelPlanner = function( idTravelPlanner ) {
     $('.tpDuResource').hide();
     $('.tpDuResource').html('');
   };
-}
+};

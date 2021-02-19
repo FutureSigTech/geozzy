@@ -31,7 +31,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     that.el = that.options.container;
     that.$el = $(that.el);
 
-    $(window).on('scroll', function(){ that.updateVisibleStep()} );
+    $(window).on('scroll', function(){ that.updateVisibleStep();} );
   },
 
   setParentStory: function( obj ) {
@@ -82,7 +82,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
     });
 
     that.parentStory.bindEvent( 'windowResize', function(obj){
-      that.caculatePositions()
+      that.caculatePositions();
     });
 
 
@@ -133,7 +133,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
   updateVisibleStep: function() {
 
 
-    //cogumelo.log(mathjs)
+    //cogumelo.log(mathjs);
     //cogumelo.log( math.intersect( [0, 0], [10, 10], [10, 0], [0, 10]) );
 
 
@@ -202,7 +202,7 @@ geozzy.storyComponents.StoryListView = Backbone.View.extend({
 
     if( domElement != false) {
       var top = parseInt( $(domElement).css('top'), 10);
-      //cogumelo.log('scroll a', top)
+      //cogumelo.log('scroll a', top);
       window.scrollTo( 0 , top );
     }
 

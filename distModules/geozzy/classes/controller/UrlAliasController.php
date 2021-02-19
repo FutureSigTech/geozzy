@@ -38,7 +38,7 @@ class UrlAliasController {
       if( isset( $urlFromParts['1'] ) ) {
         $urlFrom = $urlFromParts['0'];
         $urlParams = '?'.$urlFromParts['1'];
-        Cogumelo::debug( __METHOD__.' From tocado: '. $urlFrom );
+        // Cogumelo::debug( __METHOD__.' From tocado: '. $urlFrom );
       }
 
       $aliasData = false;
@@ -52,7 +52,7 @@ class UrlAliasController {
         $urlAliasList = $urlAliasModel->listItems( [ 'filters' => [ 'urlFrom' => '/'.$urlFrom ] ] );
         if( is_object( $urlAliasList ) && $urlAlias = $urlAliasList->fetch() ) {
           $aliasData = $urlAlias->getAllData( 'onlydata' );
-          Cogumelo::debug( __METHOD__.' (Notice) aliasData sin idioma: ' . print_r( $aliasData, true ) );
+          // Cogumelo::debug( __METHOD__.' (Notice) aliasData sin idioma: ' . print_r( $aliasData, true ) );
         }
       }
 

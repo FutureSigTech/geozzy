@@ -91,14 +91,14 @@ geozzy.storystepsComponents.ListStoryStepView = Backbone.View.extend({
     var that = this;
     var rId = parseInt($(el.currentTarget).attr('data-id'));
     var deletedStep = that.storysteps.get( rId );
-    deletedStep.set({deleted:1})
+    deletedStep.set({deleted:1});
     that.updateList();
     that.saveChangesVisible(true);
    },
 
   addStoryStep: function() {
     var that = this;
-    Backbone.history.navigate('/storysteps/story/' + that.story +'/assign', {trigger:true})
+    Backbone.history.navigate('/storysteps/story/' + that.story +'/assign', {trigger:true});
   },
 
   saveStoryStep: function() {

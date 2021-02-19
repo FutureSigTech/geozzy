@@ -32,7 +32,7 @@ geozzy.likesView = geozzy.likesView || {
     $wrap.remove();
 
   }
-} // geozzy.likesView
+}; // geozzy.likesView
 
 
 

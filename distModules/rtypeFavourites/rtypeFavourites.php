@@ -63,5 +63,5 @@ class rtypeFavourites extends Module {
     $rtUtilsControl = new RTUtilsController(__CLASS__);
     $rtUtilsControl->rTypeModuleDeploy();
   }
-  
+
 }

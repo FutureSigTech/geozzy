@@ -113,12 +113,14 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
 
         marker.addListener('mouseout', function() {
           //that.infoWindow.close(marker);
-          setTimeout( function() {
-            //smart_infowindow_click_event_opened = false;
-            if(smart_infowindow_is_on_infowindow == false) {
-              that.infoWindow.close();
-            }
-          }, 10 );
+          setTimeout(
+            function() {
+              //smart_infowindow_click_event_opened = false;
+              if(smart_infowindow_is_on_infowindow == false) {
+                that.infoWindow.close();
+              }
+            },
+            10 );
         });
 
         e.set('marker', marker );
@@ -253,7 +255,7 @@ geozzy.travelPlannerComponents.TravelPlannerMapView = Backbone.View.extend({
       selectedMarker.setOptions({
         title: 'selected'
       });
-      cogumelo.log(selectedMarker)
+      cogumelo.log(selectedMarker);
     }*/
   },
   markerBounceEnd: function(id) {

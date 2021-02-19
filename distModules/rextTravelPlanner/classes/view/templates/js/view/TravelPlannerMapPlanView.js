@@ -222,11 +222,13 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
       });
 
       gMarker.addListener('mouseout', function() {
-        setTimeout(function() {
-          if(smart_infowindow_is_on_infowindow == false) {
-            that.infoWindow.close();
-          }
-        } , 10 );
+        setTimeout(
+          function() {
+            if(smart_infowindow_is_on_infowindow == false) {
+              that.infoWindow.close();
+            }
+          },
+          10 );
       });
     }
     else{
