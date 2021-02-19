@@ -371,6 +371,8 @@ class AdminDataAPIView extends View {
           }
 
           $rterm->save();
+          $cacheCtrl = new Cache();
+          $cacheCtrl->flush();
 
           $rtData = $rterm->getAllData();
           echo json_encode( $rtData['data'] );
