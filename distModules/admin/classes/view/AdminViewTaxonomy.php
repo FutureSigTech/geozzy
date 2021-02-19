@@ -138,19 +138,24 @@ class AdminViewTaxonomy extends AdminViewMaster {
       'cache' => true
     ]);
     $optionsResMenu[""] = __('None');
-    while( $res = $rsMenuObj->fetch() ){
-      if( $res ){
-        $optionsResMenu[ $res->getter('id') ] = $res->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ));
+    if( is_object( $rsMenuObj ) ) {
+      while( $res = $rsMenuObj->fetch() ){
+        if( $res ){
+          $optionsResMenu[ $res->getter('id') ] = $res->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ));
+        }
       }
     }
 
-    $resTaxTermModel = new ResourceTaxonomytermModel();
-    $resTaxTermObj = $resTaxTermModel->listItems( ['filters' => [ 'taxonomyterm' => $request[2] ] ]);
     $valueResMenu = false;
-    if(is_object($resTaxTermObj)){
-      $resTermItem = $resTaxTermObj->fetch();
-      if( $resTermItem ) {
-        $valueResMenu = $resTermItem->getter('resource');
+
+    if(!empty($request[2])){
+      $resTaxTermModel = new ResourceTaxonomytermModel();
+      $resTaxTermObj = $resTaxTermModel->listItems( ['filters' => [ 'taxonomyterm' => $request[2] ] ]);
+      if(is_object($resTaxTermObj)){
+        $resTermItem = $resTaxTermObj->fetch();
+        if( $resTermItem ) {
+          $valueResMenu = $resTermItem->getter('resource');
+        }
       }
     }
 
