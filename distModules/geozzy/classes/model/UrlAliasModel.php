@@ -49,6 +49,7 @@ class UrlAliasModel extends Model {
 
   static $extraFilters = array(
     'resourceIn' => ' geozzy_url_alias.resource IN (?) ',
+    'resourceNotIn' => ' geozzy_url_alias.resource NOT IN (?) ',
     'resourceNot' => ' geozzy_url_alias.resource <> ? ',
   );
 
@@ -67,5 +68,24 @@ class UrlAliasModel extends Model {
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
+  }
+
+
+  public function deleteByResource( $resId ) {
+    $result = false;
+
+    $urlList = $this->listItems([
+      'filters' => ['resource' => $resId],
+      'fields' => ['id', 'resource', 'urlFrom']
+    ]);
+    if( is_object( $urlList ) ) {
+      while( $urlObj = $urlList->fetch() ) {
+        $result = true;
+        Cogumelo::debug( __METHOD__.' resId:'.$resId.' urlFrom:'.$urlObj->getter('urlFrom') );
+        $urlObj->delete();
+      }
+    }
+
+    return( $result );
   }
 }
