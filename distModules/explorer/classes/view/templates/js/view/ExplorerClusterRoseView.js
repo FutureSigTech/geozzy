@@ -26,7 +26,14 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
   that.show = function( markers ) {
     if(! that.blocked) {
-      that.realShow(markers);
+
+      if( cogumelo.publicConf.mod_detectMobile_isMobile == true && markers.length >= 8) {
+        that.options.mapView.map.setCenter(markers[0].getPosition());
+        that.options.mapView.map.setZoom( that.options.mapView.map.getZoom() + 1 );
+      }
+      else {
+        that.realShow(markers);
+      }
     }
   };
 
