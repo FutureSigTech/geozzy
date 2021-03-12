@@ -35,7 +35,8 @@ class TopicModel extends Model {
   );
 
   static $extraFilters = array(
-    'inresource' => ' geozzy_topic.id IN ( select geozzy_resource_topic.topic from geozzy_resource_topic where geozzy_resource_topic.resource=? ) '
+    'inresource' => ' geozzy_topic.id IN ( select geozzy_resource_topic.topic from geozzy_resource_topic where geozzy_resource_topic.resource=? ) ',
+    'idNameIn' => ' geozzy_topic.idName IN ( ? ) '
   );
 
 
