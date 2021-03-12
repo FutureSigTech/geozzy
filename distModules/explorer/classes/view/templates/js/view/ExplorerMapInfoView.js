@@ -135,7 +135,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
         var elementCategory = false;
 
-         if( that.options.categories && that.options.categories.length>1) {
+         if( that.options.categories /*&& that.options.categories.length>1*/) {
 
 
           that.options.categories.each( function(e2){
