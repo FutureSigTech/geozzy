@@ -251,7 +251,7 @@ class ResourceModel extends Model {
    */
   public function delete( array $parameters = [] ) {
 
-    Cogumelo::debug( 'Called custom delete on '.get_called_class().' with "'.
+    Cogumelo::trace( 'Called custom delete on '.get_called_class().' with "'.
       $this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $this->dataFacade->deleteFromKey( $this->getFirstPrimarykeyId(), $this->getter( $this->getFirstPrimarykeyId() ) );
 

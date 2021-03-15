@@ -843,7 +843,7 @@ class geozzyAPIView extends View {
     $this->resourceListV2( $param );
 
     $tempo2 = microtime(true);
-    error_log( 'API resourcelist: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
+    Cogumelo::log( 'API resourcelist: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"], 'Tempos' );
   }
 
   public function resourceListV1( $param ) {
@@ -1592,7 +1592,7 @@ class geozzyAPIView extends View {
     $this->collectionsV2( $urlParams );
 
     $tempo2 = microtime(true);
-    error_log( 'API collections: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
+    Cogumelo::log( 'API collections: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"], 'Tempos' );
   }
 
   public function collectionsV1( $urlParams = false ) {
@@ -2021,7 +2021,7 @@ class geozzyAPIView extends View {
       $userData = ( $userVO ) ? $userVO->getAllData('onlydata') : false;
 
       if( !$userData ) {
-        error_log( '(Notice) Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
+        error_log( __METHOD__.' Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
       }
 
       $status = $userView->sendUnknownPassEmail( $userData, $_POST['captcha']);

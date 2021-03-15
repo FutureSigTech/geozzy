@@ -334,7 +334,7 @@ class GeozzyUserView extends View {
 
         error_log( '(Notice) checkVerifyLink: URL no valida. $urlParams '.print_r( $urlParams, true ) );
         //error_log( '$userData '.print_r( $userData, true ) );
-        error_log( '$hash '.print_r( $hash, true ) );
+        // error_log( '$hash '.print_r( $hash, true ) );
       }
 
       $urlAlias = $resourceCtrl->getUrlAlias( $res->getter('id') );

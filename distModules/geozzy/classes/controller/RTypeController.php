@@ -497,7 +497,7 @@ class RTypeController {
 
 
   public function cloneTo( $resFromObj, $resToObj ) {
-    error_log( __METHOD__.': '.$this->rTypeName );
+    Cogumelo::trace( __METHOD__.': '.$this->rTypeName );
     $result = true;
 
     // De momento los RType no tienen Modelos ni Taxonomias

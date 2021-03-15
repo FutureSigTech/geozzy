@@ -413,8 +413,7 @@ class geozzy extends Module {
     @return bool
    */
   public function garbageCollection() {
-    Cogumelo::debug( __METHOD__ );
-    error_log( __METHOD__ );
+    Cogumelo::trace( __METHOD__ );
 
     geozzy::load( 'controller/GeozzyGarbageCollection.php' );
     $garbageCtrl = new GeozzyGarbageCollection();

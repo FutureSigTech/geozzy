@@ -209,7 +209,7 @@ class AppResourceBridgeView extends View {
 
 
   public function page404() {
-    error_log( __CLASS__.'->'.__METHOD__.': '. $_SERVER['REQUEST_URI'] );
+    Cogumelo::trace( __CLASS__.'->'.__METHOD__.': '. $_SERVER['REQUEST_URI'] );
 
     header( 'HTTP/1.0 404 Not Found' );
 
@@ -227,7 +227,7 @@ class AppResourceBridgeView extends View {
 
 
   public function page403() {
-    error_log( __CLASS__.'->'.__METHOD__.': '. $_SERVER['REQUEST_URI'] );
+    Cogumelo::trace( __CLASS__.'->'.__METHOD__.': '. $_SERVER['REQUEST_URI'] );
 
     header( 'HTTP/1.0 403 Access Forbidden' );
 

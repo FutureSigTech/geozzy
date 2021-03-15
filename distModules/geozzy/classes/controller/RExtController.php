@@ -414,7 +414,7 @@ class RExtController {
 
 
   public function cloneTo( $resFromObj, $resToObj ) {
-    error_log( __METHOD__.': '.$this->rExtName );
+    Cogumelo::trace( __METHOD__.': '.$this->rExtName );
     $result = true;
 
     if( $result && !empty( $this->collections ) ) {

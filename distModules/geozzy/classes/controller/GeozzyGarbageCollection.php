@@ -23,7 +23,7 @@ class GeozzyGarbageCollection {
     @return bool
    */
   public function garbageCollection() {
-    Cogumelo::debug( __METHOD__ );
+    Cogumelo::trace( __METHOD__ );
     error_log( __METHOD__ );
 
     $result = true;
@@ -52,7 +52,7 @@ class GeozzyGarbageCollection {
 
   // Eliminando URLs con recursos desaparecidos
   public function gcUrlAlias() {
-    Cogumelo::debug( __METHOD__ );
+    Cogumelo::trace( __METHOD__ );
     error_log( __METHOD__ );
 
     $objModel = new UrlAliasModel();
@@ -78,7 +78,7 @@ class GeozzyGarbageCollection {
 
   // Eliminando Collections y relelaciones descolgadas
   public function gcCollections() {
-    Cogumelo::debug( __METHOD__ );
+    Cogumelo::trace( __METHOD__ );
     error_log( __METHOD__ );
 
     $modelName = 'CollectionModel';
@@ -124,7 +124,7 @@ class GeozzyGarbageCollection {
 
   // Eliminando relelaciones descolgadas de Resource
   public function gcCollNormalRelsRes() {
-    Cogumelo::debug( __METHOD__ );
+    Cogumelo::trace( __METHOD__ );
     error_log( __METHOD__ );
 
     $objModel = new CollectionResourcesModel();
@@ -156,7 +156,7 @@ class GeozzyGarbageCollection {
 
   // Eliminando relelaciones descolgadas de Collection
   public function gcCollNormalRelsColl( $listCollIds ) {
-    Cogumelo::debug( __METHOD__ );
+    Cogumelo::trace( __METHOD__ );
     error_log( __METHOD__ );
 
     $objModel = new CollectionResourcesModel();
@@ -190,7 +190,7 @@ class GeozzyGarbageCollection {
 
   // Eliminando Taxonomy Models y relelaciones descolgadas
   public function gcTaxonomyModels() {
-    Cogumelo::debug( __METHOD__ );
+    Cogumelo::trace( __METHOD__ );
     error_log( __METHOD__ );
 
     $modelName = 'TaxonomytermModel';

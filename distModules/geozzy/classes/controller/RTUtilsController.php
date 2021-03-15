@@ -78,7 +78,7 @@ class RTUtilsController {
       foreach( $geozzyTopicsInfo as $topicIdName => $topicInfo ) {
 
         if( array_key_exists( $rTypeIdName, $topicInfo['resourceTypes'] ) ) {
-          error_log( 'addRTypeToTopics: Adding '.$rTypeIdName.' to '.$topicIdName );
+          Cogumelo::trace( 'addRTypeToTopics: Adding '.$rTypeIdName.' to '.$topicIdName );
 
           $topicModel = new TopicModel();
           $topicList = $topicModel->listItems( array( 'filters' => array( 'idName' => $topicIdName ) ) );
