@@ -69,7 +69,7 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
 
   setListOrderAccordingIds: function() {
     var that = this;
-alert('activelistReset')
+
     that.listOrderAccordingIds = true;
     //that.$el.find('.activeListReset').hide();
     that.setPage(0);
