@@ -61,7 +61,8 @@ class RExtParticipationController extends RExtController implements RExtInterfac
 
     $fieldsInfo = array(
       'observation' => array(
-        'params' => array( 'label' => __( 'Observation' ), 'type' => 'textarea' )
+        'params' => array( 'label' => __( 'Observation' ), 'type' => 'textarea' ),
+        'rules' => array('maxlength' => 500)
       ),
       'participation' => array(
         'params' => array('type' => 'reserved' )

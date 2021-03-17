@@ -30,6 +30,16 @@ class ParticipationModel extends Model
 
   static $extraFilters = array();
 
+  var $deploySQL = [
+    [
+      'version' => 'rextParticipation#2',
+      'sql' => '
+        ALTER TABLE geozzy_resource_rext_participation CHANGE COLUMN observation `observation` VARCHAR(500) NULL DEFAULT NULL ;
+      '
+    ]
+  ];
+
+
 
   public function __construct( $datarray = array(), $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
