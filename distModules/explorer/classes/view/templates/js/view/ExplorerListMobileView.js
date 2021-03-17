@@ -54,7 +54,6 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
     that.parentExplorer = parentExplorer;
 
     that.parentExplorer.bindEvent('mapChanged', function(){
-      alert('ch');
       that.setListOrderAccordingMap();
     });
   },
