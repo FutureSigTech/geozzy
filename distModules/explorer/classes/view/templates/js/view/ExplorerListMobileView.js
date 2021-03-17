@@ -249,7 +249,7 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
       that.resourceEvent( element, 'mobileTouch');
     }
   },
-
+/*
   resourceHover: function( element ) {
     var that = this;
     if(!that.parentExplorer.explorerTouchDevice){
@@ -263,7 +263,7 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
       that.resourceEvent( element, 'mouseleave');
     }
 
-  },
+  },*/
 
 
 
