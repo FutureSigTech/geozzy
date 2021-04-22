@@ -61,7 +61,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       ],
       'textFb' => [
         'translate' => true,
-        'params' => [ 'type' => 'textarea', 'label' => __( 'Text to share on facebook' ), 'placeholder' => '#TITLE#' ],
+        'params' => [ 'type' => 'textarea', 'label' => __( 'Text to share on social media' ), 'placeholder' => '#TITLE#' ],
         'rules' => [ 'maxlength' => '1000' ]
       ],
       'activeTwitter' => [
