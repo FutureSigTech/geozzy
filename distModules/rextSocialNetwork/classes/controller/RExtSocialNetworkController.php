@@ -74,12 +74,12 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
       ],
       'activeLinkedin' => [
         'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'value'=>true, 'options'=> [ '1' => __('Activate share on Linkedin') ] ]
-      ],
+      ]/*,
       'textLinkedin' => [
         'translate' => true,
         'params' => [ 'type' => 'textarea', 'label' => __( 'Text to share on linkedin' ), 'placeholder' => '#TITLE#' ],
         'rules' => [ 'maxlength' => '1000' ]
-      ]
+      ]*/
     ];
 
     $shareSocialNetwork = Cogumelo::getSetupValue('shareSocialNetwork:default');
@@ -170,7 +170,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
     $templates['basic']->assign('rExt', $formBlockInfo );
     $templates['basic']->assign('textFb', $form->multilangFieldNames( 'rExtSocialNetwork_textFb' ));
     $templates['basic']->assign('textTwitter', $form->multilangFieldNames( 'rExtSocialNetwork_textTwitter' ));
-    $templates['basic']->assign('textLinkedin', $form->multilangFieldNames( 'rExtSocialNetwork_textLinkedin' ));
+    //$templates['basic']->assign('textLinkedin', $form->multilangFieldNames( 'rExtSocialNetwork_textLinkedin' ));
 
     $formBlockInfo['template'] = $templates;
 
@@ -219,7 +219,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
         }
       }
 
-      if (isset($valuesArray['activeLinkedin'])){
+      /*if (isset($valuesArray['activeLinkedin'])){
         $textLinkedin = $form->multilangFieldNames( 'textLinkedin' );
         foreach( $textLinkedin as $text ) {
           if( empty($valuesArray[$text])) {
@@ -227,7 +227,7 @@ class RExtSocialNetworkController extends RExtController implements RExtInterfac
             $form->setFieldValue('rExtSocialNetwork_'.$text, $form->getFieldParam('rExtSocialNetwork_'.$text, 'placeholder'));
           }
         }
-      }
+      }*/
 
       $rExtModel = new RExtSocialNetworkModel( $valuesArray );
 
