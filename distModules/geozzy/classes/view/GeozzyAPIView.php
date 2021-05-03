@@ -2011,20 +2011,24 @@ class geozzyAPIView extends View {
 
   // User new password
   public function userUnknownPass() {
-    $status = false;
+    $status = true; // Politica de siempre OK para impedir probar si existe una cuenta
 
     if( isset( $_POST['user'] ) ) {
 
       geozzyUser::load( 'view/GeozzyUserView.php' );
       $userView = new GeozzyUserView();
       $userVO = $userView->getUserVO( false, $_POST['user'] );
-      $userData = ( $userVO ) ? $userVO->getAllData('onlydata') : false;
 
-      if( !$userData ) {
+      if( empty( $userVO ) ) {
         error_log( __METHOD__.' Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
       }
-
-      $status = $userView->sendUnknownPassEmail( $userData, $_POST['captcha']);
+      elseif( !$userVO->isActive() ) {
+        error_log( __METHOD__.' Intento de recuperacion de contraseña con usuario NO activo: ('.$userVO->getter('id').') '.$_POST['user'] );
+      }
+      else {
+        $userData = $userVO->getAllData('onlydata');
+        $status = $userView->sendUnknownPassEmail( $userData, $_POST['captcha'] );
+      }
     }
 
     header('Content-Type: application/json; charset=utf-8');

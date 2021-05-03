@@ -342,12 +342,12 @@ class GeozzyUserView extends View {
     }
   }
 
-  public function sendUnknownPassEmail( $userData, $captcha = false, $urlPattern= false ) {
+  public function sendUnknownPassEmail( $userData, $captcha = false, $urlPattern = false ) {
     //error_log( 'sendUnknownPassEmail: '.json_encode( $userData ) );
     $status = false;
     $validate = false;
 
-    if($captcha){
+    if( $captcha ){
       $validate = false;
       $secret = Cogumelo::getSetupValue('google:recaptcha:key:secret');
       $response = $captcha;
@@ -363,8 +363,10 @@ class GeozzyUserView extends View {
       $validate = true;
     }
 
-    if($validate){
-      if($userData){
+    if( $validate ) {
+      $status = true; // Politica de siempre OK para impedir probar si existe una cuenta
+
+      if( !empty( $userData['active'] ) ) {
         Cogumelo::load( 'coreController/MailController.php' );
         $mailCtrl = new MailController();
 
@@ -398,12 +400,13 @@ class GeozzyUserView extends View {
         );
 
         $mailCtrl->setBody( $bodyPlain, $bodyHtml, $vars );
-        $mailCtrl->send( $adresses, 'Recuperar contraseña' );
+        $status = $mailCtrl->send( $adresses, 'Recuperar contraseña' );
 
-        error_log( 'sendUnknownPassEmail vars: '.print_r( $vars, true ) );
+        Cogumelo::debug( 'sendUnknownPassEmail vars: '.print_r( $vars, true ) );
       }
-
-      $status = true;
+      else {
+        error_log( __METHOD__.' Intento de recuperacion de contraseña con usuario NO activo: ('.$userData['id'].') '.$userData['login'] );
+      }
     }
 
     return $status;
@@ -430,11 +433,10 @@ class GeozzyUserView extends View {
       $template->assign( 'res', $block );
 
 
-      if ( !empty($userData['hashUnknownPass']) && $urlCode === $userData['hashUnknownPass'] ) {
-
+      if ( !empty($userData['hashUnknownPass']) && $urlCode === $userData['hashUnknownPass'] && $userVO->isActive() ) {
 
         $userView = new UserView();
-        $form = $userView->userChangePasswordFormDefine( $userId, $modeRecovery = true );
+        $form = $userView->userChangePasswordFormDefine( $userId, true );
 
         $sccsRedirect = "/";
         if(!empty(Cogumelo::getSetupValue('mod:geozzyUser:recoveryPasswordRedirect'))){
@@ -478,14 +480,14 @@ class GeozzyUserView extends View {
     return $hash;
   }
 
-  public function getUserVO( $id, $email = false, $nickname = false ) {
+  public function getUserVO( $userId, $email = false, $nickname = false ) {
     $userVO = false;
 
     $user = new UserModel();
     $filter = false;
 
-    if( !empty($id) ) {
-      $filter = array( 'id' => $id );
+    if( !empty($userId) ) {
+      $filter = array( 'id' => $userId );
     }
     if( !empty($email) ) {
       $filter = array( 'email' => $email );
