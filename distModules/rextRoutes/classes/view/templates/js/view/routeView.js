@@ -261,7 +261,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         axisLabelFontSize: 12,
         hideOverlayOnMouseOut: true,
         legend: 'follow',
-
+        interactionModel:false,
         axes: {
           x: {
               axisLabelFormatter: function (x) {
