@@ -1711,6 +1711,83 @@ class ResourceController {
 
 
 
+  public function setTaxTermUnique( $taxGroup, $taxTermId, $resource, $forceCache = null ) {
+    // error_log(__METHOD__);
+    // echo "setTaxTermUnique $taxGroup, $taxTermId -- ";
+    $result = false;
+
+    $baseResId = is_numeric( $resource ) ? $resource : $resource->getter( 'id' );
+    $sqlCache = ( $forceCache === null ) ? $this->cacheQuery : $forceCache;
+
+    // Si estamos editando, repasamos y borramos relaciones sobrantes
+    if( !empty( $baseResId ) ) {
+      $relFilter = [ 'resource' => $baseResId ];
+      if( is_numeric( $taxGroup ) ) {
+        $relFilter[ 'taxgroup' ] = $taxGroup;
+      }
+      else {
+        $relFilter[ 'idNameTaxgroup' ] = $taxGroup;
+      }
+
+      // Buscamos asignaciones enteriores
+      $relModel = new ResourceTaxonomyAllModel();
+      $relPrevList = $relModel->listItems([ 'filters' => $relFilter, 'cache' => $sqlCache ]);
+      if( is_object( $relPrevList ) ) {
+        $termIdSobrantes = [];
+        while( $relPrev = $relPrevList->fetch() ) {
+          $termId = $relPrev->getter( 'id' );
+          if( $termId === $taxTermId ) {
+            // echo "Encontrado $termId en rel. existente\n";
+            $result = true; // Existe, listo. Falta quitar sobrantes
+          }
+          else { // sobrantes
+            if( !in_array( $termId, $termIdSobrantes ) ) {
+              $termIdSobrantes[] = $termId;
+            }
+          }
+        }
+
+        if( !empty($termIdSobrantes) ) {
+          // echo "\nSobrantes: \n";
+          print_r($termIdSobrantes);
+          $resTermModel = new ResourceTaxonomytermModel();
+          foreach ( $termIdSobrantes as $termId ) {
+            // echo "Recuperando rel. existente con $termId\n";
+            $resTerm = $resTermModel->listItems([
+              'filters' => [ 'resource' => $baseResId, 'taxonomyterm' => $termId ],
+              'cache' => $sqlCache
+            ])->fetch();
+
+            if( !$result && !empty($taxTermId) ) {
+              // echo "Almacenando $taxTermId en rel. existente con $termId\n";
+              // Usamos la primera relacion con un term no valido para introducir el valido
+              $resTerm->setter( 'taxonomyterm', $taxTermId );
+              $saveObj = $resTerm->save();
+              $result = !empty( $saveObj );
+            }
+            else {
+              // echo "Eliminando rel. existente con $termId\n";
+              $resTerm->delete();
+            }
+          }
+        }
+      }
+
+      // Creamos un enlace si no existia
+      if( !$result && !empty($taxTermId) ) {
+        // echo "Creando $taxTermId no existente\n";
+        $info = [ 'resource' => $baseResId, 'taxonomyterm' => $taxTermId ];
+        $relObj = new ResourceTaxonomytermModel( $info );
+        $saveObj = $relObj->save();
+        $result = !empty( $saveObj );
+      }
+    }
+
+    return $result;
+  } // setTaxTermUnique( $taxGroup, $taxTermId, $resource, $forceCache = null )
+
+
+
   public function setTaxTerms( $taxGroup, $taxTermIds, $resource, $forceCache = null ) {
     // error_log(__METHOD__);
     $result = true;
@@ -2790,7 +2867,7 @@ class ResourceController {
       ]);
       if( !is_object( $rExtList ) ) {
         $result = false;
-        error_log(__METHOD__.': NON listItems 2' );
+        error_log(__METHOD__.': NON listItems' );
 
         break;
       }
@@ -2817,5 +2894,42 @@ class ResourceController {
     return $result;
   }
 
+  public function updateRExtModel( string $modelName, int $resId, array $data ) {
+    Cogumelo::debug( __METHOD__.': $modelName: '.$modelName.' $resId: '.$resId );
+    $rExtObj = null;
 
+    $rExtModel = new $modelName();
+    $rExtModelCols = $rExtModel->getCols( true ); // Cols con idiomas
+
+    $rExtList = $rExtModel->listItems([ 'filters' => [ 'resource' => $resId ], 'cache' => 0 ]);
+    if( is_object( $rExtList ) ) {
+      // Asumimos una sola entrada del RExt para el recurso
+      $rExtObj = $rExtList->fetch();
+      if( !is_object( $rExtObj ) ) {
+        // No existe. Lo creamos
+        $resModelData = [ 'resource' => $resId ];
+        $rExtObj = new $modelName( $resModelData );
+        $saveObj = $rExtObj->save();
+        if( empty( $saveObj ) ) {
+          $rExtObj = null;
+        }
+      }
+    }
+
+    if( !empty( $rExtObj ) ) {
+      foreach( $data as $fieldName => $value ) {
+        // Recortamos al tamaño max.
+        if( !empty( $value ) && !empty( $rExtModelCols[ $fieldName ]['size'] ) && is_string( $value ) ) {
+          $value = substr( $value, 0, ($rExtModelCols[ $fieldName ]['size'] - 1) );
+        }
+        $rExtObj->setter( $fieldName, $value );
+      }
+      $saveObj = $rExtObj->save();
+      if( empty( $saveObj ) ) {
+        $rExtObj = null;
+      }
+    }
+
+    return $rExtObj;
+  }
 }
