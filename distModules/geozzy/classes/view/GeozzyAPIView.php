@@ -444,6 +444,36 @@ class geozzyAPIView extends View {
     <?php
   }
 
+  public function categoryTermAllIcons() {
+    header('Content-Type: application/json; charset=utf-8');
+    ?>
+      {
+        "resourcePath": "/categoryTermAllIcons.json",
+        "basePath": "/api",
+        "apis": [
+          {
+            "operations": [
+              {
+                "errorResponses": [
+                  {
+                    "reason": "Not found",
+                    "code": 404
+                  }
+                ],
+                "httpMethod": "GET",
+                "nickname": "resource",
+
+                "summary": "Fetches all CategoryTerm icons from project"
+              }
+            ],
+            "path": "/core/categoryallicons",
+            "description": ""
+          }
+        ]
+      }
+    <?php
+  }
+
   public function topicListJson() {
     header('Content-Type: application/json; charset=utf-8');
     ?>
@@ -1835,6 +1865,36 @@ class geozzyAPIView extends View {
       header('Content-Type: application/json; charset=utf-8');
       echo '{}';
     }
+  }
+
+
+  public function categoryAllIcons() {
+    geozzy::load('model/ResourceTaxonomyAllModel.php');
+    $taxtermModel = new ResourceTaxonomyAllModel();
+    $taxTermList = $taxtermModel->listItems(
+      [
+        'fields' => ['id', 'icon', 'iconAKey'],
+        'filters' => [ 'iconNotNull'=> 'true' ],
+        'cache' => $this->cacheQuery
+      ]);
+
+    header('Content-Type: application/json; charset=utf-8');
+    echo '[';
+    $c = '';
+    global $C_LANG;
+
+    while ($valueobject = $taxTermList->fetch() ) {
+      $allData = [
+        'id' => $valueobject->getter('id'),
+        'icon' => $valueobject->getter('icon'),
+        'iconAKey' => $valueobject->getter('iconAKey')
+      ];
+
+      echo $c.json_encode( $allData );
+      $c=',';
+    }
+    echo ']';
+
   }
 
   // Topics

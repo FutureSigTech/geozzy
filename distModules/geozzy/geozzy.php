@@ -57,6 +57,8 @@ class geozzy extends Module {
     $this->addUrlPatterns( '#^api/doc/starred.json$#', 'view:GeozzyAPIView::starredJson' );
     $this->addUrlPatterns( '#^api/doc/categoryList.json$#', 'view:GeozzyAPIView::categoryListJson' );
     $this->addUrlPatterns( '#^api/doc/categoryTerms.json$#', 'view:GeozzyAPIView::categoryTermsJson' );
+    $this->addUrlPatterns( '#^api/doc/categoryTermAllIcons.json$#', 'view:GeozzyAPIView::categoryTermAllIcons' );
+
     $this->addUrlPatterns( '#^api/doc/topicList.json$#', 'view:GeozzyAPIView::topicListJson' );
 
     $this->addUrlPatterns( '#^api/doc/userLogin.json$#', 'view:GeozzyAPIView::userLoginJson' );
@@ -80,6 +82,7 @@ class geozzy extends Module {
     // geozzy api Categories
     $this->addUrlPatterns( '#^api/core/categorylist$#', 'view:GeozzyAPIView::categoryList' );
     $this->addUrlPatterns( '#^api/core/categoryterms/(.*)$#', 'view:GeozzyAPIView::categoryTerms' );
+    $this->addUrlPatterns( '#^api/core/categoryallicons$#', 'view:GeozzyAPIView::categoryAllIcons' );
 
     // geozzy api Topics
     $this->addUrlPatterns( '#^api/core/topiclist$#', 'view:GeozzyAPIView::topicList' );
@@ -128,6 +131,10 @@ class geozzy extends Module {
       array(
         'path' => '/doc/categoryTerms.json',
         'description' => 'CategoryTerms by category'
+      ),
+      array(
+        'path' => '/doc/categoryTermAllIcons.json',
+        'description' => 'All CategoryTerm icons from project'
       ),
       array(
         'path' => '/doc/topicList.json',
