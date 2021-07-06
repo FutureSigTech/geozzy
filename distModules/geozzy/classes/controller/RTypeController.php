@@ -190,6 +190,8 @@ class RTypeController {
   public function getFormBlockInfo( FormController $form ) {
     // error_log( __METHOD__.': '. $this->rTypeName );
 
+    $templates = [];
+
     $formBlockInfo = array(
       'template' => false,
       'data' => false,
@@ -212,6 +214,14 @@ class RTypeController {
     if( $resId = $form->getFieldValue( 'id' ) ) {
       $formBlockInfo['data'] = $this->defResCtrl->getResourceData( $resId );
     }
+
+
+    if( empty( $formBlockInfo['data']['timeCreation'] ) ) {
+      $date = new DateTime( null, Cogumelo::getTimezoneSystem() );
+      $date->setTimeZone( Cogumelo::getTimezoneDatabase() );
+      $formBlockInfo['data']['timeCreation'] = $date->format( 'Y-m-d H:i:s' );
+    }
+
 
     // Lanzamos los getFormBlockInfo de los RExt de este RType
     if( isset( $this->rExts ) && is_array( $this->rExts ) && count( $this->rExts ) ) {
@@ -294,7 +304,7 @@ class RTypeController {
     $templates['info']->setTpl( 'rTypeFormInfoPanel2.tpl', 'geozzy' );
     $templates['info']->assign( 'title', __( 'Information' ) );
     $templates['info']->assign( 'res', $formBlockInfo );
-    $timeCreation = gmdate( 'd/m/Y', strtotime($formBlockInfo['data']['timeCreation']) );
+    $timeCreation = gmdate( 'd/m/Y', strtotime( $formBlockInfo['data']['timeCreation'] ) );
 
     if( isset($formBlockInfo['data']['user']) ) {
       $userModel = new UserModel();
