@@ -2,8 +2,7 @@
 <script>
 
   {if isset( $rExt.data.file )}
-
-    var rextKMLFile = '{$cogumelo.publicConf.site_host}{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$rExt.data.file.id}/{$rExt.data.file.name}';
+    var rextKMLFile = '{$cogumelo.publicConf.site_host}{$cogumelo.publicConf.mediaHost}cgmlformfilewd/{$res.ext.rextKML.data.file.id}-a{$res.ext.rextKML.data.file.aKey}/{$rExt.data.file.name}';
   {else}
     var rextKMLFile = false;
   {/if}
