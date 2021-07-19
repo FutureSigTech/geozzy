@@ -107,7 +107,8 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
          var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
          var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
 
-         var element = $.extend( true, partJSON, minJSON );
+         //var element = $.extend( true, partJSON, minJSON );
+         var element = $.extend( true, minJSON, partJSON  );
 
          element.touchAccess = that.parentExplorer.explorerTouchDevice;
          retHtml = that.template( element );
