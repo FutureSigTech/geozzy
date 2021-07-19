@@ -99,7 +99,8 @@ class PoisExplorerController extends ExplorerController {
 
         $resourceDataArray = array('id' => $resource->getter('id'), 'title' => $resource->getter('title'),
         'shortDescription' => $resource->getter('shortDescription'), 'mediumDescription' => $resource->getter('mediumDescription'),
-        'image' => $resource->getter('image'));
+        'image' => $resource->getter('image'),
+        'imageAKey' => $resource->getter('imageAKey'));
 
         $row['id'] = $resourceDataArray['id'];
         $row['title'] = ( isset($resourceDataArray['title']) )?$resourceDataArray['title']:false;
@@ -111,6 +112,7 @@ class PoisExplorerController extends ExplorerController {
           $row['description'] = $resourceDataArray['mediumDescription'];
         }
         $row['image'] =  ( isset($resourceDataArray['image']) )?$resourceDataArray['image']:false;
+        $row['imageAKey'] =  ( isset($resourceDataArray['imageAKey']) )?$resourceDataArray['imageAKey']:false;        
 
         echo json_encode( $row );
 

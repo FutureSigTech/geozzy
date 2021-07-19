@@ -10,7 +10,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextPoiCollection extends Module {
 
   public $name = 'rextPoiCollection';
-  public $version = '6';
+  public $version = '7';
 
   public $models = array();
 

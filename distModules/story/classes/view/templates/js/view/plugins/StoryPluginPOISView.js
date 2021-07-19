@@ -111,10 +111,11 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
     };
 
     that.poisTypes.each( function(e){
-        cogumelo.log(cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png')
+        //cogumelo.log(cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png')
         if( $.inArray(e.get('id'), markerData.get('terms')) > -1 ) {
           if( jQuery.isNumeric( e.get('icon') )  ){
-            retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';
+            retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'-a'+e.get('iconAKey')+'/resourcePoisCollection/marker.png';
+            //retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';
             retMarker.size =  new google.maps.Size(20, 20);
             return false; // FOREACH RETURN
           }

@@ -12,7 +12,7 @@ class PoisExplorerModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'rextPoiCollection#6',
+      'version' => 'rextPoiCollection#7',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_pois_explorer_index;
@@ -24,6 +24,7 @@ class PoisExplorerModel extends Model
           geozzy_resourcetype.idName as rType,
           {multilang:geozzy_resource.title_$lang as title_$lang,}
           geozzy_resource.image as image,
+          filedata_filedata_image.aKey as imageAKey,
           {multilang:geozzy_resource.shortDescription_$lang as shortDescription_$lang,}
           {multilang:geozzy_resource.mediumDescription_$lang as mediumDescription_$lang,}
           {multilang:geozzy_resource.content_$lang as content_$lang,}
@@ -44,6 +45,8 @@ class PoisExplorerModel extends Model
         ON geozzy_resource.rTypeId = geozzy_resourcetype.id
         LEFT JOIN geozzy_url_alias
         ON ( geozzy_url_alias.resource = geozzy_resource.id AND geozzy_url_alias.http = 0 AND geozzy_url_alias.canonical = 1 )
+        LEFT JOIN filedata_filedata as filedata_filedata_image
+        ON filedata_filedata_image.id = geozzy_resource.image
 
         WHERE
           geozzy_resource.published = 1 AND
@@ -101,6 +104,9 @@ class PoisExplorerModel extends Model
     ),
     'image' => array(
       'type' => 'INT'
+    ),
+    'imageAKey' => array(
+      'type'=>'VARCHAR'
     ),
     'loc' => array(
       'type'=>'GEOMETRY'
