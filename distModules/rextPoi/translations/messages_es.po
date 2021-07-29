@@ -12,7 +12,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:23
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:22
 msgid "Select options"
-msgstr ""
+msgstr "Seleccione opciones"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:11
 #: /home/proxectos/geozzy/classes/view/templates/rextPoi_classes_view_templates_rExtViewBlock.tpl:11
@@ -22,7 +22,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/controller/RExtPoiController.php:73
 msgid "POI type"
-msgstr ""
+msgstr "Tipo POI"
 
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/controller/RExtPoiController.php:78
 msgid "Pitch (Vertical)"

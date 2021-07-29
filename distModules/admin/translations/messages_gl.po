@@ -611,7 +611,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:133
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 msgid "Assign to this starred"

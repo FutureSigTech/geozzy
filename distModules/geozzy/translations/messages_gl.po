@@ -481,7 +481,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:237
 msgid "Display mode"
-msgstr ""
+msgstr "Visualización"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:555
 msgid "Url"

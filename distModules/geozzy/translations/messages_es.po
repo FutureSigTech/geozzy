@@ -108,7 +108,7 @@ msgstr "Menos"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/resourceCollectionViewBlock.tpl:12
 msgid "Find out!"
-msgstr "Decúbrelos!"
+msgstr "Descúbrelos!"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:58
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:61
@@ -531,7 +531,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:237
 msgid "Display mode"
-msgstr ""
+msgstr "Visualización"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:555
 msgid "Url"

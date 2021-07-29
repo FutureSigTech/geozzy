@@ -11,8 +11,6 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:10
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:21
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:21
 msgid ""
 "Si no se especifica ningún texto, se utilizará por defecto el texto en el "
 "recuadro."
@@ -22,8 +20,6 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:11
 #: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:22
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:11
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:22
 msgid ""
 "Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la "
 "url de la página se debe poner #URL#:"
@@ -31,18 +27,13 @@ msgstr ""
 "Para mostrar o nome do recurso débese usar #TITLE# e para compartir a URL da "
 "páxina porase #URL#: "
 
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
-#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
-msgid "Google+ compartira automáticamente la URL del recurso"
-msgstr "Google+ compartira automáticamente a URL do recurso"
-
 #: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:60
 msgid "Activate share on facebook"
 msgstr "Activar compartir en Facebook"
 
 #: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:64
-msgid "Text to share on facebook"
-msgstr "Texto a compartir en Facebook"
+msgid "Text to share on social media"
+msgstr "Texto para compartir nas redes sociais"
 
 #: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:68
 msgid "Activate share on twitter"
@@ -51,6 +42,18 @@ msgstr "Activar compartir en Twitter"
 #: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:72
 msgid "Text to share on twitter"
 msgstr "Texto a compartir en Twitter"
+
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:76
+msgid "Activate share on Linkedin"
+msgstr "Activar compartir en Linkedin"
+
+#: /home/proxectos/geozzy/classes/view/templates/rExtFormBasic.tpl:28
+msgid "Google+ compartira automáticamente la URL del recurso"
+msgstr "Google+ compartira automáticamente a URL do recurso"
+
+#: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:64
+msgid "Text to share on facebook"
+msgstr "Texto a compartir en Facebook"
 
 #: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:76
 msgid "Activate share on Google+"

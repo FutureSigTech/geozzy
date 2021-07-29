@@ -11,7 +11,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:10
 msgid "Select options"
-msgstr ""
+msgstr "Seleccione opciones"
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:13
 msgid "Create POI"

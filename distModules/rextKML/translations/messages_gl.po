@@ -12,7 +12,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:63
 #: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:64
 msgid "KML file"
-msgstr ""
+msgstr "Arquivo KML"
 
 #: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:64
 #: /home/proxectos/geozzy/distModules/rextKML/classes/controller/RExtKMLController.php:65

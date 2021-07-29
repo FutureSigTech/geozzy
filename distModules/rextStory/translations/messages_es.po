@@ -12,7 +12,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextStory/classes/view/templates/js/rextStoryAdmin.js:10
 #: /home/proxectos/geozzy/distModules/rextStory/classes/view/templates/js/rextStoryAdmin.js:8
 msgid "Select options"
-msgstr "Seleccione las opciones"
+msgstr "Seleccione opciones"
 
 #: /home/proxectos/geozzy/distModules/rextStory/classes/controller/RExtStoryController.php:117
 #: /home/proxectos/geozzy/distModules/rextStory/classes/controller/RExtStoryController.php:124

@@ -53,8 +53,8 @@ class AdminViewRole extends AdminViewMaster
 
     // Nome das columnas
     $tabla->setCol('id', 'Id');
-    $tabla->setCol('name', 'Name');
-    $tabla->setCol('description', 'Description');
+    $tabla->setCol('name', __('Name'));
+    $tabla->setCol('description', __('Description'));
 
     // imprimimos o JSON da taboa
     $tabla->exec();
