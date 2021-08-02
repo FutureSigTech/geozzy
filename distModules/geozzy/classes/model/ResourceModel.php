@@ -105,11 +105,16 @@ class ResourceModel extends Model {
 
   var $deploySQL = array(
     array(
+      'version' => 'geozzy#12',
+      'sql' => '
+        ALTER TABLE geozzy_resource DROP COLUMN externalUrl;
+      '
+    ),
+    array(
       'version' => 'geozzy#11',
       'sql' => '
         {multilang:ALTER TABLE geozzy_resource ADD COLUMN externalUrl_$lang VARCHAR(2000);}
         {multilang:UPDATE geozzy_resource SET externalUrl_$lang = externalUrl WHERE id=id;}
-        ALTER TABLE table_name DROP COLUMN externalUrl;
       '
     ),
     array(
