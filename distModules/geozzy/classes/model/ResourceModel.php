@@ -67,7 +67,8 @@ class ResourceModel extends Model {
     ),
     'externalUrl' => array(
       'type' => 'VARCHAR',
-      'size' => 2000
+      'size' => 2000,
+      'multilang' => true
     ),
     'headKeywords' => array(
       'type' => 'VARCHAR',
@@ -103,6 +104,14 @@ class ResourceModel extends Model {
   );
 
   var $deploySQL = array(
+    array(
+      'version' => 'geozzy#11',
+      'sql' => '
+        {multilang:ALTER TABLE geozzy_resource ADD COLUMN externalUrl_$lang VARCHAR(2000);}
+        {multilang:UPDATE geozzy_resource SET externalUrl_$lang = externalUrl WHERE id=id;}
+        ALTER TABLE table_name DROP COLUMN externalUrl;
+      '
+    ),
     array(
       'version' => 'geozzy#10',
       'sql' => '
