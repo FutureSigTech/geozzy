@@ -79,7 +79,8 @@ class RExtUrlResourceViewModel extends Model {
     ),
     'externalUrl' => array(
       'type' => 'VARCHAR',
-      'size' => 2000
+      'size' => 2000,
+      'multilang' => true
     ),
     'rextUrlUrl' => array(
       'type' => 'VARCHAR',
@@ -151,8 +152,8 @@ class RExtUrlResourceViewModel extends Model {
 
   var $deploySQL = array(
     array(
-      'execOrder' => 2 ,
-      'version' => 'geozzy#1.94',
+      'execOrder' => 3 ,
+      'version' => 'geozzy#15',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_rext_url_resource_view;
@@ -164,7 +165,9 @@ class RExtUrlResourceViewModel extends Model {
             {multilang:rv.mediumDescription_$lang,}
             {multilang:rv.content_$lang,}
             rv.image, rv.imageName, rv.imageAKey,
-            rv.loc, rv.defaultZoom, rv.externalUrl, ru.url as rextUrlUrl,
+            rv.loc, rv.defaultZoom,
+            {multilang:rv.externalUrl_$lang,}
+            ru.url as rextUrlUrl,
             {multilang:rv.urlAlias_$lang,}
             {multilang:rv.headKeywords_$lang,}
             {multilang:rv.headDescription_$lang,}
