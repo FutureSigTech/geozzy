@@ -12,7 +12,7 @@ class AllstoryStepsViewModel extends Model
   var $deploySQL = array(
     // All Times
     array(
-      'version' => 'story#3',
+      'version' => 'story#4',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_allstories_index;
@@ -35,7 +35,8 @@ class AllstoryStepsViewModel extends Model
 
 						storyStep.loc,
 						storyStep.defaultZoom,
-						storyStep.externalUrl,
+
+            {multilang:storyStep.externalUrl_$lang,}
 
 
 						{multilang: storyStep.headKeywords_$lang, }
@@ -147,7 +148,8 @@ class AllstoryStepsViewModel extends Model
       'type' => 'INT'
     ),
     'externalUrl' => array(
-      'type' => 'VARCHAR'
+      'type' => 'VARCHAR',
+      'multilang' => true
     ),
 
     'headKeywords' => array(
