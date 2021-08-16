@@ -383,8 +383,9 @@ class ResourceController {
         'rules' => array( 'maxlength' => '32000' )
       ),
       'externalUrl' => array(
+        'translate' => true,
         'params' => array( 'label' => __( 'External URL' ) ),
-        'rules' => array( 'maxlength' => '2000', 'url' => true )
+        'rules' => array( 'maxlength' => '2000' )
       ),
       'image' => array(
         'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
@@ -1533,7 +1534,6 @@ class ResourceController {
           'title' => $resVal->getter( 'title', false ),
           'shortDescription' => $resVal->getter( 'shortDescription', false ),
           'mediumDescription' => $resVal->getter( 'mediumDescription', false ),
-          'externalUrl' => $resVal->getter('externalUrl'),
           'urlAlias' => $resVal->getter('urlAlias'),
           'imageId' => $resValImage, // TODO: Deberia ser image
           'image' => $resValImage,

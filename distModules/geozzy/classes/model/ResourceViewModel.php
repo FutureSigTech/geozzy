@@ -92,7 +92,8 @@ class ResourceViewModel extends Model {
     ),
     'externalUrl' => array(
       'type' => 'VARCHAR',
-      'size' => 2000
+      'size' => 2000,
+      'multilang'=> true
     ),
     'urlAlias' => array(
       'type' => 'VARCHAR',
@@ -184,7 +185,7 @@ class ResourceViewModel extends Model {
   var $deploySQL = array(
     array(
       'execOrder' => 1 ,
-      'version' => 'geozzy#8',
+      'version' => 'geozzy#13',
       'executeOnGenerateModelToo' => true,
       'sql'=> '
         DROP VIEW IF EXISTS geozzy_resource_view;
@@ -196,7 +197,8 @@ class ResourceViewModel extends Model {
             {multilang:r.mediumDescription_$lang,}
             {multilang:r.content_$lang,}
             r.image, fd.name AS imageName, fd.AKey AS imageAKey,
-            r.loc, r.defaultZoom, r.externalUrl,
+            r.loc, r.defaultZoom,
+            {multilang:r.externalUrl_$lang,}
             {multilang:GROUP_CONCAT( DISTINCT if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
             {multilang:r.headKeywords_$lang,}
             {multilang:r.headDescription_$lang,}
