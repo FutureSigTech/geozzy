@@ -1753,7 +1753,7 @@ class ResourceController {
 
         if( !empty($termIdSobrantes) ) {
           // echo "\nSobrantes: \n";
-          print_r($termIdSobrantes);
+          // print_r($termIdSobrantes);
           $resTermModel = new ResourceTaxonomytermModel();
           foreach ( $termIdSobrantes as $termId ) {
             // echo "Recuperando rel. existente con $termId\n";
@@ -2475,7 +2475,7 @@ class ResourceController {
 
 
 
-  public function setResourcesToCollection( $colId = false, $newResources ){
+  public function setResourcesToCollection( $colId, $newResources ){
     $oldResources = false;
 
     if( $newResources !== false && !is_array($newResources) ) {
