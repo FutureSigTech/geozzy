@@ -47,24 +47,24 @@ msgstr "Ninguno"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:58
 msgid "Reservation URL"
-msgstr ""
+msgstr "URL de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:62
 msgid "Reservation phone"
-msgstr ""
+msgstr "Teléfono de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:66
 msgid "Reservation email"
-msgstr ""
+msgstr "Email de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:70
 msgid "Reservations channel"
-msgstr ""
+msgstr "Canal de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:75
 msgid "Identifier"
-msgstr ""
+msgstr "Identificador"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:79
 msgid "Other information"
-msgstr ""
+msgstr "Otra información"

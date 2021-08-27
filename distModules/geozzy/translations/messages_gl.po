@@ -486,3 +486,19 @@ msgstr "Visualización"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:555
 msgid "Url"
 msgstr ""
+
+# Metido a man
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+#: /home/proxectos/geozzy/classes/view/templates/rTypeFormLocationPanel.tpl:16
+msgid ""
+"Haz click en el lugar donde se ubica el recurso con la mayor precisión que puedas, "
+"podrás arrastrar y soltar la localización"
+
+msgstr ""
+"Fai clic no lugar onde se localice o recurso coa maior precisión "
+"posible, poderás arrastrar e soltar a localización"
