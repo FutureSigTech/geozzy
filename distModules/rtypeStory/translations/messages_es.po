@@ -13,7 +13,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:107
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/view/templates/rTypeViewBlock.tpl:107
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #: /home/proxectos/geozzy/classes/view/templates/rtypeStory_classes_view_templates_rTypeViewBlock.tpl:122
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:122
@@ -44,4 +44,4 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:92
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:73
 msgid "Edit Resource"
-msgstr ""
+msgstr "Editar recurso"

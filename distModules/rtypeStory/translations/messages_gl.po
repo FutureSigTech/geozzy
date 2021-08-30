@@ -41,4 +41,4 @@ msgstr "Listaxe de pasos"
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:92
 #: /home/proxectos/geozzy/distModules/rtypeStory/classes/controller/RTypeStoryController.php:73
 msgid "Edit Resource"
-msgstr "Editar contido"
+msgstr "Editar recurso"

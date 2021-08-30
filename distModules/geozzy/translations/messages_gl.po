@@ -207,19 +207,19 @@ msgstr "Baixa"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:387
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:417
 msgid "SEO: Head Keywords"
-msgstr ""
+msgstr "SEO: Palabras clave cabecera"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:409
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:392
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:422
 msgid "SEO: Head Description"
-msgstr ""
+msgstr "SEO: Descripción cabecera"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:414
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:397
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:427
 msgid "SEO: Head Title"
-msgstr ""
+msgstr "SEO: Título cabecera"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:419
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:402
