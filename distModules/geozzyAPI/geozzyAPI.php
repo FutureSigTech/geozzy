@@ -9,37 +9,36 @@ class geozzyAPI extends Module {
   public $version = 1.0;
 
 
-  public $dependences = array(
-    array(
-     "id" =>"swagger-ui",
-     "params" => array("swagger-ui@2.0.24"),
-     "installer" => "yarn",
-     "includes" => array("")
-    )
+  public $dependences = [];
 
-  );
 
-  function __construct() {
+  public function __construct() {
     // API DOC GENERATOR
-    if( Cogumelo::getSetupValue( 'apiDocActive' ) == true) {
+    if( Cogumelo::getSetupValue( 'apiDocActive' ) === true ) {
+      // Add dependence if active
+      $this->dependences[] = [
+        "id" =>"swagger-ui",
+        "params" => ["swagger-ui@2.0.24"],
+        "installer" => "yarn",
+        "includes" => [],
+      ];
+
       $this->addUrlPatterns( '#^api/?$#', 'view:DocAPIView::main' );
       $this->addUrlPatterns( '#^api/doc/index.json$#', 'view:DocAPIView::apidocJson' ); // Main swagger JSON
     }
 
     global $COGUMELO_IS_EXECUTING_FROM_SCRIPT;
-
     if( $COGUMELO_IS_EXECUTING_FROM_SCRIPT !== true) {
       require_once APP_BASE_PATH."/conf/inc/geozzyAPI.php";
-
 
       if( GEOZZY_API_ACTIVE === true ) {
         $this->addUrlPatternsAPI();
       }
     }
-
   }
 
-  function addUrlPatternsAPI() {
+
+  public function addUrlPatternsAPI() {
     global $C_INDEX_MODULES;
     global $COGUMELO_INSTANCED_MODULES;
     global $GEOZZY_API_ALLOWED_MODULES;
@@ -55,13 +54,11 @@ class geozzyAPI extends Module {
           $COGUMELO_INSTANCED_MODULES[$modName]->setGeozzyUrlPatternsAPI();
         }
       }
-
     }
-
-
   }
 
-  static function addModuleAPI( $moduleToAddApi ) {
+
+  public static function addModuleAPI( $moduleToAddApi ) {
     global $COGUMELO_INSTANCED_MODULES;
     global $GEOZZY_API_ALLOWED_MODULES;
     global $GEOZZY_API_DOC_URLS;
@@ -75,8 +72,9 @@ class geozzyAPI extends Module {
 
     $GEOZZY_API_ALLOWED_MODULES[] = $moduleToAddApi;
 
-    $m = $COGUMELO_INSTANCED_MODULES[$moduleToAddApi];
-    $GEOZZY_API_DOC_URLS = array_merge( $GEOZZY_API_DOC_URLS, $m->getGeozzyDocAPI() );
-
+    $modApi = $COGUMELO_INSTANCED_MODULES[$moduleToAddApi];
+    $GEOZZY_API_DOC_URLS = array_merge( $GEOZZY_API_DOC_URLS, $modApi->getGeozzyDocAPI() );
   }
+
+
 }
