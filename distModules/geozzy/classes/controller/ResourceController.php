@@ -501,7 +501,7 @@ class ResourceController {
         else {
           // Array de campos. El indice indica el nombre del RType
           if( !empty( $valuesArray['rTypeIdName'] ) && $bigEditorKey === $valuesArray['rTypeIdName'] ) {
-            error_log( __METHOD__.' htmlEditorBig rTypeIdName: '.$valuesArray['rTypeIdName'] );
+            Cogumelo::trace( __METHOD__.' htmlEditorBig rTypeIdName: '.$valuesArray['rTypeIdName'] );
             foreach( $bigEditorFields as $bigEditorField ) {
               if( isset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] ) ) {
                 unset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] );
@@ -2067,7 +2067,7 @@ class ResourceController {
       if( $url !== null && $url !== '' ) {
         $url = $this->sanitizeUrl( $url );
 
-        error_log( __METHOD__.' url='.$url );
+        Cogumelo::trace( __METHOD__.' url='.$url );
         if( strpos( $url, '/' ) !== 0 ) {
           $error = 'La URL tiene que comenzar con una barra /';
         }
@@ -2190,7 +2190,7 @@ class ResourceController {
     ]);
     if( !empty($colision) ) {
       $urlAlias .= '_'.$resId;
-      error_log( 'setUrl() COLISION: '.$urlAlias );
+      Cogumelo::debug( 'setUrl() COLISION: '.$urlAlias );
     }
 
 
@@ -2211,7 +2211,7 @@ class ResourceController {
     $elemModel = new UrlAliasModel( $aliasArray );
     if( $elemModel->save() === false ) {
       $result = false;
-      error_log( 'setUrl: ERROR gardando a url' );
+      error_log(__METHOD__.': ERROR gardando a url' );
     }
     else {
       $result = $elemModel->getter( 'id' );
@@ -2544,7 +2544,7 @@ class ResourceController {
 
 
   public function cloneToRType( $resId, $rTypeIdName, $topicIdName = false ) {
-    error_log( __METHOD__.': $resId: '.$resId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
+    Cogumelo::trace( __METHOD__.': $resId: '.$resId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
     $resToObj = null;
 
     $error = false;
