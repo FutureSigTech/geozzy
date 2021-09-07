@@ -247,7 +247,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
                   position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
                   map: that.map,
                   flat: true,
-                  optimized: false,
+                  optimized: true, // bug hovers zIndex
                   visible:true,
                   zIndex:that.options.markerzIndex
                 });
