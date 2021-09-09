@@ -247,7 +247,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
                   position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
                   map: that.map,
                   flat: true,
-                  optimized: true, // bug hovers zIndex
+                  optimized: true, // activamos optimización para evitar conflictos z-index hover con rutas
                   visible:true,
                   zIndex:that.options.markerzIndex
                 });
@@ -609,7 +609,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     if( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) {
       that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
-        title: 'selected'
+        title: 'selected',
+        optimized: false //  hay que desactivar esto temporalmente para que funcione animación
       });
       that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
       that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( that.map );
@@ -620,7 +621,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var that = this;
     if( that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker') ) {
       that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setOptions({
-        title: ''
+        title: '',
+        optimized: true // activamos optimización para evitar conflictos z-index hover con rutas
       });
       that.parentExplorer.resourceMinimalList.get( id ).get('mapMarker').setMap( null );
 
