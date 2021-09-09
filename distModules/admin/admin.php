@@ -120,7 +120,7 @@ class admin extends Module {
     ),
     array(
      'id' => 'elfinder',
-     'params' => array('studio-42/elfinder', '2.1.17'),
+     'params' => array('studio-42/elfinder', '2.1.59'),
      'installer' => 'composer',
      'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
     ),
