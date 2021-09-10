@@ -133,7 +133,7 @@ class admin extends Module {
       // https://github.com/Studio-42/elFinder
       // 2020-06-05  (2.1.57):
       // 'params' => array('studio-42/elfinder', '2.1.17'),
-      'params' => [ 'studio-42/elfinder', '2.1.57' ],
+      'params' => [ 'studio-42/elfinder', '2.1.*' ],
       'installer' => 'composer',
       'includes' => [ 'php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' ]
     )
