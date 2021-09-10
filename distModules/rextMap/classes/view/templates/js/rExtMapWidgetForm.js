@@ -19,8 +19,10 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
   that.resourceMap = false;
   that.resourceMarker = false;
   that.blockMarker = false;
+  that.mylocationMarker = false;
 
   that.initializeMap = function( ){
+
     // Location Map
     if(  that.segmentDIV.find(".lat input").length &&  that.segmentDIV.find(".lon input").length  ) {
 
@@ -110,6 +112,10 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         }
       }
     }
+
+    $('.locationData .automaticBtn').click(function(){
+      that.browserGeoLoc();
+    });
   };
 
 
@@ -137,14 +143,11 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
     that.resourceMap.setCenter( pos );
 
-
     that.resourceMarker.setPosition( pos );
     that.resourceMarker.setMap( that.resourceMap );
     that.latInput.val( that.resourceMarker.position.lat() );
     that.lonInput.val( that.resourceMarker.position.lng() );
-
     that.resourceMap.setZoom(11);
-
   };
 
   // Bias the autocomplete object to the user's geographical location,
@@ -187,4 +190,68 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
   that.initializeMap();
   that.initAddressAutocompletion();
+
+  that.browserGeoLoc = function() {
+    var geoOptions = {
+      timeout: 10 * 1000, // mSeg
+      enableHighAccuracy: false,
+      maximumAge: 2 * 60 * 1000 // mSeg
+    }
+
+    var geoSuccess = function(position) {
+      console.log('geoSuccess',position);
+      lat = Math.round(position.coords.latitude*10000)/10000;
+      lon = Math.round(position.coords.longitude*10000)/10000;
+      var mylocation = new google.maps.LatLng(
+        parseFloat(lat),
+        parseFloat(lon)
+      );
+
+      if(that.mylocationMarker===false){
+        that.mylocationMarker = new google.maps.Marker({
+          //position: new google.maps.LatLng( latValue, lonValue ),
+          icon: {
+            url: cogumelo.publicConf.rextMapConf.defaultMarker.marker,
+            // This marker is 20 pixels wide by 36 pixels high.
+            size: new google.maps.Size(30, 36),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 36).
+            anchor: new google.maps.Point(13, 36)
+          },
+          draggable: true
+        });
+      }
+
+      that.mylocationMarker.setPosition( mylocation );
+      that.resourceMap.setCenter( mylocation );
+      that.mylocationMarker.setMap(that.resourceMap);
+      that.latInput.val( lat );
+      that.lonInput.val( lon );
+      that.resourceMap.setZoom(that.resourceMap.getZoom());
+    };
+    var geoError = function(error) {
+      switch(cogumelo.publicConf.C_LANG){
+        case 'es':
+          var noLoc = 'Ha sido imposible obtener la geolocalización';
+          break;
+        case 'gl':
+          var noLoc = 'Foi imposible obter a xeolocalización';
+          break;
+        case 'en':
+          var noLoc = 'It has been impossible to get your geolocation';
+          break;
+      }
+      alert(noLoc);
+    };
+
+    if( navigator.geolocation ) {
+      // This feature is available only in secure contexts (HTTPS), in some or all browsers.
+      navigator.geolocation.getCurrentPosition( geoSuccess, geoError, geoOptions );
+    }
+    else {
+      geoError(-1);
+    }
+  }
+
 };
