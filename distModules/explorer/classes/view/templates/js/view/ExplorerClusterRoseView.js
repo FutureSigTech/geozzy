@@ -56,7 +56,7 @@ geozzy.explorerComponents.clusterRoseView = function( opts ) {
 
       that.blocked = true;
       that.hide();
-      if ( markers.length > 7 ){
+      if ( markers.length > 7 || cogumelo.publicConf.mod_detectMobile_isMobile == false){
         that.options.mapView.map.setCenter(pos);
         that.options.mapView.map.setZoom( that.options.mapView.map.getZoom() + 1 );
       }
