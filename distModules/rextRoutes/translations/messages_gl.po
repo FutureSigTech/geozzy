@@ -26,7 +26,7 @@ msgstr "Fin de ruta"
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:203
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/js/view/routeView.js:197
 msgid "Altitude"
-msgstr "Altitud"
+msgstr "Altitude"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:20
