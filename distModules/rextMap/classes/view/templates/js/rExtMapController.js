@@ -59,6 +59,13 @@ geozzy.rExtMapController = function( opts ) {
         /* jshint ignore:end */
       }
 
+      if( typeof cogumelo.publicConf.rextMapConf.maxZoom != 'undefined' ) {
+        that.resourceMapOptions.maxZoom = cogumelo.publicConf.rextMapConf.maxZoom;
+      }
+
+      if( typeof cogumelo.publicConf.rextMapConf.minZoom != 'undefined' ) {
+        that.resourceMapOptions.minZoom = cogumelo.publicConf.rextMapConf.minZoom;
+      }
 
       that.resourceMap = new google.maps.Map( $mapContainer.get(0), that.resourceMapOptions );
 
