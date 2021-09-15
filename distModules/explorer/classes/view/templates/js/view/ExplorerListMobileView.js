@@ -89,9 +89,10 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
 
       if( that.listOrderAccordingIds == true ) {
         visibleResources.setSort('weight','asc');
-        visibleResources.setSort('id','asc');
+        //visibleResources.setSort('id','asc');
       }
       else {
+        visibleResources.setSort('weight','asc');
         visibleResources.setSort('distanceToCenterKm', 'asc');
       }
 
