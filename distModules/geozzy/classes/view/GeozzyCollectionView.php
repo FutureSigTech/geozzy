@@ -337,7 +337,8 @@ class GeozzyCollectionView extends View
         // error_log(__METHOD__.': $filter '.json_encode($filter) );
         $elemList = $resourceViewModel->listItems(
           array(
-            'filters' => array( 'inRtypeIdName' => $filter )
+            'filters' => array( 'inRtypeIdName' => $filter),
+            'order' => array('title_'.Cogumelo::getSetupValue('lang:default')=>1)
           )
         )->fetchAll();
       }
