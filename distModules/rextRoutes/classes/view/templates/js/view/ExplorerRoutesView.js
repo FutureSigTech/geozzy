@@ -16,7 +16,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
-      strokeHoverColor: ( typeof cogumelo.publicConf.rextRoutesConf.strokeHoverColor != 'undefined')? '#f29130' : cogumelo.publicConf.rextRoutesConf.strokeHoverColor,
+      strokeHoverColor: '#249c00',
       showGraph: false,
       hoverGraphDiv: false,
       ShowRouteInZoomLevel: 10,
