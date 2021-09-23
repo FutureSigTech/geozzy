@@ -343,7 +343,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     var that = this;
 
-
+    var markersToClusterize = [];
     that.markers = [];
 
     if( !that.markersCreated ) {
@@ -366,14 +366,23 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       if( e.mapMarker ) {
         e.mapMarker.setIcon( that.chooseMarker(e) );
         e.mapMarker.setVisible(true);
+        e.mapMarker.noClusterize = (e.get('isRoute') == 1 && e.get('routeInExplorerHoverShow') == false)? true: false;
+        console.log(e)
         that.markers.push( e.mapMarker );
       }
     });
 
 
+    $(that.markers).each(function(iM,eM){
+      if( eM.noClusterize == false ) {
+        markersToClusterize.push(eM);
+      }
+    });
+
     if( that.markerClusterer == false ) {
 
-      that.markerClusterer = new MarkerClusterer(this.map, that.markers, {
+
+      that.markerClusterer = new MarkerClusterer(this.map, markersToClusterize, {
         maxZoom: that.options.clustererMaxZoom, // 15,
         gridSize: that.options.clustererGridSize, //90,
         zoomOnClick: that.options.clustererZoomOnClick, //true,
@@ -402,7 +411,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
     else {
       this.markerClusterer.clearMarkers();
-      this.markerClusterer.addMarkers( that.markers );
+      this.markerClusterer.addMarkers( markersToClusterize );
       this.markerClusterer.redraw();
     }
 
