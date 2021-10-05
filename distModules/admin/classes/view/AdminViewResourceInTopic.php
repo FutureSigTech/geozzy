@@ -67,7 +67,8 @@ class AdminViewResourceInTopic extends AdminViewMaster
 
     $tabla = new TableController( $resource, true );
 
-    $tabla->setTabs('published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
+    //$tabla->setTabs('published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
+    $tabla->setTabs('publishedCustom', array(1 => __('Published'), 0 => __('Unpublished'), '*' => __('All')), '*');
 
     $filterByRtypeOpts = [];
     $extendedModels = ['ResourceTopicModel','UrlAliasModel'];
@@ -213,7 +214,6 @@ class AdminViewResourceInTopic extends AdminViewMaster
         $tabla = $geozzyTopicsTableExtrasInstance->{ $topic->getter('idName') }( $urlParamsList, $tabla, false);
       }
     }
-
 
 
 

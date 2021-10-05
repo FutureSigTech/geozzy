@@ -178,6 +178,7 @@ class ResourceModel extends Model {
     'idGt' => ' geozzy_resource.id > (?) ',
     'idLt' => ' geozzy_resource.id < (?) ',
     'idNameLike' => ' geozzy_resource.idName LIKE ? ',
+    'publishedCustom' => ' geozzy_AppTopicResource_view.published = IF( ? = "1", 1, 0 ) '
   );
 
 
