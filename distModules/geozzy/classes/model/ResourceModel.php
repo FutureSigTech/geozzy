@@ -162,7 +162,9 @@ class ResourceModel extends Model {
 
     'distance2K' => ' geozzy_resource.loc IS NOT NULL AND ST_Distance( geozzy_resource.loc, ST_GeomFromText( ? ) ) < 2000 ',
     'idGt' => ' geozzy_resource.id > (?) ',
-    'idLt' => ' geozzy_resource.id < (?) '
+    'idLt' => ' geozzy_resource.id < (?) ',
+    'publishedCustom' => ' geozzy_resource.published = IF( ? = "1", 1, 0 ) '
+
   );
 
 

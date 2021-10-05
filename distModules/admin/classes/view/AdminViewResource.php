@@ -64,7 +64,7 @@ class AdminViewResource extends AdminViewMaster {
 
     $tabla = new TableController( $resource, true );
 
-    $tabla->setTabs( 'published', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
+    $tabla->setTabs( 'publishedCustom', array('1'=>__('Published'), '0'=>__('Unpublished'), '*'=> __('All') ), '*');
 
     // set id search reference.
     $tabla->setSearchRefId('find');
