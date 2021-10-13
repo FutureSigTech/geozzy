@@ -47,11 +47,14 @@ var elfNode, elfInsrance, dialogName,
         var dialog = CKEDITOR.dialog.getCurrent();
         if (dialogName == 'image') {
           var urlObj = 'txtUrl';
-        } else if (dialogName == 'flash') {
+        }
+        else if (dialogName == 'flash') {
           var urlObj = 'src';
-        } else if (dialogName == 'files' || dialogName == 'link') {
+        }
+        else if (dialogName == 'files' || dialogName == 'link') {
           var urlObj = 'url';
-        } else {
+        }
+        else {
           return;
         }
         dialog.setValueOf(dialog._.currentTabId, urlObj, url);
@@ -99,7 +102,8 @@ adminFileUploader.getShowImgSize = function(url, callback) {
       if (w > h) {
         h = h * (s / w);
         w = s;
-      } else {
+      }
+      else {
         w = w * (s / h);
         h = s;
       }
@@ -158,11 +162,13 @@ adminFileUploader.instanceReady = function(e) {
     if (!res.added || res.added.length < 1) {
       data.message = 'Can not upload.';
       e.cancel();
-    } else {
+    }
+    else {
       var file	 = res.added[0];
       if (file.url && file.url != '1') {
         data.url = file.url;
-      } else {
+      }
+      else {
         data.url = elfInsrance.options.url + ((elfInsrance.options.url.indexOf('?') === -1)? '?' : '&') + 'cmd=file&target=' + file.hash;
       }
     }
@@ -237,11 +243,14 @@ adminFileUploader.dialogDefinition = function(event) {
               var dialog = CKEDITOR.dialog.getCurrent();
               if (dialogName == 'image') {
                 var urlObj = 'txtUrl';
-              } else if (dialogName == 'flash') {
+              }
+              else if (dialogName == 'flash') {
                 var urlObj = 'src';
-              } else if (dialogName == 'files' || dialogName == 'link') {
+              }
+              else if (dialogName == 'files' || dialogName == 'link') {
                 var urlObj = 'url';
-              } else {
+              }
+              else {
                 return;
               }
               dialog.selectPage('info');
@@ -254,7 +263,8 @@ adminFileUploader.dialogDefinition = function(event) {
                   dialog.preview.$.style.height = size.height+'px';
                 });
               }
-            } else {
+            }
+            else {
               error(data.error || data.warning || 'errUploadFile');
             }
           })

@@ -110,6 +110,7 @@ geozzy.rExtMapDirectionsController = {
   },
 
   prepareContainers: function prepareContainers() {
+    // cogumelo.log( 'prepareContainers' );
     var that = this;
 
     if( $('.jsMapDirectionsList').length === 0 ) {
@@ -423,7 +424,6 @@ geozzy.rExtMapDirectionsController = {
 
   // traceRoute(0, from, that.to.latlng, that.transport , false, function(){
   traceRoute: function traceRoute( id, from, to, mode, cache, thenFunction ) {
-
     // cogumelo.log( 'traceRoute:', id, from, to, mode, cache, 'thenFunction' );
     var that = this;
 
