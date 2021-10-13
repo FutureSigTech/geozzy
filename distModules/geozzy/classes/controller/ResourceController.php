@@ -152,9 +152,9 @@ class ResourceController {
     $resourceData = false;
 
     // if( (!$this->resData || ( $resId && $resId !== $this->resData['id'] ) ) && $resObj=$this->loadResourceObject( $resId ) ) {
-    if( $resObj=$this->loadResourceObject( $resId ) ) {
+    $resObj = $this->loadResourceObject( $resId );
+    if( !empty( $resObj ) ) {
       $langDefault = Cogumelo::getSetupValue( 'lang:default' );
-
       $langsConf = Cogumelo::getSetupValue( 'lang:available' );
       if( is_array( $langsConf ) ) {
         $langAvailable = array_keys( $langsConf );
@@ -237,10 +237,12 @@ class ResourceController {
         $resourceData[ 'topics' ] = $topicsArray;
         $resourceData[ 'topic' ] = current( $resourceData[ 'topics' ] );
 
+        $resourceTopicList = [];
         $topicModel = new TopicModel();
         foreach( $topicsArray as $topicId ) {
-          if( $t = $topicModel->listItems( [ 'filters' => [ 'id' => $topicId ], 'cache' => $this->cacheQuery ] )->fetch() ) {
-            $resourceTopicList[$topicId] = $t->getter('name');
+          $topicObj = $topicModel->listItems( [ 'filters' => [ 'id' => $topicId ], 'cache' => $this->cacheQuery ] )->fetch();
+          if( is_object( $topicObj ) ) {
+            $resourceTopicList[ $topicId ] = $topicObj->getter('name');
           }
         }
         $resourceData[ 'topicsName' ] = $resourceTopicList;
@@ -272,7 +274,8 @@ class ResourceController {
       // $resourceData['rTypeIdName'] = $this->getRTypeIdName( $resourceData['rTypeId'] );
       $rTypeModel = new ResourcetypeModel();
       $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'id' => $resourceData['rTypeId'] ], 'cache' => $this->cacheQuery ] );
-      if( $rTypeInfo = $rTypeList->fetch() ) {
+      $rTypeInfo = $rTypeList->fetch();
+      if( is_object( $rTypeInfo ) ) {
         $resourceData['rTypeName'] = $rTypeInfo->getter( 'name' );
         $resourceData['rTypeIdName'] = $rTypeInfo->getter( 'idName' );
       }
@@ -298,13 +301,13 @@ class ResourceController {
    *
    * @return Obj-Form
    */
-  public function getBaseFormObj( $formName, $urlAction, $successArray = false, $valuesArray = false ) {
+  public function getBaseFormObj( $formName, $urlAction, $successArray = [], $valuesArray = false ) {
     // error_log(__METHOD__);
     // error_log( "valuesArray: ".print_r( $valuesArray, true ) );
 
     $form = new FormController( $formName, $urlAction );
 
-    if($successArray){
+    if( !empty( $successArray) ) {
       foreach( $successArray as $tSuccess => $success ) {
         if($tSuccess == "redirect"){
           $cancelButton = $success;
@@ -497,7 +500,7 @@ class ResourceController {
         else {
           // Array de campos. El indice indica el nombre del RType
           if( !empty( $valuesArray['rTypeIdName'] ) && $bigEditorKey === $valuesArray['rTypeIdName'] ) {
-            // error_log( __METHOD__.' htmlEditorBig rTypeIdName: '.$valuesArray['rTypeIdName'] );
+            Cogumelo::trace( __METHOD__.' htmlEditorBig rTypeIdName: '.$valuesArray['rTypeIdName'] );
             foreach( $bigEditorFields as $bigEditorField ) {
               if( isset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] ) ) {
                 unset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] );
@@ -589,9 +592,8 @@ class ResourceController {
 
     $form = $this->getFormObj( $formName, $urlAction, $successArray, $valuesArray );
 
-
-
-    if( $rTypeView = $this->getRTypeView( $form->getFieldValue( 'rTypeId' ) ) ) {
+    $rTypeView = $this->getRTypeView( $form->getFieldValue( 'rTypeId' ) );
+    if( !empty( $rTypeView ) ) {
       $formBlockInfo = $rTypeView->getFormBlockInfo( $form );
     }
     // $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
@@ -703,7 +705,7 @@ class ResourceController {
       // error_log( 'NEW RESOURCE: ' . print_r( $valuesArray, true ) );
       $this->resObj = new ResourceModel( $valuesArray );
       if( $this->resObj === null ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+        $form->addFormError( 'No se ha podido guardar el recurso.', 'formError' );
       }
     }
 
@@ -714,7 +716,7 @@ class ResourceController {
 
       $saveResult = $this->resObj->save();
       if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+        $form->addFormError( 'No se ha podido guardar el recurso.', 'formError' );
       }
     }
 
@@ -751,7 +753,7 @@ class ResourceController {
     if( !$form->existErrors() ) {
       $saveResult = $this->resObj->save();
       if( $saveResult === false ) {
-        $form->addFormError( 'No se ha podido guardar el recurso.','formError' );
+        $form->addFormError( 'No se ha podido guardar el recurso.', 'formError' );
       }
     }
 
@@ -798,7 +800,8 @@ class ResourceController {
     if( $rTypeId !== false ) {
       $rTypeModel = new ResourcetypeModel();
       $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'id' => $rTypeId ], 'cache' => $this->cacheQuery ] );
-      if( $rTypeInfo = $rTypeList->fetch() ) {
+      $rTypeInfo = $rTypeList->fetch();
+      if( is_object( $rTypeInfo ) ) {
         $rTypeIdName = $rTypeInfo->getter( 'idName' );
       }
     }
@@ -815,7 +818,8 @@ class ResourceController {
 
     $rTypeModel = new ResourcetypeModel();
     $rTypeList = $rTypeModel->listItems( [ 'filters' => [ 'idName' => $rTypeIdName ], 'cache' => $this->cacheQuery ] );
-    if( gettype( $rTypeList ) === 'object' && ( $rTypeInfo = $rTypeList->fetch() ) ) {
+    $rTypeInfo = is_object( $rTypeList ) ? $rTypeList->fetch() : false;
+    if( is_object( $rTypeInfo ) ) {
       $rTypeId = $rTypeInfo->getter( 'id' );
     }
 
@@ -914,7 +918,8 @@ class ResourceController {
           }
           break;
         case 'DELETE':
-          if( $prevFiledataId = $modelObj->getter( $colName ) ) {
+          $prevFiledataId = $modelObj->getter( $colName );
+          if( $prevFiledataId ) {
             Cogumelo::trace( 'To Model - DELETE prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
             $modelObj->setter( $colName, null );
@@ -922,7 +927,8 @@ class ResourceController {
           }
           break;
         case 'EXIST':
-          if( $prevFiledataId = $modelObj->getter( $colName ) ) {
+          $prevFiledataId = $modelObj->getter( $colName );
+          if( $prevFiledataId ) {
             Cogumelo::trace( 'To Model - EXIST-UPDATE prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->updateInfo( $prevFiledataId, $fileField['values'] );
             $result = 'EXIST-UPDATE';
@@ -1020,15 +1026,11 @@ class ResourceController {
               }
               break;
 
-
             case 'DELETE':
               $deleteId = $fileField['values']['id'];
-
               $result = $filedataCtrl->deleteFromFileGroup( $deleteId, $filegroupId );
               Cogumelo::trace(__METHOD__.': To Model Delete: '.json_encode($result) );
-
               break;
-
 
             default:
               // Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
@@ -1377,7 +1379,7 @@ class ResourceController {
 
     $collResources = false;
 
-    $collFilters['resourceMain'] = $resId;
+    $collFilters = [ 'resourceMain' => $resId ];
 
     if( $collectionTypes === false ) {
       $collFilters['collectionTypeIn'] = [ 'base', 'multimedia' ];
@@ -1490,7 +1492,7 @@ class ResourceController {
     return($collResources);
   }
 
-  public function getCollectionSonInfo( $resIds, $extraFields = false ) {
+  public function getCollectionSonInfo( $resIds, $extraFields = [] ) {
     // error_log( __METHOD__.' '.json_encode($resIds) );
     $resSonInfo = [];
 
@@ -1562,11 +1564,11 @@ class ResourceController {
 
 
 
-  public function collectionsByType( $collectionArrayInfo, $collectionTypes = false ) {
+  public function collectionsByType( $collectionArrayInfo, $collectionTypes = [] ) {
     $collectionsByType = [];
 
     foreach( $collectionArrayInfo as $collectionInfo ) {
-      if( $collectionTypes && !in_array( $collectionInfo['col']['collectionType'], $collectionTypes ) ) {
+      if( !empty( $collectionTypes ) && !in_array( $collectionInfo['col']['collectionType'], $collectionTypes ) ) {
         continue;
       }
       if( count( $collectionInfo['res'] ) > 0 ) {
@@ -1577,15 +1579,30 @@ class ResourceController {
     return $collectionsByType;
   }
 
-  // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
-  public function goOverCollections( array $collections, $collectionType = false ) {
-    $collectionBlock = array();
+  // Itera sobre el array de colecciones y devuelve los datos de cada una, dependiendo de si son o no multimedia
+  public function goOverCollectionsData( array $collections, $collectionType = false ) {
+    $collectionArray = array();
 
     foreach( $collections as $idCollection => $collection ) {
       if( $collectionType && $collectionType !== $collection['col']['collectionType'] ) {
         continue;
       }
-      $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
+      $collectionArray[ $idCollection ] =  $collection ;
+    }
+
+    return $collectionArray;
+  }
+
+  // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
+  public function goOverCollections( array $collections, $collectionType = false ) {
+    $collectionBlock = [];
+
+    $collectionArray = $this->goOverCollectionsData($collections, $collectionType);
+
+    if( !empty($collectionArray) ){
+      foreach( $collectionArray as $idCollection => $collection ) {
+        $collectionBlock[ $idCollection ] = $this->getCollectionBlock( $collection );
+      }
     }
 
     return $collectionBlock;
@@ -1597,14 +1614,14 @@ class ResourceController {
     $template = new Template();
     $template->assign( 'id', $collection['col']['id'] );
 
-    switch( $colType = $collection['col']['collectionType'] ) {
+    switch( $collection['col']['collectionType'] ) {
       case 'multimedia':
         $template->assign( 'max', 6 );
         $template->assign( 'multimediaAll', $collection );
         $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
         break;
       case 'base':
-      default;
+      default:
         $template->assign( 'collectionResources', $collection );
         $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
         break;
@@ -2043,7 +2060,8 @@ class ResourceController {
     }
 
     if( !$title ) {
-      if( $resData = $this->getResourceData( $resId ) ) {
+      $resData = $this->getResourceData( $resId );
+      if( $resData ) {
         if( $langId ) {
           if( isset( $resData[ 'title_'.$langId ] ) && $resData[ 'title_'.$langId ] !== '' ) {
             $title = $resData[ 'title_'.$langId ];
@@ -2110,7 +2128,8 @@ class ResourceController {
       'filters' => [ 'canonical' => 1, 'resource' => $resId, 'lang' => $langId ],
       'cache' => $this->cacheQuery
     ]);
-    if( $elem = $elemsList->fetch() ) {
+    $elem = $elemsList->fetch();
+    if( is_object( $elem ) ) {
       // error_log( 'setUrl: Xa existe - '.$elem->getter( 'id' ) );
       $aliasArray[ 'id' ] = $elem->getter( 'id' );
     }
@@ -2118,7 +2137,7 @@ class ResourceController {
     $elemModel = new UrlAliasModel( $aliasArray );
     if( $elemModel->save() === false ) {
       $result = false;
-      error_log( 'setUrl: ERROR gardando a url' );
+      error_log(__METHOD__.': ERROR gardando a url' );
     }
     else {
       $result = $elemModel->getter( 'id' );
@@ -2234,7 +2253,8 @@ class ResourceController {
 
     $tempo = microtime(true);
 
-    if( $cache = Cogumelo::GetSetupValue('cache:ResourceController:getViewBlockInfo') ) {
+    $cache = Cogumelo::GetSetupValue('cache:ResourceController:getViewBlockInfo');
+    if( $cache ) {
       Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
       $this->cacheQuery = $cache;
     }
@@ -2243,11 +2263,13 @@ class ResourceController {
     $useraccesscontrol = new UserAccessController();
     $user = $useraccesscontrol->getSessiondata();
 
-    if( $resObj=$this->loadResourceObject( $resId ) ) {
+    $resObj = $this->loadResourceObject( $resId );
+    if( is_object( $resObj ) ) {
       if( $resObj->getter( 'published' ) || $user ) {
         $viewBlockInfo['data'] = $this->getResourceData( $resId );
 
-        if( $rTypeView = $this->getRTypeView( $viewBlockInfo['data']['rTypeId'] ) ) {
+        $rTypeView = $this->getRTypeView( $viewBlockInfo['data']['rTypeId'] );
+        if( is_object( $rTypeView ) ) {
           $viewBlockInfo = $rTypeView->getViewBlockInfo( $resId );
         }
 
@@ -2276,7 +2298,7 @@ class ResourceController {
   public function getTranslatedData( $modelData ) {
     if( is_array( $modelData ) && count( $modelData ) > 0 ) {
       foreach( $modelData as $key => $data ) {
-        if( strpos($key,'_'.$this->actLang) ) { // existe en el idioma actual
+        if( strpos($key, '_'.$this->actLang) ) { // existe en el idioma actual
           $key_parts = explode('_'.$this->actLang, $key);
           if( $data && $data !== '' && $data !== null ) {
             $modelData[ $key_parts[0] ] = $data;
@@ -2337,8 +2359,8 @@ class ResourceController {
   }
 
   public function ytVidId( $url ) {
-    $p = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
-    return (preg_match($p, $url, $coincidencias)) ? $coincidencias[1] : false;
+    $patron = '#^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$#';
+    return (preg_match( $patron, $url, $coincidencias )) ? $coincidencias[1] : false;
   }
 
 
@@ -2379,7 +2401,7 @@ class ResourceController {
 
 
 
-  public function setResourcesToCollection( $colId = false, $newResources ){
+  public function setResourcesToCollection( $colId, $newResources ){
     $oldResources = false;
 
     if( $newResources !== false && !is_array($newResources) ) {
@@ -2520,7 +2542,8 @@ class ResourceController {
           error_log(__METHOD__.': ERROR topicList' );
         }
         else {
-          if( $topicFromObj = $topicList->fetch() ) {
+          $topicFromObj = $topicList->fetch();
+          if( is_object( $topicFromObj ) ) {
             $resTopicObj = new ResourceTopicModel([
               'resource' => $resToObj->getter('id'),
               'topic' => $topicFromObj->getter('id')
@@ -2562,6 +2585,43 @@ class ResourceController {
 
 
     return( ( !$error ) ? $resToObj : false );
+  }
+
+
+  public function cloneFiledata( $filedataId, $destDir = '' ) {
+    Cogumelo::trace( __METHOD__.': $filedataId: '.$filedataId );
+    $filedataClone = null;
+
+    Cogumelo::debug(__METHOD__.': Clonando image: '.$filedataId );
+
+    $fdModel = new FiledataModel();
+    $fdList = $fdModel->listItems([
+      'filters' => [ 'id' => $filedataId ],
+      'cache' => $this->cacheQuery
+    ]);
+    if( !is_object( $fdList ) ) {
+      error_log(__METHOD__.': NON listItems' );
+    }
+    else {
+      $fdObj = $fdList->fetch();
+      if( is_object( $fdObj) ) {
+        $filedataInfo = $fdObj->getAllData('onlydata');
+
+        unset( $filedataInfo['id'], $filedataInfo['aKey'] );
+        $filedataInfo['destDir'] = $destDir;
+        $filedataInfo['absLocation'] = Cogumelo::getSetupValue( 'mod:filedata:filePath' ) . $filedataInfo['absLocation'];
+
+        $filedataCtrl = new FiledataController();
+        $filedataClone = $filedataCtrl->createNewFile( $filedataInfo );
+
+        if( empty( $filedataClone ) ) {
+          $filedataClone = null;
+          error_log(__METHOD__.': NON clonado' );
+        }
+      }
+    }
+
+    return $filedataClone;
   }
 
 
