@@ -69,6 +69,7 @@ class ResourceTaxonomyAllModel extends Model {
     'resourceNotIn' => ' geozzy_resource_taxonomyall.resource NOT IN (?) ',
     'idNameTaxgroupIn' => ' geozzy_resource_taxonomyall.idNameTaxgroup IN (?) ',
     'idNameIn' => ' geozzy_resource_taxonomyall.idName IN (?) ',
+    'iconNotNull' => ' ISNULL(icon) = ? '
   );
 
   var $notCreateDBTable = true;
