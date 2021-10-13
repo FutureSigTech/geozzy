@@ -757,7 +757,7 @@ class geozzyAPIView extends View {
     $this->resourceListV2( $param );
 
     $tempo2 = microtime(true);
-    error_log( 'API resourcelist: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
+    Cogumelo::log( 'API resourcelist: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"], 'Tempos' );
   }
 
   public function resourceListV1( $param ) {
@@ -1528,7 +1528,7 @@ class geozzyAPIView extends View {
     $this->collectionsV2( $urlParams );
 
     $tempo2 = microtime(true);
-    error_log( 'API collections: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"] );
+    Cogumelo::log( 'API collections: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"], 'Tempos' );
   }
 
   public function collectionsV1( $urlParams = false ) {
@@ -1977,20 +1977,24 @@ class geozzyAPIView extends View {
 
   // User new password
   public function userUnknownPass() {
-    $status = false;
+    $status = true; // Politica de siempre OK para impedir probar si existe una cuenta
 
     if( isset( $_POST['user'] ) ) {
 
       geozzyUser::load( 'view/GeozzyUserView.php' );
       $userView = new GeozzyUserView();
       $userVO = $userView->getUserVO( false, $_POST['user'] );
-      $userData = ( $userVO ) ? $userVO->getAllData('onlydata') : false;
 
-      if( !$userData ) {
-        error_log( '(Notice) Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
+      if( empty( $userVO ) ) {
+        error_log( __METHOD__.' Intento de recuperacion de contraseña con usuario desconocido: '.$_POST['user'] );
       }
-
-      $status = $userView->sendUnknownPassEmail( $userData, $_POST['captcha']);
+      elseif( !$userVO->isActive() ) {
+        error_log( __METHOD__.' Intento de recuperacion de contraseña con usuario NO activo: ('.$userVO->getter('id').') '.$_POST['user'] );
+      }
+      else {
+        $userData = $userVO->getAllData('onlydata');
+        $status = $userView->sendUnknownPassEmail( $userData, $_POST['captcha'] );
+      }
     }
 
     header('Content-Type: application/json; charset=utf-8');
