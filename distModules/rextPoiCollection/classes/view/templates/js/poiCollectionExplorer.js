@@ -1,34 +1,4 @@
 
-  $(document).ready(function(){
-
-    //cogumelo.log('LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO' , geozzy.collection.CategorytermCollection );
-
-
-    var categorias = {};
-    var multifetchStr = 'categorias.rtypePoi.fetch()';
-
-    categorias.rtypePoi = new geozzy.collection.CategorytermCollection();
-    categorias.rtypePoi.setUrlByIdName('rextPoiType');
-
-
-    if( typeof cogumelo.publicConf.rtypeTaxonomygroup != 'undefined') {
-
-      $( Object.keys(cogumelo.publicConf.rtypeTaxonomygroup) ).each( function(i, key){
-        eval( 'var e = cogumelo.publicConf.rtypeTaxonomygroup.'+ key);
-
-        eval( 'categorias.' + key + ' = new geozzy.collection.CategorytermCollection();'  );
-        eval( 'categorias.' + key + '.setUrlByIdName("'+e+'");'  );
-        multifetchStr += ', '+ 'categorias.' + key + '.fetch()';
-      });
-    }
-
-    var poisResourceExplorerInstance = new poisResourceExplorer();
-
-    geozzy.rExtMapInstance.onLoad(function(){
-      eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorerInstance.setExplorer(categorias) });');
-    });
-
-  });
 
   var poisResourceExplorerInfowindow = ''+
   // '<div class="poiInfoWindow" <% if( isNormalResource == 1 ) { %> onclick="window.open(\'/'+ cogumelo.publicConf.C_LANG +'/resource/<%- id %>\')"<%}%> >'+
@@ -72,8 +42,7 @@
 
 
         if( that.ex.resourceMinimalList.get(o.id).get('isNormalResource') == 1 ) {
-          var win = window.open( '/'+cogumelo.publicConf.C_LANG+that.ex.resourceMinimalList.get(o.id).get('urlAlias'), '_self' );
-          win.focus();
+          that.resourceAccess(o.id);
         }
 
         //cogumelo.log(o.id, that.ex.resourceMinimalList.get(o.id) );
@@ -82,7 +51,7 @@
 
 
       /* EXPLORER DISPLAY DECLARATION  (SET CUSTOM ICON TOO)  */
-      var explorerMapa = new geozzy.explorerComponents.mapView({
+      that.explorerMapa = new geozzy.explorerComponents.mapView({
           map: geozzy.rExtMapInstance.resourceMap,
           clusterize:false,
           chooseMarkerIcon: function( markerData ) {
@@ -135,7 +104,7 @@
 
       /* ADD DISPLAY TO EXPLORER */
 
-      that.ex.addDisplay( explorerMapa );
+      that.ex.addDisplay( that.explorerMapa );
 
       var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({
         tpl:poisResourceExplorerInfowindow,
@@ -144,10 +113,41 @@
         marker_distance: [20,20]
       });
       that.ex.addDisplay( infowindow );
-
       that.ex.exec();
     };
 
 
+    that.resourceAccess = function(resourceId) {
+      var win = window.open( '/'+cogumelo.publicConf.C_LANG+that.ex.resourceMinimalList.get(resourceId).get('urlAlias'), '_self' );
+      win.focus();
+    }
 
   }
+
+
+  var poisResourceExplorerInstance = new poisResourceExplorer();
+  $(document).ready(function(){
+    //cogumelo.log('LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO' , geozzy.collection.CategorytermCollection );
+    var categorias = {};
+    var multifetchStr = 'categorias.rtypePoi.fetch()';
+
+    categorias.rtypePoi = new geozzy.collection.CategorytermCollection();
+    categorias.rtypePoi.setUrlByIdName('rextPoiType');
+
+
+    if( typeof cogumelo.publicConf.rtypeTaxonomygroup != 'undefined') {
+
+      $( Object.keys(cogumelo.publicConf.rtypeTaxonomygroup) ).each( function(i, key){
+        eval( 'var e = cogumelo.publicConf.rtypeTaxonomygroup.'+ key);
+
+        eval( 'categorias.' + key + ' = new geozzy.collection.CategorytermCollection();'  );
+        eval( 'categorias.' + key + '.setUrlByIdName("'+e+'");'  );
+        multifetchStr += ', '+ 'categorias.' + key + '.fetch()';
+      });
+    }
+
+    geozzy.rExtMapInstance.onLoad(function(){
+      eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorerInstance.setExplorer(categorias) });');
+    });
+
+  });
