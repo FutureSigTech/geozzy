@@ -53,8 +53,7 @@ class InitResourcesController{
       'timeCreation' => isset( $initRes['timeCreation'] ) ? $initRes['timeCreation'] : $timeCreation,
       'loc' => isset( $initRes['loc'] ) ? $initRes['loc'] : null,
       'defaultZoom' => isset( $initRes['defaultZoom'] ) ? $initRes['defaultZoom'] : null,
-      'weight' => isset( $initRes['weight'] ) ? $initRes['weight'] : null,
-      'externalUrl' => isset( $initRes['externalUrl'] ) ? $initRes['externalUrl'] : null
+      'weight' => isset( $initRes['weight'] ) ? $initRes['weight'] : null
     );
 
     // Campos multiidioma: título, descripción corta y media, y contenido
@@ -70,6 +69,9 @@ class InitResourcesController{
       }
       if( isset( $initRes['content'][$langKey] ) ) {
         $resData['content_'.$langKey] = $initRes['content'][$langKey];
+      }
+      if (isset($initRes['externalUrl'][$langKey])) {
+        $resData['externalUrl_' . $langKey] = $initRes['externalUrl'][$langKey];
       }
     }
 
