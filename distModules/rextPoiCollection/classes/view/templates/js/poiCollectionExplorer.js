@@ -22,8 +22,10 @@
       });
     }
 
+    var poisResourceExplorerInstance = new poisResourceExplorer();
+
     geozzy.rExtMapInstance.onLoad(function(){
-      eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorer( categorias ); });');
+      eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorerInstance.setExplorer(categorias) });');
     });
 
   });
@@ -43,105 +45,109 @@
 
 
   /*
-  * Create the POIS resource explorer
+  * POIS resource explorer
   */
-  function poisResourceExplorer( categorias ) {
-
-    /* EXPLORER MAIN CLASS DECLARATION */
-    var ex = new geozzy.explorer({
-      explorerId:'pois',
-      explorerSectionName:'Puntos de interese',
-      debug:false,
-      aditionalParameters:geozzy.rExtPOIOptions, // aquí cárgase ResourceID
-      resetLocalStorage: true
-    });
+  var poisResourceExplorer = function(){
+    var that = this;
+    that.explorerId = 'pois';
+    that.categorias = false;
 
 
-    ex.bindEvent('mapResourceClick', function(o) {
-      //alert(o.id);
-      //cogumelo.log(ex.resourceMinimalList.get(o.id).toJSON());
+    that.setExplorer =function(categorias) {
+      that.categorias = categorias;
+
+      /* EXPLORER MAIN CLASS DECLARATION */
+      that.ex = new geozzy.explorer({
+        explorerId: that.explorerId,
+        explorerSectionName:'Puntos de interese',
+        debug:false,
+        aditionalParameters:geozzy.rExtPOIOptions, // aquí cárgase ResourceID
+        resetLocalStorage: true
+      });
 
 
-      if( ex.resourceMinimalList.get(o.id).get('isNormalResource') == 1 ) {
-        var win = window.open( '/'+cogumelo.publicConf.C_LANG+ex.resourceMinimalList.get(o.id).get('urlAlias'), '_self' );
-        win.focus();
+      that.ex.bindEvent('mapResourceClick', function(o) {
+        //alert(o.id);
+        //cogumelo.log(that.ex.resourceMinimalList.get(o.id).toJSON());
+
+
+        if( that.ex.resourceMinimalList.get(o.id).get('isNormalResource') == 1 ) {
+          var win = window.open( '/'+cogumelo.publicConf.C_LANG+that.ex.resourceMinimalList.get(o.id).get('urlAlias'), '_self' );
+          win.focus();
+        }
+
+        //cogumelo.log(o.id, that.ex.resourceMinimalList.get(o.id) );
+      });
+
+
+
+      /* EXPLORER DISPLAY DECLARATION  (SET CUSTOM ICON TOO)  */
+      var explorerMapa = new geozzy.explorerComponents.mapView({
+          map: geozzy.rExtMapInstance.resourceMap,
+          clusterize:false,
+          chooseMarkerIcon: function( markerData ) {
+            //return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
+
+
+            var retMarker = {
+              url: cogumelo.publicConf.media+'/module/rextPoiCollection/img/chapaPOIS.png',
+              // This marker is 20 pixels wide by 36 pixels high.
+              size: new google.maps.Size(20, 20),
+              // The origin for this image is (0, 0).
+              origin: new google.maps.Point(0, 0),
+              // The anchor for this image is the base of the flagpole at (0, 36).
+              anchor: new google.maps.Point(10, 10)
+            };
+
+
+            var resTerms = markerData.get('terms');
+            var resRtype = markerData.get('rType');
+
+            if(  that.categorias.hasOwnProperty(resRtype) ) {
+
+              eval('var taxgroup = that.categorias.' + resRtype );
+              taxgroup.each( function(e){
+                if( $.inArray(e.get('id'), resTerms ) > -1 ) {
+                  if( jQuery.isNumeric( e.get('icon') )  ){
+                    retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'-a'+e.get('iconAKey')+'/resourcePoisCollection/marker.png';
+                    //retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';
+                    retMarker.size =  new google.maps.Size(20, 20);
+                    return false;
+                  }
+                }
+              });
+
+            }
+
+
+
+            return retMarker;
+          }
+      });
+
+      if( geozzy.rExtPOIOptions.showPanorama != false) {
+        var panoramaView = new geozzy.explorerComponents.panoramaView({
+          panoramaImage: geozzy.rExtPOIOptions.panoramaImg
+        });
+        that.ex.addDisplay( panoramaView );
       }
 
-      //cogumelo.log(o.id, ex.resourceMinimalList.get(o.id) );
-    });
 
+      /* ADD DISPLAY TO EXPLORER */
 
+      that.ex.addDisplay( explorerMapa );
 
-    /* EXPLORER DISPLAY DECLARATION  (SET CUSTOM ICON TOO)  */
-    var explorerMapa = new geozzy.explorerComponents.mapView({
-        map: geozzy.rExtMapInstance.resourceMap,
-        clusterize:false,
-        chooseMarkerIcon: function( markerData ) {
-          //return cogumelo.publicConf.media+'/module/rextPoiCollection/img/poi.png';
-
-
-          var retMarker = {
-            url: cogumelo.publicConf.media+'/module/rextPoiCollection/img/chapaPOIS.png',
-            // This marker is 20 pixels wide by 36 pixels high.
-            size: new google.maps.Size(20, 20),
-            // The origin for this image is (0, 0).
-            origin: new google.maps.Point(0, 0),
-            // The anchor for this image is the base of the flagpole at (0, 36).
-            anchor: new google.maps.Point(10, 10)
-          };
-
-
-          var resTerms = markerData.get('terms');
-          var resRtype = markerData.get('rType');
-
-          if(  categorias.hasOwnProperty(resRtype) ) {
-
-            eval('var taxgroup = categorias.' + resRtype );
-            taxgroup.each( function(e){
-              if( $.inArray(e.get('id'), resTerms ) > -1 ) {
-                if( jQuery.isNumeric( e.get('icon') )  ){
-                  retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'-a'+e.get('iconAKey')+'/resourcePoisCollection/marker.png';
-                  //retMarker.url = cogumelo.publicConf.mediaHost+'cgmlImg/'+e.get('icon')+'/resourcePoisCollection/marker.png';
-                  retMarker.size =  new google.maps.Size(20, 20);
-                  return false;
-                }
-              }
-            });
-
-          }
-
-
-
-          return retMarker;
-        }
-    });
-
-    if( geozzy.rExtPOIOptions.showPanorama != false) {
-      var panoramaView = new geozzy.explorerComponents.panoramaView({
-        panoramaImage: geozzy.rExtPOIOptions.panoramaImg
+      var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({
+        tpl:poisResourceExplorerInfowindow,
+        width: 350,
+        max_height:170,
+        marker_distance: [20,20]
       });
-      ex.addDisplay( panoramaView );
-    }
+      that.ex.addDisplay( infowindow );
+
+      that.ex.exec();
+    };
 
 
-    /* ADD DISPLAY TO EXPLORER */
 
-    ex.addDisplay( explorerMapa );
-
-    var infowindow = new geozzy.explorerComponents.mapInfoBubbleView({
-      tpl:poisResourceExplorerInfowindow,
-      width: 350,
-      max_height:170,
-      marker_distance: [20,20]
-    });
-    ex.addDisplay( infowindow );
-  /*  var infowindow = new geozzy.explorerComponents.mapInfoView({
-      tpl: poisResourceExplorerInfowindow
-    }
-
-    );
-    ex.addDisplay( infowindow );
-  */
-    /* EXEC EXPLORER */
-    ex.exec();
   }
