@@ -81,7 +81,7 @@ class UrlAliasModel extends Model {
     if( is_object( $urlList ) ) {
       while( $urlObj = $urlList->fetch() ) {
         $result = true;
-        Cogumelo::debug( __METHOD__.' resId:'.$resId.' urlFrom:'.$urlObj->getter('urlFrom') );
+        Cogumelo::trace( __METHOD__.' resId:'.$resId.' urlFrom:'.$urlObj->getter('urlFrom') );
         $urlObj->delete();
       }
     }

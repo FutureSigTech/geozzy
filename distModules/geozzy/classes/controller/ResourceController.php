@@ -501,7 +501,7 @@ class ResourceController {
         else {
           // Array de campos. El indice indica el nombre del RType
           if( !empty( $valuesArray['rTypeIdName'] ) && $bigEditorKey === $valuesArray['rTypeIdName'] ) {
-            error_log( __METHOD__.' htmlEditorBig rTypeIdName: '.$valuesArray['rTypeIdName'] );
+            Cogumelo::trace( __METHOD__.' htmlEditorBig rTypeIdName: '.$valuesArray['rTypeIdName'] );
             foreach( $bigEditorFields as $bigEditorField ) {
               if( isset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] ) ) {
                 unset( $fieldsInfo[ $bigEditorField ]['params']['htmlEditor'] );
@@ -899,7 +899,7 @@ class ResourceController {
           }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
           if( $newFiledataObj ) {
-            Cogumelo::debug( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+            Cogumelo::trace( 'To Model - LOADED newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
             $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
             $result = $newFiledataObj;
           }
@@ -907,43 +907,43 @@ class ResourceController {
             Cogumelo::log( 'To Model - LOADED newFiledataObj ERROR' );
             Cogumelo::debug( 'To Model - LOADED newFiledataObj ERROR' );
           }
-        break;
+          break;
         case 'REPLACE':
           $prevFiledataId = $modelObj->getter( $colName );
-          Cogumelo::debug( 'To Model - REPLACE prevFiledataId: '. $prevFiledataId );
+          Cogumelo::trace( 'To Model - REPLACE prevFiledataId: '. $prevFiledataId );
           if( $fileField['privateMode'] > 0 ) {
             $fileField['values']['privateMode'] = $fileField['privateMode'];
           }
           $newFiledataObj = $filedataCtrl->createNewFile( $fileField['values'] );
-          Cogumelo::debug( 'To Model - REPLACE newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
+          Cogumelo::trace( 'To Model - REPLACE newFiledataObj ID: '.$newFiledataObj->getter( 'id' ) );
           if( $newFiledataObj ) {
             $modelObj->setter( $colName, $newFiledataObj->getter( 'id' ) );
-            Cogumelo::debug( 'To Model - deleteFile ID: '.$prevFiledataId );
+            Cogumelo::trace( 'To Model - deleteFile ID: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
             $result = $newFiledataObj;
           }
-        break;
+          break;
         case 'DELETE':
           $prevFiledataId = $modelObj->getter( $colName );
           if( $prevFiledataId ) {
-            Cogumelo::debug( 'To Model - DELETE prevFiledataId: '.$prevFiledataId );
+            Cogumelo::trace( 'To Model - DELETE prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->deleteFile( $prevFiledataId );
             $modelObj->setter( $colName, null );
             $result = 'DELETE';
           }
-        break;
+          break;
         case 'EXIST':
           $prevFiledataId = $modelObj->getter( $colName );
           if( $prevFiledataId ) {
-            Cogumelo::debug( 'To Model - EXIST-UPDATE prevFiledataId: '.$prevFiledataId );
+            Cogumelo::trace( 'To Model - EXIST-UPDATE prevFiledataId: '.$prevFiledataId );
             $filedataCtrl->updateInfo( $prevFiledataId, $fileField['values'] );
             $result = 'EXIST-UPDATE';
           }
-        break;
+          break;
         default:
           // Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
-          Cogumelo::debug( 'To Model: DEFAULT='.$fileField['status'] );
-        break;
+          Cogumelo::trace( 'To Model: DEFAULT='.$fileField['status'] );
+          break;
       } // switch
     }
 
@@ -1010,8 +1010,8 @@ class ResourceController {
       foreach( $fileGroupField['multiple'] as $fileField ) {
         if( isset( $fileField['status'] ) ) {
 
-          Cogumelo::debug(__METHOD__.': To Model - status: '.$fileField['status'] );
-          Cogumelo::debug(__METHOD__.': ========' );
+          Cogumelo::trace(__METHOD__.': To Model - status: '.$fileField['status'] );
+          Cogumelo::trace(__METHOD__.': ========' );
 
           switch( $fileField['status'] ) {
             case 'LOADED':
@@ -1021,7 +1021,7 @@ class ResourceController {
               // $fileFieldValues = $fileField['values'];
 
               $newFilegroupObj = $filedataCtrl->saveToFileGroup( $fileField['values'], $filegroupId );
-              Cogumelo::debug(__METHOD__.': To Model SAVE: newFilegroupObj idGroup, filedataId: '.
+              Cogumelo::trace(__METHOD__.': To Model SAVE: newFilegroupObj idGroup, filedataId: '.
                 $newFilegroupObj->getter( 'idGroup' ).', '.$newFilegroupObj->getter( 'filedataId' ) );
               if( $newFilegroupObj ) {
                 $result = $newFilegroupObj;
@@ -1030,19 +1030,18 @@ class ResourceController {
                   $modelObj->setter( $colName, $filegroupId );
                 }
               }
-            break;
+              break;
 
             case 'DELETE':
               $deleteId = $fileField['values']['id'];
-
               $result = $filedataCtrl->deleteFromFileGroup( $deleteId, $filegroupId );
-              Cogumelo::debug(__METHOD__.': To Model Delete: '.json_encode($result) );
-            break;
+              Cogumelo::trace(__METHOD__.': To Model Delete: '.json_encode($result) );
+              break;
 
             default:
               // Cogumelo::error( 'To Model: DEFAULT='.$fileField['status'] );
-              Cogumelo::debug( 'To Model: DEFAULT='.$fileField['status'] );
-            break;
+              Cogumelo::trace( 'To Model: DEFAULT='.$fileField['status'] );
+              break;
           }
         }
       }
@@ -1597,11 +1596,11 @@ class ResourceController {
 
     return $collectionArray;
   }
+
   // Itera sobre el array de colecciones y devuelve un bloque creado con cada una, dependiendo de si son o no multimedia
   public function goOverCollections( array $collections, $collectionType = false ) {
-
     $collectionBlock = [];
-    $collectionArray = [];
+
     $collectionArray = $this->goOverCollectionsData($collections, $collectionType);
 
     if( !empty($collectionArray) ){
@@ -1624,13 +1623,12 @@ class ResourceController {
         $template->assign( 'max', 6 );
         $template->assign( 'multimediaAll', $collection );
         $template->setTpl( 'resourceMultimediaViewBlock.tpl', 'geozzy' );
-      break;
-
+        break;
       case 'base':
       default:
         $template->assign( 'collectionResources', $collection );
         $template->setTpl( 'resourceCollectionViewBlock.tpl', 'geozzy' );
-      break;
+        break;
     }
 
     return $template;
@@ -2067,7 +2065,7 @@ class ResourceController {
       if( $url !== null && $url !== '' ) {
         $url = $this->sanitizeUrl( $url );
 
-        error_log( __METHOD__.' url='.$url );
+        Cogumelo::trace( __METHOD__.' url='.$url );
         if( strpos( $url, '/' ) !== 0 ) {
           $error = 'La URL tiene que comenzar con una barra /';
         }
@@ -2098,7 +2096,7 @@ class ResourceController {
   }
 
   private function setFormAdminUrlAlias( $form, $fieldName, $resObj ) {
-    Cogumelo::debug(__METHOD__.": form, $fieldName, resObj " );
+    Cogumelo::trace(__METHOD__.": form, $fieldName, resObj " );
     if( $form->isFieldDefined( $fieldName ) || $form->isFieldDefined( $fieldName.'_'.$form->langDefault ) ) {
       $resId = $resObj->getter('id');
       foreach( $form->langAvailable as $langId ) {
@@ -2190,7 +2188,7 @@ class ResourceController {
     ]);
     if( !empty($colision) ) {
       $urlAlias .= '_'.$resId;
-      error_log( 'setUrl() COLISION: '.$urlAlias );
+      Cogumelo::trace( 'setUrl() COLISION: '.$urlAlias );
     }
 
 
@@ -2211,7 +2209,7 @@ class ResourceController {
     $elemModel = new UrlAliasModel( $aliasArray );
     if( $elemModel->save() === false ) {
       $result = false;
-      error_log( 'setUrl: ERROR gardando a url' );
+      error_log(__METHOD__.': ERROR gardando a url' );
     }
     else {
       $result = $elemModel->getter( 'id' );
@@ -2223,7 +2221,7 @@ class ResourceController {
 
 
   public function setUrlAdminAlias( $resId, $langId, $urlAlias ) {
-    Cogumelo::debug(__METHOD__."( $resId, $langId, $urlAlias )" );
+    Cogumelo::trace(__METHOD__."( $resId, $langId, $urlAlias )" );
     $result = true;
 
     $aliasId = false;
@@ -2242,12 +2240,12 @@ class ResourceController {
     $aliasObj = ( gettype( $elemsList ) === 'object' ) ? $elemsList->fetch() : false;
     if( gettype( $aliasObj ) === 'object' ) {
       $aliasId = $aliasObj->getter( 'id' );
-      Cogumelo::debug(__METHOD__.': Xa existe - '.$aliasId );
+      Cogumelo::trace(__METHOD__.': Xa existe - '.$aliasId );
     }
 
     if( empty( $urlAlias ) ) {
       if( $aliasId ) {
-        Cogumelo::debug(__METHOD__.': Borrando '.$aliasId );
+        Cogumelo::trace(__METHOD__.': Borrando '.$aliasId );
         $aliasObj->delete();
       }
     }
@@ -2262,7 +2260,7 @@ class ResourceController {
       }
       else {
         $result = $elemModel->getter( 'id' );
-        Cogumelo::debug(__METHOD__.': Creada/Actualizada - '.$result );
+        Cogumelo::trace(__METHOD__.': Creada/Actualizada - '.$result );
       }
     }
 
@@ -2543,8 +2541,8 @@ class ResourceController {
   // $this->cloneToRType( $form->getFieldValue('id'), 'rtypeAppBlogPub' );
 
 
-  public function cloneToRType( $resId, $rTypeIdName, $topicIdName = false ) {
-    error_log( __METHOD__.': $resId: '.$resId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
+  public function cloneToRType( $resFromId, $rTypeIdName, $topicIdName = false ) {
+    Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
     $resToObj = null;
 
     $error = false;
@@ -2552,7 +2550,7 @@ class ResourceController {
     $resModel = new ResourceModel();
     $resList = $resModel->listItems([
       // 'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
-      'filters' => [ 'id' => $resId ],
+      'filters' => [ 'id' => $resFromId ],
       'cache' => $this->cacheQuery,
     ]);
     $resFromObj = ( is_object( $resList ) ) ? $resList->fetch() : null;
@@ -2613,7 +2611,7 @@ class ResourceController {
 
 
     if( !$error ) {
-      if( !$this->cloneCollections( $resId, $resToObj->getter('id'), ['base', 'multimedia'] ) ) {
+      if( !$this->cloneCollections( $resFromId, $resToObj->getter('id'), ['base', 'multimedia'] ) ) {
         $error = __LINE__;
       }
     }
@@ -2621,7 +2619,7 @@ class ResourceController {
     if( !$error ) {
       if( empty( $topicIdName ) ) {
         // Copiamos los topics del origen
-        if( !$this->cloneTopics( $resId, $resToObj->getter('id') ) ) {
+        if( !$this->cloneTopics( $resFromId, $resToObj->getter('id') ) ) {
           $error = __LINE__;
         }
       }
@@ -2685,7 +2683,7 @@ class ResourceController {
 
 
   public function cloneFiledata( $filedataId, $destDir = '' ) {
-    Cogumelo::debug( __METHOD__.': $filedataId: '.$filedataId );
+    Cogumelo::trace( __METHOD__.': $filedataId: '.$filedataId );
     $filedataClone = null;
 
     Cogumelo::debug(__METHOD__.': Clonando image: '.$filedataId );
@@ -2721,15 +2719,15 @@ class ResourceController {
   }
 
 
-  public function cloneCollections( $resId, $resToId, $collectionTypes = true ) {
-    Cogumelo::debug( __METHOD__.': $resId: '.$resId.' $resToId: '.$resToId.' Tipos: '.json_encode($collectionTypes) );
+  public function cloneCollections( $resFromId, $resToId, $collectionTypes = true ) {
+    Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($collectionTypes) );
     $result = true;
 
     if( $collectionTypes !== true && !is_array( $collectionTypes ) ) {
       $collectionTypes = [ $collectionTypes ];
     }
 
-    $resCollections = $this->getCollectionsAll( $resId );
+    $resCollections = $this->getCollectionsAll( $resFromId );
 
     if( is_array( $resCollections ) && count( $resCollections ) > 0 ) {
       $collModel = new CollectionModel();
@@ -2790,7 +2788,7 @@ class ResourceController {
                 // error_log(__METHOD__.': Paso 3');
 
                 $resCollList = $resCollModel->listItems([
-                  'filters' => [ 'resource' => $resId, 'collection' => $collFromId ],
+                  'filters' => [ 'resource' => $resFromId, 'collection' => $collFromId ],
                   'cache' => $this->cacheQuery
                 ]);
                 $resCollFromObj = ( is_object( $resCollList ) ) ? $resCollList->fetch() : false;
@@ -2820,8 +2818,8 @@ class ResourceController {
   }
 
 
-  public function cloneTaxonomies( $resId, $resToId, $taxIdNames = true ) {
-    Cogumelo::debug( __METHOD__.': $resId: '.$resId.' $resToId: '.$resToId.' Tipos: '.json_encode($taxIdNames) );
+  public function cloneTaxonomies( $resFromId, $resToId, $taxIdNames = true ) {
+    Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($taxIdNames) );
     $result = true;
 
     $cloneTermIds = [];
@@ -2830,7 +2828,7 @@ class ResourceController {
       $taxIdNames = [ $taxIdNames ];
     }
 
-    $filters = [ 'resource' => $resId ];
+    $filters = [ 'resource' => $resFromId ];
     if( $taxIdNames !== true ) {
       $filters['idNameTaxgroupIn'] = $taxIdNames;
     }
@@ -2847,15 +2845,15 @@ class ResourceController {
       }
     }
 
-    Cogumelo::debug(__METHOD__.': Clonando cloneTermIds: '. json_encode($cloneTermIds) );
+    Cogumelo::trace(__METHOD__.': Clonando cloneTermIds: '. json_encode($cloneTermIds) );
 
     if( $result && count( $cloneTermIds ) > 0 ) {
 
-      Cogumelo::debug(__METHOD__.': Clonando Terminos' );
+      Cogumelo::trace(__METHOD__.': Clonando Terminos' );
 
       $resourceTaxModel = new ResourceTaxonomytermModel();
       $resourceTaxList = $resourceTaxModel->listItems([
-        'filters' => [ 'resource' => $resId, 'taxonomytermIn' => $cloneTermIds ],
+        'filters' => [ 'resource' => $resFromId, 'taxonomytermIn' => $cloneTermIds ],
         'cache' => $this->cacheQuery
       ]);
       if( !is_object( $resourceTaxList ) ) {
@@ -2867,7 +2865,7 @@ class ResourceController {
         while( $resourceTaxObj = $resourceTaxList->fetch() ) {
           $resourceTaxData = $resourceTaxObj->getAllData('onlydata');
 
-          Cogumelo::debug(__METHOD__.': Clonando Term: '. $resourceTaxData['taxonomyterm'] );
+          Cogumelo::trace(__METHOD__.': Clonando Term: '. $resourceTaxData['taxonomyterm'] );
 
           unset( $resourceTaxData['id'] );
           $resourceTaxData['resource'] = $resToId;
@@ -2884,14 +2882,14 @@ class ResourceController {
   }
 
 
-  public function cloneTopics( $resId, $resToId ) {
-    Cogumelo::debug( __METHOD__.': $resId: '.$resId.' $resToId: '.$resToId );
+  public function cloneTopics( $resFromId, $resToId ) {
+    Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId );
     $result = true;
 
 
     $topicModel = new ResourceTopicModel();
     $topicList = $topicModel->listItems([
-      'filters' => [ 'resource' => $resId ],
+      'filters' => [ 'resource' => $resFromId ],
       'cache' => $this->cacheQuery
     ]);
     if( !is_object( $topicList ) ) {
@@ -2920,18 +2918,18 @@ class ResourceController {
   }
 
 
-  public function cloneRExtModels( $resId, $resToId, $models ) {
-    Cogumelo::debug( __METHOD__.': $resId: '.$resId.' $resToId: '.$resToId.' Tipos: '.json_encode($models) );
+  public function cloneRExtModels( $resFromId, $resToId, $models ) {
+    Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($models) );
     $result = true;
 
 
     foreach( $models as $modelName ) {
 
-      Cogumelo::debug(__METHOD__.': Clonando modelName: '.$modelName );
+      Cogumelo::trace(__METHOD__.': Clonando modelName: '.$modelName );
 
       $rExtModel = new $modelName();
       $rExtList = $rExtModel->listItems([
-        'filters' => [ 'resource' => $resId ],
+        'filters' => [ 'resource' => $resFromId ],
         'cache' => $this->cacheQuery
       ]);
       if( !is_object( $rExtList ) ) {
@@ -2964,7 +2962,7 @@ class ResourceController {
   }
 
   public function updateRExtModel( string $modelName, int $resId, array $data ) {
-    Cogumelo::debug( __METHOD__.': $modelName: '.$modelName.' $resId: '.$resId );
+    Cogumelo::trace( __METHOD__.': $modelName: '.$modelName.' $resId: '.$resId );
     $rExtObj = null;
 
     $rExtModel = new $modelName();

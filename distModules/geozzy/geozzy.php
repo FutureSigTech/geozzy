@@ -276,28 +276,27 @@ class geozzy extends Module {
 
 
     // only add menu items when not deploy
+    $GEOZZY_TAXONOMYGROUPS['menu'] = array(
+      'idName' => 'menu',
+      'name' => array(
+        'es' => 'Menu',
+        'en' => 'Menu',
+        'gl' => 'Menu'
+      ),
+      'editable' => 0,
+      'nestable' => 4,
+      'sortable' => 1
+    );
 
-      $GEOZZY_TAXONOMYGROUPS['menu'] = array(
-        'idName' => 'menu',
-        'name' => array(
-          'es' => 'Menu',
-          'en' => 'Menu',
-          'gl' => 'Menu'
-        ),
-        'editable' => 0,
-        'nestable' => 4,
-        'sortable' => 1
-      );
-
-      if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyMenu.php') ) {
-        require_once APP_BASE_PATH.'/conf/inc/geozzyMenu.php';
+    if( file_exists(APP_BASE_PATH.'/conf/inc/geozzyMenu.php') ) {
+      require_once APP_BASE_PATH.'/conf/inc/geozzyMenu.php';
+      if( isset($GEOZZY_MENU) ) {
         $GEOZZY_TAXONOMYGROUPS['menu']['initialTerms'] = $GEOZZY_MENU;
       }
+    }
 
 
-    /*
-    Creamos las taxonomías definidas
-    */
+    // Creamos las taxonomías definidas
     if( count( $GEOZZY_TAXONOMYGROUPS ) > 0 ) {
       foreach( $GEOZZY_TAXONOMYGROUPS as $tax ) {
         foreach( $tax['name'] as $langKey => $name ) {
