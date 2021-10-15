@@ -63,6 +63,11 @@ geozzy.explorer = function( opts ) {
 
   if( that.options.useUrlRouter == true && typeof geozzy.explorerComponents.routerInstance == 'undefined' ) {
     geozzy.explorerComponents.routerInstance = new geozzy.explorerComponents.mainRouter();
+    geozzy.explorerComponents.routerInstance.on("route", function(route, params) {
+        // google analytics
+        gtag('set', 'page_path', window.location.pathname);
+        gtag('event', 'page_view');
+    });
     geozzy.explorerComponents.routerInstance.parentExplorer = that;
     geozzy.explorerComponents.routerInstance.route( window.location.pathname.substring(1), 'explorerMain' );
   }
@@ -142,6 +147,11 @@ geozzy.explorer = function( opts ) {
       }
       Backbone.history.start({ pushState: true }); // usar pushstate de forma temporal
       geozzy.explorerComponents.routerInstance.navigate( that.resourcePartialList.get(rid).getUrl() , false);
+
+      // google analytics
+      gtag('set', 'page_path', window.location.pathname);
+      gtag('event', 'page_view');
+
       Backbone.history.stop();
       Backbone.history.start();
     }

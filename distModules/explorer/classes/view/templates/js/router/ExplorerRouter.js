@@ -7,7 +7,6 @@ geozzy.explorerComponents.mainRouter = Backbone.Router.extend({
     '': 'explorerMain'
   },
 
-
   explorerMain: function( ) {
     var that = this;
 
