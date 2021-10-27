@@ -82,13 +82,13 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
             }
 
 
-
-            r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
-
-            if( that.getLoadingPromise(params.id) ) {
-
-              r.get('routeViewInstance').hideRoute();
+            if(typeof r != 'undefined') {
+              r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
+              if( that.getLoadingPromise(params.id) ) {
+                r.get('routeViewInstance').hideRoute();
+              }
             }
+
 
 
               //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
