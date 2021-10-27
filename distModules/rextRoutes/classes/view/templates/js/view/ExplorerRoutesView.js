@@ -84,7 +84,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
             if(typeof r != 'undefined') {
               r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
-              if( that.getLoadingPromise(params.id) ) {
+              if( that.getLoadingPromise(params.id) && typeof r.get('routeViewInstance').hideRoute != 'undefined') {
                 r.get('routeViewInstance').hideRoute();
               }
             }
@@ -102,7 +102,10 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      that.hideRoute( params.id);
+      if(typeof that.hideRoute != 'undefined') {
+        that.hideRoute( params.id);
+      }
+
     });
 
 
@@ -118,7 +121,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     var route = geozzy.explorerComponents.routesCollectionInstance.get(id);
 
-    if( route &&  typeof route.get('routeViewInstance') != 'undefined') {
+    if( route &&  typeof route.get('routeViewInstance') != 'undefined' && typeof route.get('routeViewInstance').hideRoute != 'undefined' ) {
       route.get('routeViewInstance').hideRoute();
     }
     else {
