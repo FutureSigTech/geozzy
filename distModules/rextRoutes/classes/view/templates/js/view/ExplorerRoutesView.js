@@ -16,12 +16,19 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
   initialize: function( opts ) {
     var that = this;
     var options = new Object({
+      strokeHoverColor: '#249c00',
       showGraph: false,
       hoverGraphDiv: false,
       ShowRouteInZoomLevel: 10,
-      routeResolution: 90,
+      routeResolution: 16,
       showMarkerStart: false,
-      showMarkerEnd: false
+      showMarkerEnd: false,
+      alwaysShow: false, // always show, ignore hover
+      interactionKeys: {
+        'isRoute': false,
+        'routeAltitudeShow': false,
+        'routeInExplorerHoverShow': false
+      }
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -32,151 +39,204 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     var  that = this;
     that.parentExplorer = parentExplorer;
 
-    that.parentExplorer.bindEvent('zoomChanged', function(){ that.hideRoutes(); });
+    that.parentExplorer.bindEvent('zoomChanged', function(){
+
+    });
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
+      var r = that.parentExplorer.resourceMinimalList.get(params.id);
 
-      //that.hideRoute();
-      //alert(params.id)
+      if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
+        if(r.get('routeObj').inExplorerHoverShow == true) {
+          r.get('routeObj').routeInstance.showRoute();
+        }
+        else {
+          r.get('routeObj').routeInstance.strokeColorCustom(that.options.strokeHoverColor);
+        }
 
-      if( geozzy.explorerComponents.routesCollectionInstance === false ) {
-        geozzy.explorerComponents.routesCollectionInstance = new geozzy.rextRoutes.routeCollection();
+
+        if( that.options.showGraph && r.get('routeObj').altitudeShow == true ) {
+          $(that.options.hoverGraphDiv).show();
+          r.get('routeObj').routeInstance.renderGraphRoute(true);
+        }
+        else {
+          $(that.options.hoverGraphDiv).hide();
+        }
       }
-
-
-      if( typeof( geozzy.explorerComponents.routesCollectionInstance.get( params.id ) ) != 'undefined' ){
-        cogumelo.log('PINTA')
-        geozzy.explorerComponents.routesCollectionInstance.get( params.id ).get('routeViewInstance').showRoute();
-
-      }
-      else {
-        //var routesCollectionProvisional = new geozzy.rextRoutes.routeCollection();
-        //routesCollectionProvisional.url = '/api/routes/id/' + params.id + '/resolution/' + that.options.routeResolution;
-        geozzy.explorerComponents.routesCollectionInstance.fetchOne(
-          'id/' + params.id + '/resolution/' + that.options.routeResolution ,
-          function(  ) {
-
-            var r = geozzy.explorerComponents.routesCollectionInstance.get(params.id);
-
-
-            var routeOpts = {
-                  map: that.parentExplorer.displays.map.map,
-                  routeModel: r,
-                  showGraph: that.options.showGraph,
-                  graphContainer: that.options.hoverGraphDiv ,
-                  showLabels: false,
-                  allowsTrackHover:false,
-                  ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
-                  drawXGrid: false,
-                  drawYGrid: false,
-                  pixelsPerLabel:100,
-                  axisLineColor: 'transparent'
-                };
-
-            if( that.options.showMarkerStart == false ) {
-              routeOpts.markerStart = false;
-            }
-
-            if( that.options.showMarkerEnd == false ) {
-              routeOpts.markerEnd = false;
-            }
-
-
-            if(typeof r != 'undefined') {
-              r.set('routeViewInstance', new geozzy.rextRoutes.routeView( routeOpts ));
-              if( that.getLoadingPromise(params.id) && typeof r.get('routeViewInstance').hideRoute != 'undefined') {
-                r.get('routeViewInstance').hideRoute();
-              }
-            }
-
-
-
-              //geozzy.explorerComponents.routesCollectionInstance.set( res.toJSON() );
-              //cogumelo.log(geozzy.explorerComponents.routesCollectionInstance.get(params.id) );
-
-        });
-      }
-
 
     });
 
 
     that.parentExplorer.bindEvent('resourceMouseOut', function( params ){
-      if(typeof that.hideRoute != 'undefined') {
-        that.hideRoute( params.id);
+
+      if( params.id == 0 ) {
+        that.parentExplorer.resourceMinimalList.each(function(e,i){that.hideRoute( e.get('id')) });
+      }
+      else {
+        that.hideRoute( params.id );
       }
 
     });
+
+
+
+
+    that.parentExplorer.bindEvent('mapInfoWindowMobileClose', function( params ){
+      that.parentExplorer.resourceMinimalList.each(function(e,i){that.hideRoute( e.get('id')) });
+    });
+
 
 
     that.parentExplorer.bindEvent('resourceClick', function( params ){
-      //that.show(params.id);
+
     });
+
+
+    that.parentExplorer.bindEvent('minimalLoadSuccess', function(ev){
+      that.setRoutesOnResources();
+    });
+
+    that.parentExplorer.bindEvent('applyFilters', function(ev){
+      that.refreshRoutes();
+    });
+
+
 
   },
 
-
-  hideRoute: function( id ) {
+  hideRoute: function( paramId ) {
     var that = this;
-
-    if( typeof geozzy.explorerComponents.routesCollectionInstance.get != 'undefined' ) {
-      var route = geozzy.explorerComponents.routesCollectionInstance.get(id);
-
-      if( route &&  typeof route.get('routeViewInstance') != 'undefined' && typeof route.get('routeViewInstance').hideRoute != 'undefined' ) {
-        route.get('routeViewInstance').hideRoute();
+    var r = that.parentExplorer.resourceMinimalList.get(paramId);
+    if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
+      if(r.get('routeObj') && r.get('routeObj').routeInstance && r.get('routeObj').inExplorerHoverShow == true) {
+        r.get('routeObj').routeInstance.hideRoute();
       }
       else {
-        that.setLoadingPromise(id);
+        r.get('routeObj').routeInstance.strokeColorOriginal();
       }
     }
 
-
-
   },
 
 
-  hideRoutes: function() {
+  refreshRoutes: function() {
     var that = this;
 
-    if(geozzy.explorerComponents.routesCollectionInstance) {
-      geozzy.explorerComponents.routesCollectionInstance.each(  function(e,i){
-        if( typeof e.get('routeViewInstance').hideRoute != 'undefined') {
-          e.get('routeViewInstance').hideRoute();
+    that.parentExplorer.resourceMinimalList.each( function(r,i) {
+
+      if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
+        if( r.get('routeObj').inExplorerHoverShow == true || r.get('mapMarker').visible == false ) {
+          r.get('routeObj').routeInstance.hideRoute();
         }
-      });
-    }
-  },
-
-
-  hideLoadingPromises: [],
-  setLoadingPromise: function( id ) {
-    var that = this;
-
-    that.hideLoadingPromises.push(id);
-  },
-
-  getLoadingPromise: function(id) {
-    var that = this;
-    var endLoadingPromises = [];
-    var found = false;
-
-    $( that.hideLoadingPromises ).each( function(i,e){
-      if(e == id) {
-
-        found = true;
-      }
-      else {
-        endLoadingPromises.push(e);
+        else {
+          r.get('routeObj').routeInstance.showRoute();
+        }
       }
     });
+  },
 
-    that.hideLoadingPromises = endLoadingPromises;
+  setRoutesOnResources: function() {
+    var that = this;
 
-    return found;
+    that.parentExplorer.resourceMinimalList.each( function(r,i) {
+      that.setRouteOnResource( r );
+    });
+  },
+
+
+  setRouteOnResource: function( r ) {
+    var that = this;
+
+    var isRoute = ( (that.options.interactionKeys.isRoute == false) || r.get(that.options.interactionKeys.isRoute) != false )? true: false;
+
+    if( !r.get('routeObj') && isRoute ) {
+
+      r.set( 'routeObj', {
+        ready: false,
+        inExplorerHoverShow: ( that.options.interactionKeys.routeInExplorerHoverShow != false && r.get(that.options.interactionKeys.routeInExplorerHoverShow ) == false && that.options.alwaysShow == false )? false: true,
+        altitudeShow: ((that.options.interactionKeys.routeAltitudeShow == false || r.get(that.options.interactionKeys.routeAltitudeShow)) && that.options.showGraph == true )? true: false,
+        routeInstanceModel: false,
+        routeInstance: false
+      });
+
+      that.fetchRoute( r.get('id') , function( routeInstanceModel ) {
+
+        if(routeInstanceModel) {
+          r.get('routeObj').routeInstanceModel = routeInstanceModel;
+          r.get('routeObj').routeInstance = that.createRouteInstance(r.get('routeObj').routeInstanceModel, r.get('routeObj').inExplorerHoverShow, r.get('routeObj').altitudeShow );
+
+          if( r.get('routeObj').inExplorerHoverShow == true || r.get('mapMarker').visible == false ) {
+            r.get('routeObj').routeInstance.hideRoute();
+          }
+        }
+
+      });
+
+
+    }
+    else {
+      r.set( 'routeObj', false );
+    }
+
+  },
+
+  createRouteInstance: function(routeModel, inExplorerHoverShow, altitudeShow) {
+    var that = this;
+
+    var routeOpts = {
+      map: that.parentExplorer.displays.map.map,
+      routeModel: routeModel,
+      showGraph: false,
+      graphContainer: that.options.hoverGraphDiv ,
+      showLabels: false,
+      ShowRouteInZoomLevel: that.options.ShowRouteInZoomLevel,
+      drawXGrid: false,
+      drawYGrid: false,
+      pixelsPerLabel:100,
+      axisLineColor: 'transparent',
+      allowsTrackHover: !inExplorerHoverShow ,
+      hoverTrackMarker: false,
+      onMouseover: function(id) {
+        if( inExplorerHoverShow == false ) {
+          that.parentExplorer.triggerEvent('resourceHover', { id: id });
+        }
+      },
+      onMouseOut: function(id) {
+        that.parentExplorer.triggerEvent('resourceMouseOut', {id: id });
+      },
+      onMouseClick: function( id ) {
+        if( that.options.avoidClick != true && inExplorerHoverShow == false ) {
+          that.parentExplorer.triggerEvent('resourceClick', { id: id });
+        }
+      }
+    };
+
+    if( that.options.showMarkerStart == false ) {
+      routeOpts.markerStart = false;
+    }
+
+    if( that.options.showMarkerEnd == false ) {
+      routeOpts.markerEnd = false;
+    }
+
+    return  new geozzy.rextRoutes.routeView( routeOpts );
+  },
+
+
+  fetchRoute: function( id, onLoad ) {
+    var that = this;
+
+
+    var routesCollectionInstance = new geozzy.rextRoutes.routeCollection();
+
+    routesCollectionInstance.fetchOne(
+      'id/' + id + '/resolution/' + that.options.routeResolution ,
+      function(  ) {
+        onLoad(routesCollectionInstance.get(id));
+      }
+    );
+
+
   }
-
-
-
-
 
 });

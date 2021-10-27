@@ -4,6 +4,8 @@ if(!geozzy.rextRoutes) geozzy.rextRoutes={};
 
 geozzy.rextRoutes.routeView = Backbone.View.extend({
 
+  polyline:false,
+
   options: false,
   trackMarker: false,
   grafico: false,
@@ -36,9 +38,11 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       drawYGrid: true,
       showLabels: true,
       pixelsPerLabel: 15,
-      allowsTrackHover: true
-      //tpl: geozzy.explorerComponents.routesViewTemplate ,
-
+      allowsTrackHover: true,
+      hoverTrackMarker: true,
+      onMouseover: function(id) {},
+      onMouseOut: function(id) {},
+      onMouseClick: function(id) {}
     });
     that.options = $.extend(true, {}, options, opts);
 
@@ -74,7 +78,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     var route = that.options.routeModel;
 
-
     var routeMap = {};
     var routeData = [ ];
 
@@ -86,7 +89,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     routeMap.id = route.get('id');
 
-    //cogumelo.log(route.get('trackPoints')[route.get('trackPoints').length - 1])
+    //cogumelo.log(route.get('trackPoints')[route.get('trackPoints').length - 1]);
 
 
     if( that.options.markerStart ) {
@@ -113,31 +116,36 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       });
     }
 
-    that.polyline = new google.maps.Polyline({
-      path: routeData,
-      geodesic: true,
-      strokeColor: that.options.strokeColor,
-      strokeOpacity: that.options.strokeOpacity,
-      strokeWeight: that.options.strokeWeight,
-      zIndex:3
-    });
+    if( that.polyline == false ) {
 
-    that.polylineBG1 = new google.maps.Polyline({
-      path: routeData,
-      geodesic: true,
-      strokeOpacity: 0,
-      strokeWeight: 20,
-      zIndex:2
-    });
+      that.polyline = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeColor: that.options.strokeColor,
+        strokeOpacity: that.options.strokeOpacity,
+        strokeWeight: that.options.strokeWeight,
+        zIndex:3
+      });
 
-    that.polylineBG2 = new google.maps.Polyline({
-      path: routeData,
-      geodesic: true,
-      strokeColor: that.options.strokeBorderColor,
-      strokeOpacity: that.options.strokeOpacity,
-      strokeWeight: that.options.strokeBorderWeight,
-      zIndex:1
-    });
+      that.polylineBG1 = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeOpacity: 0,
+        strokeWeight: 20,
+        zIndex:2
+      });
+
+      that.polylineBG2 = new google.maps.Polyline({
+        path: routeData,
+        geodesic: true,
+        strokeColor: that.options.strokeBorderColor,
+        strokeOpacity: that.options.strokeOpacity,
+        strokeWeight: that.options.strokeBorderWeight,
+        zIndex:1
+      });
+    }
+
+
 
 
     that.mapRoute = routeMap;
@@ -169,14 +177,25 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       });
 
 
+      that.polylineBG2.addListener('click', function(ev){
+        that.options.onMouseClick(that.options.routeModel.get('id'));
+      });
+      that.polylineBG1.addListener('click', function(ev){
+        that.options.onMouseClick(that.options.routeModel.get('id'));
+      });
+      that.polyline.addListener('click', function(ev){
+        that.options.onMouseClick(that.options.routeModel.get('id'));
+      });
+
+
       that.polylineBG2.addListener('mouseout', function(ev){
-        that.outRecorrido();
+        that.outRecorrido(that.options.routeModel.get('id'));
       });
       that.polylineBG1.addListener('mouseout', function(ev){
-        that.outRecorrido();
+        that.outRecorrido(that.options.routeModel.get('id'));
       });
       that.polyline.addListener('mouseout', function(ev){
-        that.outRecorrido();
+        that.outRecorrido(that.options.routeModel.get('id'));
       });
     }
 
@@ -242,7 +261,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         axisLabelFontSize: 12,
         hideOverlayOnMouseOut: true,
         legend: 'follow',
-
+        interactionModel:false,
         axes: {
           x: {
               axisLabelFormatter: function (x) {
@@ -293,7 +312,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
            });
            $($(that.containerGraph)[0]).mousemove(function(e) {
                var seleccionado = that.grafico.getSelection();
-               that.hoverRoute( seleccionado )
+               that.hoverRoute( seleccionado );
            }).mouseleave(function(e) {
                var seleccionada = that.grafico.getSelection();
                that.outRecorrido();
@@ -347,13 +366,14 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-  outRecorrido: function( ) {
+  outRecorrido: function( id ) {
     var that = this;
 
     if( that.trackMarker ) {
       that.trackMarker.setMap(null);
     }
 
+    that.options.onMouseOut( id );
   },
 
 
@@ -388,6 +408,8 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var route = that.options.routeModel;
     var map = that.options.map;
 
+    that.options.onMouseover(that.options.routeModel.get('id'));
+
     //grafico.setSelection(id);
     if( that.grafico ) {
       that.grafico.setSelection(id) ;
@@ -399,19 +421,22 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
       if(that.trackMarker === false) {
-        that.trackMarker = new google.maps.Marker({
-              position: {lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]},
-              icon: {
-                url: cogumelo.publicConf.media + '/module/rextRoutes/img/markerTrack.png' ,
-                anchor: new google.maps.Point(10,27)
-              },
-              zIndex: 4,
-              map: that.options.map
-          });
 
-        that.trackMarker.addListener('mouseover', function() {
-          //that.trackMarker.setMap(null);
-        });
+        if( that.options.hoverTrackMarker == true ){
+          that.trackMarker = new google.maps.Marker({
+                position: {lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]},
+                icon: {
+                  url: cogumelo.publicConf.media + '/module/rextRoutes/img/markerTrack.png' ,
+                  anchor: new google.maps.Point(10,27)
+                },
+                zIndex: 4,
+                map: that.options.map
+            });
+
+          that.trackMarker.addListener('mouseover', function() {
+            //that.trackMarker.setMap(null);
+          });
+        }
       }
       else {
         that.trackMarker.setPosition({lat: route.get('trackPoints')[id][0] , lng: route.get('trackPoints')[id][1]});
@@ -472,6 +497,20 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       that.polylineBG1.setMap(null);
       that.polylineBG2.setMap(null);
     }
+
+  },
+
+  strokeColorCustom: function( customColor ) {
+    var that = this;
+
+    that.polyline.setOptions({strokeColor: customColor});
+
+
+  },
+
+  strokeColorOriginal: function( ) {
+    var that = this;
+    that.polyline.setOptions({strokeColor: that.options.strokeColor});
 
   }
 });
