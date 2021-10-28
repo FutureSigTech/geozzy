@@ -25,7 +25,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       showMarkerEnd: false,
       alwaysShow: false, // always show, ignore hover
       interactionKeys: {
-        'isRoute': false,
+        'isRoute': 'isRoute',
         'routeAltitudeShow': false,
         'routeInExplorerHoverShow': false
       }
