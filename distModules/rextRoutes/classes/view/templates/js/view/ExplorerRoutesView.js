@@ -25,7 +25,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       showMarkerEnd: false,
       alwaysShow: false, // always show, ignore hover
       interactionKeys: {
-        'isRoute': false,
+        'isRoute': 'isRoute',
         'routeAltitudeShow': false,
         'routeInExplorerHoverShow': false
       }
@@ -150,7 +150,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     var isRoute = ( (that.options.interactionKeys.isRoute == false) || r.get(that.options.interactionKeys.isRoute) != false )? true: false;
 
     if( !r.get('routeObj') && isRoute ) {
-
+      console.log('EXISTE_RUTA');
       r.set( 'routeObj', {
         ready: false,
         inExplorerHoverShow: ( that.options.interactionKeys.routeInExplorerHoverShow != false && r.get(that.options.interactionKeys.routeInExplorerHoverShow ) == false && that.options.alwaysShow == false )? false: true,
@@ -175,6 +175,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
 
     }
     else {
+      console.log('NO_EXISTE_RUTA');
       r.set( 'routeObj', false );
     }
 
