@@ -490,6 +490,7 @@ class AdminViewResource extends AdminViewMaster {
     $resCtrl = new ResourceController();
     $resourceView = new ResourceView();
     $resourcesFiles = [];
+    $resourcesFilesIds = [];
     $resSuccessData = [];
     $resource = null;
 

@@ -132,12 +132,13 @@ class AdminViewTaxonomy extends AdminViewMaster {
 
     $rsViewModel = new ResourceViewModel();
 
+    $filter = [];
     $filter['inRtypeIdName'] = !empty(Cogumelo::getSetupValue( 'mod:admin:menuRTypes' )) ? Cogumelo::getSetupValue( 'mod:admin:menuRTypes' ) : [];
     $rsMenuObj = $rsViewModel->listItems([
       'filters' => $filter,
       'cache' => true
     ]);
-    $optionsResMenu[""] = __('None');
+    $optionsResMenu = [ "" => __('None') ];
     if( is_object( $rsMenuObj ) ) {
       while( $res = $rsMenuObj->fetch() ){
         if( $res ){
