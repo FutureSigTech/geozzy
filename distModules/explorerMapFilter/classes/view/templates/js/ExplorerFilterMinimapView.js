@@ -25,13 +25,15 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       template: geozzy.explorerComponents.filterMinimapViewTemplate,
       data: false,
       openWithHover: true,
+      disabledRegions: [],
       onChange: function(){},
       styles: {
         width : 336,
         height : 355,
-        stroke: '#bac0af', // appVars.scss -> @gzzColor-bck-1
-        background_fill: '#eaede4', // appVars.scss -> @gzzColor-bck-3
-        selected_fill: '#63944e' // appVars.scss -> @gzzColor-green
+        stroke: '#bac0af',
+        background_fill: '#eaede4',
+        selected_fill: '#63944e',
+        disabled_fill: '#eaede4'
       }
     };
 
@@ -86,9 +88,8 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
       that.minimapExist = true;
     }
 
-
-    that.$el.find( '.minimap' ).mapael( {
-      map: {
+    var mapaelParams = {
+      map:{
         name: 'miniMapPaths',
         zoom: {
           enabled: false
@@ -105,7 +106,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
           },
           eventHandlers: {
             click: function( e, idName, mapElem, textElem, elemOptions ) {
-
+              console.log(idName);
               var newData = { 'areas': {} };
               // Reseteamos la área al color por defecto
               newData.areas[that.currentIdName] = {
@@ -141,9 +142,29 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
               }
             }
           }
+        },
+      },
+      areas: { }
+    };
+
+    $(that.options.disabledRegions).each(function(i,e){
+
+      mapaelParams.areas[e] = {
+        attrs: {
+          cursor: 'default',
+          fill: that.options.styles.disabled_fill
+        },
+        attrsHover: {
+          cursor: 'default',
+          fill: that.options.styles.disabled_fill
+        },
+        eventHandlers: {
+          click: function( e, idName, mapElem, textElem, elemOptions ) {}
         }
-      }
-    } );
+      };
+    });
+
+    that.$el.find( '.minimap' ).mapael( mapaelParams );
 
     //  Ocultamos el mapa tras el render
     that.hideBoxMinimap();
@@ -208,7 +229,7 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
     var that = this;
     ev.stopImmediatePropagation();
     that.reset();
-    that.options.onChange();    
+    that.options.onChange();
   },
 
   reset: function() {
