@@ -131,7 +131,12 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
               that.hideBoxMinimap();
             },
             mouseenter: function( e, idName, mapElem, textElem, elemOptions ) {
-              that.$el.find( '.selectedText' ).html( that.getNameByIdName( idName ) );
+              if($.inArray(idName, that.options.disabledRegions) !== -1) {
+                that.$el.find( '.selectedText' ).html( '' );
+              }
+              else {
+                that.$el.find( '.selectedText' ).html( that.getNameByIdName( idName ) );
+              }
             },
             mouseleave: function( e, idName, mapElem, textElem, elemOptions ) {
               if( that.currentIdName !== false ) {
