@@ -375,7 +375,11 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     $(that.markers).each(function(iM,eM){
       if( eM.noClusterize == false ) {
-        markersToClusterize.push(eM);
+        //console.log(eM.explorerResourceId, eM.getPosition().lat() , eM.getPosition().lat());
+        if(eM.getPosition().lat()!=0 || eM.getPosition().lng()!=0) {
+          markersToClusterize.push(eM);
+        }
+
       }
     });
 
