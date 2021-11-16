@@ -138,7 +138,7 @@ msgstr "Recursos"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:128
 msgid "Upload multimedia "
-msgstr "subir multimedia"
+msgstr "Subir multimedia"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:132
 msgid "Upload multiple files"
@@ -146,7 +146,7 @@ msgstr "Subir múltiples arquivos"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:138
 msgid "Add external link"
-msgstr "añadir enlace externo"
+msgstr "Añadir enlace externo"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:143
 msgid "Descriptive image of the gallery (opcional)"
@@ -261,7 +261,7 @@ msgstr "Crear galería multimedia"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:441
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:471
 msgid "Add Multimedia Gallery"
-msgstr "añadir galería multimedia"
+msgstr "Añadir galería multimedia"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:462
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:445

@@ -40,7 +40,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:19
 msgid "Files up to 5MB can be upload in JPG and PNG format"
-msgstr ""
+msgstr "Sie können dateien bis zu 5 MB im JPG- und PNG-Format hochladen"
 
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22

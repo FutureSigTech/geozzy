@@ -14,7 +14,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeMultiFileFormModalBlock.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileFormModalBlock.tpl:18
 msgid "Files up to 8MB can be upload in JPG and PNG format"
-msgstr ""
+msgstr "Podes cargar ficheiros de ata 8 MB en formato JPG e PNG"
 
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
@@ -26,7 +26,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/rTypeFileFormModalBlock.tpl:22
 msgid "If not uploaded, an automatic thumbnail will be created"
-msgstr "Se non se especifica, se xera unha miniatura"
+msgstr "Se non se especifica, xerase unha miniatura"
 
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileAdminFormModalBlock.tpl:19
@@ -52,7 +52,7 @@ msgstr "Se non se especifica, se xera unha miniatura"
 #: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileAdminFormModalBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rTypeMultiFileFormModalBlock.tpl:18
 msgid "Files up to 5MB can be upload in JPG and PNG format"
-msgstr ""
+msgstr "Podes cargar ficheiros de ata 5 MB en formato JPG e PNG"
 
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:13
