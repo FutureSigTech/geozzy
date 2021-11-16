@@ -41,7 +41,7 @@ msgstr "Título"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:349
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:379
 msgid "Short description"
-msgstr "Descripción breve"
+msgstr "Descrición breve"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:75
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:371
@@ -50,7 +50,7 @@ msgstr "Descripción breve"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:354
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:384
 msgid "Medium description"
-msgstr "Descripción media"
+msgstr "Descrición media"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:376
 #: /home/proxectos/geozzy/classes/view/templates/resourceViewBlock.tpl:56
@@ -130,7 +130,7 @@ msgstr "Nome"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:83
 msgid "Description"
-msgstr "Descripción"
+msgstr "Descrición"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:87
 msgid "Resources"
@@ -213,7 +213,7 @@ msgstr "SEO: Palabras clave cabecera"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:392
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:422
 msgid "SEO: Head Description"
-msgstr "SEO: Descripción cabecera"
+msgstr "SEO: Descrición cabecera"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:414
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:397
