@@ -41,7 +41,7 @@ msgstr "Título"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:349
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:379
 msgid "Short description"
-msgstr "Descripción breve"
+msgstr "Descrición breve"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyTaxonomytermView.php:75
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:371
@@ -50,7 +50,7 @@ msgstr "Descripción breve"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:354
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:384
 msgid "Medium description"
-msgstr "Descripción media"
+msgstr "Descrición media"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:376
 #: /home/proxectos/geozzy/classes/view/templates/resourceViewBlock.tpl:56
@@ -130,7 +130,7 @@ msgstr "Nome"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:83
 msgid "Description"
-msgstr "Descripción"
+msgstr "Descrición"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:87
 msgid "Resources"
@@ -138,7 +138,7 @@ msgstr "Recursos"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:128
 msgid "Upload multimedia "
-msgstr "subir multimedia"
+msgstr "Subir multimedia"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:132
 msgid "Upload multiple files"
@@ -146,7 +146,7 @@ msgstr "Subir múltiples arquivos"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:138
 msgid "Add external link"
-msgstr "añadir enlace externo"
+msgstr "Añadir enlace externo"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:143
 msgid "Descriptive image of the gallery (opcional)"
@@ -213,7 +213,7 @@ msgstr "SEO: Palabras clave cabecera"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:392
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:422
 msgid "SEO: Head Description"
-msgstr "SEO: Descripción cabecera"
+msgstr "SEO: Descrición cabecera"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:414
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:397
@@ -261,7 +261,7 @@ msgstr "Crear galería multimedia"
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:441
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:471
 msgid "Add Multimedia Gallery"
-msgstr "añadir galería multimedia"
+msgstr "Añadir galería multimedia"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:462
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:445
@@ -498,7 +498,6 @@ msgstr ""
 msgid ""
 "Haz click en el lugar donde se ubica el recurso con la mayor precisión que puedas, "
 "podrás arrastrar y soltar la localización"
-
 msgstr ""
 "Fai clic no lugar onde se localice o recurso coa maior precisión "
 "posible, poderás arrastrar e soltar a localización"

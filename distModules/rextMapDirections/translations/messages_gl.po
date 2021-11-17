@@ -43,7 +43,7 @@ msgstr "Obter direccións"
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
 msgid "Show route description"
-msgstr "Mostrar descripción da ruta"
+msgstr "Mostrar descrición da ruta"
 
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:93
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:93

@@ -32,7 +32,7 @@ msgstr "Si no se especifica, se genera una miniatura"
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeFileFormModalBlock.tpl:19
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeMultiFileFormModalBlock.tpl:18
 msgid "Files up to 5MB can be upload in JPG and PNG format"
-msgstr ""
+msgstr "Puedes subir ficheros de hasta 5MB con formato JPG y PNG"
 
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeViewBlock.tpl:13
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:13
@@ -41,7 +41,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:10
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeViewBlock.tpl:10
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/view/templates/rTypeViewBlock.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/rtypeFile_classes_view_templates_rTypeViewBlock.tpl:18

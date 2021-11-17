@@ -45,7 +45,7 @@ msgstr "Aplicar"
 
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/explorer.tpl:21
 msgid "Clear filters"
-msgstr "Limpiar los filtros"
+msgstr "Borrar filtros"
 
 #: /home/proxectos/geozzy/classes/view/templates/explorerList.tpl:23
 #: /home/proxectos/geozzy/classes/view/templates/explorer.tpl:23
