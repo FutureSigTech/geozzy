@@ -124,11 +124,10 @@ geozzy.explorerComponents.filters.filterMinimapView = geozzy.filterView.extend({
               that.$el.find( '.minimap' ).trigger( 'update', [ { mapOptions: newData } ] );
               that.$el.find( '.selectedText' ).html( that.getNameByIdName( idName ));
 
-              that.options.onChange();
               that.parentExplorer.applyFilters();
-
               //  Ocultamos el mapa tras el click
               that.hideBoxMinimap();
+              that.options.onChange();              
             },
             mouseenter: function( e, idName, mapElem, textElem, elemOptions ) {
               if($.inArray(idName, that.options.disabledRegions) !== -1) {
