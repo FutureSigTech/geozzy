@@ -5,9 +5,10 @@ Cogumelo::load('coreModel/Model.php');
 
 class ResourceViewModel extends Model {
 
-  static $tableName = 'geozzy_resource_view';
+  public static $tableName = 'geozzy_resource_view';
 
-  static $cols = array(
+
+  public static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
