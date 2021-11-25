@@ -151,7 +151,7 @@ class ResourceViewModel extends Model {
   );
 
 
-  static $extraFilters = array(
+  public static $extraFilters = array(
     'find' => " ( UPPER( geozzy_resource_view.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource_view.id = ? )",
     'nottopic' => ' geozzy_resource_view.id NOT IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
     'intopic' => ' geozzy_resource_view.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
@@ -181,9 +181,9 @@ class ResourceViewModel extends Model {
   );
 
 
-  var $notCreateDBTable = true;
+  public $notCreateDBTable = true;
 
-  var $deploySQL = array(
+  public $deploySQL = array(
     array(
       'execOrder' => 1 ,
       'version' => 'geozzy#13',
