@@ -5,9 +5,10 @@ Cogumelo::load('coreModel/Model.php');
 
 class ResourceViewModel extends Model {
 
-  static $tableName = 'geozzy_resource_view';
+  public static $tableName = 'geozzy_resource_view';
 
-  static $cols = array(
+
+  public static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
@@ -149,7 +150,7 @@ class ResourceViewModel extends Model {
   );
 
 
-  static $extraFilters = array(
+  public static $extraFilters = array(
     'find' => " ( UPPER( geozzy_resource_view.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource_view.id = ? )",
     'nottopic' => ' geozzy_resource_view.id NOT IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
     'intopic' => ' geozzy_resource_view.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
@@ -179,9 +180,9 @@ class ResourceViewModel extends Model {
   );
 
 
-  var $notCreateDBTable = true;
+  public $notCreateDBTable = true;
 
-  var $deploySQL = array(
+  public $deploySQL = array(
     array(
       'execOrder' => 1 ,
       'version' => 'geozzy#8',
@@ -196,7 +197,8 @@ class ResourceViewModel extends Model {
             {multilang:r.mediumDescription_$lang,}
             {multilang:r.content_$lang,}
             r.image, fd.name AS imageName, fd.AKey AS imageAKey,
-            r.loc, r.defaultZoom, r.externalUrl,
+            r.loc, r.defaultZoom,
+            r.externalUrl,
             {multilang:GROUP_CONCAT( DISTINCT if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
             {multilang:r.headKeywords_$lang,}
             {multilang:r.headDescription_$lang,}
@@ -229,8 +231,7 @@ class ResourceViewModel extends Model {
 
 
   public function getRextModels() {
-
-    $rextModelArray = array();
+    $rextModelArray = [];
 
     geozzy::load('model/ResourcetypeModel.php');
 
@@ -246,7 +247,7 @@ class ResourceViewModel extends Model {
 
   public function getRextModel( $rextModelName ) {
     $rextModel = false;
-    $cacheQuery = true;
+    $rextControl = null;
 
     eval( '$rextControl = new '.$rextModelName.'();');
     if(is_object($rextControl)){
@@ -261,7 +262,6 @@ class ResourceViewModel extends Model {
 
   public function dependencesByResourcetype( $rtypeName ) {
     $dependences = false;
-    $cacheQuery = true;
 
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
@@ -278,7 +278,6 @@ class ResourceViewModel extends Model {
 
   public function dependencesByResourcetypeId( $rtypeId ) {
     $dependences = false;
-    $cacheQuery = true;
 
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
