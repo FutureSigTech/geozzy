@@ -126,17 +126,23 @@ class RExtUrlResourceTplModel extends Model {
 
 
   public static $extraFilters = [
+    //
+    // Con este formato de modelo hay que declarar explicitamente los parametros
+    //
     'user' => ' res.user = ? ',
     'published' => ' res.published = ? ',
 
+
     'id' => ' res.id = ? ',
+    'idIn' => ' res.id IN (?) ',
+    'idNotIn' => ' res.id NOT IN (?) ',
     'ids' => ' res.id IN (?) ',
     'inId' => ' res.id IN (?) ',
-    'idIn' => ' res.id IN (?) ',
     'notInId' => ' res.id NOT IN (?) ',
 
     'idName' => ' res.idName = ? ',
     'idNameIn' => ' res.idName IN (?) ',
+    'inIdName' => ' res.idName IN (?) ',
 
     'rTypeIdName' => ' rt.idName = ? ',
     'rTypeIdNameIn' => ' rt.idName IN (?) ',
