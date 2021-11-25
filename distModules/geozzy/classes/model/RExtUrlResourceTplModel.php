@@ -5,9 +5,10 @@ Cogumelo::load('coreModel/Model.php');
 
 class RExtUrlResourceTplModel extends Model {
 
-  static $tableName = 'geozzy_rext_url_resource_tpl';
+  public static $tableName = 'geozzy_rext_url_resource_tpl';
 
-  static $cols = array(
+
+  public static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
@@ -124,20 +125,28 @@ class RExtUrlResourceTplModel extends Model {
   );
 
 
-  static $extraFilters = [
-    'id' => ' res.id = ? ',
+  public static $extraFilters = [
     'user' => ' res.user = ? ',
     'published' => ' res.published = ? ',
+
+    'id' => ' res.id = ? ',
     'ids' => ' res.id IN (?) ',
     'inId' => ' res.id IN (?) ',
     'idIn' => ' res.id IN (?) ',
     'notInId' => ' res.id NOT IN (?) ',
+
+    'idName' => ' res.idName = ? ',
+    'idNameIn' => ' res.idName IN (?) ',
+
+    'rTypeIdName' => ' rt.idName = ? ',
+    'rTypeIdNameIn' => ' rt.idName IN (?) ',
   ];
 
 
-  var $notCreateDBTable = true;
+  public $notCreateDBTable = true;
 
-  function customSelectListItems( $extraArrayParam ) {
+
+  public function customSelectListItems( $extraArrayParam ) {
 
     $sql = '
       SELECT
@@ -179,8 +188,7 @@ class RExtUrlResourceTplModel extends Model {
   }
 
 
-
-  public function __construct( $datarray = array(), $otherRelObj = false ) {
+  public function __construct( $datarray = [], $otherRelObj = false ) {
     parent::__construct( $datarray, $otherRelObj );
   }
 
