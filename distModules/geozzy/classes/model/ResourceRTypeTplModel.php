@@ -7,6 +7,7 @@ class ResourceRTypeTplModel extends Model {
 
   public static $tableName = 'geozzy_resource_rtype_tpl';
 
+
   public static $cols = array(
     'id' => array(
       'type' => 'INT',
@@ -44,6 +45,14 @@ class ResourceRTypeTplModel extends Model {
       'size' => 100,
       'multilang' => true
     ),
+    'mediumDescription' => array(
+      'type' => 'TEXT',
+      'multilang' => true
+    ),
+    'content' => array(
+      'type' => 'TEXT',
+      'multilang' => true
+    ),
     'image' => array(
       'type'=>'FOREIGN',
       'vo' => 'FiledataModel',
@@ -75,30 +84,41 @@ class ResourceRTypeTplModel extends Model {
 
 
   public static $extraFilters = [
-    'find' => " ( UPPER( res.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR res.id = ? )",
-    'notInRtype' => ' res.rTypeId NOT IN (?) ',
-    'ids' => ' res.id IN (?) ',
-    'inId' => ' res.id IN (?) ',
-    'idIn' => ' res.id IN (?) ',
-    'notInId' => ' res.id NOT IN (?) ',
-    'inIdName' => ' res.idName IN (?) ',
-    'idNameIn' => ' res.idName IN (?) ',
-    'updatedfrom' => ' ( res.timeCreation >= ? OR res.timeLastUpdate >= ? ) ',
-    'createdfrom' => ' ( res.timeCreation >= ? ) ',
-    'lastUpdatefrom' => ' ( res.timeLastUpdate >= ? ) ',
-    'createdAfter' => ' ( res.timeCreation > ? ) ',
-    'createdBefore' => ' ( res.timeCreation < ? ) ',
-
-    'inRtype' => ' res.rTypeId IN (?) ',
-    'inRtypeIdName' => ' rType.idName IN (?) ',
-    'notInRtypeIdName' => ' rType.idName NOT IN (?) ',
-
     //
     // Con este formato de modelo hay que declarar explicitamente los parametros
     //
+    'user' => ' res.user = ? ',
+    'published' => ' res.published = ? ',
+    'find' => " ( UPPER( res.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR res.id = ? )",
+
     'id' => ' res.id = ? ',
+    'idIn' => ' res.id IN (?) ',
+    'idNotIn' => ' res.id NOT IN (?) ',
+    'ids' => ' res.id IN (?) ',
+    'inId' => ' res.id IN (?) ',
+    'notInId' => ' res.id NOT IN (?) ',
+
     'idName' => ' res.idName = ? ',
+    'idNameIn' => ' res.idName IN (?) ',
+    'inIdName' => ' res.idName IN (?) ',
+
+    'rTypeId' => ' res.rTypeId = ? ',
+    'rTypeIdIn' => ' res.rTypeId IN (?) ',
+    'rTypeIdNotIn' => ' res.rTypeId NOT IN (?) ',
+    'inRtype' => ' res.rTypeId IN (?) ',
+    'notInRtype' => ' res.rTypeId NOT IN (?) ',
+
     'rTypeIdName' => ' rType.idName = ? ',
+    'rTypeIdNameIn' => ' rType.idName IN (?) ',
+    'rTypeIdNameNotIn' => ' rType.idName NOT IN (?) ',
+    'inRtypeIdName' => ' rType.idName IN (?) ',
+    'notInRtypeIdName' => ' rType.idName NOT IN (?) ',
+
+    'lastUpdatefrom' => ' ( res.timeLastUpdate >= ? ) ',
+    'updatedfrom' => ' ( res.timeCreation >= ? OR res.timeLastUpdate >= ? ) ',
+    'createdfrom' => ' ( res.timeCreation >= ? ) ',
+    'createdAfter' => ' ( res.timeCreation > ? ) ',
+    'createdBefore' => ' ( res.timeCreation < ? ) ',
   ];
 
 
@@ -107,11 +127,15 @@ class ResourceRTypeTplModel extends Model {
     $consulta = '
       SELECT
         res.id, res.idName, res.rTypeId, rType.idName AS rTypeIdName,
-        res.user,res.published,
+        res.user, res.published,
         {multilang:res.title_$lang,}
         {multilang:res.shortDescription_$lang,}
-        res.image, res.externalUrl, res.weight,
+        {multilang:res.mediumDescription_$lang,}
+        {multilang:res.content_$lang,}
+        res.image,
+        res.externalUrl,
         res.timeCreation, res.timeLastUpdate, res.timeLastPublish,
+        res.weight,
         rType.relatedModels AS relatedModels
       FROM
         geozzy_resource res
@@ -128,4 +152,5 @@ class ResourceRTypeTplModel extends Model {
   public $notCreateDBTable = true;
 
   public $deploySQL = [];
+
 }

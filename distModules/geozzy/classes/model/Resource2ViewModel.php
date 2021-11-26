@@ -5,9 +5,10 @@ Cogumelo::load('coreModel/Model.php');
 
 class Resource2ViewModel extends Model {
 
-  static $tableName = 'geozzy_resource_view';
+  public static $tableName = 'geozzy_resource_view';
 
-  static $cols = array(
+
+  public static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
@@ -149,41 +150,58 @@ class Resource2ViewModel extends Model {
   );
 
 
-  static $extraFilters = array(
+  public static $extraFilters = array(
+    //
+    // Con este formato de modelo hay que declarar explicitamente los parametros
+    //
+    'user' => ' r.user = ? ',
+    'published' => ' r.published = ? ',
     'find' => " ( UPPER( r.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR r.id = ? )",
+
+    'id' => ' r.id = ? ',
+    'idIn' => ' r.id IN (?) ',
+    'idNotIn' => ' r.id NOT IN (?) ',
+    'ids' => ' r.id IN (?) ',
+    'inId' => ' r.id IN (?) ',
+    'notInId' => ' r.id NOT IN (?) ',
+
+    'idName' => ' r.idName = ? ',
+    'idNameIn' => ' r.idName IN (?) ',
+    'inIdName' => ' r.idName IN (?) ',
+
+    'rTypeId' => ' r.rTypeId = ? ',
+    'rTypeIdIn' => ' r.rTypeId IN (?) ',
+    'rTypeIdNotIn' => ' r.rTypeId NOT IN (?) ',
+    'inRtype' => ' r.rTypeId IN (?) ',
+    'notInRtype' => ' r.rTypeId NOT IN (?) ',
+
+    'rTypeIdName' => ' rt.idName = ? ',
+    'rTypeIdNameIn' => ' rt.idName IN (?) ',
+    'rTypeIdNameNotIn' => ' rt.idName NOT IN (?) ',
+    'inRtypeIdName' => ' rt.idName IN (?) ',
+    'notInRtypeIdName' => ' rt.idName NOT IN (?) ',
+
+    'lastUpdatefrom' => ' ( r.timeLastUpdate >= ? ) ',
+    'updatedfrom' => ' ( r.timeCreation >= ? OR r.timeLastUpdate >= ? ) ',
+    'createdfrom' => ' ( r.timeCreation >= ? ) ',
+    'createdAfter' => ' ( r.timeCreation > ? ) ',
+    'createdBefore' => ' ( r.timeCreation < ? ) ',
+
+    'notInCollectionId' => 'r.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)',
+
     'nottopic' => ' r.id NOT IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
     'intopic' => ' r.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
 
     'inTopicTaxonomyterm' => ' r.id IN ( select resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
-
     'notintaxonomyterm' => ' r.id NOT IN ( select resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
-    'inRtype' => ' r.rTypeId IN (?) ',
-    'notInRtype' => ' r.rTypeId NOT IN (?) ',
-    'inRtypeIdName' => ' rt.idName IN (?) ',
-    'notInRtypeIdName' => ' rt.idName NOT IN (?) ',
-    'ids' => ' r.id IN (?) ',
-    'inId' => ' r.id IN (?) ',
-    'idIn' => ' r.id IN (?) ',
-    'inIdName' => ' rt.idName IN (?) ',
-    'idNameIn' => ' rt.idName IN (?) ',
-    'notInId' => ' r.id NOT IN (?) ',
-    'updatedfrom' => ' ( r.timeCreation >= ? OR r.timeLastUpdate >= ? ) ',
-    'createdfrom' => ' ( r.timeCreation >= ? ) ',
-    'lastUpdatefrom' => ' ( r.timeLastUpdate >= ? ) ',
-    'notInCollectionId' => 'r.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)',
-
-    'createdAfter' => ' ( r.timeCreation > ? ) ',
-    'createdBefore' => ' ( r.timeCreation < ? ) ',
 
     //'termIdListInSet' => ' FIND_IN_SET( ?, geozzy_resource_view.termIdList ) ',
-    'rTypeIdName' => 'rt.idName = ?',
-    'idName' => 'r.idName = ?',
   );
 
 
-  var $notCreateDBTable = true;
+  public $notCreateDBTable = true;
 
-  var $deploySQL = array();
+  public $deploySQL = array();
 
   public function customSelectListItems( $extraArrayParam ) {
 
@@ -196,7 +214,8 @@ class Resource2ViewModel extends Model {
       {multilang:r.mediumDescription_$lang,}
       {multilang:r.content_$lang,}
       r.image, fd.name AS imageName, fd.AKey AS imageAKey,
-      r.loc, r.defaultZoom, r.externalUrl,
+      r.loc, r.defaultZoom,
+      r.externalUrl,
       {multilang:GROUP_CONCAT( DISTINCT if(lang="$lang",ua.urlFrom,null)) AS "urlAlias_$lang",}
       {multilang:r.headKeywords_$lang,}
       {multilang:r.headDescription_$lang,}
@@ -227,14 +246,14 @@ class Resource2ViewModel extends Model {
     return $consulta;
   }
 
-  /*public function customSelectListCount( $extraArrayParam ) {
-      return "SELECT count(*) from my_model $extraArrayParam['strSQL']";
-    }*/
-
+  /*
+  public function customSelectListCount( $extraArrayParam ) {
+    return "SELECT count(*) from my_model $extraArrayParam['strSQL']";
+  }
+  */
 
   public function getRextModels() {
-
-    $rextModelArray = array();
+    $rextModelArray = [];
 
     geozzy::load('model/ResourcetypeModel.php');
 
@@ -250,7 +269,7 @@ class Resource2ViewModel extends Model {
 
   public function getRextModel( $rextModelName ) {
     $rextModel = false;
-    $cacheQuery = true;
+    $rextControl = null;
 
     eval( '$rextControl = new '.$rextModelName.'();');
     if(is_object($rextControl)){
@@ -265,7 +284,6 @@ class Resource2ViewModel extends Model {
 
   public function dependencesByResourcetype( $rtypeName ) {
     $dependences = false;
-    $cacheQuery = true;
 
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
@@ -282,7 +300,6 @@ class Resource2ViewModel extends Model {
 
   public function dependencesByResourcetypeId( $rtypeId ) {
     $dependences = false;
-    $cacheQuery = true;
 
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
