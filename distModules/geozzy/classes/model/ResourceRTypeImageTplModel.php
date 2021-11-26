@@ -142,7 +142,6 @@ class ResourceRTypeImageTplModel extends Model {
         {multilang:res.content_$lang,}
         res.image, filedata.name AS imageName, filedata.AKey AS imageAKey,
         res.externalUrl,
-        {multilang:GROUP_CONCAT( DISTINCT if(lang="$lang", urlAl.urlFrom, null)) AS "urlAlias_$lang",}
         res.timeCreation, res.timeLastUpdate, res.timeLastPublish,
         res.weight,
         rType.relatedModels AS relatedModels
