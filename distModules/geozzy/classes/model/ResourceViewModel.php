@@ -377,8 +377,7 @@ class ResourceViewModel extends Model {
 
 
   public function getRextModels() {
-
-    $rextModelArray = array();
+    $rextModelArray = [];
 
     geozzy::load('model/ResourcetypeModel.php');
 
@@ -394,7 +393,7 @@ class ResourceViewModel extends Model {
 
   public function getRextModel( $rextModelName ) {
     $rextModel = false;
-    $cacheQuery = true;
+    $rextControl = null;
 
     eval( '$rextControl = new '.$rextModelName.'();');
     if(is_object($rextControl)){
@@ -409,7 +408,6 @@ class ResourceViewModel extends Model {
 
   public function dependencesByResourcetype( $rtypeName ) {
     $dependences = false;
-    $cacheQuery = true;
 
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
@@ -426,7 +424,6 @@ class ResourceViewModel extends Model {
 
   public function dependencesByResourcetypeId( $rtypeId ) {
     $dependences = false;
-    $cacheQuery = true;
 
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
