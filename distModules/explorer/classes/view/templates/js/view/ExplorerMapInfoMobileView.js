@@ -109,6 +109,9 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var that = this;
 
     that.createInfoMapDiv();
+    if(typeof MapIframeCom != 'undefined') {
+      MapIframeCom.trigger('hideButtons', {});      
+    }
 
     var resourceInfo = new Backbone.Model(  );
 
