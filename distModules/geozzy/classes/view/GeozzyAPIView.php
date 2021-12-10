@@ -1415,7 +1415,7 @@ class geozzyAPIView extends View {
                   //echo $rExtModel->getter( 'id' ).','.$rExtModel->getterDependence('file','FiledataModel')->getAllData()['aKey'].';';
                   $kmlFiles = $rExtModel->getterDependence('file','FiledataModel');
 
-                  if($kmlFiles[0]) {
+                  if(isset($kmlFiles[0]) && $kmlFiles[0]) {
                     $rExtData[ 'fileData' ] = [
                       'id' => $kmlFiles[0]->getter('id'),
                       'name' => $kmlFiles[0]->getter('name'),
