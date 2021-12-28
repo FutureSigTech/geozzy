@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextReservation extends Module {
 
   public $name = 'rextReservation';
-  public $version = 1.0;
+  public $version = 2;
 
 
   public $models = array(

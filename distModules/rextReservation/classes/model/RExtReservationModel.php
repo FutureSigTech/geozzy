@@ -41,8 +41,21 @@ class RExtReservationModel extends Model {
     'moreInfo' => array(
       'type' => 'VARCHAR',
       'size' => 2000
+    ),
+    'reservar' => array(
+      'multilang' => true,
+      'type' => 'VARCHAR',
+      'size' => 20
     )
   );
+
+  var $deploySQL = [
+    [
+      'version' => 'rextReservation#2',
+      'sql' => '{multilang:ALTER TABLE geozzy_resource_rext_reservation ADD COLUMN reservar_$lang VARCHAR(20) default NULL;}'
+
+    ]
+  ];
 
   static $extraFilters = array();
 

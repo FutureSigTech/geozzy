@@ -78,6 +78,12 @@ class RExtReservationController extends RExtController implements RExtInterface 
       'moreInfo' => array(
         'params' => array( 'label' => __( 'Other information' ) ),
         'rules' => array( 'digits' => true )
+      ),
+
+      'reservar' => array(
+        'translate' => true,
+        'params' => array( 'label' => __('Book') ),
+        'rules' => array( 'maxlength' => 20 )
       )
     );
 
