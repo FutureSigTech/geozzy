@@ -12,22 +12,32 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:21
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:38
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:49
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:23
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:40
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:51
 msgid "Event init"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:38
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:93
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:40
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:95
 msgid "Time init"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:49
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:104
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:51
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:106
 msgid "Time end"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:76
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:93
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:104
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:78
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:95
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/view/templates/rExtFormBlock.tpl:106
 msgid "Event end"
 msgstr ""
 
@@ -70,6 +80,10 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:385
 msgid "to"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:386
+msgid "\\a\\\t"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:386

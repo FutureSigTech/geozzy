@@ -138,7 +138,7 @@ class CommentView extends View {
       'params' => array( 'type' => 'reserved', 'value' => $resourceID )
     );
     $fieldsInfo['submit'] = array(
-      'params' => array( 'type' => 'submit', 'value' => __('Send') )
+      'params' => array( 'type' => 'submit', 'value' => __('Save') )
     );
 
     $form->definitionsToForm( $fieldsInfo );

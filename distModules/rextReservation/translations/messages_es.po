@@ -68,3 +68,7 @@ msgstr "Identificador"
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:79
 msgid "Other information"
 msgstr "Otra información"
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:85
+msgid "Book"
+msgstr ""

@@ -129,7 +129,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/GeozzyCollectionView.php:160
 msgid "Save"
-msgstr ""
+msgstr "Salvar"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:357
 msgid "Time creation"

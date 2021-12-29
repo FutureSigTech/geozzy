@@ -185,9 +185,15 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:414
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:421
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:422
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:424
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:425
 msgid "Recovery Password"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:123
 msgid "Nickname"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:556
+msgid "Save"
 msgstr ""

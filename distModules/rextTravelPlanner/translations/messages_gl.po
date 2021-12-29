@@ -9,10 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
-msgid "Print Day"
-msgstr ""
-
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
@@ -21,8 +18,6 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:67
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:32
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:67
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:32
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:67
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:55
 msgid "Day"
 msgstr "Día"
@@ -46,50 +41,45 @@ msgstr "Introduce entre 0 e 59 minutos"
 msgid "Select Dates"
 msgstr "Selecciona as datas"
 
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
+msgid "Print Day"
+msgstr ""
+
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
 msgid "All"
 msgstr "Todo"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:8
 msgid "Favourites"
 msgstr "Favoritos"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
 msgid "All Contents"
 msgstr "Todos os contidos"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:59
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:59
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:59
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:47
 msgid "When do you want to travel? "
 msgstr "Cando che gustaría viaxar? "
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:71
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:71
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:71
 msgid "Show on map"
 msgstr "Mostrar no mapa"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:106
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:91
 msgid "Select date to visit this place or event"
 msgstr "Selecciona a data para visitar este sitio ou evento"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:117
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:117
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:117
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:102
 msgid "How long do you want to visit this place?"
 msgstr "Canto tempo che gustaría visitar este sitio?"
@@ -102,10 +92,6 @@ msgstr "Canto tempo che gustaría visitar este sitio?"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:121
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:145
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:146
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:120
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:145
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:146
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:105
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:130
@@ -121,10 +107,6 @@ msgstr "horas"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:125
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:149
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:150
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:124
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:125
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:149
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:150
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:109
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:110
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:134
@@ -136,8 +118,6 @@ msgstr "minutos"
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:154
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:129
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:154
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:129
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:154
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:114
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:139
 msgid "Cancel"
@@ -145,21 +125,18 @@ msgstr "Cancelar"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:130
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:130
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:130
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:115
 msgid "Add to plan"
 msgstr "Añadir ao plan"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:142
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:142
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:142
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:127
 msgid "How long?"
 msgstr "Canto tempo?"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:155
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:155
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:155
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:140
 msgid "Save"
 msgstr "Gardar"
@@ -176,12 +153,7 @@ msgstr "Engadir sitios"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:13
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:13
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:15
 msgid "Filtros :"
 msgstr ""
 
@@ -210,12 +182,7 @@ msgstr "Optimizar"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:88
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
-#: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:91
 msgid "Plan"
 msgstr ""
 
@@ -398,3 +365,10 @@ msgstr "Comezo"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:387
 msgid "Llegada"
 msgstr "Chegada"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:293
+msgid ""
+"Before optimizing the route, the desired place of departure should be placed "
+"as the first element and the desired arrival place as the last one. Both "
+"elements could be the same place."
+msgstr ""

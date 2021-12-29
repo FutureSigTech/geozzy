@@ -55,7 +55,7 @@ msgstr "Hai erros no formulario"
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:546
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:554
 msgid "Send"
-msgstr "Enviar"
+msgstr "Gardar"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:36
@@ -103,15 +103,11 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:5
 #: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_recoveryPassword.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:5
-#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:5
 msgid "Enter a new password:"
 msgstr "Introduce un novo contrasinal"
 
 #: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:8
 #: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_recoveryPassword.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:8
-#: /home/proxectos/geozzy/classes/view/templates/recoveryPassword.tpl:8
 msgid "Your url has expired. Please restart the password recovery process"
 msgstr ""
 "A túa url expirou. Por favor, reinicia o proceso de recuperación de "
@@ -119,22 +115,12 @@ msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
 #: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:4
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:4
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/userProfile.tpl:4
 msgid "Perfil de Usuario"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:25
 #: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:25
-#: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:28
-#: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:28
 #: /home/proxectos/geozzy/classes/view/templates/geozzyUser_classes_view_templates_userProfile.tpl:28
 #: /home/proxectos/geozzy/classes/view/templates/userProfile.tpl:28
 msgid "Write only if you want to change the password"
@@ -207,9 +193,15 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:414
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:421
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:422
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:424
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:425
 msgid "Recovery Password"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:123
 msgid "Nickname"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:556
+msgid "Save"
+msgstr "Gardar"

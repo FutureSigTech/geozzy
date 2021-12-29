@@ -9,16 +9,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtPrintMapDirections.js:36
-msgid "Directions request failed due to "
-msgstr ""
-
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:335
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:333
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:365
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:329
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:319
 msgid "A route could not be found."
 msgstr "Non se puido atopar unha ruta."
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtPrintMapDirections.js:36
+msgid "Directions request failed due to "
+msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:73
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:73
@@ -31,7 +32,6 @@ msgstr "Escriba unha dirección de saída"
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:80
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:47
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:47
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:47
 msgid "Get directions"
 msgstr "Obter direccións"
 
@@ -40,7 +40,6 @@ msgstr "Obter direccións"
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:54
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:88
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:57
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:57
 msgid "Show route description"
 msgstr "Mostrar descrición da ruta"
@@ -66,7 +65,6 @@ msgstr "Ruta en transporte público"
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:96
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:55
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:55
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:55
 msgid "Route information"
 msgstr "Información da ruta"
 
@@ -78,36 +76,24 @@ msgstr "Información da ruta"
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:122
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:121
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:122
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:119
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:120
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:119
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:120
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:119
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:120
 msgid "Print directions"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
 #: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
-#: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtPrintDirectionsPageFull.tpl:10
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
 msgid "Print Map Directions"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock-pre171024.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock-pre171024.tpl:37
 #: /home/proxectos/geozzy/classes/view/templates/rextMapDirections_classes_view_templates_rExtViewBlock.tpl:40
-#: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:40
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:40
 msgid "Type an address or mark on the map the place of departure"
 msgstr "Introduce unha dirección ou marca no mapa o punto de partida"

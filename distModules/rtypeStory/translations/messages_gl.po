@@ -10,16 +10,13 @@ msgstr ""
 "Language: \n"
 
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:107
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:107
 msgid "Contact"
 msgstr "Contacto"
 
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:122
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:122
 msgid "See indications"
 msgstr "Ver indicacións"
 
-#: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:131
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:131
 msgid "How to arrive from?"
 msgstr "Cómo chegar dende...?"

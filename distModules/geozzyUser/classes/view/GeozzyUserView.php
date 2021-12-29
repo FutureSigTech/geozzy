@@ -553,7 +553,7 @@ class GeozzyUserView extends View {
     $fields = $this->commonFields();
 
     unset($fields['legal']);
-    $fields['submit']['params']['value'] = __('Send');
+    $fields['submit']['params']['value'] = __('Save');
     $form->definitionsToForm( $fields );
     if(empty(Cogumelo::getSetupValue('mod:user:password:notStrength'))){
       $form->setValidationRule( 'password', 'passwordStrength', true);

@@ -33,8 +33,8 @@ msgid ""
 "Para mostrar el nombre del recurso se debe usar #TITLE# y para compartir la "
 "url de la página se debe poner #URL#:"
 msgstr ""
-"To display the name of the resource you must use # TITLE # "
-"and to share the url of the page must be put # URL #: "
+"To display the name of the resource you must use # TITLE # and to share the "
+"url of the page must be put # URL #: "
 
 #: /home/proxectos/geozzy/distModules/rextSocialNetwork/classes/controller/RExtSocialNetworkController.php:60
 msgid "Activate share on facebook"

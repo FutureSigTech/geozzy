@@ -9,6 +9,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/rextActiveParticipation/classes/controller/RExtActiveParticipationController.php:64
+msgid "Activar participación"
+msgstr ""
+
 #: /home/proxectos/geozzy/distModules/rextParticipation/classes/controller/RExtParticipationController.php:64
 msgid "Observation"
 msgstr "Observación"

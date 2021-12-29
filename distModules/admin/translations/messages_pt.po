@@ -198,7 +198,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:22
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_resourcesStarredList.tpl:60
 msgid "Save"
-msgstr ""
+msgstr "Salvar"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_categoryEditor.tpl:38
 #: /home/proxectos/geozzy/classes/view/templates/categoryEditor.tpl:38

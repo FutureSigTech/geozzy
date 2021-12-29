@@ -55,7 +55,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:543
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:554
 msgid "Send"
-msgstr "Enviar"
+msgstr "Guardar"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:36
@@ -179,9 +179,15 @@ msgstr "Registro de usuarios"
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:414
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:421
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:422
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:424
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:425
 msgid "Recovery Password"
 msgstr "Recuperar contraseña"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:123
 msgid "Nickname"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:556
+msgid "Save"
+msgstr "Guardar"

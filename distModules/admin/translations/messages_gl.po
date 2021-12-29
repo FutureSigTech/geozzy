@@ -9,12 +9,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:67
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:11
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
+msgid "Select options"
+msgstr "Seleccione opcións"
+
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:74
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:12
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:75
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:57
 msgid "Add existing resources"
 msgstr "Engadir recursos existentes"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:87
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:88
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
+msgid "Edit Collection"
+msgstr "Editar colección"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:18
 msgid "Upload multimedia resource"
@@ -27,24 +45,6 @@ msgstr "Subir múltiples arquivos"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminCollection.js:24
 msgid "Link or embed multimedia resource"
 msgstr "Enlazar ou embeber recurso multimedia"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:67
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:11
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminUser.js:12
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:62
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:68
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:44
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:50
-msgid "Select options"
-msgstr "Seleccione opcións"
-
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:87
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:88
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:70
-#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/js/adminResource.js:61
-msgid "Edit Collection"
-msgstr "Editar colección"
 
 #: /home/proxectos/geozzy/classes/view/templates/modal.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/modal.tpl:35
@@ -224,6 +224,9 @@ msgstr "Crear"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:148
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:145
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:158
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:71
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:146
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:159
 msgid "Published"
 msgstr "Publicado"
 
@@ -235,6 +238,8 @@ msgstr "Publicado"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:149
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:159
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:71
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:160
 msgid "Unpublished"
 msgstr "Non publicado"
 
@@ -248,6 +253,9 @@ msgstr "Non publicado"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:190
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:200
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:71
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:82
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:201
 msgid "All"
 msgstr "Todo"
 
@@ -256,6 +264,7 @@ msgstr "Todo"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:76
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:49
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:124
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:96
 msgid "Publish"
 msgstr "Publicar"
 
@@ -264,6 +273,7 @@ msgstr "Publicar"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:77
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:50
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:125
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:97
 msgid "Unpublish"
 msgstr "Despublicar"
 
@@ -274,6 +284,7 @@ msgstr "Despublicar"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:126
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:101
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:108
 msgid "Delete"
 msgstr "Borrar"
 
@@ -284,6 +295,7 @@ msgstr "Borrar"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:108
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:136
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:142
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:143
 msgid "Type"
 msgstr "Tipo"
 
@@ -294,6 +306,7 @@ msgstr "Tipo"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:109
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:138
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:144
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:145
 msgid "Title"
 msgstr "Título"
 
@@ -371,10 +384,12 @@ msgid "Add resource"
 msgstr "Engadir recurso"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:85
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:86
 msgid "Resource type"
 msgstr "Tipo de recurso"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:100
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:101
 msgid "Unasign"
 msgstr "Desasignar"
 
@@ -459,6 +474,7 @@ msgstr "Acceder"
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:114
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:129
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:56
 msgid "Name"
 msgstr "Nome"
 
@@ -598,6 +614,7 @@ msgstr "Enviouse un correo electrónico para recuperar a túa conta de usuario."
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:93
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:146
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:147
 msgid "Url"
 msgstr ""
 
@@ -616,3 +633,11 @@ msgstr "Rol"
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 msgid "Assign to this starred"
 msgstr "Asignar a este destacado"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:50
+msgid "Content"
+msgstr "Contidos"
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:57
+msgid "Description"
+msgstr "Descripción"

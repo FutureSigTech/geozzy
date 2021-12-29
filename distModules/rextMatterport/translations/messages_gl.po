@@ -14,8 +14,12 @@ msgid "Model ID"
 msgstr "ID de modelo"
 
 #: /home/proxectos/geozzy/distModules/rextMatterport/classes/controller/RExtMatterportController.php:61
-msgid "Number of seconds before the Guided Tour automatically starts (negative number to not start the Guided Tour)"
-msgstr "Número de segundos antes de que a visita guiada comeza automaticamente (número negativo para non iniciar a visita guiada)"
+msgid ""
+"Number of seconds before the Guided Tour automatically starts (negative "
+"number to not start the Guided Tour)"
+msgstr ""
+"Número de segundos antes de que a visita guiada comeza automaticamente "
+"(número negativo para non iniciar a visita guiada)"
 
 #: /home/proxectos/geozzy/distModules/rextMatterport/classes/controller/RExtMatterportController.php:65
 msgid "Looped Guided Tour"

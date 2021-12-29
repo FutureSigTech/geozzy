@@ -541,7 +541,7 @@ class ResourceController {
       // error_log( __METHOD__.': ' . print_r( $valuesArray, true ) );
     }
 
-    $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Send' ), 'class' => 'gzzAdminToMove' ) );
+    $form->setField( 'submit', array( 'type' => 'submit', 'value' => __( 'Save' ), 'class' => 'gzzAdminToMove' ) );
     if(isset($cancelButton) && $cancelButton){
       $form->setField( 'cancel', array( 'type' => 'button', 'value' => __( 'Cancel' ), 'class' => 'btn btn-warning gzzAdminToMove', 'data-href' => $cancelButton ) );
     }

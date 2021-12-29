@@ -47,7 +47,7 @@
           <!-- END TOPICS -->
           {if $superAdminPermission}
             <li class="contents">
-              <a href="/admin#resource/list"><i class="fas fa-indent fa-sm fa-fw"></i> {t}Contents{/t} </a>
+              <a href="/admin#resource/list"><i class="fas fa-indent fa-sm fa-fw"></i> {t}Content{/t} </a>
             </li>
           {/if}
 
