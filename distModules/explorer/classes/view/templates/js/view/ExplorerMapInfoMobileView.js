@@ -110,7 +110,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     that.createInfoMapDiv();
     if(typeof MapIframeCom != 'undefined') {
-      MapIframeCom.trigger('hideButtons', {});      
+      MapIframeCom.trigger('hideButtons', {});
     }
 
     var resourceInfo = new Backbone.Model(  );
@@ -261,7 +261,9 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
   getActiveList: function() {
     var that = this;
-    return that.parentExplorer.displays.activeList.getVisibleResourceIds();
+
+    return that.parentExplorer.resourceMinimalList.pluck( 'id' );
+    //return that.parentExplorer.displays.activeList.getVisibleResourceIds();
     //getVisibleResourceIds
   }
 
