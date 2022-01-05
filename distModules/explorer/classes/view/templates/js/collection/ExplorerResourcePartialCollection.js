@@ -38,7 +38,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
             if(params.success) {
               params.success();
             }
-            that.fetchFull( false );
+            that.fetchFull( params );
           }
         });
       }
@@ -50,13 +50,12 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     }
     else {
       params.data.lastCacheUpdate = that.lastCacheUpdate
-      that.fetchFull( params.data );
-      params.success(  );
+      that.fetchFull( params );
     }
 
   },
 
-  fetchFull: function( data ) {
+  fetchFull: function( paramsFf ) {
     var that = this;
 
 
@@ -67,7 +66,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
       that.fetch({
         type: 'POST',
         remove: false,
-        data: data,
+        data: paramsFf.data,
         success: function( list ) {
 
           that.allResourcesLoaded = true;
@@ -75,10 +74,13 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
           cogumelo.log('Geozzy explorer loaded ' + that.length + ' resources');
           that.saveLocalStorage();
-
+          if(paramsFf.success) {paramsFf.success();}
         }
       });
 
+    }
+    else {
+      if(paramsFf.success) {paramsFf.success();}
     }
   },
 
