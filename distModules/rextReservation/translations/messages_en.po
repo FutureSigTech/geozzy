@@ -78,3 +78,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:85
 msgid "Book"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:85
+msgid "Book button text"
+msgstr ""

@@ -82,7 +82,7 @@ class RExtReservationController extends RExtController implements RExtInterface 
 
       'reservar' => array(
         'translate' => true,
-        'params' => array( 'label' => __('Book') ),
+        'params' => array( 'label' => __('Book button text') ),
         'rules' => array( 'maxlength' => 20 )
       )
     );
