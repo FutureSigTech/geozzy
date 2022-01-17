@@ -13,31 +13,31 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rextFile_classes_view_templates_rExtViewBlock.tpl:9
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:9
 msgid "File name"
-msgstr ""
+msgstr "Nome do arquivo"
 
 #: /home/proxectos/geozzy/distModules/rextFile/classes/view/templates/rExtViewBlock.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/rextFile_classes_view_templates_rExtViewBlock.tpl:15
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:15
 msgid "Download"
-msgstr ""
+msgstr "Descargar"
 
 #: /home/proxectos/geozzy/distModules/rextFile/classes/view/templates/rExtViewBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rextFile_classes_view_templates_rExtViewBlock.tpl:19
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:19
 msgid "None"
-msgstr ""
+msgstr "Ningún"
 
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:69
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:68
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:73
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:72
 msgid "Multimedia file"
-msgstr ""
+msgstr "Arquivo multimedia"
 
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:74
 #: /home/proxectos/geozzy/distModules/rextFile/classes/controller/RExtFileController.php:73
 msgid "File"
-msgstr ""
+msgstr "Arquivo"

@@ -19,7 +19,7 @@ msgstr "Contacto"
 
 #: /home/proxectos/geozzy/classes/view/templates/rTypePoiFormModalBlock.tpl:21
 msgid "If not uploaded, an automatic thumbnail will be created"
-msgstr "Se non se especifica, se xera unha miniatura"
+msgstr "Se non se especifica, xérase unha miniatura"
 
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:60
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:54
