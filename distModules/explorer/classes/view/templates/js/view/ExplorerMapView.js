@@ -369,7 +369,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         e.mapMarker.setIcon( that.chooseMarker(e) );
         e.mapMarker.setVisible(true);
         e.mapMarker.noClusterize = (e.get('isRoute') == 1 && e.get('routeInExplorerHoverShow') == false)? true: false;
-        console.log(e)
+        //console.log(e)
         that.markers.push( e.mapMarker );
       }
     });
