@@ -172,13 +172,18 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
       //cogumelo.log( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) );
       //that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapOuterZone', markerPosition.outerZone );
-      var mM = that.parentExplorer.resourceMinimalList.get(m.get('id'));
-      mM.set( 'mapVisible', markerPosition.inMap , {silent:true} );
+      //var mM = that.parentExplorer.resourceMinimalList.get(m.get('id'));
+      /*mM.set( 'mapVisible', markerPosition.inMap , {silent:true} );
       mM.set( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ) , {silent:true} );
       mM.set( 'arrowAngle', markerPosition.arrowAngle , {silent:true} );
       mM.set( 'intersectsWithInnerBox', markerPosition.intersectsWithInnerBox , {silent:true} );
-      mM.set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin , {silent:true} );
-      
+      mM.set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin , {silent:true} );*/
+
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapVisible', markerPosition.inMap  );
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'distanceToCenterKm', that.getDistanceFromCenter( m.get('lat'), m.get('lng') ));
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'arrowAngle', markerPosition.arrowAngle  );
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'intersectsWithInnerBox', markerPosition.intersectsWithInnerBox );
+      that.parentExplorer.resourceMinimalList.get(m.get('id')).set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin );
       //mM.trigger('change');
       //m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
     });
