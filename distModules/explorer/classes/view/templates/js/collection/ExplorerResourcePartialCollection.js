@@ -1,7 +1,5 @@
 var geozzy = geozzy || {};
 if (! geozzy.explorerComponents) { geozzy.explorerComponents= {}; }
-
-
 geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend({
   url: false,
   useLocalStorage: true,
@@ -10,21 +8,13 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
   options:{},
   allResourcesLoading: false,
   allResourcesLoaded: false,
-
-
   initialize: function( opts ) {
     var that = this;
-
     that.getLocalStorage();
-
   },
-
   fetchByIds: function( params ) {
     var that = this;
-
-
     if( that.lastCacheUpdate === false ) {
-
       if( params.data.ids.length === 1 && that.get(params.data.ids[0]) ){
         if(params.success) { params.success(); }
       }
@@ -38,7 +28,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
             if(params.success) {
               params.success();
             }
-            that.fetchFull( params );
+            that.fetchFull( false );
           }
         });
       }
@@ -50,15 +40,14 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     }
     else {
       params.data.lastCacheUpdate = that.lastCacheUpdate
-      that.fetchFull( params );
+      that.fetchFull( params.data );
+      params.success(  );
     }
 
   },
 
-  fetchFull: function( paramsFf ) {
+  fetchFull: function( data ) {
     var that = this;
-
-
 
 
     if( that.allResourcesLoading === false  && that.allResourcesLoaded === false ) {
@@ -66,7 +55,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
       that.fetch({
         type: 'POST',
         remove: false,
-        data: paramsFf.data,
+        data: data,
         success: function( list ) {
 
           that.allResourcesLoaded = true;
@@ -74,57 +63,38 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
 
           cogumelo.log('Geozzy explorer loaded ' + that.length + ' resources');
           that.saveLocalStorage();
-          if(paramsFf.success) {paramsFf.success();}
+
         }
       });
+
     }
-
   },
-
-
 
 
   getLocalStorage: function( ) {
     var that = this;
-
     if( that.useLocalStorage === true && typeof Storage !== "undefined" && that.url != false) {
       var lsData;
       var lsDataParsed = false;
       if( ( lsData = localStorage.getItem( that.url ) ) !== null ){
-
         try{
           lsDataParsed = JSON.parse( lsData );
-
         }
         catch(e){
           cogumelo.log('Geozzy exlorer, failed trying to get localstorage data:' + e);
           lsDataParsed = false;
         }
-
         that.reset();
         that.lastCacheUpdate = lsDataParsed.lastUpdate;
-
         that.set( lsDataParsed.resources );
-
       }
-
     }
-
   },
-
   saveLocalStorage: function( ) {
     var that = this;
-
     if( that.useLocalStorage === true && typeof Storage !== "undefined" && that.url != false) {
-
       localStorage.removeItem( that.url );
-
-
       localStorage.setItem( that.url, JSON.stringify({ lastUpdate: Math.floor(Date.now() / 1000) , resources: that.toJSON() }) );
-
     }
-
-
   }
-
 });
