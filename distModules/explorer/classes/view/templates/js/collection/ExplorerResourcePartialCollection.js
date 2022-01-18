@@ -77,11 +77,8 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           if(paramsFf.success) {paramsFf.success();}
         }
       });
+    }
 
-    }
-    else {
-      if(paramsFf.success) {paramsFf.success();}
-    }
   },
 
 
