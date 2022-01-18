@@ -80,10 +80,10 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           if( that.allResourcesLoading == false) {
             paramsFf.success();
             clearInterval(successInterval);
-            console.log('Partial Success (Direct)');
+            console.log('Partial Success (Direct, only success event)');
           }
           else {
-            console.log('Partial Success (Direct Waiting...)');
+            console.log('Partial Success (Direct, only success event Waiting...)');
           }
         }, 10);
         //paramsFf.success();
