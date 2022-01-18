@@ -10,13 +10,18 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
   allResourcesLoaded: false,
   initialize: function( opts ) {
     var that = this;
+    console.log('getLocalStorage START');
     that.getLocalStorage();
+    console.log('getLocalStorage END');
   },
   fetchByIds: function( params ) {
     var that = this;
     if( that.lastCacheUpdate === false ) {
       if( params.data.ids.length === 1 && that.get(params.data.ids[0]) ){
-        if(params.success) { params.success(); }
+        if(params.success) {
+          params.success();
+          console.log('Partial Success (Primeiro)');
+        }
       }
       else
       if( that.allResourcesLoaded === false ) {
@@ -28,7 +33,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
             if(params.success) {
               params.success();
             }
-            that.fetchFull( false );
+            that.fetchFull( params );
           }
         });
       }
@@ -40,13 +45,12 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     }
     else {
       params.data.lastCacheUpdate = that.lastCacheUpdate
-      that.fetchFull( params.data );
-      params.success(  );
+      that.fetchFull( params );
     }
 
   },
 
-  fetchFull: function( data ) {
+  fetchFull: function( paramsFf ) {
     var that = this;
 
 
@@ -55,18 +59,35 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
       that.fetch({
         type: 'POST',
         remove: false,
-        data: data,
+        data: paramsFf.data,
         success: function( list ) {
-
-          that.allResourcesLoaded = true;
-          that.allResourcesLoading = false;
-
           cogumelo.log('Geozzy explorer loaded ' + that.length + ' resources');
           that.saveLocalStorage();
-
+          if( paramsFf.success) {
+            paramsFf.success();
+            console.log('Partial Success (fetchFull Ajax)');
+          }
+          that.allResourcesLoaded = true;
+          that.allResourcesLoading = false;
         }
       });
 
+    }
+    else {
+      if(paramsFf.success) {
+
+        var successInterval = setInterval(function() {
+          if( that.allResourcesLoading == false) {
+            paramsFf.success();
+            clearInterval(successInterval);
+            console.log('Partial Success (Direct)');
+          }
+          else {
+            console.log('Partial Success (Direct Waiting...)');
+          }
+        }, 10);
+        //paramsFf.success();
+      }
     }
   },
 
