@@ -178,7 +178,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       mM.set( 'arrowAngle', markerPosition.arrowAngle , {silent:true} );
       mM.set( 'intersectsWithInnerBox', markerPosition.intersectsWithInnerBox , {silent:true} );
       mM.set( 'mapDistanceToInnerMargin', markerPosition.distanceToInnerMargin , {silent:true} );
-      mM.trigger('change');
+      
+      //mM.trigger('change');
       //m.set( 'mapVisible', that.coordsInMap( m.get('lat'), m.get('lng') ) );
     });
 
