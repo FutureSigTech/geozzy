@@ -33,6 +33,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
             if(params.success) {
               params.success();
             }
+            params.data = false;
             that.fetchFull( params );
           }
         });
@@ -85,7 +86,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           else {
             console.log('Partial Success (Direct, only success event Waiting...)');
           }
-        }, 10);
+        }, 50);
         //paramsFf.success();
       }
     }
