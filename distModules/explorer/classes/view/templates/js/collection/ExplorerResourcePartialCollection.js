@@ -46,7 +46,11 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     }
     else {
       params.data.lastCacheUpdate = that.lastCacheUpdate
+      params.data = false;
       that.fetchFull( params );
+      params.success(  );
+
+
     }
 
   },
