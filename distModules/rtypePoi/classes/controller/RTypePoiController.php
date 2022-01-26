@@ -31,12 +31,13 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     // cambiamos el id de la imagen para evitar la colisión con la modal
     $form->setFieldParam('image', 'id', 'imgResourcePoi');
 
-    if(!empty($form->getFieldValue('content_'.$this->defResCtrl->defLang))){
+    // Ocultamos datos panorama
+    /*if(!empty($form->getFieldValue('content_'.$this->defResCtrl->defLang))){
       $rextPoiControl = new RExtPoiController($this);
       $pitchYaw = explode("/", $form->getFieldValue('content_'.$this->defResCtrl->defLang));
       $form->setFieldValue($rextPoiControl->addPrefix('rextPoiPitch'), $pitchYaw[0]);
       $form->setFieldValue($rextPoiControl->addPrefix('rextPoiYaw'), $pitchYaw[1]);
-    }
+    }*/
   } // function manipulateForm()
 
 
@@ -128,14 +129,15 @@ class RTypePoiController extends RTypeController implements RTypeInterface {
     public function resFormProcess( FormController $form, ResourceModel $resource ) {
       parent::resFormProcess( $form, $resource );
 
-      if( !$form->existErrors() ) {
+      //Ocultamos datos panorama
+      /*if( !$form->existErrors() ) {
         $rextPoiControl = new RExtPoiController($this);
         $pitch = $form->getFieldValue($rextPoiControl->addPrefix('rextPoiPitch'));
         $yaw = $form->getFieldValue($rextPoiControl->addPrefix('rextPoiYaw'));
         if( $pitch !== "" && $yaw !== "" ){
           $resource->setter('content_'.$this->defResCtrl->defLang, $pitch."/".$yaw);
         }
-      }
+      }*/
     }
 
   /**

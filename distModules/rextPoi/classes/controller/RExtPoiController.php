@@ -73,7 +73,8 @@ class RExtPoiController extends RExtController implements RExtInterface {
         'params' => array( 'label' => __( 'POI type' ), 'type' => 'select',  'multiple' => true, 'class' => 'cgmMForm-order',
           'options' => $this->defResCtrl->getOptionsTax( 'rextPoiType' )
         )
-      ),
+      )
+      /*,
       'rextPoiPitch' => array(
         'params' => array( 'label' => __( 'Pitch (Vertical)' ) ),
         'rules' => array( 'numberEUDec' => 4 )
@@ -81,7 +82,7 @@ class RExtPoiController extends RExtController implements RExtInterface {
       'rextPoiYaw' => array(
         'params' => array( 'label' => __( 'Yaw (Horizontal)' ) ),
         'rules' => array( 'numberEUDec' => 4 )
-      )
+      )*/
     );
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
