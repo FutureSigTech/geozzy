@@ -390,8 +390,8 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
 
 
       $template->addClientScript('yarn/backbone.obscura/backbone.obscura.js', 'vendor');
-      $template->addClientScript('yarn/tiny_map_utilities/smart_infowindow/smart_infowindow.js', 'vendor');
-      $template->addClientScript('yarn/tiny_map_utilities/smart_infowindow/vendor/jQueryRotate.js', 'vendor');
+      $template->addClientScript('yarn/tiny_map_utilities_v3/smart_infowindow/smart_infowindow.js', 'vendor');
+      $template->addClientScript('yarn/tiny_map_utilities_v3/smart_infowindow/vendor/jQueryRotate.js', 'vendor');
 
 
       $template->addClientScript('js/router/ExplorerRouter.js', 'explorer');

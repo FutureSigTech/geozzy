@@ -35,8 +35,8 @@ class rtypeTravelPlanner extends Module {
       'includes' => array( 'dist/jquery.validate.js', 'dist/additional-methods.js' )
     ),
     array(
-     "id" =>"tiny_map_utilities",
-     "params" => array("tiny_map_utilities"),
+     "id" =>"tiny_map_utilities_v3",
+     "params" => array("tiny_map_utilities_v3"),
      "installer" => "yarn",
      "includes" => array("smart_infowindow/smart_infowindow.js", "smart_infowindow/vendor/jQueryRotate.js")
     )
