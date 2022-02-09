@@ -39,7 +39,7 @@ msgstr "Chambres"
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/rextReservation_classes_view_templates_booking-com-public.tpl:30
 #: /home/proxectos/ribeiraSacra/app/tmp/tpl/booking-com-public.tpl:30
 msgid "Adults"
-msgstr "Adults"
+msgstr "Adultes"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:50
 msgid "None"
