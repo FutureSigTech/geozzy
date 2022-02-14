@@ -123,10 +123,10 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
       [id],
       function() {
 
-         var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
-         var partJSON = that.parentExplorer.resourcePartialList.get( id ).toJSON();
-
-         var element = $.extend( true, partJSON, minJSON );
+         var element = $.extend( true,
+           that.parentExplorer.resourceMinimalList.get( id ).toJSON(),
+           that.parentExplorer.resourcePartialList.get( id ).toJSON()
+         );
          var elementCategory = false;
 
          if( that.options.categories /*&& that.options.categories.length>1*/) {
