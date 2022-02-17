@@ -62,7 +62,7 @@
               url: cogumelo.publicConf.media+'/module/rextPoiCollection/img/chapaPOIS.png',
               // This marker is 20 pixels wide by 36 pixels high.
               size: new google.maps.Size(20, 20),
-              scaledSize: new google.maps.Size(20, 20),            
+              scaledSize: new google.maps.Size(20, 20),
               // The origin for this image is (0, 0).
               origin: new google.maps.Point(0, 0),
               // The anchor for this image is the base of the flagpole at (0, 36).
@@ -127,28 +127,34 @@
 
 
   var poisResourceExplorerInstance = new poisResourceExplorer();
-  $(document).ready(function(){
-    //cogumelo.log('LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO' , geozzy.collection.CategorytermCollection );
-    var categorias = {};
-    var multifetchStr = 'categorias.rtypePoi.fetch()';
 
-    categorias.rtypePoi = new geozzy.collection.CategorytermCollection();
-    categorias.rtypePoi.setUrlByIdName('rextPoiType');
+  if(typeof poisResourceOnload =='undefined') {
+    poisResourceOnload = function(){
+      //cogumelo.log('LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO' , geozzy.collection.CategorytermCollection );
+      var categorias = {};
+      var multifetchStr = 'categorias.rtypePoi.fetch()';
+
+      categorias.rtypePoi = new geozzy.collection.CategorytermCollection();
+      categorias.rtypePoi.setUrlByIdName('rextPoiType');
 
 
-    if( typeof cogumelo.publicConf.rtypeTaxonomygroup != 'undefined') {
+      if( typeof cogumelo.publicConf.rtypeTaxonomygroup != 'undefined') {
 
-      $( Object.keys(cogumelo.publicConf.rtypeTaxonomygroup) ).each( function(i, key){
-        eval( 'var e = cogumelo.publicConf.rtypeTaxonomygroup.'+ key);
+        $( Object.keys(cogumelo.publicConf.rtypeTaxonomygroup) ).each( function(i, key){
+          eval( 'var e = cogumelo.publicConf.rtypeTaxonomygroup.'+ key);
 
-        eval( 'categorias.' + key + ' = new geozzy.collection.CategorytermCollection();'  );
-        eval( 'categorias.' + key + '.setUrlByIdName("'+e+'");'  );
-        multifetchStr += ', '+ 'categorias.' + key + '.fetch()';
+          eval( 'categorias.' + key + ' = new geozzy.collection.CategorytermCollection();'  );
+          eval( 'categorias.' + key + '.setUrlByIdName("'+e+'");'  );
+          multifetchStr += ', '+ 'categorias.' + key + '.fetch()';
+        });
+      }
+
+      geozzy.rExtMapInstance.onLoad(function(){
+        eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorerInstance.setExplorer(categorias) });');
       });
-    }
+    };
+  }
 
-    geozzy.rExtMapInstance.onLoad(function(){
-      eval('$.when( '+ multifetchStr+' ).done(function() {  poisResourceExplorerInstance.setExplorer(categorias) });');
-    });
-
+  $(document).ready(function(){
+    poisResourceOnload();
   });
