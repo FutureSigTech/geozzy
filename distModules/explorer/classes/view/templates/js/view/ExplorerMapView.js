@@ -37,7 +37,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       markerzIndex: 100,
 
       enumerateMarkers: false,
-      markersConditionKey: false,
+      enumerateConditionKey: false,
 
       chooseMarkerIcon: function() {return false;},
       mapZones: {
@@ -251,8 +251,8 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         if(typeof e.get('showMarker') === 'undefined' || e.get('showMarker') == 1) {
 
           if(
-            (that.options.enumerateMarkers == true && that.options.markersConditionKey == false) ||
-            (that.options.enumerateMarkers == true && e.get(that.options.markersConditionKey))
+            (that.options.enumerateMarkers == true && that.options.enumerateConditionKey == false) ||
+            (that.options.enumerateMarkers == true && e.get(that.options.enumerateConditionKey))
           ) {
             var marker = e.mapMarker = new MarkerWithLabel({
               position: new google.maps.LatLng( e.get('lat'), e.get('lng') ),
@@ -396,11 +396,13 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 */
 
 
-
+    var markerCount = 0;
     that.parentExplorer.resourceIndex.each( function( e ) {
+      markerCount++;
       if( e.mapMarker ) {
         e.mapMarker.setIcon( that.chooseMarker(e) );
         e.mapMarker.setVisible(true);
+        e.mapMarker.setOptions({ labelContent: markerCount.toString() });
         e.mapMarker.noClusterize = (e.get('isRoute') == 1 && e.get('routeInExplorerHoverShow') == false)? true: false;
         //console.log(e)
         that.markers.push( e.mapMarker );
