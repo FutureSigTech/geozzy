@@ -67,7 +67,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
       that.parentExplorer.resourceIndex.removePagination();
 
       var visibleResources = that.parentExplorer.resourceIndex.setPerPage(50);
-
+alert('')
       // ordenado múltiple
       if( that.options.sortByResourceWeightOnly != true ) {
         visibleResources.setSort( function(model) {
