@@ -97,7 +97,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     var that = this;
     var ret;
     if( that.options.sortByResourceWeightOnly == true ) {
-      ret = model.get('weight');
+      ret = model.get('weight')*-1;
     }
     else {
       var peso = 10000;
