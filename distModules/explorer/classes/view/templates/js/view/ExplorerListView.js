@@ -66,14 +66,14 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     if(typeof that.parentExplorer.resourceIndex.removePagination != 'undefined'){
       that.parentExplorer.resourceIndex.removePagination();
 
-
       var visibleResources = that.parentExplorer.resourceIndex.setPerPage(50);
 
-
       // ordenado múltiple
-      visibleResources.setSort( function(model) {
-        return that.sortF(model);
-      }, 'desc');
+      if( that.options.sortByResourceWeightOnly != true ) {
+        visibleResources.setSort( function(model) {
+          return that.sortF(model);
+        }, 'desc');
+      }
 
 
       // get total packages
@@ -96,18 +96,14 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
   sortF: function(model) {
     var that = this;
     var ret;
-    if( that.options.sortByResourceWeightOnly == true ) {
-      ret = model.get('weight');
+
+    var peso = 10000;
+    var mapVisible = model.get('mapVisible'); // DESC
+    if(typeof model.get('weight') != 'undefined') {
+      peso = 10000 - parseInt(model.get('weight')) ; //ASC
     }
-    else {
-      var peso = 10000;
-      var mapVisible = model.get('mapVisible'); // DESC
-      if(typeof model.get('weight') != 'undefined') {
-        peso = 10000 - parseInt(model.get('weight')) ; //ASC
-      }
-      var dist = parseInt( Math.round( (1000000 * 100) - (model.get('distanceToCenterKm') * 100) ) ); // DESC
-      ret = mapVisible.toString() + peso.toString() + dist.toString();
-    }
+    var dist = parseInt( Math.round( (1000000 * 100) - (model.get('distanceToCenterKm') * 100) ) ); // DESC
+    ret = mapVisible.toString() + peso.toString() + dist.toString();
 
     return parseInt(ret);
   },
