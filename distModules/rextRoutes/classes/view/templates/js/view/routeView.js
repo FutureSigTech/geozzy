@@ -321,7 +321,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
             clearInterval(checkExist);
          }
-      }, 5);
+      }, 100);
 
     }
 
