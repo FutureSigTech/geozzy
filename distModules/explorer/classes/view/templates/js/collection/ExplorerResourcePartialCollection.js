@@ -70,7 +70,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           that.saveLocalStorage();
           if( paramsFf.success) {
             paramsFf.success();
-            console.log('Partial Success (fetchFull Ajax)');
+            //console.log('Partial Success (fetchFull Ajax)');
           }
           that.allResourcesLoaded = true;
           that.allResourcesLoading = false;
@@ -85,10 +85,10 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           if( that.allResourcesLoading == false) {
             paramsFf.success();
             clearInterval(successInterval);
-            console.log('Partial Success (Direct, only success event)');
+            //console.log('Partial Success (Direct, only success event)');
           }
           else {
-            console.log('Partial Success (Direct, only success event Waiting...)');
+            //console.log('Partial Success (Direct, only success event Waiting...)');
           }
         }, 50);
         //paramsFf.success();
