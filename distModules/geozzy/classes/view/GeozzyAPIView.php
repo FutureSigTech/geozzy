@@ -1461,51 +1461,57 @@ class geozzyAPIView extends View {
 
   private function prepareRExtModelsInfo( $allRExtModels, $rExtModelNames ) {
     $rExtModelsInfo = [];
-
     // RExtVisitDataModel,RExtKMLModel
-
     if( count( $rExtModelNames ) > 0 ) {
       foreach( $rExtModelNames as $rExtModelName ) {
-
         if( $rExtModelName === 'FavouritesViewModel' ) {
           continue;
         }
-
+        $affectsDependences = false;
+        if($rExtModelName == 'RExtKMLModel') {
+          $affectsDependences = [ 'FiledataModel' ];
+        }
         $resIds = $allRExtModels[$rExtModelName];
         $rExtControl = null;
         eval( '$rExtControl = new '.$rExtModelName.'();');
         if( is_object($rExtControl) ) {
           $rExtList = $rExtControl->listItems( [
             'filters' => [ 'resourceIn' => $resIds ],
+            'affectsDependences' => $affectsDependences,
             'cache' => $this->cacheQuery
           ] );
           if( is_object($rExtList) ) {
             while( $rExtModel = $rExtList->fetch() ) {
               $resId = $rExtModel->getter('resource');
-
               // Si no existe el filtro 'resourceIn', evitamos 'a mano' los datos innecesarios
               if( isset( $rExtModel::$extraFilters['resourceIn'] ) || in_array( $resId, $resIds ) ) {
                 $rExtData = array( 'MODELNAME' => $rExtModelName );
-
                 $allCols = $rExtModel->getCols( false );
                 foreach( $allCols as $colName => $colInfo ) {
                   $rExtData[ $colName ] = $rExtModel->getter( $colName );
                 }
-
+                if($rExtModelName == 'RExtKMLModel') {
+                  //echo $rExtModel->getter( 'id' ).','.$rExtModel->getterDependence('file','FiledataModel')->getAllData()['aKey'].';';
+                  $kmlFiles = $rExtModel->getterDependence('file','FiledataModel');
+                  if(isset($kmlFiles[0]) && $kmlFiles[0]) {
+                    $rExtData[ 'fileData' ] = [
+                      'id' => $kmlFiles[0]->getter('id'),
+                      'name' => $kmlFiles[0]->getter('name'),
+                      'aKey' => $kmlFiles[0]->getter('aKey')
+                    ];
+                  }
+                }
+                //var_dump($rExtModel->getterDependence('file', 'RExtFileModel'));
+                //exit;
                 $rExtModelsInfo[ $rExtData['resource'] ][ $rExtModelName ] = $rExtData;
               }
             }
           }
         }
-
       } // foreach( $rExtModelNames as $rExtModelName )
     }
-
-
     return $rExtModelsInfo;
   }
-
-
 
 
 
