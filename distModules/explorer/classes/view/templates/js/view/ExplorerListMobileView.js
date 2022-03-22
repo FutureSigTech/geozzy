@@ -35,6 +35,9 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
       endPage: 3,
       totalPages: false,
 
+      enumerateItems: false,
+      enumerateConditionKey: false,
+
       tpl: geozzy.explorerComponents.activeListViewTemplate,
       tplElement: geozzy.explorerComponents.activeListViewElement,
       tplEmpty: geozzy.explorerComponents.listEmpty
@@ -152,6 +155,19 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
       var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();
 
       var element = $.extend( true, partJSON, minJSON );
+
+      // enumeration
+      if (
+        (that.options.enumerateItems == true && that.options.enumerateConditionKey == false) ||
+        (that.options.enumerateItems == true && minJSON[that.options.enumerateConditionKey])
+      ) {
+        element.enumeration = contador;
+      }
+      else {
+
+        element.enumeration = false;
+      }
+
 
       element.contador = contador;
       element.category = elementCategory;
