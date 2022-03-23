@@ -492,7 +492,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       }
     }
 
-    if( typeof that.polyline != 'undefined') {
+    if( typeof that.polyline != 'undefined' && that.polyline != false) {
       that.polyline.setMap(null);
       that.polylineBG1.setMap(null);
       that.polylineBG2.setMap(null);
