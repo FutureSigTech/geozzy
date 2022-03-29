@@ -78,6 +78,20 @@ class RExtReservationController extends RExtController implements RExtInterface 
       'moreInfo' => array(
         'params' => array( 'label' => __( 'Other information' ) ),
         'rules' => array( 'digits' => true )
+      ),
+      'reservas' => array(
+        'value'=>'checked',
+        'params' => [ 'type' => 'checkbox', 'class' => 'switchery', 'value'=>true, 'options'=> [ '1' => __('Bloque reservas') ] ]
+      ),
+      'txtBotonReservas' => array(
+        'translate' => true,
+        'params' => [ 'label' => __('Texto botón reservas') ],
+        'rules' => [ 'maxlength' => 25 ]
+      ),
+      'bloqueReservas' => array(
+        'translate' => true,
+        'params' => [ 'label' => __('código bloque reservas'), 'type' => 'textarea' ],
+        'rules' => [ 'maxlength' => 2000 ]
       )
     );
 
@@ -107,6 +121,9 @@ class RExtReservationController extends RExtController implements RExtInterface 
       }
 
       $form->loadArrayValues( $valuesArray );
+    }
+    else{
+      $form->setField( $this->addPrefix( 'reservas' ), [ 'value' => null ] );
     }
 
     // Add RExt info to form
@@ -216,10 +233,12 @@ class RExtReservationController extends RExtController implements RExtInterface 
     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
     if( $rExtViewBlockInfo['data'] ) {
-      $channel = $rExtViewBlockInfo['data']['channel'];
-      $channelInfo = cogumelo::getSetupValue( 'mod:rextReservation:channelOptions:'.$channel );
+      if(isset($rExtViewBlockInfo['data']['channel'])){
+        $channel = $rExtViewBlockInfo['data']['channel'];
+        $channelInfo = cogumelo::getSetupValue( 'mod:rextReservation:channelOptions:'.$channel );
+      }
 
-      if( $channelInfo ) {
+      if( isset($channelInfo) ) {
         $rExtViewBlockInfo['template']['full'] = new Template();
 
         $rExtViewBlockInfo['template']['full']->assign( 'rExt', array( 'data' => $rExtViewBlockInfo['data'] ) );
