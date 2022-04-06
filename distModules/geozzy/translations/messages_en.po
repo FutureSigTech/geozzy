@@ -322,7 +322,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:475
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:469
 msgid "Publicado"
-msgstr ""
+msgstr "Published"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:465
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:448
