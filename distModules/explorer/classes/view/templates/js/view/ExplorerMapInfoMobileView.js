@@ -30,6 +30,8 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var options = new Object({
       categories: false,
       tpl: geozzy.explorerComponents.mapInfoViewMobileTemplate,
+      enumerateItems: false,
+      enumerateConditionKey: false
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -122,9 +124,9 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     that.parentExplorer.fetchPartialList(
       [id],
       function() {
-
+         var minJSON = that.parentExplorer.resourceMinimalList.get( id ).toJSON();
          var element = $.extend( true,
-           that.parentExplorer.resourceMinimalList.get( id ).toJSON(),
+           minJSON,
            that.parentExplorer.resourcePartialList.get( id ).toJSON()
          );
          var elementCategory = false;
@@ -151,6 +153,30 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
          element.category = elementCategory;
 
          element.touchAccess = that.parentExplorer.explorerTouchDevice;
+
+
+         // enumeración
+         var visibleResources = that.parentExplorer.resourceIndex.setPerPage(10000);
+         var contador = 1;
+
+         $.each( visibleResources.pluck( 'id' ), function(i,e){
+           if (
+             (that.options.enumerateItems == true && that.options.enumerateConditionKey == false) ||
+             (that.options.enumerateItems == true && minJSON[that.options.enumerateConditionKey])
+           ) {
+             if( parseInt(e) == parseInt(id) ) {
+               element.enumeration = contador;
+               return
+             }
+             contador++;
+
+           }
+           else {
+             element.enumeration = false;
+           }
+         });
+
+
 
          $( '#'+that.divId ).html( that.template( element ) );
 
