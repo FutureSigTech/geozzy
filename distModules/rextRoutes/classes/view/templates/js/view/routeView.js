@@ -219,7 +219,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-      var chartString = "step,"+__('Altitude')+"\n";
+      var chartString = "step,"+__('Alt.')+"\n";
       $.each( route.get('trackPoints'), function(i,e){
           chartString += i + "," + e[2] + "\n";
       });
