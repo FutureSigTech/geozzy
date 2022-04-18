@@ -933,6 +933,28 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
     that.parentExplorer.triggerEvent('resourceMouseOut', {id:id});
 
+  },
+
+  fitBoundsToVisibleMarkers: function() {
+    var that = this;
+
+    var visibleMarkers = [];
+    var visibleMarkerIds = that.getVisibleResourceIds();
+
+    that.parentExplorer.resourceIndex.each( function( e ) {
+      if( e.mapMarker && e.mapMarker.getMap() ) {
+        visibleMarkers.push(e.mapMarker);
+      }
+    });
+
+    var bounds = new google.maps.LatLngBounds();
+    for(var m in visibleMarkers) {
+        if (visibleMarkers[m].getVisible()) {
+            bounds.extend(visibleMarkers[m].getPosition());
+        }
+    }
+
+    this.options.map.fitBounds(bounds);
   }
 
 });
