@@ -939,22 +939,22 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     var that = this;
 
     var visibleMarkers = [];
-    var visibleMarkerIds = that.getVisibleResourceIds();
 
     that.parentExplorer.resourceIndex.each( function( e ) {
-      if( e.mapMarker && e.mapMarker.getMap() ) {
+      if( e.mapMarker && e.mapMarker.getVisible() ) {
         visibleMarkers.push(e.mapMarker);
       }
     });
 
     var bounds = new google.maps.LatLngBounds();
     for(var m in visibleMarkers) {
-        if (visibleMarkers[m].getVisible()) {
-            bounds.extend(visibleMarkers[m].getPosition());
-        }
+      if (visibleMarkers[m].getVisible()) {
+        bounds.extend(visibleMarkers[m].getPosition());
+        console.log( visibleMarkers[m].getPosition().lat(), visibleMarkers[m].getPosition().lng() );
+      }
     }
 
-    this.options.map.fitBounds(bounds);
+    that.options.map.fitBounds(bounds);
 
     if( maxAutoZoom && this.options.map.getZoom() > maxAutoZoom ) {
       this.options.map.setZoom(maxAutoZoom);
