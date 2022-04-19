@@ -935,7 +935,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
 
   },
 
-  fitBoundsToVisibleMarkers: function() {
+  fitBoundsToVisibleMarkers: function( maxAutoZoom ) {
     var that = this;
 
     var visibleMarkers = [];
@@ -955,6 +955,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     }
 
     this.options.map.fitBounds(bounds);
+
+    if( maxAutoZoom && this.options.map.getZoom() > maxAutoZoom ) {
+      this.options.map.setZoom(maxAutoZoom);
+    }
   }
 
 });
