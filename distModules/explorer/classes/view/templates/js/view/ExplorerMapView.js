@@ -954,11 +954,14 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       }
     }
 
-    that.options.map.fitBounds(bounds);
+    if(visibleMarkers.length > 0) {
+      that.options.map.fitBounds(bounds);
 
-    if( maxAutoZoom && this.options.map.getZoom() > maxAutoZoom ) {
-      this.options.map.setZoom(maxAutoZoom);
+      if( maxAutoZoom && this.options.map.getZoom() > maxAutoZoom ) {
+        this.options.map.setZoom(maxAutoZoom);
+      }
     }
+
   }
 
 });
