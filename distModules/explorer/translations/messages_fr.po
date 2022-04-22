@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerListMobileView.js:200
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerListMobileView.js:183
 #: /home/proxectos/geozzy/distModules/explorer/classes/view/templates/js/view/ExplorerActiveListMobileView.js:181
 msgid "Prioritizing map zone"

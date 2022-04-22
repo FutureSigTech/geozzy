@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtMapDirectionsController.js:335
+msgid "A route could not be found."
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtPrintMapDirections.js:36
+msgid "Directions request failed due to "
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock-pre171024.tpl:37
+msgid "Type an address or mark on the map the place of departure"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock-pre171024.tpl:44
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:86
+msgid "Get directions"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock-pre171024.tpl:52
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:102
+msgid "Route information"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock-pre171024.tpl:54
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:94
+msgid "Show route description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtPrintDirectionsPageFull.tpl:10
+msgid "Print Map Directions"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:79
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:85
+msgid "Type a departure address"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:99
+msgid "Route by car"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:100
+msgid "Walking route"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:101
+msgid "Route by public transport"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:119
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/rExtViewBlock.tpl:120
+msgid "Print directions"
+msgstr ""

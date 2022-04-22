@@ -104,18 +104,21 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:139
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:139
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:82
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:83
 msgid "Menu"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:83
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:83
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:122
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:124
 msgid "Comments"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:89
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:128
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:130
 msgid "Suggestions"
 msgstr ""
 
@@ -130,6 +133,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:121
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:121
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:87
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:89
 msgid "Categories"
 msgstr ""
 
@@ -145,6 +149,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:143
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:143
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:135
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:137
 msgid "Users"
 msgstr ""
 
@@ -155,6 +160,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:146
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:146
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:138
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:140
 msgid "User"
 msgstr ""
 
@@ -163,6 +169,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:149
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:149
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:141
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:143
 msgid "Roles"
 msgstr ""
 
@@ -329,6 +336,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:143
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:145
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:158
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:71
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:146
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:159
 msgid "Published"
 msgstr ""
 
@@ -339,6 +349,8 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:43
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:159
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:71
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:160
 msgid "Unpublished"
 msgstr ""
 
@@ -351,6 +363,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:92
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:118
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:200
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:71
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:82
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:201
 msgid "All"
 msgstr ""
 
@@ -359,6 +374,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:76
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:49
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:124
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:96
 msgid "Publish"
 msgstr ""
 
@@ -367,6 +383,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:77
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:50
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:125
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:97
 msgid "Unpublish"
 msgstr ""
 
@@ -377,6 +394,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewComment.php:126
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:101
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:115
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:108
 msgid "Delete"
 msgstr ""
 
@@ -386,6 +404,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:90
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:108
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:142
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:143
 msgid "Type"
 msgstr ""
 
@@ -395,11 +414,14 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:91
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:109
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:144
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:145
 msgid "Title"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:314
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:319
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:360
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:402
 msgid "Thumbnail image (Optional)"
 msgstr ""
 
@@ -472,10 +494,12 @@ msgid "Add resource"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:85
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:86
 msgid "Resource type"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:100
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:101
 msgid "Unasign"
 msgstr ""
 
@@ -488,10 +512,12 @@ msgid "Stats Page"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 msgid "Create a new resource"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceOutTopic.php:69
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
 msgid "Working with resource types"
 msgstr ""
 
@@ -558,6 +584,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:114
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:129
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:56
 msgid "Name"
 msgstr ""
 
@@ -615,6 +642,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:99
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:99
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:102
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:104
 msgid "Translates"
 msgstr ""
 
@@ -623,18 +651,21 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:66
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:67
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:105
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:107
 msgid "Export"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:105
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:105
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:107
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:109
 msgid "Resources"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:106
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:106
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:108
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:110
 msgid "Collections"
 msgstr ""
 
@@ -644,12 +675,14 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:235
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewTranslates.php:247
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:112
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:114
 msgid "Import"
 msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_adminMenu.tpl:112
 #: /home/proxectos/geozzy/classes/view/templates/adminMenu.tpl:112
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:114
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:116
 msgid "Files"
 msgstr ""
 
@@ -705,6 +738,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewPage.php:93
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:146
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResourceInTopic.php:147
 msgid "Url"
 msgstr ""
 
@@ -718,4 +752,16 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewUser.php:133
 msgid "Role"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/templates/adminMenu.tpl:50
+msgid "Content"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:57
+msgid "Description"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewStarred.php:68
+msgid "Assign to this starred"
 msgstr ""

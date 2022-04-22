@@ -9,10 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
-msgid "Print Day"
-msgstr ""
-
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:192
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:184
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:182
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerInterfaceView.js:180
@@ -40,6 +37,10 @@ msgstr "Entrez entre 0 et 23 minutes"
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerGetDatesView.js:28
 msgid "Select Dates"
 msgstr "Sélectionne dates"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/js/view/TravelPlannerPrintDayView.js:26
+msgid "Print Day"
+msgstr ""
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:7
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:7
@@ -162,6 +163,7 @@ msgstr "Optimiser"
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:89
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:89
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:89
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:91
 msgid "Plan"
 msgstr ""
 
@@ -175,6 +177,7 @@ msgstr "Ajouter"
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:91
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:93
 msgid "Dates"
 msgstr ""
 
@@ -183,6 +186,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:92
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:92
 #: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:92
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:94
 msgid "Map"
 msgstr ""
 
@@ -351,3 +355,10 @@ msgstr "Début"
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:387
 msgid "Llegada"
 msgstr "Fin"
+
+#: /home/proxectos/geozzy/distModules/rextTravelPlanner/classes/view/templates/rExtViewBlock.tpl:293
+msgid ""
+"Before optimizing the route, the desired place of departure should be placed "
+"as the first element and the desired arrival place as the last one. Both "
+"elements could be the same place."
+msgstr ""

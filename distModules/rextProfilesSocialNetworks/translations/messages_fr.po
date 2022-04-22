@@ -9,10 +9,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:52
-msgid "Google +"
-msgstr ""
-
 #: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:56
 msgid "Facebook"
 msgstr ""
@@ -31,4 +27,8 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:72
 msgid "Personal URL"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextProfilesSocialNetworks/classes/controller/RExtProfilesSocialNetworksController.php:52
+msgid "Google +"
 msgstr ""

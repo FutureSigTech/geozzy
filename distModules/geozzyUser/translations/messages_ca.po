@@ -1,0 +1,150 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:21
+msgid "Necesitas tener una cuenta para participar en Galicia Agochada"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:22
+msgid "Crear una cuenta"
+msgstr "Crear un compte"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:24
+msgid "¿Ya tienes una cuenta?"
+msgstr "Ja tens un compte?"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:25
+msgid "Inicia tu sesión para continuar"
+msgstr "Inicia la teva sessió per continuar"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:28
+msgid "He olvidado mi contraseña"
+msgstr "He oblidat la meva contrasenya"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:30
+msgid "Recovery password"
+msgstr "Contrasenya de recuperació"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:31
+msgid ""
+"Introduce la dirección de correo electrónico asociada a tu cuenta y te "
+"enviaremos un enlace para restablecer tu contraseña"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:35
+msgid "Hay errores en el formulario"
+msgstr "Hi ha errors al formulari"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:36
+msgid "Send"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:40
+msgid "Correo electrónico enviado correctamente"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:44
+msgid ""
+"Crear una cuenta en Galicia Agochada es muy fácil. Rellena el siguiente "
+"formulario"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:50
+msgid "Muchas gracias"
+msgstr "Moltes gràcies"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:51
+msgid "Tu cuenta se ha creado con éxito"
+msgstr "El vostre compte s'ha creat amb èxit"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:52
+msgid "En breve recibirás un correo-e para comprobar tu identidad"
+msgstr "En breu rebràs un correu electrònic per comprovar la teva identitat"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:53
+msgid "Si no lo recibes en las proximas horas, comprueba tu bandeja de SPAM"
+msgstr "Si no el reps a les properes hores, comprova la teva safata de SPAM"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:54
+msgid "Continuar"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/userProfile.tpl:4
+msgid "Perfil de Usuario"
+msgstr "Perfil d'usuari"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/userProfile.tpl:28
+msgid "Write only if you want to change the password"
+msgstr "Escriu només si vols canviar la contrasenya"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/recoveryPassword.tpl:5
+msgid "Enter a new password:"
+msgstr "Introduïu una nova contrasenya:"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/recoveryPassword.tpl:8
+msgid "Your url has expired. Please restart the password recovery process"
+msgstr ""
+"El vostre URL ha caducat. Reinicieu el procés de recuperació de la "
+"contrasenya"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:78
+msgid "Name"
+msgstr "Nom"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:81
+msgid "Surname"
+msgstr "Cognom"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:84
+msgid "Email"
+msgstr "E-mail"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:88
+msgid "Repeat email"
+msgstr "Repeteix l'e-mail"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:92
+msgid "Password"
+msgstr "Contrasenya"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:95
+msgid "Repeat password"
+msgstr "Repeteix la contrassenya"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:112
+msgid ""
+"Acepto las <a class=\"gzzAppPrivacidad\">condiciones de servicio y la "
+"política de privacidad</a>"
+msgstr ""
+"Accepto les <a class=\"gzzAppPrivacidad\"> condicions de servei i la "
+"política de privadesa</a>"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:117
+msgid "Create account"
+msgstr "Crear compte"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:123
+msgid "Nickname"
+msgstr "Sobrenom"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:207
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:208
+msgid "User Registration"
+msgstr "Registre d'usuari"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:424
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:425
+msgid "Recovery Password"
+msgstr "Contrasenya de recuperació"
+
+#: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:556
+msgid "Save"
+msgstr "Desa"

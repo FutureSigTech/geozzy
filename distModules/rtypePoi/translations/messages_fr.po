@@ -9,13 +9,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
-#: /home/proxectos/geozzy/distModules/rtypePoi/classes/view/templates/rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/rTypePoiFormModalBlock.tpl:24
-#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
-msgid "If not uploaded, an automatic thumbnail will be created"
-msgstr ""
-
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/view/templates/rTypeViewBlock.tpl:58
 #: /home/proxectos/geozzy/classes/view/templates/rTypeViewBlock.tpl:58
 #: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypeViewBlock.tpl:58
@@ -28,18 +21,29 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/view/templates/rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/geozzy/classes/view/templates/rTypePoiFormModalBlock.tpl:24
+#: /home/proxectos/geozzy/classes/view/templates/rtypePoi_classes_view_templates_rTypePoiFormModalBlock.tpl:21
+msgid "If not uploaded, an automatic thumbnail will be created"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:61
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:60
 msgid "Main Resource information"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:75
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:74
 msgid "poi"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:84
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:83
 msgid "Edit Resource"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:103
 #: /home/proxectos/geozzy/distModules/rtypePoi/classes/controller/RTypePoiController.php:102
 msgid "Resource"
 msgstr ""
