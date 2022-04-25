@@ -105,11 +105,11 @@ msgstr "Cognom"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:84
 msgid "Email"
-msgstr "E-mail"
+msgstr "Correu electrònic"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:88
 msgid "Repeat email"
-msgstr "Repeteix l'e-mail"
+msgstr "Repeteix el correu electrònic"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/GeozzyUserView.php:92
 msgid "Password"
