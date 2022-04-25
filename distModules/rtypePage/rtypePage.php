@@ -18,7 +18,8 @@ class rtypePage extends Module {
   public $nameLocations = array(
     'es' => 'Página',
     'en' => 'Page',
-    'gl' => 'Páxina'
+    'gl' => 'Páxina',
+    'ca' => 'Pàgina'
   );
 
 

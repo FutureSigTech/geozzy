@@ -29,7 +29,8 @@ class rextUrl extends Module {
           'name' => array(
             'en' => 'Page',
             'es' => 'Página',
-            'gl' => 'Páxina'
+            'gl' => 'Páxina',
+            'ca' => 'Pàgina'
           )
         ),
         array(
@@ -37,7 +38,8 @@ class rextUrl extends Module {
           'name' => array(
             'en' => 'File',
             'es' => 'Fichero',
-            'gl' => 'Ficheiro'
+            'gl' => 'Ficheiro',
+            'ca' => 'Fitxer'
           )
         ),
         array(
@@ -45,6 +47,7 @@ class rextUrl extends Module {
           'name' => array(
             'en' => 'Media',
             'es' => 'Media',
+            'gl' => 'Media',
             'gl' => 'Media'
           )
         ),
@@ -53,7 +56,8 @@ class rextUrl extends Module {
           'name' => array(
             'en' => 'Image',
             'es' => 'Imagen',
-            'gl' => 'Imaxe'
+            'gl' => 'Imaxe',
+            'ca' => 'Imatge'
           )
         ),
         array(
@@ -61,7 +65,8 @@ class rextUrl extends Module {
           'name' => array(
             'en' => 'Audio',
             'es' => 'Audio',
-            'gl' => 'Audio'
+            'gl' => 'Audio',
+            'ca' => 'Àudio'
           )
         ),
         array(
@@ -69,7 +74,8 @@ class rextUrl extends Module {
           'name' => array(
             'en' => 'Video',
             'es' => 'Video',
-            'gl' => 'Video'
+            'gl' => 'Video',
+            'ca' => 'Vídeo'
           )
         )
       )

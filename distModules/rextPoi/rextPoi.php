@@ -17,7 +17,8 @@ class rextPoi extends Module {
       'name' => array(
         'en' => 'Poi type',
         'es' => 'Tipo de Punto de interés',
-        'gl' => 'Tipo de Punto de interés'
+        'gl' => 'Tipo de Punto de interés',
+        'ca' => 'Tipus de Punt d\'interès'
       ),
       'editable' => 1,
       'nestable' => 0,
@@ -29,7 +30,8 @@ class rextPoi extends Module {
           'name' => array(
             'en' => 'Lookout',
             'es' => 'Mirador',
-            'gl' => 'Mirador'
+            'gl' => 'Mirador',
+            'ca' => 'Mirador'
           )
         ),
         array(
@@ -38,7 +40,8 @@ class rextPoi extends Module {
           'name' => array(
             'en' => 'Access point',
             'es' => 'Punto de acceso',
-            'gl' => 'Punto de acceso'
+            'gl' => 'Punto de acceso',
+            'ca' => 'Punt d\'accés'
           )
         ),
         array(
@@ -47,7 +50,8 @@ class rextPoi extends Module {
           'name' => array(
             'en' => 'Photo',
             'es' => 'Foto',
-            'gl' => 'Foto'
+            'gl' => 'Foto',
+            'ca' => 'Foto'
           )
         ),
         array(
@@ -56,7 +60,8 @@ class rextPoi extends Module {
           'name' => array(
             'en' => 'Panaroma point',
             'es' => 'Punto panorama',
-            'gl' => 'Punto panorama'
+            'gl' => 'Punto panorama',
+            'ca' => 'Punt panorama'
           )
         )
       )

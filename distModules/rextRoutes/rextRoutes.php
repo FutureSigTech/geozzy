@@ -19,7 +19,8 @@ class rextRoutes extends Module {
       'name' => array(
         'en' => 'Route circuit type',
         'es' => 'Tipo de recorrido',
-        'gl' => 'Tipo de percorrido'
+        'gl' => 'Tipo de percorrido',
+        'ca' => 'Tipus de recorregut'
       ),
       'editable' => 1,
       'nestable' => 0,

@@ -18,7 +18,8 @@ class rtypeFile extends Module {
   public $nameLocations = array(
     'es' => 'Fichero',
     'en' => 'File',
-    'gl' => 'Ficheiro'
+    'gl' => 'Ficheiro',
+    'ca' => 'Fitxer'
   );
 
 
