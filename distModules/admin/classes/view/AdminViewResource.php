@@ -252,6 +252,7 @@ class AdminViewResource extends AdminViewMaster {
 
 
   public function resourceShowForm( $formName, $urlAction, $valuesArray = false, $resCtrl = false ) {
+    $successArray = false;
 
     if( !isset($valuesArray['storyReturn']) ) {
       if( !isset($valuesArray['storyAssignReturn']) ) {
@@ -302,6 +303,8 @@ class AdminViewResource extends AdminViewMaster {
    * Creacion de Recursos type URL
    */
   public function resourceTypeUrlForm( $urlParams = false ) {
+    $valuesArray = [];
+
     // $resCtrl = new ResourceController();
     $rtypeModel = new ResourcetypeModel();
 
@@ -341,6 +344,7 @@ class AdminViewResource extends AdminViewMaster {
    * Creacion de Recursos type FILE
    */
   public function resourceTypeFileForm( $urlParams = false ) {
+    $valuesArray = [];
 
     // $resCtrl = new ResourceController();
     $rtypeModel = new ResourcetypeModel();
@@ -385,6 +389,7 @@ class AdminViewResource extends AdminViewMaster {
    * Creacion de Recursos type FILE
    */
   public function resourceTypeMultiFileForm( $urlParams = false ) {
+    $valuesArray = [];
 
     // $resCtrl = new ResourceController();
     $rtypeModel = new ResourcetypeModel();
@@ -491,6 +496,7 @@ class AdminViewResource extends AdminViewMaster {
     $resourceView = new ResourceView();
     $resourcesFiles = [];
     $resSuccessData = [];
+    $resourcesFilesIds = [];
     $resource = null;
 
     // Se construye el formulario con sus datos y se realizan las validaciones que contiene
