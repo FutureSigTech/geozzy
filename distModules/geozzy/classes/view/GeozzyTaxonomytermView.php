@@ -64,7 +64,7 @@ class GeozzyTaxonomytermView extends View
         'params' => array( 'type' => 'file', 'placeholder' => __('Upload an image'),
           'id' => 'taxonomyTermIconFile', 'label' => __('Upload an image'),
           'destDir' => TaxonomytermModel::$cols['icon']['uploadDir'] ),
-        'rules' => [ 'accept' => 'image/jpeg,image/png,image/svg*', 'maxfilesize' => '2097152' ]
+        'rules' => [ 'accept' => 'image/jpeg,image/png,image/webp,image/svg*', 'maxfilesize' => '2097152' ]
       ),
       'name' => array(
         'translate' => true,
