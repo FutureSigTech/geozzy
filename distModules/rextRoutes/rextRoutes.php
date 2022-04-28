@@ -42,7 +42,7 @@ class rextRoutes extends Module {
   public $dependences = array(
     array(
       "id" => "geophp",
-      "params" => array("innoto/geophp", "dev-master"),
+      "params" => array("futuresigtech/geophp", "dev-master"),
       "installer" => "composer",
       "includes" => array("geoPHP.inc")
     ),
