@@ -99,7 +99,7 @@ msgstr "Baixa"
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:71
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:14
 msgid "Medium"
-msgstr "Media"
+msgstr "Moderado"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/rextRoutes.php:11
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/controller/RExtRoutesController.php:72
