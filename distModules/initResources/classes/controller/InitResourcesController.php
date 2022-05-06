@@ -130,34 +130,31 @@ class InitResourcesController{
             'idName' => $idName,
             'taxGroupIdName' => $taxGroupIdName
           ) ) );
-          $termObj = ( $termList ) ? $termList->fetch() : false;
-          if( $termObj ) {
-            $termId = $termObj->getter('id');
-            // echo '  Engado o termino '.$termId.' a '.$resId."\n";
+          if(is_object($termList)){
+            $termObj = ( $termList ) ? $termList->fetch() : false;
+            if( $termObj ) {
+              $termId = $termObj->getter('id');
+              // echo '  Engado o termino '.$termId.' a '.$resId."\n";
+              $rtaxtermData = [
+  //              'idName' => $idName,
+                'resource' => $resId,
+                'taxonomyterm' => $termId
+              ];
 
 
+              $existTaxTermModel = ( new ResourceTaxonomytermModel() )->listItems(['filters'=>$rtaxtermData])->fetch();
+              if( $existTaxTermModel ) {
+                //$topic['id'] = $existTaxTermModel->getter('id');
+              }
+              else {
+                $resTaxterm = new ResourceTaxonomytermModel( $rtaxtermData );
+                $resTaxterm->save();
+              }
 
-
-            $rtaxtermData = [
-//              'idName' => $idName,
-              'resource' => $resId,
-              'taxonomyterm' => $termId
-            ];
-
-
-            $existTaxTermModel = ( new ResourceTaxonomytermModel() )->listItems(['filters'=>$rtaxtermData])->fetch();
-            if( $existTaxTermModel ) {
-              //$topic['id'] = $existTaxTermModel->getter('id');
             }
             else {
-              $resTaxterm = new ResourceTaxonomytermModel( $rtaxtermData );
-              $resTaxterm->save();
+              echo "\n".'  ERROR: No existe un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
             }
-
-
-          }
-          else {
-            echo "\n".'  ERROR: No existe un termino con idName '.$idName.' en taxGroupIdName '.$taxGroupIdName."\n";
           }
         }
       }
