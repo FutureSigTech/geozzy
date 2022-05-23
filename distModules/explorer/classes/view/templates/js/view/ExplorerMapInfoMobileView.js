@@ -292,7 +292,13 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var ret = [];
 
     $( that.parentExplorer.resourceMinimalList.pluck( 'id' )).each(function(i,e){
-      ret.push(e);
+
+      if(
+        that.parentExplorer.resourceMinimalList.get(e).get('mapMarker').visible != 'undefined' &&
+        that.parentExplorer.resourceMinimalList.get(e).get('mapMarker').visible == true
+      ) {
+        ret.push(e);
+      }
     });
     return ret;
     //return that.parentExplorer.displays.activeList.getVisibleResourceIds();
