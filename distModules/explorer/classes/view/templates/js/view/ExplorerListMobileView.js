@@ -37,6 +37,7 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
 
       enumerateItems: false,
       enumerateConditionKey: false,
+      sortByResourceWeightOnly: false,
 
       tpl: geozzy.explorerComponents.activeListViewTemplate,
       tplElement: geozzy.explorerComponents.activeListViewElement,
@@ -89,16 +90,16 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
 
       var visibleResources = that.parentExplorer.resourceIndex.setPerPage(100);
 
-
-      if( that.listOrderAccordingIds == true ) {
-        visibleResources.setSort('weight','asc');
-        //visibleResources.setSort('id','asc');
+      if( that.options.sortByResourceWeightOnly != true ) {
+        if( that.listOrderAccordingIds == true ) {
+          visibleResources.setSort('weight','asc');
+          //visibleResources.setSort('id','asc');
+        }
+        else {
+          visibleResources.setSort('weight','asc');
+          visibleResources.setSort('distanceToCenterKm', 'asc');
+        }
       }
-      else {
-        visibleResources.setSort('weight','asc');
-        visibleResources.setSort('distanceToCenterKm', 'asc');
-      }
-
 
       // get total packages
       that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();

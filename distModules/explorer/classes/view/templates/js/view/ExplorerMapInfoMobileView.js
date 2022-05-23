@@ -12,6 +12,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
   divId: 'geozzyExplorerMapInfoMobile',
   currentMousePos: { x: -1, y: -1 },
   ready: true,
+  activeList: false,
 
   events: {
     // resource events
@@ -183,6 +184,9 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
          if( that.ready == id){
            that.$el = $('#'+that.divId);
            that.delegateEvents();
+           if(that.activeList==false){
+             that.activeList = that.getActiveList();
+           }
            that.updateArrows();
           $( '#'+that.divId ).show();
          }
@@ -201,7 +205,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
   hide: function() {
     var that = this;
 
-
+    that.activeList = false;
     that.ready = false;
     $('#'+that.divId).hide();
     $('#'+that.divId+ ' *').remove();
@@ -226,12 +230,10 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var that = this;
     var id = parseInt(that.ready);
 
-    var activeList = that.getActiveList();
+    var index = $.inArray(id, that.activeList);
+    if ( typeof that.activeList[index+1] != 'undefined') {
 
-    var index = $.inArray(id,activeList);
-    if ( typeof activeList[index+1] != 'undefined') {
-
-      var nextResId = activeList[index+1];
+      var nextResId = that.activeList[index+1];
 
       that.parentExplorer.triggerEvent('mobileTouch', {id:nextResId});
       that.parentExplorer.triggerEvent('resourceHover', {id:nextResId});
@@ -247,10 +249,10 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
   previous: function() {
     var that = this;
     var id = parseInt(that.ready);
-    var activeList = that.getActiveList();
-    var index = $.inArray(id,activeList);
+
+    var index = $.inArray(id, that.activeList);
     if ((index -1 ) >= 0) {
-      var nextResId = activeList[index-1];
+      var nextResId = that.activeList[index-1];
 
       that.parentExplorer.triggerEvent('mobileTouch', {id:nextResId});
       that.parentExplorer.triggerEvent('resourceHover', {id:nextResId});
@@ -267,8 +269,8 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
   updateArrows: function() {
     var that = this;
     var id = parseInt(that.ready);
-    var activeList = that.getActiveList();
-    var index = $.inArray(id,activeList);
+
+    var index = $.inArray(id, that.activeList);
 
     if ( index == 0) {
       that.$el.find('.previousButton').hide();
@@ -277,7 +279,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
       that.$el.find('.previousButton').show();
     }
 
-    if ( index  === activeList.length-1) {
+    if ( index  === that.activeList.length-1) {
       that.$el.find('.nextButton').hide();
     }
     else {
@@ -287,8 +289,12 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
   getActiveList: function() {
     var that = this;
+    var ret = [];
 
-    return that.parentExplorer.resourceMinimalList.pluck( 'id' );
+    $( that.parentExplorer.resourceMinimalList.pluck( 'id' )).each(function(i,e){
+      ret.push(e);
+    });
+    return ret;
     //return that.parentExplorer.displays.activeList.getVisibleResourceIds();
     //getVisibleResourceIds
   }
