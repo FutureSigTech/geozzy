@@ -291,7 +291,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var that = this;
     var ret = [];
 
-    $( that.parentExplorer.resourceMinimalList.pluck( 'id' )).each(function(i,e){
+    $( that.getVisibleResourceIds() ).each(function(i,e){
 
       if(
         that.parentExplorer.resourceMinimalList.get(e).get('mapMarker').visible != 'undefined' &&
@@ -303,6 +303,43 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     return ret;
     //return that.parentExplorer.displays.activeList.getVisibleResourceIds();
     //getVisibleResourceIds
+  },
+
+
+  getVisibleResourceIds: function() {
+    var that = this;
+    var ret = false;
+    if(typeof that.parentExplorer.resourceIndex.removePagination != 'undefined'){
+      that.parentExplorer.resourceIndex.removePagination();
+
+
+      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(100);
+
+      if( that.options.sortByResourceWeightOnly != true ) {
+        if( that.listOrderAccordingIds == true ) {
+          visibleResources.setSort('weight','asc');
+          //visibleResources.setSort('id','asc');
+        }
+        else {
+          visibleResources.setSort('weight','asc');
+          visibleResources.setSort('distanceToCenterKm', 'asc');
+        }
+      }
+
+      // get total packages
+      that.options.totalPages = that.parentExplorer.resourceIndex.getNumPages();
+
+      // set current page
+      visibleResources.setPage(that.currentPage);
+
+      that.visibleResources = visibleResources.pluck( 'id' );
+
+      ret = visibleResources.pluck( 'id' );
+    }
+
+
+    return ret;
+
   }
 
 });
