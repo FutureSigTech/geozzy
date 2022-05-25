@@ -20,6 +20,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     var options = new Object({
       tpl: geozzy.explorerComponents.mapInfoViewTemplate,
       categories: false,
+      onShow: function() {}
     });
 
     that.options = $.extend(true, {}, options, opts);
@@ -182,8 +183,13 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
           });
 
         }
+
+        that.options.onShow(that.divId);
+
       }
     );
+
+
   },
 
   hide: function( id ) {
