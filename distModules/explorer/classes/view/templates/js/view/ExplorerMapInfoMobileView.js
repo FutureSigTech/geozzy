@@ -30,6 +30,7 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
     var that = this;
     var options = new Object({
       categories: false,
+      chooseCategory: function(e){ return that.chooseCategory(e); },
       tpl: geozzy.explorerComponents.mapInfoViewMobileTemplate,
       enumerateItems: false,
       enumerateConditionKey: false
@@ -130,27 +131,10 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
            minJSON,
            that.parentExplorer.resourcePartialList.get( id ).toJSON()
          );
-         var elementCategory = false;
+         
 
-         if( that.options.categories /*&& that.options.categories.length>1*/) {
-           that.options.categories.each( function(e2){
-             //cogumelo.log(e.get('id'));
-             //console.debug(markerData.get('terms'));
-             if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( id ).get('terms')  ) > -1 ) {
+         var elementCategory = that.options.chooseCategory(id);
 
-               elementCategory = e2;
-               if(e2) {
-                 elementCategory = e2.toJSON();
-               }
-               return false;
-               /*
-               if( jQuery.isNumeric( e2.get('icon') )  ){
-                 return false;
-               }*/
-             }
-           });
-
-         }
          element.category = elementCategory;
 
          element.touchAccess = that.parentExplorer.explorerTouchDevice;
@@ -340,6 +324,34 @@ geozzy.explorerComponents.mapInfoMobileView = Backbone.View.extend({
 
     return ret;
 
-  }
+  },
+
+  chooseCategory: function(e){
+    var that = this;
+    var elementCategory = false;
+
+    if( that.options.categories /*&& that.options.categories.length>1*/) {
+      that.options.categories.each( function(e2){
+        //cogumelo.log(e.get('id'));
+        //console.debug(markerData.get('terms'));
+
+        if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
+
+          elementCategory = e2;
+          if(e2) {
+            elementCategory = e2.toJSON();
+          }
+          return false;
+          /*
+          if( jQuery.isNumeric( e2.get('icon') )  ){
+            return false;
+          }*/
+        }
+      });
+    }
+
+    
+    return elementCategory;
+  } 
 
 });

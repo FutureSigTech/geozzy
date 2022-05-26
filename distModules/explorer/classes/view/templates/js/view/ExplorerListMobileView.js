@@ -31,7 +31,7 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
       showInBuffer: true,
       showOutMapAndBuffer: false,
       cateogories: false,
-
+      chooseCategory: function(e){ return that.chooseCategory(e); },
       endPage: 3,
       totalPages: false,
 
@@ -130,27 +130,7 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
       //that.options.categories;
       //cogumelo.log( that.parentExplorer.resourceMinimalList.toJSON/ );
 
-      var elementCategory = false;
-      if( that.options.categories && that.options.categories.length>1) {
-        that.options.categories.each( function(e2){
-          //cogumelo.log(e.get('id'));
-          //console.debug(markerData.get('terms'));
-
-          if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
-
-            elementCategory = e2;
-            if(e2) {
-              elementCategory = e2.toJSON();
-            }
-            return false;
-            /*
-            if( jQuery.isNumeric( e2.get('icon') )  ){
-              return false;
-            }*/
-          }
-        });
-      }
-
+      var elementCategory = that.options.chooseCategory(e);
 
       var minJSON = that.parentExplorer.resourceMinimalList.get( e ).toJSON();
       var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();
@@ -314,5 +294,33 @@ geozzy.explorerComponents.listMobileView = Backbone.View.extend({
         that.parentExplorer.triggerEvent('resourceMouseOut', {id:$(element.currentTarget).attr('data-resource-id')});
         break;
     }
+  },
+
+  chooseCategory: function(e){
+    var that = this;
+    var elementCategory = false;
+
+    if( that.options.categories /*&& that.options.categories.length>1*/) {
+      that.options.categories.each( function(e2){
+        //cogumelo.log(e.get('id'));
+        //console.debug(markerData.get('terms'));
+
+        if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
+
+          elementCategory = e2;
+          if(e2) {
+            elementCategory = e2.toJSON();
+          }
+          return false;
+          /*
+          if( jQuery.isNumeric( e2.get('icon') )  ){
+            return false;
+          }*/
+        }
+      });
+    }
+
+    return elementCategory;
   }
+  
 });
