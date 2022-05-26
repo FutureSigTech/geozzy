@@ -20,6 +20,7 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
     var options = new Object({
       tpl: geozzy.explorerComponents.mapInfoViewTemplate,
       categories: false,
+      chooseCategory: function(e){ return that.chooseCategory(e); },
       onShow: function() {}
     });
 
@@ -134,31 +135,8 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
         var element = $.extend( true, partJSON, minJSON );
         element.touchAccess = that.parentExplorer.explorerTouchDevice;
 
-        var elementCategory = false;
-
-         if( that.options.categories /*&& that.options.categories.length>1*/) {
-
-
-          that.options.categories.each( function(e2){
-            //cogumelo.log(e.get('id'));
-            //console.debug(markerData.get('terms'));
-            if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( id ).get('terms')  ) > -1 ) {
-
-              elementCategory = e2;
-              if(e2) {
-                elementCategory = e2.toJSON();
-
-              }
-              return false;
-              /*
-              if( jQuery.isNumeric( e2.get('icon') )  ){
-                return false;
-              }*/
-            }
-          });
-
-
-        }
+        var elementCategory = that.options.chooseCategory(id);
+        
         element.category = elementCategory;
 
         $( '#'+that.divId ).html( that.template( element ) );
@@ -215,6 +193,34 @@ geozzy.explorerComponents.mapInfoView = Backbone.View.extend({
 
 
     return {x: $(that.parentExplorer.displays.map.map.getDiv() ).offset().left , y: $(that.parentExplorer.displays.map.map.getDiv() ).offset().top };
-  }
+  },
+
+  chooseCategory: function(e){
+    var that = this;
+    var elementCategory = false;
+
+    if( that.options.categories /*&& that.options.categories.length>1*/) {
+      that.options.categories.each( function(e2){
+        //cogumelo.log(e.get('id'));
+        //console.debug(markerData.get('terms'));
+
+        if( $.inArray(e2.get('id'), that.parentExplorer.resourceMinimalList.get( e ).get('terms')  ) > -1 ) {
+
+          elementCategory = e2;
+          if(e2) {
+            elementCategory = e2.toJSON();
+          }
+          return false;
+          /*
+          if( jQuery.isNumeric( e2.get('icon') )  ){
+            return false;
+          }*/
+        }
+      });
+    }
+
+    
+    return elementCategory;
+  } 
 
 });
