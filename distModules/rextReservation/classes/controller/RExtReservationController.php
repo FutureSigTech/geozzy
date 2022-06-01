@@ -222,7 +222,7 @@ class RExtReservationController extends RExtController implements RExtInterface 
   public function getViewBlockInfo( $resId = false ) {
     $rExtViewBlockInfo = parent::getViewBlockInfo( $resId );
 
-    if( $rExtViewBlockInfo['data'] ) {
+    if( !empty($rExtViewBlockInfo['data']['channel']) ) {
       $channel = $rExtViewBlockInfo['data']['channel'];
       $channelInfo = cogumelo::getSetupValue( 'mod:rextReservation:channelOptions:'.$channel );
 
