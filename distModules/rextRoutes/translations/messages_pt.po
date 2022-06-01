@@ -256,7 +256,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:86
 msgid "Difficulty"
-msgstr ""
+msgstr "Dificuldade"
 
 #: /home/proxectos/geozzy/distModules/rextRoutes/classes/view/templates/rExtBasicInfoViewBlock.tpl:129
 msgid "Global"

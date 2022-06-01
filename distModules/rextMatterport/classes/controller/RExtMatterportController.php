@@ -39,7 +39,7 @@ class RExtMatterportController extends RExtController implements RExtInterface {
     //   }
     // }
 
-    return ( count($rExtData) > 0 ) ? $rExtData : false;
+    return $rExtData;
   }
 
 
