@@ -57,24 +57,38 @@ class RExtFileController extends RExtController implements RExtInterface {
 
 
   /**
-    Defino el formulario
+   * Defino el formulario
    */
   public function manipulateForm( FormController $form ) {
     // error_log( __METHOD__ );
 
-    $rExtFieldNames = array();
+    $rExtFieldNames = [];
 
-    $fieldsInfo = array(
-      'author' => array(
-        'params' => array( 'label' => __( 'Author' ) ),
-        'rules' => array( 'maxlength' => '500' )
-      ),
-      'file' => array(
-        'params' => array( 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rExtFileField',
-        'placeholder' => __( 'File' ), 'destDir' => RExtFileModel::$cols['file']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => ' 8388608', 'required' => 'true' )
-      )
-    );
+    $fieldsInfo = [
+      'author' => [
+        'params' => [ 'label' => __( 'Author' ) ],
+        'rules' => [ 'maxlength' => '500' ]
+      ],
+      'file' => [
+        'params' => [ 'label' => __( 'Multimedia file' ), 'type' => 'file', 'id' => 'rExtFileField',
+          'placeholder' => __( 'File' ), 'destDir' => RExtFileModel::$cols['file']['uploadDir'] ],
+        'rules' => [ 'maxfilesize' => '16000000', 'required' => 'true' ]
+      ]
+    ];
+
+
+    // Para que comprima hai que activar en setup setSetupValue( 'mod:form:dep:compressorjs', true )
+    // ...e instalar dependencias despois
+    // ...e setSetupValue( 'compressorjs:fields', '*' )
+    if( Cogumelo::getSetupValue('mod:form:dep:compressorjs') ) {
+      $cjsConf = Cogumelo::getSetupValue('compressorjs');
+      if( !empty( $cjsConf['fields'] ) && $cjsConf['fields'] === '*' ) {
+        $fieldsInfo['file']['params']['data-cmpjsQuality'] = $cjsConf['quality'];
+        $fieldsInfo['file']['params']['data-cmpjsMaxWidth'] = $cjsConf['maxWidth'];
+        // $fieldsInfo['file']['rules']['maxfilesize'] = $cjsConf['browserfilesize'];
+      }
+    }
+
 
     $form->definitionsToForm( $this->prefixArrayKeys( $fieldsInfo ) );
 
@@ -141,8 +155,8 @@ class RExtFileController extends RExtController implements RExtInterface {
   // parent::resFormRevalidate( $form );
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
+   * Creación-Edición-Borrado de los elementos del recurso base
+   * Iniciar transaction
    */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
     // error_log( "RExtFileController: resFormProcess()" );
@@ -198,7 +212,7 @@ class RExtFileController extends RExtController implements RExtInterface {
 
 
   /**
-    Preparamos los datos para visualizar el Recurso
+   * Preparamos los datos para visualizar el Recurso
    */
   public function getViewBlockInfo( $resId = false ) {
     // error_log( "RExtFileController: getViewBlockInfo( $resId )" );

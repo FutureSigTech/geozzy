@@ -91,7 +91,7 @@ class ResourceController {
    *  Cargando View del RType
    */
   public function getRTypeView( $rTypeId = false ) {
-    // error_log( __CLASS__.": getRTypeView( $rTypeId )" );
+    // error_log( __METHOD__.': '.$rTypeId );
     $rTypeView = null;
 
     $rTypeIdName = $this->getRTypeIdName( $rTypeId );
@@ -387,12 +387,12 @@ class ResourceController {
         'params' => array( 'label' => __( 'External URL' ) ),
         'rules' => array( 'maxlength' => '2000' )
       ),
-      'image' => array(
-        'params' => array( 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
-        'placeholder' => 'Escolle unha imaxe', 'destDir' => ResourceModel::$cols['image']['uploadDir'] ),
-        'rules' => array( 'minfilesize' => '1024', 'maxfilesize' => '4200000',
-        'accept' => 'image/jpeg,image/png,image/webp' )
-      ),
+      'image' => [
+        'params' => [ 'label' => __( 'Image' ), 'type' => 'file', 'id' => 'imgResource',
+          'placeholder' => 'Escolle unha imaxe', 'destDir' => ResourceModel::$cols['image']['uploadDir'] ],
+        'rules' => [ 'minfilesize' => '1024', 'maxfilesize' => '4200000',
+          'accept' => 'image/jpeg,image/png,image/webp' ]
+      ],
       'urlAlias' => array(
         'translate' => true,
         'params' => array( 'label' => __( 'SEO: URL' ) ),
@@ -489,6 +489,19 @@ class ResourceController {
       )
     );
 
+    // Para que comprima hai que activar en setup setSetupValue( 'mod:form:dep:compressorjs', true )
+    // ...e instalar dependencias despois
+    // ...e setSetupValue( 'compressorjs:fields', '*' )
+    if( Cogumelo::getSetupValue('mod:form:dep:compressorjs') ) {
+      $cjsConf = Cogumelo::getSetupValue('compressorjs');
+      if( !empty( $cjsConf['fields'] ) && $cjsConf['fields'] === '*' ) {
+        $fieldsInfo['image']['params']['data-cmpjsQuality'] = $cjsConf['quality'];
+        $fieldsInfo['image']['params']['data-cmpjsMaxWidth'] = $cjsConf['maxWidth'];
+        $fieldsInfo['image']['rules']['maxfilesize'] = $cjsConf['browserfilesize'];
+      }
+    }
+
+
     $htmlEditorBig = Cogumelo::getSetupValue('mod:geozzy:resource:htmlEditorBig');
     if( is_array($htmlEditorBig) ) {
       foreach( $htmlEditorBig as $bigEditorKey => $bigEditorFields ) {
@@ -516,7 +529,7 @@ class ResourceController {
 
     $form->definitionsToForm( $fieldsInfo );
 
-    // Valadaciones extra
+    // Validaciones extra
     $form->setValidationRule( 'title_'.$form->langDefault, 'required' );
     $form->removeValidationRule( 'collections', 'inArray' );
     $form->removeValidationRule( 'multimediaGalleries', 'inArray' );
@@ -604,8 +617,6 @@ class ResourceController {
       $formBlockInfo = $rTypeView->getFormBlockInfo( $form );
     }
     // $formBlockInfo = $this->rTypeCtrl->getFormBlockInfo( $form );
-
-
 
     $formBlockInfo['objForm'] = $form;
 

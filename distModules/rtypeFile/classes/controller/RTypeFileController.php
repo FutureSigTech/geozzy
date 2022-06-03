@@ -9,8 +9,8 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
   }
 
   /**
-    Defino el formulario
-   **/
+   * Defino el formulario
+   */
   public function manipulateForm( FormController $form ) {
     // error_log( __METHOD__ );
 
@@ -21,7 +21,6 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
     $form->setFieldParam('starred', 'type', 'reserved');
     $form->removeValidationRules('topics');
     $form->removeValidationRules('starred');
-
   } // function manipulateForm()
 
   public function getFormBlockInfo( FormController $form ) {
@@ -44,7 +43,11 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'shortDescription' ),
       $form->multilangFieldNames( 'mediumDescription' )
     );
-    $formFieldsNames[] = 'externalUrl';
+
+    if( $form->isFieldDefined('externalUrl') ) {
+      $formFieldsNames[] = 'externalUrl';
+    }
+
     $formFieldsNames[] = $this->fileCtrl->addPrefix( 'author' );
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
@@ -110,9 +113,9 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
 
 
   /**
-    Creación-Edición-Borrado de los elementos del recurso base
-    Iniciar transaction
-   **/
+   * Creación-Edición-Borrado de los elementos del recurso base
+   * Iniciar transaction
+   */
   public function resFormProcess( FormController $form, ResourceModel $resource ) {
 
     parent::resFormProcess( $form, $resource );
@@ -168,8 +171,8 @@ class RTypeFileController extends RTypeController implements RTypeInterface {
   // parent::resFormSuccess( $form, $resource );
 
   /**
-    Preparamos los datos para visualizar el Recurso
-   **/
+   * Preparamos los datos para visualizar el Recurso
+   */
   public function getViewBlockInfo( $resId = false ) {
 
     // Preparamos los datos para visualizar el Recurso con sus extensiones
