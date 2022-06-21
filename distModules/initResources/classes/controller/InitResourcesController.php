@@ -128,8 +128,10 @@ class InitResourcesController{
             'idName' => $idName,
             'taxGroupIdName' => $taxGroupIdName
           ) ) );
-          $termObj = ( $termList ) ? $termList->fetch() : false;
-          if( $termObj ) {
+          if(is_object($termList)){
+            $termObj = ( $termList ) ? $termList->fetch() : false;
+          }
+          if( isset($termObj )) {
             $termId = $termObj->getter('id');
             // echo '  Engado o termino '.$termId.' a '.$resId."\n";
 
