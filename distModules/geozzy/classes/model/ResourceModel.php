@@ -5,9 +5,9 @@ Cogumelo::load('coreModel/Model.php');
 
 class ResourceModel extends Model {
 
-  static $tableName = 'geozzy_resource';
+  public static $tableName = 'geozzy_resource';
 
-  static $cols = array(
+  public static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
@@ -21,6 +21,10 @@ class ResourceModel extends Model {
       'type' => 'FOREIGN',
       'vo' => 'ResourcetypeModel',
       'key' => 'id'
+    ),
+    'syncIdName' => array(
+      'type' => 'VARCHAR',
+      'size' => 100
     ),
     'user' => array(
       'type' => 'FOREIGN',
@@ -65,6 +69,11 @@ class ResourceModel extends Model {
     'defaultZoom' => array(
       'type' => 'INT'
     ),
+    'canonicalUrlAlt' => array(
+      'type' => 'VARCHAR',
+      'size' => 2000,
+      'multilang' => true
+    ),
     'externalUrl' => array(
       'type' => 'VARCHAR',
       'size' => 2000,
@@ -94,6 +103,9 @@ class ResourceModel extends Model {
     'timeLastPublish' => array(
       'type' => 'DATETIME'
     ),
+    'timeLastSync' => array(
+      'type' => 'DATETIME'
+    ),
     'countVisits' => array(
       'type' => 'INT'
     ),
@@ -103,7 +115,30 @@ class ResourceModel extends Model {
     )
   );
 
-  var $deploySQL = array(
+  public $deploySQL = [
+    [
+      /**
+       * Creamos campos para controlar sincronizaciones
+       * Reducimos externalUrl al mismo tamaño de canonicalUrlAlt
+       * Creamos canonicalUrlAlt para poder definir la URL canonica distinta a la basica
+       * (Problemas con los campos varchar grande multiidioma)
+       */
+      'version' => 'geozzy#16',
+      'sql' => "\n".
+        'ALTER TABLE geozzy_resource '.
+          'ADD COLUMN syncIdName VARCHAR(100) UNIQUE AFTER rTypeId;'."\n".
+        'ALTER TABLE geozzy_resource '.
+          'ADD COLUMN timeLastSync DATETIME NULL AFTER timeLastPublish;'."\n".
+        '{multilang:ALTER TABLE geozzy_resource '.
+          'ADD COLUMN canonicalUrlAlt_$lang VARCHAR(500) '.
+          'AFTER defaultZoom;'."\n".
+        '}'.
+        '{multilang:ALTER TABLE geozzy_resource '.
+          'CHANGE COLUMN externalUrl_$lang externalUrl_$lang VARCHAR(500) '.
+          'AFTER defaultZoom;'."\n".
+        '}'.
+      ''
+    ],
     array(
       'version' => 'geozzy#12',
       'sql' => '
@@ -144,9 +179,9 @@ class ResourceModel extends Model {
         MODIFY COLUMN averageVotes SMALLINT
       '
     )
-  );
+  ];
 
-  static $extraFilters = array(
+  public static $extraFilters = array(
     'findFull{multilang}' => ' (
         UPPER( geozzy_resource.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
         UPPER( geozzy_resource.shortDescription_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
@@ -154,14 +189,19 @@ class ResourceModel extends Model {
         UPPER( geozzy_resource.content_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR
     )
     ',
-    'find{multilang}' => ' ( UPPER( geozzy_resource.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' ) OR geozzy_resource.id = ? )',
+    'find{multilang}' => ' ( UPPER( geozzy_resource.title_$lang )  LIKE CONCAT( \'%\', UPPER(?), \'%\' )
+      OR geozzy_resource.id = ? )',
     //'find' => " ( UPPER( geozzy_resource.title_es )  LIKE CONCAT( '%', UPPER(?), '%' ) OR geozzy_resource.id = ? )",
-    'nottopic' => ' geozzy_resource.id NOT IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
-    'intopic' => '  geozzy_resource.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.topic=? ) ',
+    'nottopic' => ' geozzy_resource.id NOT IN ( select geozzy_resource_topic.resource from geozzy_resource_topic
+      where geozzy_resource_topic.topic=? ) ',
+    'intopic' => '  geozzy_resource.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic
+      where geozzy_resource_topic.topic=? ) ',
 
-    'inTopicTaxonomyterm' => '  geozzy_resource.id IN ( select geozzy_resource_topic.resource from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
+    'inTopicTaxonomyterm' => '  geozzy_resource.id IN ( select geozzy_resource_topic.resource
+      from geozzy_resource_topic where geozzy_resource_topic.taxonomyterm=? ) ',
 
-    'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select geozzy_resource_taxonomyterm.resource from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
+    'notintaxonomyterm' => ' geozzy_resource.id NOT IN ( select geozzy_resource_taxonomyterm.resource
+      from geozzy_resource_taxonomyterm where geozzy_resource_taxonomyterm.taxonomyterm=? )',
     'inRtype' => ' geozzy_resource.rTypeId IN (?) ',
     'notInRtype' => ' geozzy_resource.rTypeId NOT IN (?) ',
     'ids' => ' geozzy_resource.id IN (?) ',
@@ -171,13 +211,19 @@ class ResourceModel extends Model {
     'idNameIn' => ' geozzy_resource.idName IN (?) ',
     'notInId' => ' geozzy_resource.id NOT IN (?) ',
     'updatedfrom' => ' ( geozzy_resource.timeCreation >= ? OR geozzy_resource.timeLastUpdate >= ? ) ',
-    'notInCollectionId' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources where geozzy_collection_resources.collection=?)',
-    'notAsigned' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource from geozzy_collection_resources)',
+    'notInCollectionId' => 'geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource
+      from geozzy_collection_resources where geozzy_collection_resources.collection=?) ',
+    'notAsigned' => ' geozzy_resource.id NOT IN (SELECT geozzy_collection_resources.resource
+      from geozzy_collection_resources) ',
 
-    'distance2K' => ' geozzy_resource.loc IS NOT NULL AND ST_Distance( geozzy_resource.loc, ST_GeomFromText( ? ) ) < 2000 ',
+    'distance2K' => ' geozzy_resource.loc IS NOT NULL AND
+      ST_Distance( geozzy_resource.loc, ST_GeomFromText( ? ) ) < 2000 ',
     'idGt' => ' geozzy_resource.id > (?) ',
     'idLt' => ' geozzy_resource.id < (?) ',
+
     'idNameLike' => ' geozzy_resource.idName LIKE ? ',
+    'syncIdNameLike' => ' geozzy_resource.syncIdName LIKE ? ',
+
     'publishedCustom' => ' geozzy_AppTopicResource_view.published = IF( ? = "1", 1, 0 ) '
   );
 
@@ -195,7 +241,8 @@ class ResourceModel extends Model {
   public function createTopicRelation( $topicId, $resourceId ) {
     //$this->dataFacade->transactionStart();
 
-    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().
+    //  '" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
     $resourcetopic =  new ResourceTopicModel(array("resource" => $resourceId, "topic" => $topicId));
     $resourcetopic->save();
     //$this->dataFacade->transactionEnd();
@@ -213,12 +260,16 @@ class ResourceModel extends Model {
     $deleted = false;
 
     //$this->dataFacade->transactionStart();
-    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
-    $resourcetopic =  new ResourceTopicModel();
-    $resourceRel = $resourcetopic->listItems( array('filters' => array('resource' => $resourceId, 'topic' => $topicId) ) )->fetch();
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().
+    //  '" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
 
-    if( $resourceRel ) {
-      $deleted = $resourceRel->delete();
+    $resourcetopic =  new ResourceTopicModel();
+    $resourceList = $resourcetopic->listItems([ 'filters' => [ 'resource' => $resourceId, 'topic' => $topicId ] ]);
+    if( is_object( $resourceList ) ) {
+      $resourceRel = $resourceList->fetch();
+      if( is_object( $resourceRel ) ) {
+        $deleted = $resourceRel->delete();
+      }
     }
 
     return $deleted;
@@ -232,8 +283,11 @@ class ResourceModel extends Model {
   public function createTaxonomytermRelation( $starredId, $resourceId ) {
     //$this->dataFacade->transactionStart();
 
-    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().'" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
-    $resourcetopic =  new ResourceTaxonomytermModel(array("resource" => $resourceId, "taxonomyterm" => $starredId));
+    //Cogumelo::debug( 'Called create on '.get_called_class().' with "'.$this->getFirstPrimarykeyId().
+    //  '" = '. $this->getter( $this->getFirstPrimarykeyId() ) );
+
+    $resourcetopic =  new ResourceTaxonomytermModel( [
+      "resource" => $resourceId, "taxonomyterm" => $starredId ] );
     $resourcetopic->save();
     $cacheCtrl = new Cache();
     $cacheCtrl->flush();
@@ -248,8 +302,10 @@ class ResourceModel extends Model {
    * @return boolean
    */
   public function createCollectionRelation( $collectionId, $resourceId ) {
+
     //$this->dataFacade->transactionStart();
-    $resourcecollection =  new CollectionResourcesModel(array("resource" => $resourceId, "collection" => $collectionId));
+    $resourcecollection =  new CollectionResourcesModel( [
+      "resource" => $resourceId, "collection" => $collectionId ] );
     $resourcecollection->save();
     //$this->dataFacade->transactionEnd();
 
@@ -343,7 +399,10 @@ class ResourceModel extends Model {
 
 
   public function getRextModel( $rextModelName ) {
-    eval( '$rextControl = new '.$rextModelName.'();');
+    $rextControl = null;
+
+    // eval( '$rextControl = new '.$rextModelName.'();');
+    $rextControl = new $rextModelName();
 
     $rextList = $rextControl->listItems( array( 'filters'=> array( 'resource' => $this->getter('id') ) ) );
 
@@ -361,10 +420,13 @@ class ResourceModel extends Model {
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
     $rtypeList = $rtypeModel->listItems( array( 'filters' => array( 'idName' => $rtypeName ) ) );
-    if( $rtype = $rtypeList->fetch() ) {
-      $dep = json_decode( $rtype->getter('relatedModels') );
-      if( count( $dep ) > 0 ) {
-        $dependences = $dep;
+    if( is_object( $rtypeList ) ) {
+      $rtype = $rtypeList->fetch();
+      if( is_object( $rtype ) ) {
+        $dep = json_decode( $rtype->getter('relatedModels') );
+        if( count( $dep ) > 0 ) {
+          $dependences = $dep;
+        }
       }
     }
 
@@ -377,10 +439,13 @@ class ResourceModel extends Model {
     geozzy::load( 'model/ResourcetypeModel.php' );
     $rtypeModel = new ResourcetypeModel();
     $rtypeList = $rtypeModel->listItems( array( 'filters' => array( 'id' => $rtypeId ) ) );
-    if( $rtype = $rtypeList->fetch() ) {
-      $dep = json_decode( $rtype->getter('relatedModels') );
-      if( count( $dep ) > 0 ) {
-        $dependences = $dep;
+    if( is_object( $rtypeList ) ) {
+      $rtype = $rtypeList->fetch();
+      if( is_object( $rtype ) ) {
+        $dep = json_decode( $rtype->getter('relatedModels') );
+        if( count( $dep ) > 0 ) {
+          $dependences = $dep;
+        }
       }
     }
 

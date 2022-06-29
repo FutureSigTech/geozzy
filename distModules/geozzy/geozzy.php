@@ -8,20 +8,9 @@ Cogumelo::load( 'coreController/Module.php' );
 class geozzy extends Module {
 
   public $name = 'geozzy';
-  public $version = 15;
-
-  // public $autoIncludeAlways = true;
-  // FALLA: PHP Fatal error:  Class 'Smarty' not found in /home/proxectos/cogumelo/coreClasses/coreView/Template.php on line 10
+  public $version = 16;
 
   // public $dependences = array();
-
-  // pre-170126
-  // 'id' =>'ckeditor',
-  // 'params' => array('ckeditor#standard/stable'),
-  // 'installer' => 'bower',
-  // 'includes' => array('ckeditor.js'),
-  // 'autoinclude' => false
-
 
   public $includesCommon = array(
     'controller/ResourceController.php',
@@ -33,12 +22,6 @@ class geozzy extends Module {
 
 
   public function __construct() {
-    // $this->addUrlPatterns( '#^'.MOD_GEOZZY_URL_DIR.'$#', 'view:AdminViewStadistic::main' );
-
-    // geozzy Resource
-    //$this->addUrlPatterns( '#^recursoForm$#', 'view:GeozzyResourceView::loadForm' );
-    //$this->addUrlPatterns( '#^recurso-form-action$#', 'view:GeozzyResourceView::actionCreate' );
-
     // Sitemap
     $this->addUrlPatterns( '#^sitemap.xml$#', 'view:SitemapView::showSitemap' );
   }
@@ -46,8 +29,6 @@ class geozzy extends Module {
 
 
   public function setGeozzyUrlPatternsAPI() {
-    // geozzy api UI events
-    // $this->addUrlPatterns( '#^api/core/uieventlist$#', 'view:GeozzyAPIView::uiEventList' );
 
     // geozzy core api doc
     //$this->addUrlPatterns( '#^api/doc/resources.json$#', 'view:GeozzyAPIView::resourcesJson' );
@@ -185,14 +166,6 @@ class geozzy extends Module {
     // Creamos un usuario superAdmin para Geozzy
     //
     $passwd = false;
-
-    $fileConnectionsInfo = APP_BASE_PATH.'/conf/inc/default-connections-info.php';
-    if( file_exists( $fileConnectionsInfo ) ) {
-      include $fileConnectionsInfo;
-      if( defined( 'SUPERADMIN_PASS' ) ) {
-        $passwd = SUPERADMIN_PASS;
-      }
-    }
 
     if( !$passwd ) {
       fwrite( STDOUT, "Enter password for superadmin@geozzy.com password:\n" );
@@ -376,7 +349,7 @@ class geozzy extends Module {
    *
    * @return string
    */
-  static public function getPassword( $stars = false ) {
+  public static function getPassword( $stars = false ) {
     // Get current style
     $oldStyle = shell_exec('stty -g');
 
@@ -394,7 +367,7 @@ class geozzy extends Module {
         if ($char === "\n") {
           break;
         }
-        else if (ord($char) === 127) {
+        elseif (ord($char) === 127) {
           if( strlen($password) > 0 ) {
             fwrite(STDOUT, "\x08 \x08");
             $password = mb_substr($password, 0, -1);

@@ -1265,8 +1265,6 @@ class ResourceController {
 
 
 
-
-
   /**
    * Devuelve las collections asociadas al recurso dado o al actual agrupadas por tipo
    */
@@ -1718,13 +1716,15 @@ class ResourceController {
 
 
 
-
-
-
-
-
-
-
+  /**
+   * Establece un unico termino para un taxonomyGroup
+   *
+   * @param int $taxGroup
+   * @param int $taxTermId
+   * @param mixed $resource
+   * @param ?int $forceCache
+   * @return bool
+   **/
   public function setTaxTermUnique( $taxGroup, $taxTermId, $resource, $forceCache = null ) {
     // error_log(__METHOD__);
     // echo "setTaxTermUnique $taxGroup, $taxTermId -- ";
@@ -1801,7 +1801,15 @@ class ResourceController {
   } // setTaxTermUnique( $taxGroup, $taxTermId, $resource, $forceCache = null )
 
 
-
+  /**
+   * Establece un unico termino para un taxonomyGroup
+   *
+   * @param int $taxGroup
+   * @param array $taxTermIds
+   * @param mixed $resource
+   * @param ?int $forceCache
+   * @return bool
+   **/
   public function setTaxTerms( $taxGroup, $taxTermIds, $resource, $forceCache = null ) {
     // error_log(__METHOD__);
     $result = true;
