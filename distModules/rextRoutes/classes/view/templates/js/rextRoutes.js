@@ -51,8 +51,9 @@ var rextRoutesJs = {
 
           var r = route.options.routeModel;
           if( typeof r.get('trackPoints')[0] != 'undefined' ) {
+
             route.options.map.setCenter(
-              new google.maps.LatLng({lat: r.get('trackPoints')[0][0], lng: r.get('trackPoints')[0][1]})
+              new google.maps.LatLng({lat: r.get('centroid')[0][0], lng: r.get('centroid')[0][1]})
             );
           }
 
