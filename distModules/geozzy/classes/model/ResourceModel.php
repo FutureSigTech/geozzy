@@ -71,12 +71,12 @@ class ResourceModel extends Model {
     ),
     'canonicalUrlAlt' => array(
       'type' => 'VARCHAR',
-      'size' => 2000,
+      'size' => 500,
       'multilang' => true
     ),
     'externalUrl' => array(
       'type' => 'VARCHAR',
-      'size' => 2000,
+      'size' => 500,
       'multilang' => true
     ),
     'headKeywords' => array(
