@@ -39,7 +39,7 @@ msgstr "Chambres"
 #: /home/proxectos/geozzy/classes/view/templates/rextReservation_classes_view_templates_booking-com-public.tpl:30
 #: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:30
 msgid "Adults"
-msgstr "Adults"
+msgstr "Adultes"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:50
 msgid "None"
