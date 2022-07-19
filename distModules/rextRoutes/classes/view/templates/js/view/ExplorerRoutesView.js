@@ -19,7 +19,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       strokeHoverColor: '#249c00',
       showGraph: false,
       hoverGraphDiv: false,
-      ShowRouteInZoomLevel: 10,
+      ShowRouteInZoomLevel: 7,
       routeResolution: 12,
       showMarkerStart: false,
       showMarkerEnd: false,
