@@ -65,7 +65,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     if(typeof that.parentExplorer.resourceIndex.removePagination != 'undefined'){
       that.parentExplorer.resourceIndex.removePagination();
 
-      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(50);
+      var visibleResources = that.parentExplorer.resourceIndex.setPerPage(10000);
 
       // ordenado múltiple
       if( that.options.sortByResourceWeightOnly != true ) {
@@ -89,6 +89,8 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
     return ret;
 
+    
+
   },
 
 
@@ -104,7 +106,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     var dist = parseInt( Math.round( (1000000 * 100) - (model.get('distanceToCenterKm') * 100) ) ); // DESC
     ret = mapVisible.toString() + peso.toString() + dist.toString();
 
-    return parseInt(ret);
+    return parseInt(ret)*-1;
   },
 
   render: function() {
