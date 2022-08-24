@@ -101,12 +101,12 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     var peso = 10000;
     var mapVisible = model.get('mapVisible'); // DESC
     if(typeof model.get('weight') != 'undefined') {
-      peso = 10000 - parseInt(model.get('weight')) ; //ASC
+      peso = 100080000 - parseInt(model.get('weight')) ; //ASC
     }
     var dist = parseInt( Math.round( (1000000 * 100) - (model.get('distanceToCenterKm') * 100) ) ); // DESC
     ret = mapVisible.toString() + peso.toString() + dist.toString();
 
-    return parseInt(ret)*-1;
+    return parseInt(ret);
   },
 
   render: function() {
