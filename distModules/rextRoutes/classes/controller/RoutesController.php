@@ -56,9 +56,13 @@ class RoutesController {
 
 
       try {
-
+        $fileContent = file_get_contents($filePath);
+        
+        // elimina tag de waypoints (do contrario falla a biblio)
+        $fileContentFinal = preg_replace('~<wpt(.*?)</wpt>~Usi', "", $fileContent);
+        
         $fnSplited = explode( '.', $filePath );
-        $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
+        $polygon = geoPHP::load( $fileContentFinal , array_pop( $fnSplited ) );
         /*echo "<pre>";
         var_dump( $polygon->getGeomType() );
         echo "<br>--------------------<br>";
