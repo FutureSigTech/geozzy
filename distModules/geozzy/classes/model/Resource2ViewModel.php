@@ -238,7 +238,7 @@ class Resource2ViewModel extends Model {
       LEFT JOIN `geozzy_resource_topic` `rTopic` ON (`r`.`id` = `rTopic`.`resource`) )
       LEFT JOIN `geozzy_resource_collections` `rColl` ON (`r`.`id` = `rColl`.`resource`) )
       WHERE
-          '. $extraArrayParam['strWhere'] . ' AND `rt`.`id` = `r`.`rTypeId` AND `r`.`published`=1
+          '. $extraArrayParam['strWhere'] . ' AND `rt`.`id` = `r`.`rTypeId`
       GROUP BY `r`.`id`
       '. $extraArrayParam['strOrderBy'] . '
       '. $extraArrayParam['strRange'] . '
