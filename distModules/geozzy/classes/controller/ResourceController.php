@@ -1304,6 +1304,38 @@ class ResourceController {
     return $collsInfo;
   }
 
+
+  /**
+   * Devuelve lo minimo de collections asociadas al recurso dado o al actual agrupadas por tipo
+   */
+  public function getCollectionsMin( $resId = false ) {
+    $collsInfo = false;
+
+    if( !$resId && $this->resObj ) {
+      $resId = $this->resObj->getter('id');
+    }
+
+    if( $resId ) {
+      $collsModel = new CollectionsMinViewModel();
+      $collsList = $collsModel->listItems([
+        'filters' => [ 'resource' => $resId ],
+        'order' => [ 'geozzy_resource_collections.weight' => 1 ],
+        'cache' => $this->cacheQuery
+      ]);
+      if( is_object( $collsList ) ) {
+        $collsInfo = [];
+        while( $collObj = $collsList->fetch() ) {
+          $colId = $collObj->getter('id');
+          $colType = $collObj->getter('collectionType');
+          $collsInfo[ $colType ][ $colId ] = $this->getTranslatedData( $collObj->getAllData( 'onlydata' ) );
+        }
+      }
+    }
+
+    return $collsInfo;
+  }
+
+
   public function getCollectionsSelect( $collsInfo ) {
     // error_log(__METHOD__);
     $collsSelect = array(
