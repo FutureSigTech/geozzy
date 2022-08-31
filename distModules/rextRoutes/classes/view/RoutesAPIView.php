@@ -108,7 +108,11 @@ class RoutesAPIView extends View
 
       $resourceCtrl = new ResourceModel();
       $resourceRsl = $resourceCtrl->listItems([ 'filters'=>[ 'id'=>$urlParamsList['id'] ] ]);
-      $resBaseRoute = $resourceRsl->fetch();
+
+      $resBaseRoute = null;
+      if( is_object( $resourceRsl ) ) {
+        $resBaseRoute = $resourceRsl->fetch();
+      }
 
       if( $resBaseRoute && $resBaseRoute->getter('published') == true ) {
 

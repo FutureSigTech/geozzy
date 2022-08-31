@@ -2097,9 +2097,11 @@ class geozzyAPIView extends View {
 
     $rTypeModel = new ResourcetypeModel();
     $rTypeList = $rTypeModel->listItems( [ 'cache' => $this->cacheQuery ] );
-    while( $rTypeObj = $rTypeList->fetch() ) {
-      $allData = $rTypeObj->getAllData('onlydata');
-      $infoRTypes[ $allData['id'] ] = $allData;
+    if( is_object( $rTypeList ) ) {
+      while( $rTypeObj = $rTypeList->fetch() ) {
+        $allData = $rTypeObj->getAllData('onlydata');
+        $infoRTypes[ $allData['id'] ] = $allData;
+      }
     }
 
     return $infoRTypes;
