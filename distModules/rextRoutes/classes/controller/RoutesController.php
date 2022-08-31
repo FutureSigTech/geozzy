@@ -63,10 +63,12 @@ class RoutesController {
         
         $fnSplited = explode( '.', $filePath );
         $polygon = geoPHP::load( $fileContentFinal , array_pop( $fnSplited ) );
-        /*echo "<pre>";
-        var_dump( $polygon->getGeomType() );
-        echo "<br>--------------------<br>";
-        var_dump( json_encode( $this->extractPoints( $polygon )) );*/
+
+        // echo "<pre>";
+        // var_dump( $polygon->getGeomType() );
+        // echo "<br>--------------------<br>";
+        // var_dump( json_encode( $this->extractPoints( $polygon )) );
+        // exit;
         $cent = $polygon->getCentroid();
         $start = $polygon->startPoint();
         $end = $polygon->endPoint();
@@ -131,11 +133,16 @@ class RoutesController {
 
       if ( file_exists( $filePath ) ) {
 
-        $fnSplited = explode( '.', $filePath );
+
         /*array_pop( $fnSplited )*/
 
         try {
-          $polygon = geoPHP::load( file_get_contents($filePath) , array_pop( $fnSplited ) );
+          $fileContent = file_get_contents($filePath);          
+          // elimina tag de waypoints (do contrario falla a biblio)
+          $fileContentFinal = preg_replace('~<wpt(.*?)</wpt>~Usi', "", $fileContent);
+          
+          $fnSplited = explode( '.', $filePath );
+          $polygon = geoPHP::load( $fileContentFinal , array_pop( $fnSplited ) );
           /*echo "<pre>";
           var_dump( $polygon->getGeomType() );
           echo "<br>--------------------<br>";
