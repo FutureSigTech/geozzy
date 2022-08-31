@@ -116,58 +116,58 @@ class RoutesController {
     ));
 
     $routes = [];
+    if( is_object( $routesList ) ) {
+      while( $routeVO = $routesList->fetch() ) {
 
-    while( $routeVO = $routesList->fetch() ) {
+        $route = [ ];
 
-      $route = [ ];
+        if(  $routeVO->getter('routeFile') ) {
 
-      if(  $routeVO->getter('routeFile') ) {
-
-        $fileDataList = (new FiledataModel(['id'=> $routeVO->getter('routeFile') ]) )->save();
-        $filePath = Cogumelo::getSetupValue( 'mod:filedata' )['filePath'] . $fileDataList->getter('absLocation');
-      }
-      else {
-        $filePath = false;
-      }
-
-
-      if ( file_exists( $filePath ) ) {
-
-
-        /*array_pop( $fnSplited )*/
-
-        try {
-          $fileContent = file_get_contents($filePath);          
-          // elimina tag de waypoints (do contrario falla a biblio)
-          $fileContentFinal = preg_replace('~<wpt(.*?)</wpt>~Usi', "", $fileContent);
-          
-          $fnSplited = explode( '.', $filePath );
-          $polygon = geoPHP::load( $fileContentFinal , array_pop( $fnSplited ) );
-          /*echo "<pre>";
-          var_dump( $polygon->getGeomType() );
-          echo "<br>--------------------<br>";
-          var_dump( json_encode( $this->extractPoints( $polygon )) );*/
-          $cent = $polygon->getCentroid();
-
-
-          $route['id'] =  $routeVO->getter('resource');
-
-          $route['circular'] = $routeVO->getter('circular');
-          $route['centroid'] =  [ $cent->y(), $cent->x() ];
-          $route['trackPoints'] = $this->simplifyPoints(  $polygon, $zoomLevel );
+          $fileDataList = (new FiledataModel(['id'=> $routeVO->getter('routeFile') ]) )->save();
+          $filePath = Cogumelo::getSetupValue( 'mod:filedata' )['filePath'] . $fileDataList->getter('absLocation');
         }
-        catch(Exception $e) {
-            Cogumelo::error( $e->getMessage() );
+        else {
+          $filePath = false;
         }
-      }
-      else {
-        Cogumelo::log('Route file not found: '. $filePath);
-      }
 
-      $routes[] = $route;
 
+        if ( file_exists( $filePath ) ) {
+
+
+          /*array_pop( $fnSplited )*/
+
+          try {
+            $fileContent = file_get_contents($filePath);          
+            // elimina tag de waypoints (do contrario falla a biblio)
+            $fileContentFinal = preg_replace('~<wpt(.*?)</wpt>~Usi', "", $fileContent);
+            
+            $fnSplited = explode( '.', $filePath );
+            $polygon = geoPHP::load( $fileContentFinal , array_pop( $fnSplited ) );
+            /*echo "<pre>";
+            var_dump( $polygon->getGeomType() );
+            echo "<br>--------------------<br>";
+            var_dump( json_encode( $this->extractPoints( $polygon )) );*/
+            $cent = $polygon->getCentroid();
+
+
+            $route['id'] =  $routeVO->getter('resource');
+
+            $route['circular'] = $routeVO->getter('circular');
+            $route['centroid'] =  [ $cent->y(), $cent->x() ];
+            $route['trackPoints'] = $this->simplifyPoints(  $polygon, $zoomLevel );
+          }
+          catch(Exception $e) {
+              Cogumelo::error( $e->getMessage() );
+          }
+        }
+        else {
+          Cogumelo::log('Route file not found: '. $filePath);
+        }
+
+        $routes[] = $route;
+
+      }
     }
-
 
     return $routes;
   }
