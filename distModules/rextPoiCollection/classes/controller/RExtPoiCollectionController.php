@@ -50,8 +50,11 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
         'cache' => $this->cacheQuery
       ])->fetch();
 
-      if($typecol->getter('collectionType')==='poi'){
-        $elemId = $typecol->getter('id');
+      if( is_object( $typecol ) ) {
+        $collectionType = $typecol->getter('collectionType');
+        if( !empty( $collectionType ) && $collectionType === 'poi' ) {
+          $elemId = $typecol->getter('id');
+        }
       }
     }
 
@@ -282,9 +285,12 @@ class RExtPoiCollectionController extends RExtController implements RExtInterfac
             'cache' => $this->cacheQuery
           ])->fetch();
 
-          if($typecol->getter('collectionType')==='poi'){
-            $elemId = $typecol->getter('id');
-            break;
+          if( is_object( $typecol ) ) {
+            $collectionType = $typecol->getter('collectionType');
+            if( !empty( $collectionType ) && $collectionType === 'poi' ) {
+              $elemId = $typecol->getter('id');
+              break;
+            }
           }
         }
       }
