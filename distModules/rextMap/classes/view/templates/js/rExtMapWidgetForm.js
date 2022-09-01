@@ -34,17 +34,23 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
         var lonValue = 0;
         var zoomInit = 3;
 
-        if(typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
-          cogumelo.log('cogumelo.publicConf.admin.adminMap is not defined in conf');
-        }
-        else {
-          var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
-          var lonInit = Number(cogumelo.publicConf.admin.adminMap.defaultLon);
-          zoomInit = Number(cogumelo.publicConf.admin.adminMap.defaultZoom);
+        if ($('#createPoiModal').length > 0) {
+          var latInit = Number($('.location .cgmMForm-field-locLat input').val());
+          var lonInit = Number($('.location .cgmMForm-field-locLon input').val());
+          zoomInit = Number($('.location .cgmMForm-field-defaultZoom input').val());
           var defaultMarker = cogumelo.publicConf.admin.adminMap.marker;
-
         }
-
+        else{
+          if (typeof cogumelo.publicConf.admin.adminMap === 'undefined') {
+            cogumelo.log('cogumelo.publicConf.admin.adminMap is not defined in conf');
+          }
+          else {
+            var latInit = Number(cogumelo.publicConf.admin.adminMap.defaultLat);
+            var lonInit = Number(cogumelo.publicConf.admin.adminMap.defaultLon);
+            zoomInit = Number(cogumelo.publicConf.admin.adminMap.defaultZoom);
+            var defaultMarker = cogumelo.publicConf.admin.adminMap.marker;
+          }
+        }
 
         if( that.latInput.val() !== '' && that.latInput.val() !== '') {
           latValue = parseFloat( that.latInput.val() );

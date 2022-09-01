@@ -20,6 +20,7 @@
 
   <div class="location">
     <div class="mapContainer">
+      <input class="address">
       <div class="descMap">{t}Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar la localización{/t}</div>
     </div>
     <div class="locationData">
