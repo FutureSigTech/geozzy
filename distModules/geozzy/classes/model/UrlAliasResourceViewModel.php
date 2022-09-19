@@ -24,6 +24,11 @@ class UrlAliasResourceViewModel extends Model {
       'type' => 'VARCHAR',
       'size' => 100
     ),
+    'title' => array(
+      'type' => 'VARCHAR',
+      'size' => 100,
+      'multilang' => true
+    ),
     'lang' => array(
       'type' => 'CHAR',
       'size' => 4
@@ -48,7 +53,7 @@ class UrlAliasResourceViewModel extends Model {
     ),
     'timeLastUpdate' => array(
       'type' => 'DATETIME'
-    ),
+    )
   );
 
   static $extraFilters = array(
@@ -63,6 +68,28 @@ class UrlAliasResourceViewModel extends Model {
 
 
   var $deploySQL = array(
+    array(
+      'version' => 'geozzy#17',
+      'executeOnGenerateModelToo' => true,
+      'sql'=> '
+        DROP VIEW IF EXISTS geozzy_url_alias_resource_view;
+
+        CREATE VIEW geozzy_url_alias_resource_view AS
+
+          SELECT
+            ua.id, ua.resource, r.idName AS resourceIdName,
+            {multilang:r.title_$lang,}
+            ua.lang, ua.urlFrom, ua.weight,
+            r.rTypeId AS rTypeId, rt.idname AS rTypeIdName,
+            r.timeCreation, r.timeLastUpdate
+          FROM
+            geozzy_url_alias AS ua, geozzy_resource AS r, geozzy_resourcetype AS rt
+          WHERE
+            ua.resource=r.id AND r.rTypeId=rt.id AND
+            ua.http=0 AND ua.canonical=TRUE AND r.published=TRUE
+          ;
+      '
+    ),
     array(
       'version' => 'geozzy#1.6',
       'executeOnGenerateModelToo' => true,

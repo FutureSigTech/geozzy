@@ -8,7 +8,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class geozzy extends Module {
 
   public $name = 'geozzy';
-  public $version = 16;
+  public $version = 17;
 
   // public $dependences = array();
 
