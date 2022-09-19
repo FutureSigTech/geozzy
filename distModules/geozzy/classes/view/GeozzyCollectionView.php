@@ -335,28 +335,38 @@ class GeozzyCollectionView extends View
       //Recursos Posibles
       if( !empty($filter) && count($filter) > 0 ) {
         // error_log(__METHOD__.': $filter '.json_encode($filter) );
-        $elemList = $resourceViewModel->listItems(
+        $elemListObj = $resourceViewModel->listItems(
           array(
             'filters' => array( 'inRtypeIdName' => $filter),
             'order' => array('title_'.Cogumelo::getSetupValue('lang:default')=>1)
           )
-        )->fetchAll();
+        );
+        if(is_object($elemListObj)){
+          $elemList = $elemListObj->fetchAll();
+        }
       }
       //Recursos Manuales
       if( $collectionId ){
-        $colRes = $collectionResourcesListViewModel->listItems(
+        $colResObj = $collectionResourcesListViewModel->listItems(
           array(
             'filters' => array( 'id' => $collectionId )
           )
-        )->fetch();
+        );
+        if(is_object($colResObj)){
+          $colRes = $colResObj->fetch();
+        }
 
         if( gettype( $colRes ) === 'object' && !empty($colRes->getter('resourceSonList'))){
 
-          $elemManualList = $resourceViewModel->listItems(
+          $elemManualListObj = $resourceViewModel->listItems(
             array(
               'filters' => array( 'inId' => explode(',', $colRes->getter('resourceSonList')) )
             )
-          )->fetchAll();
+          );
+          if(is_object($elemManualListObj)){
+            $elemManualList = $elemManualListObj->fetchAll();
+          }
+
           $elemList = array_merge($elemList, $elemManualList);
         }
       }
