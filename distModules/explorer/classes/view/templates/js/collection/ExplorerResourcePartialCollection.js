@@ -5,7 +5,9 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
   useLocalStorage: true,
   model: geozzy.explorerComponents.resourcePartialModel,
   lastCacheUpdate: false,
-  options:{},
+  options:{
+    fetchType: 'POST'
+  },
   allResourcesLoading: false,
   allResourcesLoaded: false,
   initialize: function( opts ) {
@@ -14,10 +16,13 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     that.getLocalStorage();
     console.log('getLocalStorage END');
   },
+  extendOptions: function( opts ) {
+    $.extend( true, this.options, opts );
+  },
   fetchByIds: function( params ) {
     var that = this;
     if( that.lastCacheUpdate === false ) {
-      if( params.data.ids.length === 1 && that.get(params.data.ids[0]) ){
+      if( typeof params.data.ids !== 'undefined' && params.data.ids.length === 1 && that.get(params.data.ids[0]) ){
         if(params.success) {
           params.success();
           console.log('Partial Success (Primeiro)');
@@ -27,7 +32,8 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
       if( that.allResourcesLoaded === false ) {
         that.fetch({
           data: params.data,
-          type: 'POST',
+          type: that.options.fetchType,
+          // type: 'POST',
           remove: false,
           success: function( list ) {
             if(params.success) {
@@ -62,7 +68,8 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
     if( that.allResourcesLoading === false  && that.allResourcesLoaded === false ) {
       that.allResourcesLoading = true;
       that.fetch({
-        type: 'POST',
+        type: that.options.fetchType,
+        // type: 'POST',
         remove: false,
         data: paramsFf.data,
         success: function( list ) {
