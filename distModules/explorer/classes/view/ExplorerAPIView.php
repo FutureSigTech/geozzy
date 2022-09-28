@@ -128,7 +128,7 @@ class ExplorerAPIView extends View
 
   // explorer
   public function explorer( $urlParams ) {
-    error_log( __METHOD__ .'urlParams '. print_r( $urlParams, true ) );
+    // error_log( __METHOD__ .'urlParams '. print_r( $urlParams, true ) );
 
     require_once APP_BASE_PATH."/conf/inc/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
@@ -146,14 +146,14 @@ class ExplorerAPIView extends View
     $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
     // Añadimos parametros GET a $urlParamsList
-    error_log( __METHOD__ . print_r( $_GET, true ) );
+    // error_log( __METHOD__ . print_r( $_GET, true ) );
     if( !empty( $_GET ) ) {
       foreach( $_GET as $key => $value ) {
         $urlParamsList[ $key ] = $value;
       }
     }
 
-    error_log( __METHOD__ . print_r( $urlParamsList, true ) );
+    // error_log( __METHOD__ . print_r( $urlParamsList, true ) );
     $urlExplorer = isset( $urlParamsList['explorer'] ) ? $urlParamsList['explorer'] : false;
     $urlRequest = isset( $urlParamsList['request'] ) ? $urlParamsList['request'] : false;
 
