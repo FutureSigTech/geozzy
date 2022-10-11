@@ -414,7 +414,9 @@ class RExtController {
 
 
   public function cloneTo( $resFromObj, $resToObj ) {
-    Cogumelo::trace( __METHOD__.': '.$this->rExtName );
+    Cogumelo::trace( __METHOD__.': FromObj='.$resFromObj->getter('id').
+      ' ToObj='.$resToObj->getter('id').' rExtName='.$this->rExtName );
+
     $result = true;
 
     if( $result && !empty( $this->collections ) ) {
@@ -430,6 +432,7 @@ class RExtController {
     }
 
     if( $result && !empty( $this->models ) ) {
+      // Incluimos clonado de Filedata referidos en los modelos
       if( !$this->defResCtrl->cloneRExtModels( $resFromObj->getter('id'), $resToObj->getter('id'), $this->models ) ) {
         $result = false;
       }
