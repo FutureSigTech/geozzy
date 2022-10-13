@@ -2595,6 +2595,7 @@ class ResourceController {
 
   public function cloneToRType( $resFromId, $rTypeIdName, $topicIdName = false ) {
     Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
+
     $resToObj = null;
 
     $error = false;
@@ -2607,6 +2608,7 @@ class ResourceController {
     ]);
     $resFromObj = ( is_object( $resList ) ) ? $resList->fetch() : null;
 
+    // Cargamos recurso "base" a clonar
     if( !is_object( $resFromObj ) ) {
       $error = __LINE__;
     }
@@ -2621,10 +2623,15 @@ class ResourceController {
       $resData['published'] = 0;
       $resData['rTypeId'] = $this->getRTypeIdByIdName( $rTypeIdName );
 
+      if( isset( $resData['syncIdName'] ) ) {
+        unset( $resData['syncIdName'] );
+      }
+
       unset( $resData['id'] );
     }
 
 
+    // Clonamos recurso "base"
     if( !$error ) {
       $resToObj = new ResourceModel( $resData );
 
@@ -2640,34 +2647,23 @@ class ResourceController {
       // error_log( 'saveResult: '.json_encode( $saveResult ) );
     }
 
-
-
-
+    // Clonamos Filedata de recurso "base"
     if( !$error ) {
-      $imageId = $resToObj->getter( 'image' );
-      if( !empty( $imageId ) ) {
-        $imgObjClone = $this->cloneFiledata( $imageId, '/Resource' );
-        if( !empty( $imgObjClone ) && is_object( $imgObjClone ) ) {
-          $resToObj->setter( 'image', $imgObjClone->getter('id') );
-          if( !$resToObj->save() ) {
-            $error = __LINE__;
-          }
-        }
-        else {
-          $error = __LINE__;
-        }
+      $fdClonados = ( new FiledataModel() )->cloneAllFromObj( $resToObj );
+      if( !$fdClonados ) {
+        error_log(__METHOD__.': NON clonado' );
+        $error = __LINE__;
       }
     }
 
-
-
-
+    // Clonamos Collenctions de recurso "base"
     if( !$error ) {
       if( !$this->cloneCollections( $resFromId, $resToObj->getter('id'), ['base', 'multimedia'] ) ) {
         $error = __LINE__;
       }
     }
 
+    // Clonamos Topics de recurso "base" o lo establecemos
     if( !$error ) {
       if( empty( $topicIdName ) ) {
         // Copiamos los topics del origen
@@ -2708,6 +2704,7 @@ class ResourceController {
       }
     }
 
+    // Clonamos en la capa RType
     if( !$error ) {
       // error_log( __METHOD__.': Solicito getRTypeCtrl '.$rTypeIdName );
       $rTypeCtrl = $this->getRTypeCtrl( $rTypeIdName );
@@ -2719,6 +2716,7 @@ class ResourceController {
       }
     }
 
+    // Guardamos/Deshacemos clonado completo
     if( is_object($resToObj) ) {
       if( !$error ) {
         $resToObj->transactionCommit();
@@ -2734,37 +2732,13 @@ class ResourceController {
   }
 
 
+
   public function cloneFiledata( $filedataId, $destDir = '' ) {
     Cogumelo::trace( __METHOD__.': $filedataId: '.$filedataId );
-    $filedataClone = null;
 
-    Cogumelo::debug(__METHOD__.': Clonando image: '.$filedataId );
-
-    $fdModel = new FiledataModel();
-    $fdList = $fdModel->listItems([
-      'filters' => [ 'id' => $filedataId ],
-      'cache' => $this->cacheQuery
-    ]);
-    if( !is_object( $fdList ) ) {
-      error_log(__METHOD__.': NON listItems' );
-    }
-    else {
-      $fdObj = $fdList->fetch();
-      if( is_object( $fdObj) ) {
-        $filedataInfo = $fdObj->getAllData('onlydata');
-
-        unset( $filedataInfo['id'], $filedataInfo['aKey'] );
-        $filedataInfo['destDir'] = $destDir;
-        $filedataInfo['absLocation'] = Cogumelo::getSetupValue( 'mod:filedata:filePath' ) . $filedataInfo['absLocation'];
-
-        $filedataCtrl = new FiledataController();
-        $filedataClone = $filedataCtrl->createNewFile( $filedataInfo );
-
-        if( empty( $filedataClone ) ) {
-          $filedataClone = null;
-          error_log(__METHOD__.': NON clonado' );
-        }
-      }
+    $filedataClone = ( new FiledataModel() )->clone( $filedataId, $destDir );
+    if( empty( $filedataClone ) ) {
+      error_log(__METHOD__.': NON clonado' );
     }
 
     return $filedataClone;
@@ -2972,10 +2946,15 @@ class ResourceController {
 
   public function cloneRExtModels( $resFromId, $resToId, $models ) {
     Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($models) );
+
     $result = true;
 
-
+    $fdModel = new FiledataModel();
     foreach( $models as $modelName ) {
+
+      if( $result === false ) {
+        break;
+      }
 
       Cogumelo::trace(__METHOD__.': Clonando modelName: '.$modelName );
 
@@ -2986,26 +2965,34 @@ class ResourceController {
       ]);
       if( !is_object( $rExtList ) ) {
         $result = false;
-        error_log(__METHOD__.': NON listItems' );
+        error_log(__METHOD__.': NO listItems' );
 
         break;
       }
-      else {
-        while( $rExtFromObj = $rExtList->fetch() ) {
-          $resModelData = $rExtFromObj->getAllData('onlydata');
 
-          // error_log(__METHOD__.': Clonando Model Obj' );
+      while( $rExtFromObj = $rExtList->fetch() ) {
+        Cogumelo::trace(__METHOD__.': Clonamos '.get_class($rExtFromObj).' Id '.$rExtFromObj->getter('id') );
 
-          unset( $resModelData['id'] );
-          $resModelData['resource'] = $resToId;
+        $resModelData = $rExtFromObj->getAllData('onlydata');
 
-          $resModelToObj = new $modelName( $resModelData );
-          if( !$resModelToObj->save() ) {
-            $result = false;
-            error_log(__METHOD__.': NON save' );
+        unset( $resModelData['id'] );
+        $resModelData['resource'] = $resToId;
 
-            break;
-          }
+        $resModelToObj = new $modelName( $resModelData );
+        if( !$resModelToObj->save() ) {
+          $result = false;
+          error_log(__METHOD__.': NO save' );
+
+          break;
+        }
+
+        // Clonamos Filedata referidos en el modelo
+        $fdClonados = $fdModel->cloneAllFromObj( $resModelToObj );
+        if( !$fdClonados ) {
+          $result = false;
+          error_log(__METHOD__.': NO clonado Filedata' );
+
+          break;
         }
       }
     }
