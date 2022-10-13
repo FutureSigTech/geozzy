@@ -482,4 +482,25 @@ class ResourceModel extends Model {
   }
 
 
+
+  /**
+   * Clone Resource + RExts + Filedatas + Collections
+   *
+   * @param array $parameters array of filters
+   *
+   * @return boolean
+   */
+  public function cloneToRType( $resFromId, $rTypeIdName, $topicIdName = false ) {
+    error_log( __METHOD__.': $resFromId: '.$resFromId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
+    $result = true;
+
+    $resCtrl = new ResourceController();
+    $resToObj = $resCtrl->cloneToRType( $resFromId, $rTypeIdName, $topicIdName );
+    if( empty( $resToObj ) ) {
+      $result = false;
+    }
+
+    return $result;
+  }
+
 }

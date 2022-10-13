@@ -2957,6 +2957,7 @@ class ResourceController {
       }
 
       Cogumelo::trace(__METHOD__.': Clonando modelName: '.$modelName );
+
       $rExtModel = new $modelName();
       $rExtList = $rExtModel->listItems([
         'filters' => [ 'resource' => $resFromId ],
