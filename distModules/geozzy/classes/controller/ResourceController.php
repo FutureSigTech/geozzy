@@ -2593,7 +2593,7 @@ class ResourceController {
   // $this->cloneToRType( $form->getFieldValue('id'), 'rtypeAppBlogPub' );
 
 
-  public function cloneToRType( $resFromId, $rTypeIdName, $topicIdName = false ) {
+  public function cloneToRType( $resFromId, $rTypeIdName = null, $topicIdName = false ) {
     Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $rTypeIdName: '.$rTypeIdName.' $topicIdName: '.$topicIdName );
 
     $resToObj = null;
@@ -2621,7 +2621,12 @@ class ResourceController {
       // error_log( '$formBlockInfo[data]: '.json_encode( $formBlockInfo['data'] ) );
 
       $resData['published'] = 0;
-      $resData['rTypeId'] = $this->getRTypeIdByIdName( $rTypeIdName );
+      if( !empty( $rTypeIdName ) ) {
+        $resData['rTypeId'] = $this->getRTypeIdByIdName( $rTypeIdName );
+      }
+      else {
+        $rTypeIdName = $this->getRTypeIdName( $resData['rTypeId'] );
+      }
 
       if( isset( $resData['syncIdName'] ) ) {
         unset( $resData['syncIdName'] );
