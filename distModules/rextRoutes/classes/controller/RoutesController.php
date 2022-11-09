@@ -57,10 +57,10 @@ class RoutesController {
 
       try {
         $fileContent = file_get_contents($filePath);
-        
+
         // elimina tag de waypoints (do contrario falla a biblio)
         $fileContentFinal = preg_replace('~<wpt(.*?)</wpt>~Usi', "", $fileContent);
-        
+
         $fnSplited = explode( '.', $filePath );
         $polygon = geoPHP::load( $fileContentFinal , array_pop( $fnSplited ) );
 
@@ -75,9 +75,15 @@ class RoutesController {
 
         $route['id'] =  1;
         $route['circular'] = 0;
-        $route['centroid'] =  [ $cent->y(), $cent->x() ];
-        $route['start'] =  [ $start->y(), $start->x() ];
-        $route['end'] =  [ $end->y(), $end->x() ];
+        if( $cent ) {
+          $route['centroid'] = [ $cent->y(), $cent->x() ];
+        }
+        if( $start ) {
+          $route['start'] = [ $start->y(), $start->x() ];
+        }
+        if( $end ) {
+          $route['end'] = [ $end->y(), $end->x() ];
+        }
         $route['trackPoints'] = $this->extractPoints( $polygon );
       }
       catch(Exception $e) {
@@ -137,10 +143,10 @@ class RoutesController {
           /*array_pop( $fnSplited )*/
 
           try {
-            $fileContent = file_get_contents($filePath);          
+            $fileContent = file_get_contents($filePath);
             // elimina tag de waypoints (do contrario falla a biblio)
             $fileContentFinal = preg_replace('~<wpt(.*?)</wpt>~Usi', "", $fileContent);
-            
+
             $fnSplited = explode( '.', $filePath );
             $polygon = geoPHP::load( $fileContentFinal , array_pop( $fnSplited ) );
             /*echo "<pre>";
