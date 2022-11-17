@@ -18,7 +18,8 @@ class rtypeUrl extends Module {
   public $nameLocations = array(
     'es' => 'URL',
     'en' => 'URL',
-    'gl' => 'URL'
+    'gl' => 'URL',
+    'ca' => 'URL'
   );
 
 

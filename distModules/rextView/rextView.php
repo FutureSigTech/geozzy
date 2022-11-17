@@ -29,7 +29,8 @@ class rextView extends Module {
           'name' => array(
             'en' => 'None',
             'es' => 'Ninguno',
-            'gl' => 'Ningún'
+            'gl' => 'Ningún',
+            'ca' => 'Cap'
           )
         ),
         'tplEmpty' => array(
@@ -37,7 +38,8 @@ class rextView extends Module {
           'name' => array(
             'en' => 'Empty',
             'es' => 'Vacío',
-            'gl' => 'Vacío'
+            'gl' => 'Vacío',
+            'ca' => 'Buit'
           )
         ),
         'tplDefault' => array(
@@ -45,7 +47,8 @@ class rextView extends Module {
           'name' => array(
             'en' => 'Default',
             'es' => 'Vista por defecto',
-            'gl' => 'Vista por defecto'
+            'gl' => 'Vista por defecto',
+            'ca' => 'Vista per defecte'
           )
         )
       )
