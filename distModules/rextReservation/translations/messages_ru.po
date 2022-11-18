@@ -32,33 +32,41 @@ msgid "Adults"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:50
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:51
 msgid "None"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:58
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:59
 msgid "Reservation URL"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:62
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:63
 msgid "Reservation phone"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:66
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:67
 msgid "Reservation email"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:70
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:71
 msgid "Reservations channel"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:75
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:76
 msgid "Identifier"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:79
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:80
 msgid "Other information"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:85
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:86
 msgid "Book button text"
 msgstr ""

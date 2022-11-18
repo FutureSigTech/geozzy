@@ -78,5 +78,9 @@ msgid "to"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:386
+msgid "\\a\\\t"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextEvent/classes/controller/RExtEventController.php:386
 msgid "\\a\\t"
 msgstr ""

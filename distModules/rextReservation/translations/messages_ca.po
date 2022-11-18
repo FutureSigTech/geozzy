@@ -32,33 +32,41 @@ msgid "Adults"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:50
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:51
 msgid "None"
 msgstr "Cap"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:58
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:59
 msgid "Reservation URL"
 msgstr "URL de reserva"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:62
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:63
 msgid "Reservation phone"
 msgstr "Telèfon de reserves"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:66
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:67
 msgid "Reservation email"
 msgstr "Correu electrònic de reserva"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:70
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:71
 msgid "Reservations channel"
 msgstr "Canal de reserves"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:75
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:76
 msgid "Identifier"
 msgstr "Identificador"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:79
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:80
 msgid "Other information"
 msgstr "Altra informació"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:85
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:86
 msgid "Book button text"
 msgstr "Text del botó del llibre"

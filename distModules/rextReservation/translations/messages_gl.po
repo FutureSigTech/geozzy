@@ -42,30 +42,37 @@ msgid "Adults"
 msgstr "Adultos"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:50
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:51
 msgid "None"
 msgstr "Ninguno"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:58
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:59
 msgid "Reservation URL"
 msgstr "URL de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:62
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:63
 msgid "Reservation phone"
 msgstr "Teléfono de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:66
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:67
 msgid "Reservation email"
 msgstr "Email de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:70
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:71
 msgid "Reservations channel"
 msgstr "Canal de reservas"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:75
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:76
 msgid "Identifier"
 msgstr "Identificados"
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:79
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:80
 msgid "Other information"
 msgstr "Otra información"
 
@@ -74,5 +81,6 @@ msgid "Book"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:85
+#: /home/proxectos/geozzy/distModules/rextReservation/classes/controller/RExtReservationController.php:86
 msgid "Book button text"
 msgstr "Texto botón reservar"

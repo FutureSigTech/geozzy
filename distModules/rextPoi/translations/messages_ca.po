@@ -18,6 +18,7 @@ msgid "Datos Panorama"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/rExtViewBlock.tpl:23
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/rExtViewBlock.tpl:24
 msgid ""
 "Haz click en el lugar donde se ubica el recurso, podrás arrastrar y soltar "
 "la localización"

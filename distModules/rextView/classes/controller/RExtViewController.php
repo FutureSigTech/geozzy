@@ -38,7 +38,7 @@ class RExtViewController extends RExtController implements RExtInterface {
 
 
   /**
-    Defino el formulario
+   * Defino el formulario
    */
   public function manipulateForm( FormController $form ) {
     // error_log( "RExtViewController: manipulateForm()" );
@@ -108,6 +108,8 @@ class RExtViewController extends RExtController implements RExtInterface {
       'data' => false,
       'dataForm' => false
     );
+
+    $templates = [];
 
     $prefixedFieldNames = $this->prefixArray( $form->getFieldValue( $this->addPrefix( 'FieldNames' ) ) );
     // error_log( 'prefixedFieldNames =' . print_r( $prefixedFieldNames, true ) );

@@ -67,7 +67,12 @@ geozzy.rExtMapController = function( opts ) {
         that.resourceMapOptions.minZoom = cogumelo.publicConf.rextMapConf.minZoom;
       }
 
+
+
       that.resourceMap = new google.maps.Map( $mapContainer.get(0), that.resourceMapOptions );
+      // google analytics
+      // gtag('set', 'page_path', window.location.pathname);
+      gtag( 'event', 'new_map' );
 
 
 

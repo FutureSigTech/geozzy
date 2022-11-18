@@ -11,9 +11,9 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
 
   that.segmentDIV = segmentDIV;
 
-  that.latInput = that.segmentDIV.find(".lat input");
-  that.lonInput = that.segmentDIV.find(".lon input");
-  that.defaultZoom = that.segmentDIV.find(".zoom input");
+  that.latInput = that.segmentDIV.find(".lat input[name='locLat']");
+  that.lonInput = that.segmentDIV.find(".lon input[name='locLon']");
+  that.defaultZoom = that.segmentDIV.find(".zoom input[name='defaultZoom']");
   that.mapContainer = that.segmentDIV.find(".mapContainer");
   that.addressInput = that.segmentDIV.find(".address");
   that.resourceMap = false;

@@ -12,9 +12,11 @@ class rextPoiCollection extends Module {
   public $name = 'rextPoiCollection';
   public $version = '7';
 
-  public $models = array();
+  public $models = [];
 
-  public $taxonomies = array();
+  public $taxonomies = [];
+
+  public $collections = ['poi'];
 
 
   public $dependences = array(

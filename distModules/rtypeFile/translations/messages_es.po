@@ -70,21 +70,26 @@ msgstr "Puedes subir ficheros de hasta 8MB con formato JPG y PNG"
 msgid "If not uploaded, an automatic thumbnail will be created"
 msgstr "Si no se especifica, se genera una miniatura"
 
-#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:39
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:38
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:39
 msgid "Main Resource information"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:58
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:55
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:54
 msgid "Multimedia file"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:68
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:65
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:64
 msgid "Edit Resource"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:80
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:86
+#: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:92
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:77
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:83
 #: /home/proxectos/geozzy/distModules/rtypeFile/classes/controller/RTypeFileController.php:89
