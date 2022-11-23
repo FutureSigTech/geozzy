@@ -1071,11 +1071,20 @@ class geozzyAPIView extends View {
       $extraParams['ids'] = false;
     }
 
+    // Aceptamos que entre "ids" por GET
+    if( isset( $_GET['ids'] ) ) {
+      $tmpIds = is_array( $_GET['ids'] ) ? implode( ',', $_GET['ids'] ) : $_GET['ids'];
+      $extraParams['ids'] = preg_match( '/^\d+(,\d+)*$/', $tmpIds ) ? $tmpIds : false;
+    }
+
     // POST['ids'] tiene preferencia sobre param en URL
     if( isset( $_POST['ids'] ) ) {
       $tmpIds = is_array( $_POST['ids'] ) ? implode( ',', $_POST['ids'] ) : $_POST['ids'];
       $extraParams['ids'] = preg_match( '/^\d+(,\d+)*$/', $tmpIds ) ? $tmpIds : false;
     }
+
+    // error_log( 'extraParams[ids]: '. print_r( $extraParams['ids'], true ) );
+    // error_log( '_GET: '. print_r( $_GET, true ) );
 
 
 

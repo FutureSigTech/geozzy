@@ -35,7 +35,7 @@ geozzy.explorer = function( opts ) {
   $.extend(true, that.options, opts);
 
   // console.trace( 'CARGAMOS geozzy.explorer  '.that.options.explorerId );
-  console.log( 'CARGAMOS geozzy.explorer '+that.options.fetchType+' '+that.options.explorerId );
+  console.log( 'ZZZ  CARGAMOS geozzy.explorer '+that.options.fetchType+' '+that.options.explorerId );
 
   that.explorerTouchDevice = $('html').hasClass('touch');
 

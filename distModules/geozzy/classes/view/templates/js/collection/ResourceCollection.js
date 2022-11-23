@@ -8,6 +8,8 @@ geozzy.collection.ResourceCollection = Backbone.Collection.extend({
   //sortKey: 'weight',
 
   options: {
+    fetchType: 'POST',
+
     fields: false,
     filters: false,
     rtype: false,
@@ -58,8 +60,8 @@ geozzy.collection.ResourceCollection = Backbone.Collection.extend({
     var that = this;
 
     return that.fetch({
-      type: 'POST',
-      data:{ids: idsArray},
+      type: that.options.fetchType,
+      data: { ids: idsArray },
       success: function( list ) {
         fetchCallback();
       }
