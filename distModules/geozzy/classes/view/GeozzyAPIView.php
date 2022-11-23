@@ -1042,6 +1042,7 @@ class geozzyAPIView extends View {
       'commentsCount' => '#^(true|false)$#',
       'votes' => '#^(true|false)$#',
       'updatedfrom' => '#^(\d+)$#',
+      'ids' => '#^(\d+(,\d+)*)$#',
     ];
 
     $extraParams = RequestController::processUrlParams( $param, $validation );
@@ -1064,11 +1065,18 @@ class geozzyAPIView extends View {
 
 
     // Validamos el parametro "ids" y, si es correcto, lo añadimos en $extraParams['ids']
-    $extraParams['ids'] = false;
+
+    // Aceptamos que entre "ids" por extraParams
+    if( empty( $extraParams['ids'] ) ) {
+      $extraParams['ids'] = false;
+    }
+
+    // POST['ids'] tiene preferencia sobre param en URL
     if( isset( $_POST['ids'] ) ) {
       $tmpIds = is_array( $_POST['ids'] ) ? implode( ',', $_POST['ids'] ) : $_POST['ids'];
       $extraParams['ids'] = preg_match( '/^\d+(,\d+)*$/', $tmpIds ) ? $tmpIds : false;
     }
+
 
 
     //$queryParameters = apiFiltersController::resourceListOptions( $param );
