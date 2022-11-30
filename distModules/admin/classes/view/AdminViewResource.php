@@ -261,26 +261,32 @@ class AdminViewResource extends AdminViewMaster {
             $rtypeControl = new ResourcetypeModel();
             $rTypeItem = $rtypeControl->ListItems( array( 'filters' => array( 'id' => $valuesArray['typeReturn'] ) ) )->fetch();
             if($rTypeItem && $rTypeItem->getter('idName') === "rtypePage"){
-              $successArray[ 'redirect' ] = SITE_URL . 'admin#resourcepage/list';
+              $successArray[ 'redirect' ] = Cogumelo::getSetupValue('setup:webBaseUrl:url').
+                'admin#resourcepage/list';
             }
             else{
-              $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
+              $successArray[ 'redirect' ] = Cogumelo::getSetupValue('setup:webBaseUrl:url').
+                'admin#resource/list';
             }
           }
           else{ // tabla general de contenidos
-            $successArray[ 'redirect' ] = SITE_URL . 'admin#resource/list';
+            $successArray[ 'redirect' ] = Cogumelo::getSetupValue('setup:webBaseUrl:url').
+              'admin#resource/list';
           }
         }
         else { // tabla de recursos de una temática
-          $successArray[ 'redirect' ] = SITE_URL . 'admin#topic/'.$valuesArray['topicReturn'];
+          $successArray[ 'redirect' ] = Cogumelo::getSetupValue('setup:webBaseUrl:url').
+            'admin#topic/'.$valuesArray['topicReturn'];
         }
       }
       else { // tabla de recursos de una temática
-        $successArray[ 'redirect' ] = SITE_URL . 'admin#storysteps/story/'.$valuesArray['storyAssignReturn'].'/assign';
+        $successArray[ 'redirect' ] = Cogumelo::getSetupValue('setup:webBaseUrl:url').
+          'admin#storysteps/story/'.$valuesArray['storyAssignReturn'].'/assign';
       }
     }
     else { // tabla de recursos de una temática
-      $successArray[ 'redirect' ] = SITE_URL . 'admin#storysteps/'.$valuesArray['storyReturn'];
+      $successArray[ 'redirect' ] = Cogumelo::getSetupValue('setup:webBaseUrl:url').
+        'admin#storysteps/'.$valuesArray['storyReturn'];
     }
 
     $resView = new ResourceView( $resCtrl );

@@ -531,7 +531,7 @@ class GeozzyUserView extends View {
     $userVO = $this->getUserVO( $userSess['data']['id'] );
 
     if( !$userVO ) {
-      Cogumelo::redirect( SITE_URL.'404' );
+      Cogumelo::redirect( Cogumelo::getSetupValue('setup:webBaseUrl:url').'404' );
       die();
     }
 
