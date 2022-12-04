@@ -70,6 +70,9 @@ geozzy.storyComponents.StoryPluginPOISView = Backbone.View.extend({
     var that = this;
 
     return explorer = new geozzy.explorer({
+      // fetchType: 'GET',
+      // ignoreFilterIds: true,
+
       explorerId:'pois',
       explorerSectionName: __('Points of interest'),
       debug:false,

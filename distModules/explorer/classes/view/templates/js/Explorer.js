@@ -23,6 +23,9 @@ geozzy.explorer = function( opts ) {
     aditionalParameters: {},
     resetLocalStorage:false,
 
+    fetchType: 'POST',
+    ignoreFilterIds: false,
+
     // cache times (in seconds)
     cacheTimeIndex: 20,
     debug: false,
@@ -31,6 +34,7 @@ geozzy.explorer = function( opts ) {
 
   $.extend(true, that.options, opts);
 
+  cogumelo.log( 'ZZZ  CARGAMOS geozzy.explorer '+that.options.fetchType+' '+that.options.explorerId );
   that.explorerTouchDevice = $('html').hasClass('touch');
 
   // events
@@ -83,8 +87,7 @@ geozzy.explorer = function( opts ) {
 
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
 
-    that.bindEvent('resourceClick', function(param){
-
+    that.bindEvent('resourceClick', function(param) {
       if( that.options.useUrlRouter == true ){
         that.navigateUrl( param.id );
       }
@@ -95,32 +98,30 @@ geozzy.explorer = function( opts ) {
       }
     });
 
+    cogumelo.log( 'ZZZ  geozzy.explorer.exec '+that.options.fetchType+' '+that.options.explorerId );
 
-    that.resourceMinimalList.fetch(
-      {
-        cache: true,
-        type: 'POST',
-        data: that.options.aditionalParameters ,
-        expires: that.options.cacheTimeIndex ,
-        success: function() {
-
-          if( that.options.debug ) {
-            that.timeDebugerMain.log('&nbsp;- Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
-          }
-          that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
-          if( that.options.debug ) {
-            that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
-          }
-          that.applyFilters();
-          //that.options.minimalLoadSuccess();
-          that.triggerEvent('minimalLoadSuccess',{});
-          // render filters
-          that.renderFilters();
-          that.triggerEvent('filtersRenderSuccess',{});
+    that.resourceMinimalList.fetch({
+      cache: true,
+      type: that.options.fetchType,
+      // type: 'POST',
+      data: that.options.aditionalParameters ,
+      expires: that.options.cacheTimeIndex ,
+      success: function() {
+        if( that.options.debug ) {
+          that.timeDebugerMain.log('&nbsp;- Fetch first resource index with '+ that.resourceMinimalList.length + ' elements');
         }
+        that.resourceIndex = new Backbone.Obscura(that.resourceMinimalList);
+        if( that.options.debug ) {
+          that.timeDebugerMain.log( '&nbsp;- Resources Indexed first time' );
+        }
+        that.applyFilters();
+        //that.options.minimalLoadSuccess();
+        that.triggerEvent('minimalLoadSuccess',{});
+        // render filters
+        that.renderFilters();
+        that.triggerEvent('filtersRenderSuccess',{});
       }
-
-    );
+    });
 
   };
 
@@ -309,6 +310,10 @@ geozzy.explorer = function( opts ) {
 
       that.resourcePartialList = new partialCollection();
 
+      that.resourcePartialList.extendOptions( { fetchType: that.options.fetchType } );
+
+      cogumelo.log( 'ZZZ  geozzy.explorer.fetchPartialList '+that.resourcePartialList.options.fetchType+' '+that.options.explorerId );
+
       if( that.options.resetLocalStorage === true ) {
         that.resourcePartialList.reset();
         that.resourcePartialList.saveLocalStorage();
@@ -316,7 +321,11 @@ geozzy.explorer = function( opts ) {
     }
 
     var dataFetch = that.options.aditionalParameters;
-    dataFetch.ids = resourcesToLoad;
+
+    if( !that.options.ignoreFilterIds || resourcesToLoad.length === 1 ) {
+      dataFetch.ids = resourcesToLoad;
+    }
+
     that.resourcePartialList.fetchByIds({
       data: dataFetch,
       success: function() {

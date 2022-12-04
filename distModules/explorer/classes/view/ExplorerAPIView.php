@@ -128,42 +128,65 @@ class ExplorerAPIView extends View
 
   // explorer
   public function explorer( $urlParams ) {
+    // error_log( __METHOD__ .'urlParams '. print_r( $urlParams, true ) );
+
     require_once APP_BASE_PATH."/conf/inc/geozzyExplorers.php"; // Load $GEOZZY_EXPLORERS
     global $GEOZZY_EXPLORERS;
+
+    // Quitamos parametros GET de $urlParams
+    $urlGetPos = strpos( $urlParams[1], '?' );
+    if( $urlGetPos ) {
+      $urlParams[1] = substr( $urlParams[1], 0, $urlGetPos );
+    }
 
     $validation = array(
       'explorer'=> '#(.*)#',
       'request'=> '#(.*)#'
     );
-    $urlParamsList = RequestController::processUrlParams($urlParams, $validation);
+    $urlParamsList = RequestController::processUrlParams( $urlParams, $validation );
 
-    if( isset($urlParamsList['request']) && isset($urlParamsList['explorer']) && isset( $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ] ) ) {
-      $explorerConf = $GEOZZY_EXPLORERS[ $urlParamsList['explorer'] ];
+    // Añadimos parametros GET a $urlParamsList
+    // error_log( __METHOD__ . print_r( $_GET, true ) );
+    if( !empty( $_GET ) ) {
+      foreach( $_GET as $key => $value ) {
+        $urlParamsList[ $key ] = $value;
+      }
+    }
+
+    // error_log( __METHOD__ . print_r( $urlParamsList, true ) );
+    $urlExplorer = isset( $urlParamsList['explorer'] ) ? $urlParamsList['explorer'] : false;
+    $urlRequest = isset( $urlParamsList['request'] ) ? $urlParamsList['request'] : false;
+
+    if( $urlRequest && $urlExplorer && isset( $GEOZZY_EXPLORERS[ $urlExplorer ] ) ) {
+      $explorerConf = $GEOZZY_EXPLORERS[ $urlExplorer ];
+      $explorerModule = $explorerConf['module'];
 
       // Include controller
-      eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
+      $explorerModule::load( $explorerConf['controllerFile'] );
+      // eval( $explorerConf['module'].'::load("'.$explorerConf['controllerFile'].'");' );
 
       // constructor;
-      $explorer = new $explorerConf['controllerName']();
+      $explorerCtrl = new $explorerConf['controllerName']();
 
-      if( $urlParamsList['request'] == 'minimal' ) {
-        if( isset($urlParamsList['updatedfrom']) ) {
+      if( $urlRequest == 'minimal' ) {
+        // if( isset($urlParamsList['updatedfrom']) ) {
+        //   header('Content-type: application/json');
+        //   $explorerCtrl->serveMinimal( $urlParamsList['updatedfrom'] );
+        // }
+        // else {
           header('Content-type: application/json');
-          $explorer->serveMinimal( $urlParamsList['updatedfrom'] );
-        }
-        else {
-          header('Content-type: application/json');
-          $explorer->serveMinimal();
-        }
+
+          // Añadimos $urlParamsList como parametro
+          $explorerCtrl->serveMinimal( false, $urlParamsList );
+        // }
+      }
+      elseif( $urlRequest == 'partial' ) {
+        header('Content-type: application/json');
+        // Añadimos $urlParamsList como parametro
+        $explorerCtrl->servePartial( $urlParamsList );
       }
       else {
-        if( $urlParamsList['request'] == 'partial' ) {
-          header('Content-type: application/json');
-          $explorer->servePartial();
-        }
-        else {
-          header("HTTP/1.0 404 Not Found");
-        }
+        header("HTTP/1.0 404 Not Found");
       }
     }
     else {

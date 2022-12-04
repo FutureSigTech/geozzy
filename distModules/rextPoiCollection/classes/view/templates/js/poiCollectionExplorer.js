@@ -28,6 +28,9 @@
 
       /* EXPLORER MAIN CLASS DECLARATION */
       that.ex = new geozzy.explorer({
+        // fetchType: 'GET',
+        // ignoreFilterIds: true,
+
         explorerId: that.explorerId,
         explorerSectionName:'Puntos de interese',
         debug:false,
