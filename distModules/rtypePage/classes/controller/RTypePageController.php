@@ -21,7 +21,7 @@ class RTypePageController extends RTypeController implements RTypeInterface {
 
 
     // Cambiamos el tipo de topics y starred para que no se muestren
-    $form->setFieldParam( 'externalUrl', 'label', __( 'Home URL' ) );
+    $form->setFieldParam( 'externalUrl',  'type', 'reserved' );
     $form->setFieldParam( 'topics', 'type', 'reserved' );
     $form->setFieldParam( 'starred', 'type', 'reserved' );
     $form->removeValidationRules('topics');
@@ -55,7 +55,7 @@ class RTypePageController extends RTypeController implements RTypeInterface {
       $form->multilangFieldNames( 'mediumDescription' ),
       $form->multilangFieldNames( 'content' )
     );
-    $formFieldsNames[] = 'externalUrl';
+    //$formFieldsNames[] = 'externalUrl';
     $templates['formBase']->assign( 'formFieldsNames', $formFieldsNames );
 
 

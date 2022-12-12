@@ -579,3 +579,21 @@ msgid ""
 msgstr ""
 "Fai clic no lugar onde se localice o recurso coa maior precisión posible, "
 "poderás arrastrar e soltar a localización"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel.tpl:12
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:12
+msgid "Type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel.tpl:20
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:27
+msgid "Last update"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:33
+msgid "Categories"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:271
+msgid "Select an image"
+msgstr "Selecciona unha imaxe"

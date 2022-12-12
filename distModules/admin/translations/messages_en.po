@@ -464,6 +464,9 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:322
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:364
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:407
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:328
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:370
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewResource.php:413
 msgid "Thumbnail image (Optional)"
 msgstr ""
 
@@ -757,7 +760,7 @@ msgstr ""
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:35
 #: /home/proxectos/geozzy/distModules/admin/classes/view/templates/loginForm.tpl:35
 msgid "He olvidado mi contraseña"
-msgstr ""
+msgstr "I forgot my password"
 
 #: /home/proxectos/geozzy/classes/view/templates/admin_classes_view_templates_loginForm.tpl:39
 #: /home/proxectos/geozzy/classes/view/templates/loginForm.tpl:39
@@ -831,3 +834,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:57
 msgid "Description"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/admin/classes/view/AdminViewRole.php:57
+msgid "Categoría principal"
+msgstr "Main category"

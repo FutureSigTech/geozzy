@@ -9,11 +9,11 @@
     <div class="infoColData col-md-8">{$res.data.id}</div>
   </div>
   <div class="row">
-    <div class="infoCol col-md-4">Tipo</div>
+    <div class="infoCol col-md-4">{t}Type{/t}</div>
     <div class="infoColData col-md-8">{$res.data.rTypeName|default:''}</div>
   </div>
   <div class="row">
-    <div class="infoCol col-md-4">Creado</div>
+    <div class="infoCol col-md-4">{t}Time creation{/t}</div>
     <div class="infoColData col-md-8">
       <style>
         .cgmMForm-field-timeCreation label { display: none; }
@@ -24,13 +24,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="infoCol col-md-4">Actualizado</div>
+    <div class="infoCol col-md-4">{t}Last update{/t}</div>
     <div class="infoColData col-md-8">{if isset($update)}{$update.time} ({$update.user}){/if}</div>
   </div>
 
   {if isset($res.data.topicsName)}
   <div class="row">
-    <div class="infoCol col-md-12">Temáticas</div>
+    <div class="infoCol col-md-12">{t}Categories{/t}</div>
   </div>
   {foreach $res.data.topicsName as $i => $dir}
   <div class="row rowWhite"><div class="infoCol col-md-4"></div>

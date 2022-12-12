@@ -268,7 +268,7 @@ class RTypeController {
     // TEMPLATE panel image
     $templates['image'] = new Template();
     $templates['image']->setTpl( 'rTypeFormDefPanel.tpl', 'geozzy' );
-    $templates['image']->assign( 'title', __( 'Select a image' ) );
+    $templates['image']->assign( 'title', __( 'Select an image' ) );
     $templates['image']->assign( 'res', $formBlockInfo );
     $formFieldsNames = array( 'image' );
     $templates['image']->assign( 'formFieldsNames', $formFieldsNames );

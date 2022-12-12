@@ -27,7 +27,7 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:28
 msgid "He olvidado mi contraseña"
-msgstr ""
+msgstr "I forgot my password"
 
 #: /home/proxectos/geozzy/distModules/geozzyUser/classes/view/templates/js/view/Templates.js:30
 msgid "Recovery password"

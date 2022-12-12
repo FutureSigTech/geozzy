@@ -1,25 +1,5 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"#-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#\n"
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: : Click on the place where the resource is located with the "
-"greatest precision you can, possible, you can drag and drop to location: #-#-"
-"#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp."
-"from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  "
-"cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-"
-"#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat."
-"sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-"
-"#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#\n"
-": #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#\n"
-"#-#-#-#-#  cgml-msgcat.sh.tmp.mix  #-#-#-#-#\n"
-"#-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
@@ -28,23 +8,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
-"#-#-#-#-#  cgml-msgcat.sh.tmp.mix  #-#-#-#-#\n"
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: : Click on the place where the resource is located with the "
-"greatest precision you can, possible, you can drag and drop to location: #-#-"
-"#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp."
-"from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  "
-"cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-"
-"#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat."
-"sh.tmp.from  #-#-#-#-#: #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#: #-#-#-"
-"#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#\n"
-": #-#-#-#-#  cgml-msgcat.sh.tmp.from  #-#-#-#-#\n"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/js/qrcodeGenerator.js:24
 msgid "QR Code Generator"
@@ -212,6 +175,8 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:340
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:370
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:363
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel.tpl:16
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:16
 msgid "Time creation"
 msgstr ""
 
@@ -612,7 +577,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:402
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/ResourceController.php:403
 msgid "SEO: URL Secundaria (Alias)"
-msgstr ""
+msgstr "SEO: Secondary URL (Aliases)"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:320
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:330
@@ -640,3 +605,21 @@ msgid ""
 msgstr ""
 "Click on the place where the resource is located with the greatest precision "
 "possible , you can drag and drop the location"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel.tpl:12
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:12
+msgid "Type"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel.tpl:20
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:27
+msgid "Last update"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:33
+msgid "Categories"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:271
+msgid "Select an image"
+msgstr ""

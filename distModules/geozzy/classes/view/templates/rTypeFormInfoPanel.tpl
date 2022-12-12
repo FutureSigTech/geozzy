@@ -9,15 +9,15 @@
     <div class="infoColData col-md-8">{$res.data.id}</div>
   </div>
   <div class="row">
-    <div class="infoCol col-md-4">Tipo</div>
+    <div class="infoCol col-md-4">{t}Type{/t}</div>
     <div class="infoColData col-md-8">{if isset($rType)}{$rType}{/if}</div>
   </div>
   <div class="row">
-    <div class="infoCol col-md-4">Creado</div>
+    <div class="infoCol col-md-4">{t}Time creation{/t}</div>
     <div class="infoColData col-md-8">{$timeCreation}</div>
   </div>
   <div class="row">
-    <div class="infoCol col-md-4">Actualizado</div>
+    <div class="infoCol col-md-4">{t}Last update{/t}</div>
     <div class="infoColData col-md-8">{if isset($timeLastUpdate)}{$timeLastUpdate}{/if}</div>
   </div>
 
