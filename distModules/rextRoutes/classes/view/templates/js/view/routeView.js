@@ -512,5 +512,20 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     var that = this;
     that.polyline.setOptions({strokeColor: that.options.strokeColor});
 
-  }
+  },
+
+  bringToFront: function() {
+    var that = this;
+    that.polyline.setOptions({zIndex: 6});
+    that.polylineBG1.setOptions({zIndex: 5});
+    that.polylineBG2.setOptions({zIndex: 4});
+  },
+
+  bringToFrontReset: function() {
+    var that = this;
+    that.polyline.setOptions({zIndex: 3});
+    that.polylineBG1.setOptions({zIndex: 2});
+    that.polylineBG2.setOptions({zIndex: 1});
+  }  
+
 });

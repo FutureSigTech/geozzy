@@ -44,6 +44,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     });
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
+
       var r = that.parentExplorer.resourceMinimalList.get(params.id);
 
       if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
@@ -52,6 +53,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         }
         else {
           r.get('routeObj').routeInstance.strokeColorCustom(that.options.strokeHoverColor);
+          r.get('routeObj').routeInstance.bringToFront();
+
         }
 
 
@@ -113,6 +116,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       }
       else {
         r.get('routeObj').routeInstance.strokeColorOriginal();
+        r.get('routeObj').routeInstance.bringToFrontReset();
       }
     }
 
