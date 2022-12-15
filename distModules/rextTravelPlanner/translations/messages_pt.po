@@ -191,7 +191,7 @@ msgstr "Datas"
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:91
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:91
 msgid "Map"
-msgstr "Plano"
+msgstr "Mapa"
 
 #: /home/proxectos/geozzy/classes/view/templates/rExtViewBlock.tpl:260
 #: /home/proxectos/geozzy/classes/view/templates/rextTravelPlanner_classes_view_templates_rExtViewBlock.tpl:260

@@ -29,7 +29,7 @@ msgstr "Reservar"
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_netubi-com-public.tpl:11
 #: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:11
 msgid "Check in date - Check out date"
-msgstr "Data de entrada - Data de saída"
+msgstr "Data de entrada  - Data de saída"
 
 #: /home/proxectos/geozzy/classes/view/templates/rextAccommodationReserve_classes_view_templates_booking-com-public.tpl:18
 #: /home/proxectos/geozzy/classes/view/templates/booking-com-public.tpl:18
