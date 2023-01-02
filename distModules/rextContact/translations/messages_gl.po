@@ -35,7 +35,7 @@ msgstr "Email de contacto"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:76
 msgid "How to arrive"
-msgstr "Cómo chegar"
+msgstr "Como chegar"
 
 #: /home/proxectos/geozzy/distModules/rextContact/classes/controller/RExtContactController.php:81
 msgid "Opening times"
