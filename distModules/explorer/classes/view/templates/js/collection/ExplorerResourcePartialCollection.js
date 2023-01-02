@@ -12,9 +12,9 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
   allResourcesLoaded: false,
   initialize: function( opts ) {
     var that = this;
-    console.log('getLocalStorage START');
+    cogumelo.log('getLocalStorage START');
     that.getLocalStorage();
-    console.log('getLocalStorage END');
+    cogumelo.log('getLocalStorage END');
   },
   extendOptions: function( opts ) {
     $.extend( true, this.options, opts );
@@ -25,7 +25,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
       if( typeof params.data.ids !== 'undefined' && params.data.ids.length === 1 && that.get(params.data.ids[0]) ){
         if(params.success) {
           params.success();
-          console.log('Partial Success (Primeiro)');
+          cogumelo.log('Partial Success (Primeiro)');
         }
       }
       else
@@ -77,7 +77,7 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           that.saveLocalStorage();
           if( paramsFf.success) {
             paramsFf.success();
-            //console.log('Partial Success (fetchFull Ajax)');
+            //cogumelo.log('Partial Success (fetchFull Ajax)');
           }
           that.allResourcesLoaded = true;
           that.allResourcesLoading = false;
@@ -92,10 +92,10 @@ geozzy.explorerComponents.resourcePartialCollection = Backbone.Collection.extend
           if( that.allResourcesLoading == false) {
             paramsFf.success();
             clearInterval(successInterval);
-            //console.log('Partial Success (Direct, only success event)');
+            //cogumelo.log('Partial Success (Direct, only success event)');
           }
           else {
-            //console.log('Partial Success (Direct, only success event Waiting...)');
+            //cogumelo.log('Partial Success (Direct, only success event Waiting...)');
           }
         }, 50);
         //paramsFf.success();
