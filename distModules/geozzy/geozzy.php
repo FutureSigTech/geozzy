@@ -386,4 +386,21 @@ class geozzy extends Module {
     // Return the password
     return $password;
   }
+
+
+  /**
+    Busca elementos abandonados
+    @param array $params Parametros
+    @return bool
+   */
+  public function garbageCollection() {
+    Cogumelo::trace( __METHOD__ );
+
+    geozzy::load( 'controller/GeozzyGarbageCollection.php' );
+    $garbageCtrl = new GeozzyGarbageCollection();
+
+    $result = $garbageCtrl->garbageCollection();
+
+    return $result;
+  } // function garbageCollection()
 }
