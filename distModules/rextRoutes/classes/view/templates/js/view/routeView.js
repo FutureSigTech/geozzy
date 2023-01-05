@@ -502,30 +502,34 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
   strokeColorCustom: function( customColor ) {
     var that = this;
-
-    that.polyline.setOptions({strokeColor: customColor});
-
-
+    if (typeof that.polyline != 'undefined' && that.polyline != false) {
+      that.polyline.setOptions({strokeColor: customColor});
+    }
   },
 
   strokeColorOriginal: function( ) {
     var that = this;
-    that.polyline.setOptions({strokeColor: that.options.strokeColor});
-
+    if (typeof that.polyline != 'undefined' && that.polyline != false) {
+      that.polyline.setOptions({strokeColor: that.options.strokeColor});
+    }
   },
 
   bringToFront: function() {
     var that = this;
-    that.polyline.setOptions({zIndex: 6});
-    that.polylineBG1.setOptions({zIndex: 5});
-    that.polylineBG2.setOptions({zIndex: 4});
+    if (typeof that.polyline != 'undefined' && that.polyline != false) {
+      that.polyline.setOptions({zIndex: 6});
+      that.polylineBG1.setOptions({zIndex: 5});
+      that.polylineBG2.setOptions({zIndex: 4});
+    }
   },
 
   bringToFrontReset: function() {
     var that = this;
-    that.polyline.setOptions({zIndex: 3});
-    that.polylineBG1.setOptions({zIndex: 2});
-    that.polylineBG2.setOptions({zIndex: 1});
-  }  
+    if (typeof that.polyline != 'undefined' && that.polyline != false) {
+      that.polyline.setOptions({zIndex: 3});
+      that.polylineBG1.setOptions({zIndex: 2});
+      that.polylineBG2.setOptions({zIndex: 1});
+    }
+  }
 
 });
