@@ -363,7 +363,12 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     that.parentExplorer.resourceIndex.each( function(e) {
       markerCount++;
       if( e.mapMarker ) {
-        e.mapMarker.setIcon( that.chooseMarker(e) );
+        // console.log(e.mapMarker)
+        markerIcon = that.chooseMarker(e)
+        if( typeof markerIcon.zIndex !== 'undefined' || markerIcon.zIndex != false ) {
+          e.mapMarker.setZIndex(markerIcon.zIndex);  //force zIndex if set on icon options
+        }
+        e.mapMarker.setIcon( markerIcon );
         e.mapMarker.setVisible(true);
         e.mapMarker.setOptions({ labelContent: markerCount.toString() });
       }
