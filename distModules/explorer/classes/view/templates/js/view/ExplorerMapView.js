@@ -365,7 +365,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
       if( e.mapMarker ) {
         // console.log(e.mapMarker)
         markerIcon = that.chooseMarker(e)
-        if( typeof markerIcon.zIndex !== 'undefined' || markerIcon.zIndex != false ) {
+        if( typeof markerIcon.zIndex !== 'undefined' & markerIcon.zIndex != false ) {
           e.mapMarker.setZIndex(markerIcon.zIndex);  //force zIndex if set on icon options
         }
         e.mapMarker.setIcon( markerIcon );
