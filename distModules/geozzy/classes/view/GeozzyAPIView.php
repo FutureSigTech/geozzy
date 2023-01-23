@@ -756,8 +756,8 @@ class geozzyAPIView extends View {
 
     $this->resourceListV2( $param );
 
-    $tempo2 = microtime(true);
-    Cogumelo::log( 'API resourcelist: TEMPO Fin: '. sprintf( "%.3f", $tempo2-$tempo) .' - '. $_SERVER["REQUEST_URI"], 'Tempos' );
+    Cogumelo::log( 'API resourcelist: TEMPO: '. sprintf( "%.3f", microtime(true)-$tempo) .' - '.
+      $_SERVER["REQUEST_URI"], 'Tempos' );
   }
 
   public function resourceListV1( $param ) {

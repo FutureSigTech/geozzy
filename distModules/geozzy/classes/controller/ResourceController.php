@@ -2375,10 +2375,11 @@ class ResourceController {
       'ext' => []
     );
 
+
     $tempo = microtime(true);
 
     $cache = Cogumelo::GetSetupValue('cache:ResourceController:getViewBlockInfo');
-    if( $cache ) {
+    if( $cache !== null ) {
       Cogumelo::log( __METHOD__.' ---- ESTABLECEMOS CACHE A '.$cache, 'cache' );
       $this->cacheQuery = $cache;
     }

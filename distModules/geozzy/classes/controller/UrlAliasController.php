@@ -6,12 +6,9 @@ Cogumelo::load('coreController/Cache.php');
 
 class UrlAliasController {
 
-  public function __construct() {
-  }
-
-
   public function getAlternative( $urlFrom ) {
-    // Cogumelo::debug( __METHOD__.' urlFrom='. $urlFrom );
+    // Cogumelo::trace( __METHOD__.' urlFrom='. $urlFrom );
+    $tempo = microtime(true);
 
     $alternative = false;
 
@@ -118,10 +115,11 @@ class UrlAliasController {
       }
     }
 
-    // Cogumelo::debug( __METHOD__.' (Notice) urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
+    // Cogumelo::trace( __METHOD__.' (Notice) urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
 
+    Cogumelo::log( __METHOD__.' TEMPO: '. sprintf( "%.3f", microtime(true)-$tempo ) .' ('.$urlFrom.') '.
+      $_SERVER["REQUEST_URI"], 'Tempos' );
     return $alternative;
   }
 
 }
-
