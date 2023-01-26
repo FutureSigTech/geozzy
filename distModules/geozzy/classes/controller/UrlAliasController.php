@@ -117,7 +117,7 @@ class UrlAliasController {
 
     // Cogumelo::trace( __METHOD__.' (Notice) urlFrom='.$urlFrom.' Alternative='.json_encode($alternative) );
 
-    Cogumelo::log( __METHOD__.' TEMPO: '. sprintf( "%.3f", microtime(true)-$tempo ) .' ('.$urlFrom.') '.
+    Cogumelo::log( __METHOD__.' '. sprintf( "%.3f", microtime(true)-$tempo ) .' ('.$urlFrom.') '.
       $_SERVER["REQUEST_URI"], 'Tempos' );
     return $alternative;
   }

@@ -119,7 +119,7 @@ class ResourceController {
   public function loadResourceObject( $resId = false ) {
     $resourceobj = null;
 
-    if( !$this->resObj || ( $resId && $resId !== $this->resObj->getter('id') ) ) {
+    if( empty( $this->resObj ) || ( empty( $resId ) && $resId !== $this->resObj->getter('id') ) ) {
       $resModel = new ResourceModel();
       $resList = $resModel->listItems([
         'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
@@ -2408,7 +2408,7 @@ class ResourceController {
     }
 
     $tempo2 = microtime(true);
-    Cogumelo::log( __METHOD__.' TEMPO: '. sprintf( "%.3f", $tempo2-$tempo) .' ('.$resId.') '. $_SERVER["REQUEST_URI"], 'Tempos' );
+    Cogumelo::log( __METHOD__.' '. sprintf( "%.3f", $tempo2-$tempo) .' ('.$resId.') '. $_SERVER["REQUEST_URI"], 'Tempos' );
 
     return( $viewBlockInfo );
   } // function getViewBlockInfo()
