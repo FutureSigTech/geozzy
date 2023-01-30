@@ -119,7 +119,7 @@ class ResourceController {
   public function loadResourceObject( $resId = false ) {
     $resourceobj = null;
 
-    if( empty( $this->resObj ) || ( empty( $resId ) && $resId !== $this->resObj->getter('id') ) ) {
+    if( empty( $this->resObj ) || ( !empty( $resId ) && $resId !== $this->resObj->getter('id') ) ) {
       $resModel = new ResourceModel();
       $resList = $resModel->listItems([
         'affectsDependences' => [ 'FiledataModel', 'UrlAliasModel', 'ResourceTopicModel', 'ExtraDataModel' ],
