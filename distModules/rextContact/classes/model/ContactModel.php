@@ -64,6 +64,12 @@ class ContactModel extends Model {
 
   var $deploySQL = [
     [
+      'version' => 'rextContact#2',
+      'sql'=> '
+        ALTER TABLE geozzy_resource_rext_contact MODIFY COLUMN phone VARCHAR(40) default NULL;
+      '
+    ],
+    [
       'version' => 'rextContact#1.1',
       'sql'=> '
         {multilang:ALTER TABLE geozzy_resource_rext_contact MODIFY COLUMN timetable_$lang VARCHAR(800) default NULL;}

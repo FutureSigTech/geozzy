@@ -5,7 +5,7 @@ Cogumelo::load( 'coreController/Module.php' );
 class rextContact extends Module {
 
   public $name = 'rextContact';
-  public $version = 1.1;
+  public $version = 2;
 
 
   public $models = array(
