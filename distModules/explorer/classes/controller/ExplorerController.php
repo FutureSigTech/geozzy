@@ -21,13 +21,13 @@ abstract class ExplorerController {
     $resId = null;
 
     if( isset( $urlParamsList[ $paramName ] ) ) {
-      $resId = (int) $urlParamsList[ $paramName ];
+      $resId = $urlParamsList[ $paramName ];
     }
     elseif( isset( $_GET[ $paramName ] ) ) {
-      $resId = (int) $_GET[ $paramName ];
+      $resId = $_GET[ $paramName ];
     }
     elseif( isset( $_POST[ $paramName ] ) ) {
-      $resId = (int) $_POST[ $paramName ];
+      $resId = $_POST[ $paramName ];
     }
 
     return $resId;
