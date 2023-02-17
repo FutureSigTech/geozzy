@@ -72,7 +72,7 @@ geozzy.rExtMapController = function( opts ) {
       that.resourceMap = new google.maps.Map( $mapContainer.get(0), that.resourceMapOptions );
       // google analytics
       // gtag('set', 'page_path', window.location.pathname);
-      gtag( 'event', 'new_map' );
+      gtag('event', 'bw_new_map', {'jsClass': 'rExtMapController.initialize'});
 
 
 

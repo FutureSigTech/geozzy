@@ -89,7 +89,7 @@ geozzy.explorer = function( opts ) {
 
     that.bindEvent('resourceClick', function(param) {
 
-      gtag( 'event', 'explorer_click',
+      gtag('event', 'bw_explorer_click',
         {
           'resource_id': param.id,
           // 'explorer_id': that.options.explorerId,   // Cambio para simular resource_access
