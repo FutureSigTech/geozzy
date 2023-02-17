@@ -70,9 +70,12 @@ geozzy.rExtMapController = function( opts ) {
 
 
       that.resourceMap = new google.maps.Map( $mapContainer.get(0), that.resourceMapOptions );
-      // google analytics
-      // gtag('set', 'page_path', window.location.pathname);
-      gtag('event', 'bw_new_map', {'jsClass': 'rExtMapController.initialize'});
+      that.usageRecord(); // Registramos el uso del mapa previamente instanciado
+      var gtagInfo = { 'jsClass': 'rExtMapController' };
+      if( typeof contextExplorerId !== 'undefined' ) {
+        gtagInfo.explorer_id = contextExplorerId;
+      }
+      gtag('event', 'bw_new_map', gtagInfo);
 
 
 
@@ -160,4 +163,19 @@ geozzy.rExtMapController = function( opts ) {
     cogumelo.log( 'rextMap - NOTICE: Cant find map wrapper or latLng = 0' );
   };
 
+
+  that.usageRecord = function usageRecord() {
+    var info = {
+      // e: that.explorer1Id,
+      h: window.location.host,
+      p: window.location.pathname
+    };
+
+    $.ajax({
+      type: "get",
+      url: "https://uer.boldest.io/explorer",
+      data: info,
+      cache: false,
+    });
+  };
 };
