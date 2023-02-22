@@ -73,7 +73,7 @@ geozzy.rExtMapController = function( opts ) {
       that.usageRecord(); // Registramos el uso del mapa previamente instanciado
       var gtagInfo = { 'jsClass': 'rExtMapController' };
       if( typeof contextExplorerId !== 'undefined' ) {
-        gtagInfo.explorer_id = contextExplorerId;
+        gtagInfo.explorer_id = parseInt( contextExplorerId );
       }
       gtag('event', 'bw_new_map', gtagInfo);
 

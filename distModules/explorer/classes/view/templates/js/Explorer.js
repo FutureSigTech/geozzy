@@ -90,9 +90,9 @@ geozzy.explorer = function( opts ) {
     that.bindEvent('resourceClick', function(param) {
 
       gtag('event', 'bw_explorer_click', {
-        'resource_id': param.id,
+        'resource_id': parseInt( param.id ),
         'explorer_id_name': that.options.explorerId,
-        'explorer_id': contextExplorerId,
+        'explorer_id': parseInt( contextExplorerId ),
         'page_location': EXPLORER_MAIN_URL,
         'page_location_real': window.location.pathname
       });
