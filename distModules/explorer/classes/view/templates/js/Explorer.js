@@ -88,14 +88,16 @@ geozzy.explorer = function( opts ) {
     that.resourceMinimalList.url = lang + that.options.explorerAPIHost + 'explorer/' + that.options.explorerId+ '/request/minimal';
 
     that.bindEvent('resourceClick', function(param) {
-
-      gtag('event', 'bw_explorer_click', {
+      var gtagInfo = {
         'resource_id': parseInt( param.id ),
         'explorer_id_name': that.options.explorerId,
-        'explorer_id': parseInt( contextExplorerId ),
-        'page_location': EXPLORER_MAIN_URL,
-        'page_location_real': window.location.pathname
-      });
+        'explorer_id': parseInt( contextExplorerId )
+      };
+      if( typeof EXPLORER_MAIN_URL !== 'undefined' ) {
+        gtagInfo.page_location = EXPLORER_MAIN_URL;
+        gtagInfo.page_location_real = window.location.pathname;
+      }
+      gtag('event', 'bw_explorer_click', gtagInfo);
 
       if( that.options.useUrlRouter == true ){
         that.navigateUrl( param.id );
