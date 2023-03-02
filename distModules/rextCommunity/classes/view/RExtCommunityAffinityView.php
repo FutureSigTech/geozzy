@@ -20,7 +20,6 @@ class RExtCommunityAffinityView extends View {
    */
   public function accessCheck() {
     $validIp = array(
-      '213.60.18.106', // Innoto
       '176.83.204.135', '91.117.124.2', // ITG
       '91.116.191.224', // Zadia
       '127.0.0.1'

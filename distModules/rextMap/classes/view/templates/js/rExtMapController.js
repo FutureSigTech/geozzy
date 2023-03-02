@@ -70,12 +70,12 @@ geozzy.rExtMapController = function( opts ) {
 
 
       that.resourceMap = new google.maps.Map( $mapContainer.get(0), that.resourceMapOptions );
-      that.usageRecord(); // Registramos el uso del mapa previamente instanciado
       var gtagInfo = { 'jsClass': 'rExtMapController' };
       if( typeof contextExplorerId !== 'undefined' ) {
         gtagInfo.explorer_id = parseInt( contextExplorerId );
       }
-      gtag('event', 'bw_new_map', gtagInfo);
+      gtag('event', 'bw_new_map', gtagInfo); // Registramos el instanciado del mapa en GA
+      that.usageRecord('newMap', 'gzRxMap'); // Registramos el instanciado del mapa en UER
 
 
 
@@ -164,18 +164,11 @@ geozzy.rExtMapController = function( opts ) {
   };
 
 
-  that.usageRecord = function usageRecord() {
-    var info = {
-      // e: that.explorer1Id,
-      h: window.location.host,
-      p: window.location.pathname
-    };
-
-    $.ajax({
-      type: "get",
-      url: "https://uer.boldest.io/explorer",
-      data: info,
-      cache: false,
-    });
+  that.usageRecord = function usageRecord( ev, label ) {
+    var info = { ev: ev, lb: label, h: window.location.host, p: window.location.pathname };
+    if( typeof contextExplorerId !== 'undefined' ) {
+      info.e = parseInt( contextExplorerId );
+    }
+    $.ajax({ type: 'get', url: 'https://uer.boldest.io/explorer', data: info, cache: false });
   };
 };

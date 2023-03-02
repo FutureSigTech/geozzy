@@ -12,7 +12,14 @@ var rextPrintMapDirectionsJs = {
     var that = this;
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
+
     var map = new google.maps.Map( document.getElementById( 'map' ) );
+    var gtagInfo = { 'jsClass': 'rextPrintMapDirectionsJs' };
+    gtag('event', 'bw_new_map', gtagInfo); // Registramos el instanciado del mapa en GA
+    // that.usageRecord('newMap', 'gzRxPMapD'); // Registramos el instanciado del mapa en UER
+    var uer = { ev: 'newMap', lb: 'gzRxPMapD', h: window.location.host, p: window.location.pathname };
+    $.ajax({ type: 'get', url: 'https://uer.boldest.io/explorer', data: uer, cache: false });
+
     directionsDisplay.setMap( map );
     directionsDisplay.setPanel( document.getElementById( 'routeDirectionList' ) );
 

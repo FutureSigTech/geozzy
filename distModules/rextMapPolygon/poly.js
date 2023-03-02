@@ -1,11 +1,16 @@
 function initialize() {
+  var map_options = {
+    zoom: 6,
+    center: new google.maps.LatLng(0, 0),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
 
-    var map_options = {
-            zoom: 6,
-            center: new google.maps.LatLng(0, 0),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-    map = new google.maps.Map( document.getElementById( 'map-canvas' ), map_options );
+  map = new google.maps.Map( document.getElementById( 'map-canvas' ), map_options );
+  var gtagInfo = { 'jsClass': 'poly' };
+  gtag('event', 'bw_new_map', gtagInfo); // Registramos el instanciado del mapa en GA
+  // that.usageRecord('newMap', 'gzPoly'); // Registramos el instanciado del mapa en UER
+  var uer = { ev: 'newMap', lb: 'gzPoly', h: window.location.host, p: window.location.pathname };
+  $.ajax({ type: 'get', url: 'https://uer.boldest.io/explorer', data: uer, cache: false });
 }
 
 function create_polygon(coordinates) {

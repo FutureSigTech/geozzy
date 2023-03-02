@@ -70,10 +70,15 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
           zoom: zoomInit,
           scrollwheel: false
         };
+
         that.resourceMap = new google.maps.Map( that.segmentDIV.find('.resourceLocationMap')[0], mapOptions);
+        var gtagInfo = { 'jsClass': 'rExtMapWidgetForm' };
+        gtag('event', 'bw_new_map', gtagInfo); // Registramos el instanciado del mapa en GA
+        // that.usageRecord('newMap', 'gzRxMapWF'); // Registramos el instanciado del mapa en UER
+        var uer = { ev: 'newMap', lb: 'gzRxMapWF', h: window.location.host, p: window.location.pathname };
+        $.ajax({ type: 'get', url: 'https://uer.boldest.io/explorer', data: uer, cache: false });
 
         // add marker
-
         var my_marker = {
           url: defaultMarker,
           // This marker is 20 pixels wide by 36 pixels high.

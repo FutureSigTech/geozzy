@@ -40,10 +40,15 @@ var userProfileJs = {
           zoom: zoom,
           scrollwheel: false
         };
+
         var resourceMap = new google.maps.Map( document.getElementById('resourceLocationMap'), mapOptions );
+        var gtagInfo = { 'jsClass': 'userProfileJs' };
+        gtag('event', 'bw_new_map', gtagInfo); // Registramos el instanciado del mapa en GA
+        // that.usageRecord('newMap', 'gzUProf'); // Registramos el instanciado del mapa en UER
+        var uer = { ev: 'newMap', lb: 'gzUProf', h: window.location.host, p: window.location.pathname };
+        $.ajax({ type: 'get', url: 'https://uer.boldest.io/explorer', data: uer, cache: false });
 
         // add marker
-
         var my_marker = {
           url: cogumelo.publicConf.media+'/module/admin/img/geozzy_marker.png',
           // This marker is 20 pixels wide by 36 pixels high.

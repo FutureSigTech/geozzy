@@ -72,6 +72,12 @@ geozzy.travelPlannerComponents.TravelPlannerMapPlanView = Backbone.View.extend({
 
     if(that.map === false){
       that.map = new google.maps.Map( that.$('.travelPlannerMapPlan .map').get( 0 ), that.mapOptions);
+      var gtagInfo = { 'jsClass': 'TravelPlannerMapPlanView' };
+      gtag('event', 'bw_new_map', gtagInfo); // Registramos el instanciado del mapa en GA
+      // that.usageRecord('newMap', 'gzTPMapPV'); // Registramos el instanciado del mapa en UER
+      var uer = { ev: 'newMap', lb: 'gzTPMapPV', h: window.location.host, p: window.location.pathname };
+      $.ajax({ type: 'get', url: 'https://uer.boldest.io/explorer', data: uer, cache: false });
+
       google.maps.event.addListener( that.map, 'idle' ,function(e) {
 
       });
