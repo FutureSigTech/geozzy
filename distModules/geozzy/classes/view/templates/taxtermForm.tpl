@@ -1,4 +1,5 @@
-<!-- newRecursoFormBlock.tpl en geozzy module -->
+
+<!-- taxtermForm.tpl en gzz geozzy -->
 
 <style>
   label { display: block; }
@@ -6,8 +7,8 @@
 </style>
 
 <script>
-/*  var langAvailable = {$JsLangAvailable};
-  var langDefault = {$JsLangDefault};*/
+  // var langAvailable = {$JsLangAvailable};
+  // var langDefault = {$JsLangDefault};
   $('select.gzzSelect2').select2();
 </script>
 
@@ -20,3 +21,5 @@
   {if isset($taxtermFormFieldsArray.idName)}{$taxtermFormFieldsArray.idName}{/if}
 {$taxtermFormClose}
 {$taxtermFormValidations}
+
+<!-- /taxtermForm.tpl en gzz geozzy -->

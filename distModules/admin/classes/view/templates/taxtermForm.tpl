@@ -6,5 +6,7 @@
 {/block}
 
 {block name="content"}
+  <!-- taxtermForm.tpl en gzz admin -->
   {$taxtermFormHtml}
+  <!-- /taxtermForm.tpl en gzz admin -->
 {/block}
