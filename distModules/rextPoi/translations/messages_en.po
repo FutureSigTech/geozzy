@@ -10,6 +10,10 @@ msgstr ""
 "Language: \n"
 
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:23
+msgid "Select existing resources"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:23
 #: /home/proxectos/geozzy/distModules/rextPoi/classes/view/templates/js/rextPoi.js:22
 msgid "Select options"
 msgstr ""

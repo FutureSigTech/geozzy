@@ -17,6 +17,7 @@ msgstr ""
 msgid "A route could not be found."
 msgstr "No se ha podido encontrar una ruta."
 
+#: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtPrintMapDirections.js:43
 #: /home/proxectos/geozzy/distModules/rextMapDirections/classes/view/templates/js/rExtPrintMapDirections.js:36
 msgid "Directions request failed due to "
 msgstr ""

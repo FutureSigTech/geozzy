@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Innoto">
 
-    <title>Log in Geozzy Admin</title>
+    <title>BOLDest Log in</title>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +28,7 @@
     <div class="row justify-content-center">
       <div class="col-md-auto col-lg-4">
         <div class="login-panel card">
-          <div class="card-header">Log In</div>
+          <div class="card-header">BOLDest Log In</div>
           <div class="card-body">
             {$loginHtml}
 

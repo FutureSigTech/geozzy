@@ -21,14 +21,14 @@ msgstr ""
 msgid "How to arrive from?"
 msgstr ""
 
-#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:24
-msgid "Home URL"
-msgstr ""
-
 #: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:49
 msgid "Main Resource information"
 msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:66
 msgid "Edit Resource"
+msgstr ""
+
+#: /home/proxectos/geozzy/distModules/rtypePage/classes/controller/RTypePageController.php:24
+msgid "Home URL"
 msgstr ""

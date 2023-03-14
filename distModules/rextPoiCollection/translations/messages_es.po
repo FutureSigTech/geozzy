@@ -10,8 +10,8 @@ msgstr ""
 "Language: \n"
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:10
-msgid "Select options"
-msgstr "Selecciona opciones"
+msgid "Seleccione recursos existentes"
+msgstr ""
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:13
 msgid "Create POI"
@@ -20,6 +20,10 @@ msgstr "Crear POI"
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:18
 msgid "Edit POI Collection"
 msgstr "Editar colección de POIs"
+
+#: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/view/templates/js/rextPoiCollection.js:10
+msgid "Select options"
+msgstr "Selecciona opciones"
 
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:141
 #: /home/proxectos/geozzy/distModules/rextPoiCollection/classes/controller/RExtPoiCollectionController.php:129

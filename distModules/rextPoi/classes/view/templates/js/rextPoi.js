@@ -20,7 +20,7 @@ var rextPoiJs = {
     $(modal+'select.cgmMForm-field-rextPoi_rextPoiType').multiList( {
       orientation: 'horizontal',
       icon: '<i class="fas fa-arrows-alt"></i>',
-      placeholder: __('Select options')
+      placeholder: __('Select existing resources')
     } );
   },
 

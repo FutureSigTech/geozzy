@@ -657,8 +657,12 @@ msgstr ""
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:33
 msgid "Categories"
-msgstr ""
+msgstr "Categorías"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:271
 msgid "Select an image"
 msgstr "Selecciona una imagen"
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:271
+msgid "Main photo"
+msgstr "Foto principal"

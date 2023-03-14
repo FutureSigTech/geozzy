@@ -623,3 +623,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:271
 msgid "Select an image"
 msgstr ""
+
+#: /home/proxectos/geozzy/distModules/geozzy/classes/controller/RTypeController.php:271
+msgid "Main photo"
+msgstr ""

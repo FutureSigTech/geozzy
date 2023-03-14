@@ -14,6 +14,7 @@ msgstr ""
 msgid "Resource location"
 msgstr ""
 
+#: /home/proxectos/geozzy/distModules/rextMap/classes/view/templates/js/rExtMapController.js:138
 #: /home/proxectos/geozzy/distModules/rextMap/classes/view/templates/js/rExtMapController.js:130
 msgid "View map"
 msgstr ""

@@ -9,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
 
+#: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/plugins/StoryPluginPOISView.js:77
 #: /home/proxectos/geozzy/distModules/story/classes/view/templates/js/view/plugins/StoryPluginPOISView.js:74
 msgid "Points of interest"
 msgstr ""
