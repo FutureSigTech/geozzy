@@ -28,7 +28,7 @@ var userProfileJs = {
         var lonValue = 0;
         var zoom = 1;
 
-        if( latInput.val() != '' && latInput.val() != '' ) {
+        if( latInput.val() != '' && lonInput.val() != '' ) {
           latValue = parseFloat( latInput.val() );
           lonValue = parseFloat( lonInput.val() );
           zoom = parseInt( defaultZoom.val() );

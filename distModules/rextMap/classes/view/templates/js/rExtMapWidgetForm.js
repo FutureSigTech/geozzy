@@ -52,7 +52,7 @@ geozzy.rExtMapWidgetForm = function( segmentDIV ) {
           }
         }
 
-        if( that.latInput.val() !== '' && that.latInput.val() !== '') {
+        if( that.latInput.val() !== '' && that.lonInput.val() !== '') {
           latValue = parseFloat( that.latInput.val() );
           lonValue = parseFloat( that.lonInput.val() );
           latInit = latValue;
