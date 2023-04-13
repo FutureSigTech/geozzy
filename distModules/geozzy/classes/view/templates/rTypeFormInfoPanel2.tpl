@@ -6,7 +6,7 @@
 <div class="infoBasic">
   <div class="row">
     <div class="infoCol col-md-4">ID</div>
-    <div class="infoColData col-md-8">{$res.data.id}</div>
+    <div class="infoColData col-md-8">{$res.data.id|default:''}</div>
   </div>
   <div class="row">
     <div class="infoCol col-md-4">{t}Type{/t}</div>
