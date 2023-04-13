@@ -190,7 +190,13 @@ var AdminView = Backbone.View.extend({
         });
       }
     }
-    $("#page-wrapper").on('click', '.headSection .navbar-gzz-toggle', function (e) {
+    /*$("#page-wrapper").on('click', '.headSection .navbar-gzz-toggle', function (e) {
+      $("#menu-wrapper .sidebar-nav").toggleClass("open");
+    });*/
+    $("#page-wrapper .contentSection").on('click', function (e) {
+      $("#menu-wrapper .sidebar-nav").toggleClass("open");
+    });
+    $("button.navbar-gzz-toggle").click(function (e) {
       $("#menu-wrapper .sidebar-nav").toggleClass("open");
     });
   },

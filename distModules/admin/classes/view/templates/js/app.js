@@ -66,12 +66,17 @@ function operatingHeader(){
     calculateHeightMenu();
   });
   calculateHeightMenu();
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("closed");
+
+  $('#side-menu li').click(function (e) {
+    $("#menu-wrapper .sidebar-nav").toggleClass("open");
   });
 
-  
+  /*$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("closed");
+  });*/
+
+
   //$('#side-menu').metisMenu();
   $('#side-menu').metisMenu({
     // enabled/disable the auto collapse.
