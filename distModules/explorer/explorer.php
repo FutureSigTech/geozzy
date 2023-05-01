@@ -27,8 +27,8 @@ class explorer extends Module {
      "includes" => ['backbone.js']
     ),
     array(
-     "id" =>"backbone-fetch-cache.innoto",
-     "params" => array("innoto-backbone-fetch-cache"),
+     "id" =>"backbone-fetch-cache.boldest",
+     "params" => array("boldest-backbone-fetch-cache"),
      "installer" => "yarn",
      "includes" => array("backbone.fetch-cache.min.js")
     ),
@@ -39,8 +39,8 @@ class explorer extends Module {
       "includes" => array("backbone.obscura.js")
     ),
     array(
-     "id" =>"marker-clusterer-v3-innoto",
-     "params" => array("marker-clusterer-v3-innoto"),
+     "id" =>"marker-clusterer-v3-boldest",
+     "params" => array("marker-clusterer-v3-boldest"),
      "installer" => "yarn",
      "includes" => array("src/markerclusterer.js")
     ),

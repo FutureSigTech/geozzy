@@ -125,8 +125,8 @@ class admin extends Module {
      'includes' => array('php/autoload.php', 'js/elfinder.min.js', 'css/elfinder.min.css', 'css/theme.css' )
     ),
     array(
-      "id" =>"innoto-switchery",
-      "params" => array("innoto-switchery"),
+      "id" =>"boldest-switchery",
+      "params" => array("boldest-switchery"),
       "installer" => "yarn",
       "includes" => array("dist/switchery.min.js", "dist/switchery.min.css")
     ),
