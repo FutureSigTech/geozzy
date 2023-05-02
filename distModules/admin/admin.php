@@ -53,9 +53,9 @@ class admin extends Module {
     ),
     array(
       "id" =>"select2",
-      "params" => array("select2@4.0.5"),
+      "params" => [ "select2@4.0" ],
       "installer" => "yarn",
-      "includes" => array("dist/js/select2.full.js", "dist/css/select2.css")
+      "includes" => [ 'dist/js/select2.full.min.js', 'dist/css/select2.min.css' ]
     ),
     array(
       "id" =>"placeholders",
