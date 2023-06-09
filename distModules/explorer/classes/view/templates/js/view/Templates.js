@@ -12,7 +12,7 @@ geozzy.explorerComponents.mapInfoViewTemplate = ''+
       '<div class="gempiTitle"><%-title%></div>'+
       '<div class="gempiLocation"><% if( typeof city !="undefined" && city ){ %><%- city %> <% } %></div>'+
       '<div class="gempiDescription"><%=description%></div>'+
-      '<% if('+cogumelo.publicConf.mod_detectMobile_isTablet+'){ %><div class="gempiTouchAccess"><button class="buttonTabletAccess  btn btn-primary">Discover</button></div><% } %>'+
+      '<% if(EXPLORER_TOUCH_DEVICE){ %><div class="gempiTouchAccess"><button class="buttonTabletAccess  btn btn-primary">Discover</button></div><% } %>'+
     '</div>'+
     '<div class="extraBottomContent"></div>'+
 

@@ -1,4 +1,5 @@
 var geozzy = geozzy || {};
+var EXPLORER_TOUCH_DEVICE = false;
 
 //geozzy.explorerComponents.routerInstance = false;
 geozzy.explorer = function( opts ) {
@@ -35,7 +36,17 @@ geozzy.explorer = function( opts ) {
   $.extend(true, that.options, opts);
 
   cogumelo.log( 'ZZZ  CARGAMOS geozzy.explorer '+that.options.fetchType+' '+that.options.explorerId );
+
   that.explorerTouchDevice = $('html').hasClass('touch');
+  that.forceSetExplorerAsTouchDevice = function() {
+    that.explorerTouchDevice = true;
+    EXPLORER_TOUCH_DEVICE = true;
+  };
+  document.addEventListener("touchstart", function(event) {
+    that.forceSetExplorerAsTouchDevice()
+  });
+
+
 
   // events
   that.explorerEvents = [];
