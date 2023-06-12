@@ -168,15 +168,15 @@ class geozzy extends Module {
     $passwd = false;
 
     if( !$passwd ) {
-      fwrite( STDOUT, "Enter password for superadmin@geozzy.com password:\n" );
+      fwrite( STDOUT, "Enter password for superadmin@boldest.io password:\n" );
       $passwd = self::getPassword(true);
     }
 
     $userData = array(
-      'login' => 'superadmin@geozzy.com',
+      'login' => 'superadmin@boldest.io',
       'name' => 'SuperAdmin',
-      'surname' => 'Geozzy',
-      'email' => 'superadmin@geozzy.com',
+      'surname' => 'Boldest',
+      'email' => 'superadmin@boldest.io',
       'timeCreateUser' => gmdate( 'Y-m-d H:i:s', time() ),
       'active' => 1
     );
