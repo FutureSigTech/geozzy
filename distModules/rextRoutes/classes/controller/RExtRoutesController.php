@@ -163,7 +163,7 @@ class RExtRoutesController extends RExtController implements RExtInterface {
       'routeFile' => array(
         'params' => array( 'label' => __( 'Route file' ), 'type' => 'file',
         'placeholder' => __( 'File' ), 'destDir' => RoutesModel::$cols['routeFile']['uploadDir'] ),
-        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/octet-stream,application/xml,application\/gpx,application\/gpx\+xml,application\/vnd.google\-earth\.kml\+xml' )
+        'rules' => array( 'maxfilesize' => '5242880', 'required' => 'true', 'accept' => ',application/octet-stream,text/xml,application/xml,application\/gpx,application\/gpx\+xml,application\/vnd.google\-earth\.kml\+xml' )
       )
 
 
