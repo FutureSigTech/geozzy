@@ -36,7 +36,7 @@ class ContactModel extends Model {
     ),
     'phone' => array(
       'type' => 'VARCHAR',
-      'size' => 20
+      'size' => 40
     ),
     'email' => array(
       'type' => 'VARCHAR',
@@ -64,7 +64,7 @@ class ContactModel extends Model {
 
   var $deploySQL = [
     [
-      'version' => 'rextContact#2',
+      'version' => 'rextContact#3',
       'sql'=> '
         ALTER TABLE geozzy_resource_rext_contact MODIFY COLUMN phone VARCHAR(40) default NULL;
       '
