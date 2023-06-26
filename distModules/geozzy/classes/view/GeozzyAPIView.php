@@ -1408,11 +1408,20 @@ class geozzyAPIView extends View {
         }
 
         $resIds = $allRExtModels[$rExtModelName];
+        if (is_array($resIds) && sizeof($resIds) === 1) {
+          $filters = [ 'resource' => intval( reset($resIds) ) ];
+        }
+        else {
+          $filters = [ 'resourceIn' => $resIds ];
+        }
+        // $filters = [ 'resourceIn' => $resIds ]; // Previo a la optimización de la consulta 2023/06/26
+
         $rExtControl = null;
         eval( '$rExtControl = new '.$rExtModelName.'();');
         if( is_object($rExtControl) ) {
           $rExtList = $rExtControl->listItems( [
-            'filters' => [ 'resourceIn' => $resIds ],
+            'filters' => $filters,
+            // 'filters' => [ 'resourceIn' => $resIds ],
             'affectsDependences' => $affectsDependences,
             'cache' => $this->cacheQuery
           ] );
