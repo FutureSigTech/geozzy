@@ -365,7 +365,7 @@ msgstr ""
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel.tpl:20
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:27
 msgid "Last update"
-msgstr ""
+msgstr "Darrera actualització"
 
 #: /home/proxectos/geozzy/distModules/geozzy/classes/view/templates/rTypeFormInfoPanel2.tpl:33
 msgid "Categories"
