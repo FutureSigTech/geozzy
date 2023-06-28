@@ -373,6 +373,53 @@ class GeozzyCollectionView extends View
     }
     return $elemList;
   }
+
+  public function getAvailableResMini( $collectionType, $filterRTypeParent ) {
+    $elemList = [];
+
+    $tempo = microtime(true);
+    Cogumelo::log( __METHOD__.' INI '. sprintf( "%.3f", microtime(true)-$tempo) .' '. $_SERVER["REQUEST_URI"], 'Tempos' );
+
+    if( $collectionType ){
+      $filter = $this->getConfCollection( $collectionType, $filterRTypeParent )['listOptions'];
+
+      //Recursos Posibles
+      if( !empty($filter) && count($filter) > 0 ) {
+        // error_log(__METHOD__.': $filter '.json_encode($filter) );
+
+        Geozzy::load( 'model/ResourceViewModelImageTpl.php' );
+        $resourceViewModel = new ResourceViewModelImageTpl();
+        // $resourceViewModel = new ResourceViewModel();
+        $elemListObj = $resourceViewModel->listItems([
+          'filters' => [ 'inRtypeIdName' => $filter ],
+          'order' => ['title_'.Cogumelo::getSetupValue('lang:default') => 1]
+        ]);
+
+        Cogumelo::log( __METHOD__.' A '. sprintf( "%.3f", microtime(true)-$tempo) .' '. $_SERVER["REQUEST_URI"], 'Tempos' );
+
+        if(is_object($elemListObj)){
+          // $elemList = $elemListObj->fetchAll();
+
+          $titleLang = 'title_'.Cogumelo::getSetupValue( 'lang:default' );
+          while ($resObj = $elemListObj->fetch()) {
+            $elemList[] = [
+              'id' => $resObj->getter( 'id' ),
+              'title' => $resObj->getter( $titleLang ),
+              'image' => $resObj->getter( 'image' ),
+              'imageAKey' => $resObj->getter( 'imageAKey' )
+            ];
+          }
+        }
+      }
+    }
+
+    Cogumelo::log( __METHOD__.' FIN '.count($elemList).' '. sprintf( "%.3f", microtime(true)-$tempo) .' '. $_SERVER["REQUEST_URI"], 'Tempos' );
+    Cogumelo::log('', 'Tempos' );
+
+    return $elemList;
+  }
+
+
   /*
   public function getAvailableResources( $collectionId, $collectionType, $filterRTypeParent ) {
     $elemList = array();
