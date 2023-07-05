@@ -5,9 +5,9 @@ Cogumelo::load('coreModel/Model.php');
 
 class CollectionResourcesModel extends Model {
 
-  static $tableName = 'geozzy_collection_resources';
+  public static $tableName = 'geozzy_collection_resources';
 
-  static $cols = array(
+  public static $cols = array(
     'id' => array(
       'type' => 'INT',
       'primarykey' => true,
@@ -40,13 +40,15 @@ class CollectionResourcesModel extends Model {
     )
   );
 
-  static $extraFilters = [
+  public static $extraFilters = [
+    'resourceIn' => ' geozzy_collection_resources.resource IN (?) ',
     'resourceNotIn' => ' geozzy_collection_resources.resource NOT IN (?) ',
+    'collectionIn' => ' geozzy_collection_resources.collection IN (?) ',
     'collectionNotIn' => ' geozzy_collection_resources.collection NOT IN (?) ',
   ];
 
 
-  var $deploySQL = array(
+  public $deploySQL = array(
     array(
       'version' => 'geozzy#4',
       'sql'=> 'ALTER TABLE `geozzy_collection_resources`
