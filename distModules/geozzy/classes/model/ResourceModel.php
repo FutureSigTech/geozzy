@@ -329,6 +329,14 @@ class ResourceModel extends Model {
 
     $resId = $this->getter('id');
 
+    // Remove image
+    $imageId = $this->getter('image');
+    if( !empty( $imageId ) ) {
+      filedata::load('controller/FiledataController.php');
+      $filedataCtrl = new FiledataController();
+      $filedataCtrl->deleteFile( $imageId );
+    }
+
     // Remove resource taxonomy term
     $resTaxModel = new ResourceTaxonomytermModel();
     $resTaxList = $resTaxModel->listItems( array('filters'=> array('resource'=> $resId ) ) );
