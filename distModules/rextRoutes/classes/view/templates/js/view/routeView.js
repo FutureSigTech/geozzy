@@ -262,6 +262,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         hideOverlayOnMouseOut: true,
         legend: 'follow',
         interactionModel:false,
+        valueRange: this.getHeightValueRange(route.get('trackPoints')),
         axes: {
           x: {
               axisLabelFormatter: function (x) {
@@ -303,7 +304,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       // wait until graph container exist
       var checkExist = setInterval(function() {
          if ($(that.containerGraph).length) {
-
+          
            that.grafico = new Dygraph( $(that.containerGraph)[0] , chartString, graphOptions );
 
            that.grafico.updateOptions( {
@@ -530,6 +531,24 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       that.polylineBG1.setOptions({zIndex: 2});
       that.polylineBG2.setOptions({zIndex: 1});
     }
+  },
+
+  getHeightValueRange: function( trackPoints ) {
+    var min = false;
+    var max = false;
+    $.each( trackPoints, function(i,e){
+      if(min == false || e[2] < min ) {
+        min = e[2];
+      }
+      if(max == false || e[2] > max ) {
+        max = e[2];
+      }      
+  });
+    console.log("diferencia de valor", max - min)
+    if (max - min < 60) {
+      max = max + 150 - ( max - min );
+    }
+    return [min,max];
   }
 
 });
