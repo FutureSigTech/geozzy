@@ -2621,19 +2621,22 @@ class ResourceController {
       // $formBlockInfo = $this->getFormBlockInfo( 'clone', 'clone', [], $resData );
       // error_log( '$formBlockInfo[data]: '.json_encode( $formBlockInfo['data'] ) );
 
+      // Reseteamos valores
       $resData['published'] = 0;
+      unset( $resData['id'] );
+      if( isset( $resData['idName'] ) ) {
+        unset( $resData['idName'] );
+      }
+      if( isset( $resData['syncIdName'] ) ) {
+        unset( $resData['syncIdName'] );
+      }
+
       if( !empty( $rTypeIdName ) ) {
         $resData['rTypeId'] = $this->getRTypeIdByIdName( $rTypeIdName );
       }
       else {
         $rTypeIdName = $this->getRTypeIdName( $resData['rTypeId'] );
       }
-
-      if( isset( $resData['syncIdName'] ) ) {
-        unset( $resData['syncIdName'] );
-      }
-
-      unset( $resData['id'] );
     }
 
 
