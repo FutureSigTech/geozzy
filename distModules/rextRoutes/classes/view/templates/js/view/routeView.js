@@ -548,6 +548,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     if (max - min < 60) {
       max = max + 150 - ( max - min );
     }
+    else {
+      max = max + 20;
+    }
     return [min,max];
   }
 
