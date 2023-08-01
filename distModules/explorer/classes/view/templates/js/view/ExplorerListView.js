@@ -19,7 +19,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
     // resource events
 
     "click .explorerActiveListContent .buttonTabletAccess": "resourceClickTablet",
-    "click .explorerActiveListContent .accessButton": "resourceClick",
+    "click .explorerActiveListContent .element": "resourceClick",//cambiase de accessButton a todo element para que funcione co titulo
     "touchend .explorerActiveListContent .element": "resourceTouch",
     "mouseenter .explorerActiveListContent .element": "resourceHover",
     "mouseleave .explorerActiveListContent .element": "resourceOut"
@@ -89,7 +89,7 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
     return ret;
 
-    
+
 
   },
 
