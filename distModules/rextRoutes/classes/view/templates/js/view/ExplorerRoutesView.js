@@ -84,7 +84,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     // So mobil: Evento creado para borrar todas as rutas desplegadas que non son a que recibe o hover
     that.parentExplorer.bindEvent('clearOtherRoutesMobile', function (params) {
       that.parentExplorer.resourceMinimalList.each(function (e, i) {
-        if (params.route !== e.get('id')){
+        if (parseInt(params.route) !== e.get('id')){
           that.hideRoute(e.get('id'));
         }
       });
