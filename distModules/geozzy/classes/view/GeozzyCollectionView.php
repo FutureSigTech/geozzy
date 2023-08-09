@@ -169,7 +169,7 @@ class GeozzyCollectionView extends View
   /**
     Defino un formulario con su TPL como Bloque
   */
-  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
+  /*public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
     // error_log( "GeozzyCollectionView: getFormBlock()" );
 
     $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
@@ -186,14 +186,49 @@ class GeozzyCollectionView extends View
     $this->template->setTpl( 'collectionFormBlock.tpl', 'geozzy' );
 
     return( $this->template );
+  } // function getFormBlock()*/
+
+
+  public function getFormBlock( $formName, $urlAction, $valuesArray = false ) {
+    // error_log( "GeozzyCollectionView: getFormBlock()" );
+
+    $formBlockInfo2 = $this->getFormBlockInfo2( $formName, $urlAction, $valuesArray );
+
+    return $formBlockInfo2['template'];
   } // function getFormBlock()
 
+  public function getFormBlockInfo2( $formName, $urlAction, $valuesArray = false ) {
+    $form = $this->getFormObj( $formName, $urlAction, $valuesArray );
 
+
+
+    $this->template->assign( 'formOpen', $form->getHtmpOpen() );
+    $this->template->assign( 'formFieldsArray', $form->getHtmlFieldsArray() );
+    $this->template->assign( 'formFields', $form->getHtmlFieldsAndGroups() );
+    $this->template->assign( 'formClose', $form->getHtmlClose() );
+    $this->template->assign( 'formValidations', $form->getScriptCode() );
+
+    $this->template->setTpl( 'collectionFormBlock.tpl', 'geozzy' );
+
+    $formBlockInfo2 = [
+      'objForm' => $form,
+      'template' => $this->template
+    ];
+
+    return $formBlockInfo2;
+  }
 
   /**
     Proceso formulario
   */
   public function actionForm() {
+    $form = $this->actionFormLoad();
+    $this->actionFormProcess($form);
+    $this->actionFormResponse($form);
+  }
+
+
+  public function actionFormLoad() {
     // error_log( "GeozzyCollectionView: actionForm()" );
 
     $form = new FormController();
@@ -203,7 +238,12 @@ class GeozzyCollectionView extends View
     else {
       $form->addFormError( 'El servidor no considera válidos los datos recibidos.', 'formError' );
     }
+    return $form;
+  }
 
+  public function actionFormProcess($form) {
+
+    $collection = null;
     if( !$form->existErrors() ) {
       if( !$form->processFileFields() ) {
         $form->addFormError( 'Ha sucedido un problema con los ficheros adjuntos. Puede que sea '.
@@ -305,9 +345,19 @@ class GeozzyCollectionView extends View
       }
     }
 
-    $form->sendJsonResponse();
+    return $collection;
 
-  } // function actionCollectionForm()
+  }// function actionFormProcess()
+
+
+
+  public function actionFormResponse($form) {
+    $form->sendJsonResponse();
+  } // function actionFormResponse()
+
+
+
+
   public function getConfCollection( $collectionType, $filterRTypeParent ){
     $conf = false;
     if( $filterRTypeParent && class_exists( $filterRTypeParent ) ) {
