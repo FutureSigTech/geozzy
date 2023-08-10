@@ -219,11 +219,20 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-      var chartString = "step,"+__('Alt.')+"\n";
+      var chartString = __('Dist.')+","+__('Alt.')+"\n";
+      var totalDistance = 0;
+      var prevPoint = false;
       $.each( route.get('trackPoints'), function(i,e){
-          chartString += i + "," + e[2] + "\n";
+        if( prevPoint != false ) {
+          totalDistance += that.getDistanceFromLatLonInMeters( prevPoint[0], prevPoint[1], e[0], e[1] );
+        }
+        else {
+          totalDistance = 0;
+        }
+        chartString += totalDistance + "," + e[2] + "\n";
+        prevPoint = e;
       });
-
+      console.log(chartString);
       if( that.options.graphContainer === false) {
         if( $('.resourceRouteGraphContainer').length == 0 ) {
           var controlUI = document.createElement('div');
@@ -260,16 +269,20 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         colors: [ that.options.strokeColor  ],
         axisLabelFontSize: 12,
         hideOverlayOnMouseOut: true,
-        legend: 'follow',
+        //legend: 'follow',
         interactionModel:false,
         valueRange: this.getHeightValueRange(route.get('trackPoints')),
         axes: {
           x: {
               axisLabelFormatter: function (x) {
-                  return '';
+                return '';
               },
               valueFormatter: function (x) {
-                  return '';
+                var distKm = 0.00;
+                if(x != 0) {
+                  distKm = Math.round(x/1000 * 10) / 10;
+                }
+                return '<b> Km ' + distKm + ' </b>';
               }
           },
           y: {
@@ -533,23 +546,60 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     }
   },
 
+  degToRad: function(degrees) {
+    return degrees * (Math.PI / 180);
+  },
+
+  getDistanceFromLatLonInMeters: function( point_a_lat, point_a_lon, point_b_lat, point_b_lon  ) {
+    var that = this;
+
+    var earthRadius = 6371000; // Radio de la Tierra en metros
+    var dLat = that.degToRad(point_b_lat - point_a_lat);
+    var dLon = that.degToRad(point_b_lon - point_a_lon);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(that.degToRad(point_a_lat)) * Math.cos(that.degToRad(point_b_lat)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return earthRadius * c; // Distancia en metros
+  },
+
+  getTotalDistance: function( trackPoints ) {
+    var that = this;
+    var totalDistance = 0;
+    $.each( trackPoints, function(i,e){
+      if( i > 0 ) {
+        totalDistance += that.getDistanceFromLatLonInMeters( trackPoints[i-1][0], trackPoints[i-1][1], e[0], e[1] );
+      }
+    });
+    return totalDistance;
+  },
+
   getHeightValueRange: function( trackPoints ) {
+    var that = this;
     var min = false;
     var max = false;
+    var maxOrig = false;
+    var routeDistance = that.getTotalDistance( trackPoints );
     $.each( trackPoints, function(i,e){
       if(min == false || e[2] < min ) {
         min = e[2];
       }
-      if(max == false || e[2] > max ) {
-        max = e[2];
-      }      
+      if(maxOrig == false || e[2] > maxOrig ) {
+        maxOrig = e[2];
+      }
     });
-    console.log("diferencia de valor", max - min)
-    if (max - min < 60) {
-      max = max + 150 - ( max - min );
+    if(maxOrig > (min + (routeDistance / 100))) {
+      max = maxOrig;
     }
     else {
-      max = max + 20;
+      max = min + (routeDistance / 100);
+    }
+    if (max - min < 250) {
+      max = min + 250;
+    }
+    else {
+      max = max + (max-min)/2;
     }
     return [min,max];
   }
