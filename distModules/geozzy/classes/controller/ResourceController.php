@@ -1,6 +1,6 @@
 <?php
-geozzy::load( 'controller/RTypeController.php' );
-geozzy::load( 'controller/RExtController.php' );
+geozzy::load('controller/RTypeController.php');
+geozzy::load('controller/RExtController.php');
 Cogumelo::load('coreController/Cache.php');
 
 
@@ -1425,7 +1425,7 @@ class ResourceController {
     // error_log( __METHOD__.' '.$resId.' -- '.json_encode($collectionTypes).' -- '.json_encode($extraFields) );
     // error_log( 'TEMPO 1: '. sprintf( "%.3f", microtime(true) ) .' getCollectionBlockInfo - '. $_SERVER["REQUEST_URI"] );
 
-    $collResources = false;
+    $collResources = [];
 
     $collFilters = [ 'resourceMain' => $resId ];
 
@@ -2769,7 +2769,20 @@ class ResourceController {
       $collResModel = new CollectionResourcesModel();
       $resCollModel = new ResourceCollectionsModel();
 
+      // HACK BW: Se ha creado un nuevo modelo MultidiaCollectionModel
+      $multidiaExist=false;
+      if(class_exists('rextAppMapBasic')) {
+        $pathModel = ModuleController::getRealFilePath('classes/model/MultidiaCollectionModel.php', 'rextAppMapBasic');
+        if( $pathModel ) {
+          $multidiaExist=true;
+          rextAppMapBasic::load('model/MultidiaCollectionModel.php');
+        }
+      }
+
       foreach( $resCollections as $collType => $collsArray ) {
+        if( !$result ) {
+          break; // Salimos del bucle de colecciones
+        }
         if( $collectionTypes === true || in_array( $collType, $collectionTypes ) ) {
           foreach( $collsArray as $collInfo ) {
 
@@ -2781,68 +2794,83 @@ class ResourceController {
             $collFromObj = ( is_object( $collList ) ) ? $collList->fetch() : false;
             if( !is_object( $collFromObj ) ) {
               $result = false;
+              break; // Salimos del bucle de colecciones
             }
-            else {
+            $collFromData = $collFromObj->getAllData('onlydata');
 
-              // 1- Cargar y clonar el modelo de la coleccion: geozzy_collection
-              // error_log(__METHOD__.': Paso 1');
+            // 1- Cargar y clonar el modelo de la coleccion: geozzy_collection
+            // error_log(__METHOD__.': Paso 1');
 
-              $collFromData = $collFromObj->getAllData('onlydata');
-              unset( $collFromData['id'] );
-              $collToObj = new CollectionModel( $collFromData );
-              if( !$collToObj->save() ) {
+            unset( $collFromData['id'] );
+            $collToObj = new CollectionModel( $collFromData );
+            if( !$collToObj->save() ) {
+              $result = false;
+              break; // Salimos del bucle de colecciones
+            }
+            $collToId = $collToObj->getter('id');
+
+            // 2- Enlazar en la coleccion creada los recursos que tiene que conter: geozzy_collection_resources
+            // error_log(__METHOD__.': Paso 2');
+
+            $collResList = $collResModel->listItems( [ 'filters' => [ 'collection' => $collFromId ], 'cache' => $this->cacheQuery ] );
+            if( !is_object( $collResList ) ) {
+              $result = false;
+              break; // Salimos del bucle de colecciones
+            }
+
+            while( $collResObj = $collResList->fetch() ) {
+              $collResData = $collResObj->getAllData('onlydata');
+
+              unset( $collResData['id'] );
+              $collResData['collection'] = $collToId;
+              // error_log(__METHOD__.': Paso 2 - Res: '. $collResData['resource'] );
+
+              $newCollResObj = new CollectionResourcesModel( $collResData );
+              if( !$newCollResObj->save() ) {
                 $result = false;
+                break; // Salimos del bucle de colecciones
               }
-              else {
-                $collToId = $collToObj->getter('id');
+            }
+            if( !$result ) {
+              break; // Salimos del bucle de colecciones
+            }
 
-                // 2- Enlazar en la coleccion creada los recursos que tiene que conter: geozzy_collection_resources
-                // error_log(__METHOD__.': Paso 2');
+            // 3- Enlazar la coleccion creada desde el recurso indicado: geozzy_resource_collections
+            // error_log(__METHOD__.': Paso 3');
 
-                $collResList = $collResModel->listItems( [ 'filters' => [ 'collection' => $collFromId ], 'cache' => $this->cacheQuery ] );
-                if( !is_object( $collResList ) ) {
-                  $result = false;
-                }
-                else {
-                  while( $collResObj = $collResList->fetch() ) {
-                    $collResData = $collResObj->getAllData('onlydata');
+            $resCollList = $resCollModel->listItems([
+              'filters' => [ 'resource' => $resFromId, 'collection' => $collFromId ],
+              'cache' => $this->cacheQuery
+            ]);
+            $resCollFromObj = ( is_object( $resCollList ) ) ? $resCollList->fetch() : false;
+            if( !is_object( $resCollFromObj ) ) {
+              $result = false;
+              break; // Salimos del bucle de colecciones
+            }
 
-                    unset( $collResData['id'] );
-                    $collResData['collection'] = $collToId;
-                    // error_log(__METHOD__.': Paso 2 - Res: '. $collResData['resource'] );
+            $resCollData = $resCollFromObj->getAllData('onlydata');
+            $resCollFromId = $resCollData['id'];
 
-                    $newCollResObj = new CollectionResourcesModel( $collResData );
-                    if( !$newCollResObj->save() ) {
-                      $result = false;
-                      break;
-                    }
-                  }
-                }
+            unset( $resCollData['id'] );
+            $resCollData['collection'] = $collToId;
+            $resCollData['resource'] = $resToId;
+            $resCollToObj = new ResourceCollectionsModel( $resCollData );
+            if( !$resCollToObj->save() ) {
+              $result = false;
+              break; // Salimos del bucle de colecciones
+            }
+            $resCollToId = $resCollToObj->getter('id');
 
-                // 3- Enlazar la coleccion creada desde el recurso indicado: geozzy_resource_collections
-                // error_log(__METHOD__.': Paso 3');
-
-                $resCollList = $resCollModel->listItems([
-                  'filters' => [ 'resource' => $resFromId, 'collection' => $collFromId ],
-                  'cache' => $this->cacheQuery
-                ]);
-                $resCollFromObj = ( is_object( $resCollList ) ) ? $resCollList->fetch() : false;
-                if( !is_object( $resCollFromObj ) ) {
-                  $result = false;
-                }
-                else {
-                  $resCollData = $resCollFromObj->getAllData('onlydata');
-
-                  unset( $resCollData['id'] );
-                  $resCollData['collection'] = $collToId;
-                  $resCollData['resource'] = $resToId;
-
-                  $resCollToObj = new ResourceCollectionsModel( $resCollData );
-                  if( !$resCollToObj->save() ) {
-                    $result = false;
-                  }
-                }
-              }
+            // HACK BW: Se ha creado un nuevo modelo MultidiaCollectionModel
+            /*
+            * REVISAR ! ! ! ! !
+            *
+            * if ($multidiaExist && !$this->cloneMultiDiaCollTerms($resCollFromId, $resCollToId)) {
+            */
+            // TODO: ERROR de modelos. Se ha aplicado los terminos a la Coll y no a ResColl
+            if ($multidiaExist && !$this->cloneMultiDiaCollTerms($collFromId, $collToId)) {
+              $result = false;
+              break; // Salimos del bucle de colecciones
             }
           }
         }
@@ -2851,7 +2879,30 @@ class ResourceController {
 
     return $result;
   }
+  private function cloneMultiDiaCollTerms(int $resCollFromId, int $resCollToId): bool {
+    Cogumelo::trace(__METHOD__.': resCollFromId: '.$resCollFromId.' resCollToId: '.$resCollToId);
+    $result = true;
 
+    $multidiaCollModel = new MultidiaCollectionModel();
+    $multidiaCollList = $multidiaCollModel->listItems(['filters' => ['resourceCollection' => $resCollFromId]]);
+    if (is_object($multidiaCollList)) {
+      while ($multidiaCollObj = $multidiaCollList->fetch()) {
+        $newMdiaCollObj = new MultidiaCollectionModel([
+          'taxonomyTerm' => $multidiaCollObj->getter('taxonomyTerm'),
+          'resourceCollection' => $resCollToId,
+          'weight' => $multidiaCollObj->getter('weight')
+        ]);
+        if (!$newMdiaCollObj->save()) {
+          Cogumelo::trace(__METHOD__.': ERROR!!!');
+          $result = false;
+          break;
+        }
+        Cogumelo::trace(__METHOD__.': newMdiaCollObj Id: '.$newMdiaCollObj->getter('id') );
+      }
+    }
+
+    return $result;
+  }
 
   public function cloneTaxonomies( $resFromId, $resToId, $taxIdNames = true ) {
     Cogumelo::trace( __METHOD__.': $resFromId: '.$resFromId.' $resToId: '.$resToId.' Tipos: '.json_encode($taxIdNames) );
