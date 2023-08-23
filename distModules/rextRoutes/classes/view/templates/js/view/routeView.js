@@ -232,7 +232,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         chartString += totalDistance + "," + e[2] + "\n";
         prevPoint = e;
       });
-      console.log(chartString);
+      //console.log(chartString);
       if( that.options.graphContainer === false) {
         if( $('.resourceRouteGraphContainer').length == 0 ) {
           var controlUI = document.createElement('div');
