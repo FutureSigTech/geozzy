@@ -35,7 +35,7 @@ geozzy.explorer = function( opts ) {
 
   $.extend(true, that.options, opts);
 
-  cogumelo.log( 'ZZZ  CARGAMOS geozzy.explorer '+that.options.fetchType+' '+that.options.explorerId );
+  // cogumelo.log( 'ZZZ  CARGAMOS geozzy.explorer '+that.options.fetchType+' '+that.options.explorerId );
 
   that.explorerTouchDevice = $('html').hasClass('touch');
   that.forceSetExplorerAsTouchDevice = function() {
@@ -120,7 +120,7 @@ geozzy.explorer = function( opts ) {
       }
     });
 
-    cogumelo.log( 'ZZZ  geozzy.explorer.exec '+that.options.fetchType+' '+that.options.explorerId );
+    // cogumelo.log( 'ZZZ  geozzy.explorer.exec '+that.options.fetchType+' '+that.options.explorerId );
 
     that.resourceMinimalList.fetch({
       cache: true,
@@ -334,7 +334,7 @@ geozzy.explorer = function( opts ) {
 
       that.resourcePartialList.extendOptions( { fetchType: that.options.fetchType } );
 
-      cogumelo.log( 'ZZZ  geozzy.explorer.fetchPartialList '+that.resourcePartialList.options.fetchType+' '+that.options.explorerId );
+      // cogumelo.log( 'ZZZ  geozzy.explorer.fetchPartialList '+that.resourcePartialList.options.fetchType+' '+that.options.explorerId );
 
       if( that.options.resetLocalStorage === true ) {
         that.resourcePartialList.reset();
