@@ -2769,6 +2769,7 @@ class ResourceController {
       $collResModel = new CollectionResourcesModel();
       $resCollModel = new ResourceCollectionsModel();
 
+
       // HACK BW: Se ha creado un nuevo modelo MultidiaCollectionModel
       $multidiaExist=false;
       if(class_exists('rextAppMapBasic')) {
@@ -2866,9 +2867,10 @@ class ResourceController {
             * REVISAR ! ! ! ! !
             *
             * if ($multidiaExist && !$this->cloneMultiDiaCollTerms($resCollFromId, $resCollToId)) {
+            * if ($multidiaExist && !$this->cloneMultiDiaCollTerms($collFromId, $collToId)) {
             */
             // TODO: ERROR de modelos. Se ha aplicado los terminos a la Coll y no a ResColl
-            if ($multidiaExist && !$this->cloneMultiDiaCollTerms($collFromId, $collToId)) {
+            if ($multidiaExist && !$this->cloneMultiDiaCollTerms($resCollFromId, $resCollToId)) {
               $result = false;
               break; // Salimos del bucle de colecciones
             }
