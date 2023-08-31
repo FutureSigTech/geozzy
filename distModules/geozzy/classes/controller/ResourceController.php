@@ -1384,6 +1384,36 @@ class ResourceController {
     return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
   }
 
+  public function getMultidiaCollectionsInfo( $resId ) {
+    // error_log(__METHOD__.": $resId" );
+    $colInfo = array(
+      'options' => array(),
+      'values' => array()
+    );
+
+    if( !empty( $resId ) ) {
+      $resourceCollectionsModel =  new ResourceCollectionsModel();
+      $resCollectionList = $resourceCollectionsModel->listItems([
+        'filters' => [ 'resource' => $resId, 'CollectionModel.collectionType' => 'appExplorerLoadFromMultidiaCollection' ],
+        'order' => [ 'weight' => 1 ],
+        'affectsDependences' => [ 'CollectionModel' ],
+        'cache' => $this->cacheQuery
+      ]);
+
+      while( $res = $resCollectionList->fetch() ){
+        $collections = $res->getterDependence( 'collection', 'CollectionModel' );
+
+        if( $collections ){
+          $colInfo[ 'options' ][ $res->getter( 'collection' ) ] = $collections[ 0 ]->getter( 'title', Cogumelo::getSetupValue( 'lang:default' ) );
+          $colInfo[ 'values' ][] = $res->getter( 'collection' );
+        }
+      }
+    }
+
+    // error_log(__METHOD__.": = ". print_r( $colInfo, true ) );
+    return ( count( $colInfo['values'] ) > 0 ) ? $colInfo : false;
+  }
+
   public function getMultimediaInfo( $resId ) {
     // error_log(__METHOD__.": $resId" );
     $multimediaInfo = array(
