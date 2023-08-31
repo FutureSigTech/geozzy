@@ -2893,13 +2893,6 @@ class ResourceController {
             $resCollToId = $resCollToObj->getter('id');
 
             // HACK BW: Se ha creado un nuevo modelo MultidiaCollectionModel
-            /*
-            * REVISAR ! ! ! ! !
-            *
-            * if ($multidiaExist && !$this->cloneMultiDiaCollTerms($resCollFromId, $resCollToId)) {
-            * if ($multidiaExist && !$this->cloneMultiDiaCollTerms($collFromId, $collToId)) {
-            */
-            // TODO: ERROR de modelos. Se ha aplicado los terminos a la Coll y no a ResColl
             if ($multidiaExist && !$this->cloneMultiDiaCollTerms($resCollFromId, $resCollToId)) {
               $result = false;
               break; // Salimos del bucle de colecciones
