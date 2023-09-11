@@ -288,10 +288,12 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
           },
           y: {
              axisLabelFormatter: function (y) {
-                 return '<b>' + (y-that.options.artificialBaseHeight)  + ' m </b>';
+                var finalY = y-that.options.artificialBaseHeight;
+                return '<b>' + parseInt(finalY)  + ' m </b>';
              },
              valueFormatter: function (y) {
-                 return '<b>' + (y-that.options.artificialBaseHeight)  + ' m </b>';
+                var finalY = y-that.options.artificialBaseHeight;              
+                return '<b>' + parseInt(finalY)  + ' m </b>';
              }
           }
         },
