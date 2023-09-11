@@ -39,6 +39,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       showLabels: true,
       pixelsPerLabel: 15,
       allowsTrackHover: true,
+      artificialBaseHeight: 15,
       hoverTrackMarker: true,
       onMouseover: function(id) {},
       onMouseOut: function(id) {},
@@ -229,7 +230,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         else {
           totalDistance = 0;
         }
-        chartString += totalDistance + "," + e[2] + "\n";
+        chartString += totalDistance + "," + ( e[2] + that.options.artificialBaseHeight ) + "\n";
         prevPoint = e;
       });
       //console.log(chartString);
@@ -287,10 +288,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
           },
           y: {
              axisLabelFormatter: function (y) {
-                 return '<b>' + y  + ' m </b>';
+                 return '<b>' + (y-that.options.artificialBaseHeight)  + ' m </b>';
              },
              valueFormatter: function (y) {
-                 return '<b>' + y  + ' m </b>';
+                 return '<b>' + (y-that.options.artificialBaseHeight)  + ' m </b>';
              }
           }
         },
@@ -601,7 +602,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     else {
       max = max + (max-min)/2;
     }
-    return [min,max];
+    return [ min, max + that.options.artificialBaseHeight ];
   }
 
 });
