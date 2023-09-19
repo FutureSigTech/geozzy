@@ -39,6 +39,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       showLabels: true,
       pixelsPerLabel: 15,
       allowsTrackHover: true,
+      floatLegend: false,
       artificialBaseHeight: 15,
       hoverTrackMarker: true,
       onMouseover: function(id) {},
@@ -270,7 +271,6 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         colors: [ that.options.strokeColor  ],
         axisLabelFontSize: 12,
         hideOverlayOnMouseOut: true,
-        //legend: 'follow',
         interactionModel:false,
         valueRange: this.getHeightValueRange(route.get('trackPoints')),
         axes: {
@@ -310,6 +310,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
       };
 
+
+      if(that.options.floatLegend == true) {
+        graphOptions.legend = 'follow';
+      }
 
       if( that.options.showLabels != true) {
         graphOptions.yAxisLabelWidth = 0;
