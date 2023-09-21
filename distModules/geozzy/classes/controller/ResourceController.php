@@ -2124,7 +2124,9 @@ class ResourceController {
 
     // Limpiamos sobrantes
     // $text = preg_replace( '/--+/u', '-', $text );
-    $text = preg_replace( '/-*([_\-\/])-*/u', '${1}', $text );
+    $text = preg_replace( '/-*([_\-\/])-*/u', '${1}', $text ); // Reducimos guiones
+    $text = preg_replace( '/\/\/+/u', '/', $text ); // Quitamos barras multiples
+    $text = rtrim( $text, '/' ); // Quitamos la barra final
     $text = trim( $text, '-' );
 
     return $text;
@@ -2250,13 +2252,13 @@ class ResourceController {
 
 
   public function setUrl( $resId, $langId = false, $urlAlias = false ) {
-    // error_log( "setUrl( $resId, $langId, $urlAlias )" );
+    // Cogumelo::trace( "setUrl( $resId, $langId, $urlAlias )" );
     $result = true;
 
     if( !isset( $urlAlias ) || $urlAlias === false || $urlAlias === '' ) {
       $urlAlias = $this->getUrlByPattern( $resId, $langId );
       //$urlAlias = '/'.Cogumelo::getSetupValue('mod:geozzy:resource:directUrl').'/'.$resId;
-      // error_log( "setUrl: urlAlias automatico: $urlAlias " );
+      // Cogumelo::trace( "setUrl: urlAlias automatico: $urlAlias " );
     }
 
     $urlAlias = $this->sanitizeUrl( $urlAlias );
