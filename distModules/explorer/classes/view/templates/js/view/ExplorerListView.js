@@ -123,6 +123,9 @@ geozzy.explorerComponents.activeListView = Backbone.View.extend({
 
       var elementCategory = that.options.chooseCategory(e);
 
+      if( that.parentExplorer.resourcePartialList.get( e) == undefined ) {
+        return;
+      }
       var minJSON = that.parentExplorer.resourceMinimalList.get( e ).toJSON();
       var partJSON = that.parentExplorer.resourcePartialList.get( e ).toJSON();
 
