@@ -63,14 +63,19 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
           map_scrollwhell_is_enabled: that.options.map_scrollwhell_is_enabled ,
           peak_img: '/vendor/yarn/tiny_map_utilities_v3/smart_infowindow/img/peak.png',
           onAddSuccess: function() {
-            that.infowindow.open(m, 'mouseover' , that.renderContent(params.id), true);
+            that.renderContent(params.id, function( iwHtml){
+              that.infowindow.open(m, 'mouseover' , iwHtml, true);
+            } )
+
           }
         }
       );
 
     }
     else {
-      that.infowindow.open(m, 'mouseover' ,that.renderContent(params.id), true);
+      that.renderContent(params.id, function( iwHtml){
+        that.infowindow.open(m, 'mouseover' ,iwHtml, true);
+      });
     }
 
 
@@ -90,7 +95,7 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
 
   },
 
-  renderContent: function( id ) {
+  renderContent: function( id, callbackRender ) {
     var that = this;
 
     var retHtml = '';
@@ -112,10 +117,10 @@ geozzy.explorerComponents.mapInfoBubbleView = Backbone.View.extend({
 
          element.touchAccess = that.parentExplorer.explorerTouchDevice;
          retHtml = that.template( element );
+         callbackRender( retHtml );
       }
     );
 
-    return retHtml;
   }
 
   /*,
