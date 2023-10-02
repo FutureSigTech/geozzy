@@ -2126,7 +2126,9 @@ class ResourceController {
     // $text = preg_replace( '/--+/u', '-', $text );
     $text = preg_replace( '/-*([_\-\/])-*/u', '${1}', $text ); // Reducimos guiones
     $text = preg_replace( '/\/\/+/u', '/', $text ); // Quitamos barras multiples
-    $text = rtrim( $text, '/' ); // Quitamos la barra final
+    if ( $text !== '/' ) {
+      $text = rtrim( $text, '/' ); // Quitamos la barra final
+    }
     $text = trim( $text, '-' );
 
     return $text;
