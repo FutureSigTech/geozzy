@@ -283,7 +283,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
                 if(x != 0) {
                   distKm = Math.round(x/1000 * 10) / 10;
                 }
-                return ' <span style="color:'+that.options.strokeColor+';">' + _('Dist') + '</span>:  <b>' + distKm + ' Km </b>';
+                return ' <span style="font-weight:bold;color:'+that.options.strokeColor+';">' + _('Dist') + '</span>:  <b>' + distKm + ' Km </b>';
               }
           },
           y: {
@@ -292,7 +292,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
                 return '<b>' + parseInt(finalY)  + ' m </b>';
              },
              valueFormatter: function (y) {
-                var finalY = y-that.options.artificialBaseHeight;              
+                var finalY = y-that.options.artificialBaseHeight;
                 return '<b>' + parseInt(finalY)  + ' m </b>';
              }
           }
@@ -324,7 +324,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       // wait until graph container exist
       var checkExist = setInterval(function() {
          if ($(that.containerGraph).length) {
-          
+
            that.grafico = new Dygraph( $(that.containerGraph)[0] , chartString, graphOptions );
 
            that.grafico.updateOptions( {
