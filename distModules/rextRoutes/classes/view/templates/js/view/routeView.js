@@ -221,7 +221,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
 
 
-      var chartString = __('Dist.')+","+__('Alt.')+"\n";
+      var chartString = __('Dist')+","+__('Alt')+"\n";
       var totalDistance = 0;
       var prevPoint = false;
       $.each( route.get('trackPoints'), function(i,e){
@@ -276,14 +276,14 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         axes: {
           x: {
               axisLabelFormatter: function (x) {
-                return '';
+                return "";
               },
               valueFormatter: function (x) {
                 var distKm = 0.00;
                 if(x != 0) {
                   distKm = Math.round(x/1000 * 10) / 10;
                 }
-                return '<b> Km ' + distKm + ' </b>';
+                return ' <span style="color:'+that.options.strokeColor+';">' + _('Dist') + '</span>:  <b>' + distKm + ' Km </b>';
               }
           },
           y: {
