@@ -56,10 +56,12 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
 
     if( that.options.routeModel !== false ) {
 
-
-      if(that.options.ShowRouteInZoomLevel <= that.options.map.getZoom()) {
-        that.renderMapRoute();
+      if (that.options.map !== false){
+        if (that.options.ShowRouteInZoomLevel <= that.options.map.getZoom()) {
+          that.renderMapRoute();
+        }
       }
+
 
 
       if( that.options.showGraph ) {
@@ -296,19 +298,21 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
                 return '<b>' + parseInt(finalY)  + ' m </b>';
              }
           }
-        },
-
-        highlightCallback: function(e, x, pts, row) {
-          //cogumelo.log(route.get('trackPoints')[x][2]);
-          $($(".resourceRouteGraphLegend")[0]).html( route.get('trackPoints')[x][2] +' m');
-          $($(".resourceRouteGraphLegend")[0]).show();
-        },
-
-        unhighlightCallback: function(e) {
-          $($(".resourceRouteGraphLegend")[0]).hide();
         }
 
       };
+
+      if(that.options.map !== false){
+        graphOptions.highlightCallback = function(e, x, pts, row) {
+          //cogumelo.log(route.get('trackPoints')[x][2]);
+          $($(".resourceRouteGraphLegend")[0]).html(route.get('trackPoints')[x][2] + ' m');
+          $($(".resourceRouteGraphLegend")[0]).show();
+        };
+
+        graphOptions.unhighlightCallback = function(e) {
+          $($(".resourceRouteGraphLegend")[0]).hide();
+        };
+      }
 
 
       if(that.options.floatLegend == true) {
@@ -333,7 +337,9 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
            });
            $($(that.containerGraph)[0]).mousemove(function(e) {
                var seleccionado = that.grafico.getSelection();
-               that.hoverRoute( seleccionado );
+             if (that.options.map !== false){
+               that.hoverRoute(seleccionado);
+             }
            }).mouseleave(function(e) {
                var seleccionada = that.grafico.getSelection();
                that.outRecorrido();
@@ -418,7 +424,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
     });
 
 
-    if( lessDistanceElementId ) {
+    if (lessDistanceElementId && that.options.map !== false) {
       that.hoverRoute( lessDistanceElementId );
     }
   },
@@ -485,8 +491,10 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
   showRoute: function() {
     var that = this;
 
-    if(that.options.ShowRouteInZoomLevel <= that.options.map.getZoom()) {
-      that.renderMapRoute();
+    if (that.options.map !== false) {
+      if(that.options.ShowRouteInZoomLevel <= that.options.map.getZoom()) {
+        that.renderMapRoute();
+      }
     }
 
     if(that.options.showGraph) {
