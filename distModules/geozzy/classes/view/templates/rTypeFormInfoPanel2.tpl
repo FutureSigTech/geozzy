@@ -6,7 +6,10 @@
 <div class="infoBasic">
   <div class="row">
     <div class="infoCol col-md-4">ID</div>
-    <div class="infoColData col-md-8">{$res.data.id|default:''}</div>
+    <div class="infoColData col-md-8">
+      {$res.data.id|default:''}
+      {if !empty($permAdminFull) && !empty($res.data.syncIdName)}<br>{$res.data.syncIdName|replace:'SynK_':''}{/if}
+    </div>
   </div>
   <div class="row">
     <div class="infoCol col-md-4">{t}Type{/t}</div>

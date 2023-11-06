@@ -304,7 +304,7 @@ class RTypeController {
     $templates['info']->setTpl( 'rTypeFormInfoPanel2.tpl', 'geozzy' );
     $templates['info']->assign( 'title', __( 'Information' ) );
     $templates['info']->assign( 'res', $formBlockInfo );
-    $timeCreation = gmdate( 'd/m/Y', strtotime( $formBlockInfo['data']['timeCreation'] ) );
+    $timeCreation = date( 'd/m/Y H:i', strtotime( $formBlockInfo['data']['timeCreation'] ) );
 
     if( isset($formBlockInfo['data']['user']) ) {
       $userModel = new UserModel();
@@ -328,9 +328,15 @@ class RTypeController {
       ])->fetch();
 
       $userUpdateName = is_object( $userUpdate ) ? $userUpdate->getter('login') : __( 'Unknown' );
-      $timeLastUpdate = gmdate('d/m/Y', strtotime($formBlockInfo['data']['timeLastUpdate']));
+      $timeLastUpdate = date('d/m/Y H:i', strtotime($formBlockInfo['data']['timeLastUpdate']));
       $templates['info']->assign( 'update', [ 'time' =>$timeLastUpdate, 'user' => $userUpdateName ] );
     }
+
+    $useraccesscontrol = new UserAccessController();
+    // superadmin ya tiene acceso
+    $templates['info']->assign( 'permAdminFull', $useraccesscontrol->validPermissions(['admin:full']) );
+
+
     $templates['info']->assign( 'res', $formBlockInfo );
     $templates['info']->assign( 'formFieldsNames', $formFieldsNames );
 
