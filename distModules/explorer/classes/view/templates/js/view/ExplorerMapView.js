@@ -15,6 +15,7 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
   markersCreated: false,
   markerClusterer: false,
 
+  outerPanToLocked:false,
   outerPanToIntervalometer: false,
   outerPanToIntervalometerValue: false,
 
@@ -108,6 +109,10 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
         //that.markerOut( 0 );
         that.parentExplorer.triggerEvent('resourceMouseOut',{id:0});
       }
+    });
+
+    google.maps.event.addListener(this.map, "mousemove", function() {
+      that.resetOuterPanTo();
     });
 
     // zoom event on map
@@ -773,12 +778,26 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     return ret;
   },
 
+  outerPanToLock: function() {
+    var that = this;
+    that.resetOuterPanTo();
+    that.outerPantoLocked = true;
+  },
+
+  outerPanToUnLock: function() {
+    var that = this;
+    that.outerPantoLocked = false;
+    that.resetOuterPanTo();
+  },
 
   outerPanTo: function( resource ) {
     var that = this;
 
     var scale = Math.pow(2, that.map.zoom) * window.devicePixelRatio || 1;
 
+    if (that.outerPantoLocked == true) {
+      return false;
+    }
 
     that.resetOuterPanTo();
     var intersectsWithInnerBox = resource.get('intersectsWithInnerBox');
