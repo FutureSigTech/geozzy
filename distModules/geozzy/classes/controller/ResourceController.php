@@ -810,9 +810,15 @@ class ResourceController {
     // error_log(__METHOD__.': '.$rTypeId );
     $rTypeIdName = false;
 
-    if( $rTypeId === false ) {
-      $resData = $this->getResourceData( $resId );
-      $rTypeId = ( $resData ) ? $resData['rTypeId'] : false;
+    if ($rTypeId === false) {
+      // $resData = $this->getResourceData( $resId );
+      // $rTypeId = ( $resData ) ? $resData['rTypeId'] : false;
+      $resModel = new ResourceRTypeImageTplModel();
+      $resList = $resModel->listItems(['filters' => ['id' => $resId], 'cache' => $this->cacheQuery]);
+      $resObj = is_object($resList) ? $resList->fetch() : null;
+      if (is_object($resObj)) {
+        $rTypeIdName = $resObj->getter('rTypeIdName');
+      }
     }
 
     if( $rTypeId !== false ) {
