@@ -56,7 +56,6 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
       if( that.filterValue !== null ) {
         if( that.filterValue == isRoute ) {
           if( that.options.allwaysPassWhenFilterOff == true ) {
-            alert('')
             ret = true;
           }
           else {
