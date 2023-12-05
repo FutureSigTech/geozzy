@@ -29,6 +29,7 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
 
       defaultValue: null,
       keyToFilter: false,
+      allwaysPassWhenFilterOff: false,
       onChange: function() {}
     };
 
@@ -54,7 +55,12 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
 
       if( that.filterValue !== null ) {
         if( that.filterValue == isRoute ) {
-          ret = false;
+          if( that.filtervalue == false && that.options.allwaysPassWhenFilterOff == true) {
+            ret = true;
+          }
+          else {
+            ret = false;
+          }
         }
         else
         {
