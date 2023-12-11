@@ -37,10 +37,25 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         valueMax: 100,
         valuesGrid: false,
         type: 'single',  // (single|double)
+
+        template: false,
+        templateOption: false,
+        templateSummary: false,
+      
         prettify: function(num) {return num;}
       };
 
       that.options = $.extend(true, {}, options, opts);
+
+      if(that.options.template) {
+        that.template = that.options.template;
+      }
+      if(that.options.templateOption) {
+        that.templateOption = that.options.templateOption;
+      }
+      if(that.options.templateSummary) {
+        that.templateSummary = that.options.templateSummary;
+      }
       that.$elSummaryContainer = $(that.options.elSummaryContainer);
     },
 
