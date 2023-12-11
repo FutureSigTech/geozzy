@@ -192,8 +192,6 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
       if(that.options.elSummaryContainer) {
 
-
-
         if(  that.options.filteredValue  ) {
 
           var summaryHtml = that.templateSummary( { title: that.options.titleSummary, value:  that.options.filteredValue   } );
