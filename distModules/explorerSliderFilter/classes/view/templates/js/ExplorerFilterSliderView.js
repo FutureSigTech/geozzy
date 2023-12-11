@@ -152,7 +152,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           grid: that.options.valuesGrid,
           prettify: function(num) { return that.options.prettify(num); },
           onStart: function (data) {
-              //cogumelo.log("onStart");
+            that.renderSummary();
           },
           onChange: function (data) {
 
@@ -189,7 +189,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     renderSummary: function(  ) {
       var that = this;
-      
+
       if(that.options.elSummaryContainer) {
 
         if(  that.options.filteredValue  ) {
