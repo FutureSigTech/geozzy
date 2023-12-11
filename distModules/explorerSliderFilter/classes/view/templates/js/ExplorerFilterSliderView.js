@@ -190,7 +190,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
     renderSummary: function(  ) {
       var that = this;
 
-      if(that.options.summaryContainer) {
+      if(that.options.elSummaryContainer) {
 
 
 
