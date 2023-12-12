@@ -178,14 +178,20 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
               that.renderSummary();
             }
 
-
-
           },
           onUpdate: function (data) {
               //cogumelo.log("onUpdate");
           }
       });
       that.slider = that.$el.find("input" ).data("ionRangeSlider");
+
+      if( that.options.type === 'single') {
+        that.options.filteredValue = that.options.valueMax;
+      }
+      else {
+        that.options.filteredValue = [that.options.valueMin, that.options.valueMax];
+      }
+      that.renderSummary();
 
     },
 
