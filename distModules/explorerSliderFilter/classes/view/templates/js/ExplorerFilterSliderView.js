@@ -42,6 +42,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         templateOption: false,
         templateSummary: false,
       
+        sliderSkin: 'flat',
         prettify: function(num) {return num;}
       };
 
@@ -150,6 +151,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           postfix: that.options.postfix,
           keyboard: true,
           grid: that.options.valuesGrid,
+          skin: that.options.sliderSkin,
           prettify: function(num) { return that.options.prettify(num); },
           onStart: function (data) {
             that.renderSummary();
