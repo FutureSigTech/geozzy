@@ -9,7 +9,7 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
   template: _.template(
     " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
     "<div class='isSwitch'>"+
-      "<input type='checkbox'  <% if(checked) {%> checked <%}%>/>"+
+      "<input class='switchery' type='checkbox'  <% if(checked) {%> checked <%}%>/>"+
     "</div>"
   ),
 
@@ -26,7 +26,8 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
       title: false,
       elSummaryContainer:false,
       titleSummary: false,
-
+      color: false,
+      secondaryColor:false,
       defaultValue: null,
       keyToFilter: false,
       allwaysPassWhenFilterOff: false,
@@ -83,7 +84,7 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
 
     var filterHtml = that.template( { title: that.options.title, checked: that.filterValue } );
     that.$el.html( filterHtml );
-    var init = new Switchery( that.$el.find('input')[0] );
+    var init = new Switchery(that.$el.find('input')[0], { color: that.options.color, secondaryColor: that.options.secondaryColor } );
     $( that.$el.find('input' )[0]).change( function( ev ) {
       that.filterValue = $( that.$el.find('input' )[0] ).is(":checked");
       that.parentExplorer.applyFilters();
