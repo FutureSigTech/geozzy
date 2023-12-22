@@ -200,7 +200,7 @@ class RTUtilsController {
       foreach( $taxGroups as $taxKey => $tax ) {
         if( !empty( $tax['external'] ) ) {
           // Las taxonomias externas se crean en otro modulo
-          echo 'TaxGroup '.$taxKey.' no creado por ser de otro modulo ('.$tax['external'].')'."\n";
+          // echo 'TaxGroup '.$taxKey.' no creado por ser de otro modulo ('.$tax['external'].')'."\n";
           continue;
         }
 
