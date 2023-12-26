@@ -195,6 +195,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     },
 
+    
     renderSummary: function(  ) {
       var that = this;
       var min;
