@@ -77,7 +77,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
       if( that.options.type === 'single'  && typeof valueToFilter != "undefined") {
         if (Array.isArray( valueToFilter ) ) {
-          if( valueToFilter[0] < that.options.filteredValue && valueToFilter[1] > that.options.filteredValue) {
+          if( valueToFilter[0] < that.filterValue && valueToFilter[1] > that.filterValue) {
             ret = true;
           }
           else {
@@ -85,7 +85,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           }
         }
         else {
-          if( valueToFilter <= that.options.filteredValue || that.options.filteredValue == false ) {
+          if( valueToFilter <= that.filterValue || that.filterValue == false ) {
             ret = true;
           }
           else
@@ -100,13 +100,13 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         if (Array.isArray( valueToFilter ) ) {
 
           if(typeof valueToFilter[0] == "undefined" || valueToFilter[0] == false) {
-             valueToFilter[0] = that.options.filteredValue[0];
+             valueToFilter[0] = that.filterValue[0];
           }
           if(typeof valueToFilter[1] == "undefined" || valueToFilter[1] == false) {
-             valueToFilter[1] = that.options.filteredValue[1];
+             valueToFilter[1] = that.filterValue[1];
           }
 
-          if( (valueToFilter[0] <= that.options.filteredValue[1] && valueToFilter[1] >= that.options.filteredValue[0]) || that.options.filteredValue == false ) {
+          if( (valueToFilter[0] <= that.filterValue[1] && valueToFilter[1] >= that.filterValue[0]) || that.filterValue == false ) {
             ret = true;
           }
           else {
@@ -114,7 +114,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           }
         }
         else {
-          if( (valueToFilter >= that.options.filteredValue[0] && valueToFilter <= that.options.filteredValue[1] ) || that.options.filteredValue == false ) {
+          if( (valueToFilter >= that.filterValue[0] && valueToFilter <= that.filterValue[1] ) || that.filterValue == false ) {
             ret = true;
           }
           else
@@ -147,7 +147,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           type: that.options.type,
           min: that.options.valueMin,
           max: that.options.valueMax,
-          from: that.filteredValue,
+          from: that.filterValue,
           postfix: that.options.postfix,
           keyboard: true,
           grid: that.options.valuesGrid,
@@ -162,10 +162,10 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
           onFinish: function (data) {
 
             if( that.options.type === 'single') {
-              that.options.filteredValue = data.from;
+              that.filterValue = data.from;
             }
             else {
-              that.options.filteredValue = [data.from, data.to];
+              that.filterValue = [data.from, data.to];
             }
 
 
@@ -186,10 +186,10 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       that.slider = that.$el.find("input" ).data("ionRangeSlider");
 
       if( that.options.type === 'single') {
-        that.options.filteredValue = that.options.valueMax;
+        that.filterValue = that.options.valueMax;
       }
       else {
-        that.options.filteredValue = [that.options.valueMin, that.options.valueMax];
+        that.filterValue = [that.options.valueMin, that.options.valueMax];
       }
       that.renderSummary();
 
@@ -197,17 +197,21 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     renderSummary: function(  ) {
       var that = this;
-
+      var min;
+      var max;
+      var summaryHtml = '';
       if(that.options.elSummaryContainer) {
 
-        if(  that.options.filteredValue  ) {
-          var summaryHtml = that.templateSummary( { title: that.options.titleSummary, value:  that.options.filteredValue   } );
-          that.$elSummaryContainer.html( summaryHtml );
-
+        if(  that.filterValue  ) {
+          min = that.filterValue[0];
+          max = that.filterValue[1];
         }
         else {
-          that.$elSummaryContainer.html( "" );
+          min = that.options.valueMin;
+          max = that.options.valueMax;
         }
+        summaryHtml = that.templateSummary( { title: that.options.titleSummary, value:  [min, max]  } );
+        that.$elSummaryContainer.html( summaryHtml );
       }
 
 
@@ -218,11 +222,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
       var that = this;
       that.slider.reset();
-      that.options.filteredValue = false;
+      that.filterValue = false;
       that.renderSummary();
-      //that.slider.destroy();
-      //$( ".explorerFilterElement ."+that.options.containerClass+" input" ).val(10);
-      //that.instanceSlider();
     }
 
 });

@@ -8,7 +8,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
   isTaxonomyFilter: true,
 
-
+  selectedTerms: false,
 
   initialize: function( opts ) {
     var that = this;
@@ -123,6 +123,26 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
       that.renderSummary( false );
     }
 
-  }
+  },
+  
+  getSelectedTerms: function() {
+    var that = this;
+    return that.selectedTerms;
+  },
 
+  extenalSelectTerms: function( selectedTerms ) {
+    var that = this;
+
+    that.$el.find('ul li').removeClass('selected');
+    that.selectedTerms = selectedTerms;
+    if( that.selectedTerms == false ) {
+      that.$el.find('ul li[data-term-id="*"]').addClass('selected');
+    }
+    else {
+      for( var i = 0; i < selectedTerms.length; i++ ) {
+        that.$el.find('ul li[data-term-id="'+selectedTerms[i]+'"]').addClass('selected');
+      }
+    }
+    that.parentExplorer.applyFilters();
+  }
 });
