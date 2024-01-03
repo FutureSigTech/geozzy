@@ -223,6 +223,7 @@ class ResourceModel extends Model {
 
     'idNameLike' => ' geozzy_resource.idName LIKE ? ',
     'syncIdNameLike' => ' geozzy_resource.syncIdName LIKE ? ',
+    'syncIdNameIn' => ' geozzy_resource.syncIdName IN (?) ',
 
     'publishedCustom' => ' geozzy_AppTopicResource_view.published = IF( ? = "1", 1, 0 ) '
   );
