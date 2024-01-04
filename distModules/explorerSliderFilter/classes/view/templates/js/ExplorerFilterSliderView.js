@@ -45,7 +45,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         templateSummary: false,
       
         sliderSkin: 'flat',
-        prettify: function(num) {return num;}
+        prettify: function(num) {return num;},
+        onChange: function() {}
       };
 
       that.options = $.extend(true, {}, options, opts);
