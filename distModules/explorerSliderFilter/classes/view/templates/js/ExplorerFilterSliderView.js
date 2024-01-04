@@ -157,7 +157,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
             that.renderSummary();
           },
           onChange: function (data) {
-
+            that.options.onChange();
           },
           onFinish: function (data) {
 

@@ -22,7 +22,8 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
       template: geozzy.explorerComponents.filterComboViewTemplate,
       templateOption: geozzy.explorerComponents.filterComboViewOptionT,
-      templateSummary: geozzy.explorerComponents.filterComboViewSummaryT
+      templateSummary: geozzy.explorerComponents.filterComboViewSummaryT,
+      onChange: function() {}
     };
 
     that.options = $.extend(true, {}, options, opts);
@@ -78,6 +79,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
       }
 
       that.parentExplorer.applyFilters();
+      that.options.onChange();
 
       // Filter summaries
       if(that.options.elSummaryContainer) {
