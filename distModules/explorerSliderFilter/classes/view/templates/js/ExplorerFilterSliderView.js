@@ -7,6 +7,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
     isTaxonomyFilter: true,
     slider: false,
 
+    filterValue: false,
+
     template: _.template(
       " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
       "<div class='slider'>"+
