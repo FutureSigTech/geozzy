@@ -167,17 +167,11 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
               that.filterValue = [data.from, data.to];
             }
             that.options.onChange();
-
-
-
             that.parentExplorer.applyFilters();
-
-
             // Filter summaries
             if(that.options.elSummaryContainer) {
               that.renderSummary();
             }
-
           },
           onUpdate: function (data) {
               //cogumelo.log("onUpdate");
