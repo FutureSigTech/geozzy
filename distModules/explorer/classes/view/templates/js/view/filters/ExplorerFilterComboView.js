@@ -91,6 +91,7 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
         that.renderSummary( selectedOption );
       }
+      console.log('manual',that.selectedTerms)
     });
 
 
@@ -132,19 +133,19 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
     return that.selectedTerms;
   },
 
-  extenalSelectTerms: function( selectedTerms ) {
+  extenalSelectTerms: function( selectedTerm ) {
     var that = this;
-
-    that.$el.find('ul li').removeClass('selected');
-    that.selectedTerms = selectedTerms;
-    if( that.selectedTerms == false ) {
-      that.$el.find('ul li[data-term-id="*"]').addClass('selected');
+    
+    if( selectedTerm == false ) {
+      that.$el.value = '*';
+      that.selectedTerms = false;
     }
     else {
-      for( var i = 0; i < selectedTerms.length; i++ ) {
-        that.$el.find('ul li[data-term-id="'+selectedTerms[i]+'"]').addClass('selected');
-      }
+      that.$el.value = selectedTerm;
+      that.selectedTerms = [parseInt(selectedTerm)];
     }
+
+    console.log(that.selectedTerms)
     that.parentExplorer.applyFilters();
   }
 });
