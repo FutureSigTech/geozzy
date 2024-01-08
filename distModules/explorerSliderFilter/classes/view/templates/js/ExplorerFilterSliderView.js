@@ -211,16 +211,22 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         summaryHtml = that.templateSummary( { title: that.options.titleSummary, value:  [min, max]  } );
         that.$elSummaryContainer.html( summaryHtml );
       }
-
-
     },
 
 
     reset: function() {
-
       var that = this;
       that.slider.reset();
       that.filterValue = false;
+      that.renderSummary();
+    },
+
+    extenalSelectTerms: function( values ) {
+      var that = this;
+      that.$el.find("input").data("ionRangeSlider").update({
+        from: values[0],
+        to: values[1]
+      });
       that.renderSummary();
     }
 
