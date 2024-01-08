@@ -144,8 +144,8 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
       that.$el.value = selectedTerm;
       that.selectedTerms = [parseInt(selectedTerm)];
     }
-
-    console.log(that.selectedTerms)
+    $select = that.$el.find('select');
+    $select.val( selectedTerm );
     that.parentExplorer.applyFilters();
   }
 });
