@@ -36,6 +36,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
       markerEnd: cogumelo.publicConf.rextRoutesConf.markerEnd,
       drawXGrid: true,
       drawYGrid: true,
+      highlightCircleSize: 5,
       showLabels: true,
       pixelsPerLabel: 15,
       allowsTrackHover: true,
@@ -263,7 +264,7 @@ geozzy.rextRoutes.routeView = Backbone.View.extend({
         drawYGrid: that.options.drawYrid,
         pixelsPerLabel: that.options.pixelsPerLabel,
 
-        highlightCircleSize: 5,
+        highlightCircleSize: that.options.highlightCircleSize,
         drawHighlightPointCallback: Dygraph.Circles.CIRCLE,
 
         axisLabelColor: that.options.axisLabelColor,
