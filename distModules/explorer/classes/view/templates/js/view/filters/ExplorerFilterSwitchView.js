@@ -108,6 +108,15 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
     //that.slider.destroy();
     //$( ".explorerFilterElement ."+that.options.containerClass+" input" ).val(10);
     //that.instanceSlider();
+  },
+
+  extenalSet: function( value ) {
+    var that = this;
+
+    that.filterValue = value;
+    that.render();
+    that.renderSummary();
+    that.parentExplorer.applyFilters();
   }
 
 });

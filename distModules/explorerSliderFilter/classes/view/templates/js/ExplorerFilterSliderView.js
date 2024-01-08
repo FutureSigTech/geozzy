@@ -7,6 +7,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
     isTaxonomyFilter: true,
     slider: false,
 
+    filterValue: false,
+
     template: _.template(
       " <% if(title){ %> <label><%= title %></label><%}%>  "+
       "<div class='slider'>"+
@@ -43,7 +45,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         templateSummary: false,
 
         sliderSkin: 'flat',
-        prettify: function(num) {return num;}
+        prettify: function(num) {return num;},
+        onChange: function() {}
       };
 
       that.options = $.extend(true, {}, options, opts);
@@ -157,7 +160,6 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
             that.renderSummary();
           },
           onChange: function (data) {
-
           },
           onFinish: function (data) {
 
@@ -167,17 +169,12 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
             else {
               that.filterValue = [data.from, data.to];
             }
-
-
-
+            that.options.onChange();
             that.parentExplorer.applyFilters();
-
-
             // Filter summaries
             if(that.options.elSummaryContainer) {
               that.renderSummary();
             }
-
           },
           onUpdate: function (data) {
               //cogumelo.log("onUpdate");
@@ -214,16 +211,26 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         summaryHtml = that.templateSummary( { title: that.options.titleSummary, value:  [min, max]  } );
         that.$elSummaryContainer.html( summaryHtml );
       }
-
-
     },
 
 
     reset: function() {
-
       var that = this;
+      valueMax: 100,
       that.slider.reset();
-      that.filterValue = false;
+      that.$el.find("input").data("ionRangeSlider").update({
+        from: that.options.valueMin,
+        to: that.options.valueMax
+      });
+      that.renderSummary();
+    },
+
+    extenalSetValues: function( values ) {
+      var that = this;
+      that.$el.find("input").data("ionRangeSlider").update({
+        from: values[0],
+        to: values[1]
+      });
       that.renderSummary();
     }
 

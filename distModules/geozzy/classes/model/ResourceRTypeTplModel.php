@@ -18,6 +18,10 @@ class ResourceRTypeTplModel extends Model {
       'type' => 'VARCHAR',
       'size' => 100
     ),
+    'syncIdName' => array(
+      'type' => 'VARCHAR',
+      'size' => 100
+    ),
     'rTypeId' => array(
       'type'=>'FOREIGN',
       'vo' => 'ResourcetypeModel',
@@ -103,6 +107,11 @@ class ResourceRTypeTplModel extends Model {
     'idNameIn' => ' res.idName IN (?) ',
     'inIdName' => ' res.idName IN (?) ',
 
+    'syncIdName' => ' res.syncIdName = ? ',
+    'syncIdNameIn' => ' res.syncIdName IN (?) ',
+    'syncIdNameLike' => ' res.syncIdName LIKE CONCAT( "", UPPER(?) ) ',
+    'syncIdNameNotNull' => ' res.syncIdName IS NOT NULL ',
+
     'rTypeId' => ' res.rTypeId = ? ',
     'rTypeIdIn' => ' res.rTypeId IN (?) ',
     'rTypeIdNotIn' => ' res.rTypeId NOT IN (?) ',
@@ -127,7 +136,7 @@ class ResourceRTypeTplModel extends Model {
 
     $consulta = '
       SELECT
-        res.id, res.idName, res.rTypeId, rType.idName AS rTypeIdName,
+        res.id, res.idName, res.syncIdName, res.rTypeId, rType.idName AS rTypeIdName,
         res.user, res.published,
         {multilang:res.title_$lang,}
         {multilang:res.shortDescription_$lang,}
