@@ -216,12 +216,16 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     reset: function() {
       var that = this;
+      valueMax: 100,
       that.slider.reset();
-      that.filterValue = false;
+      that.$el.find("input").data("ionRangeSlider").update({
+        from: that.options.valueMin,
+        to: that.options.valueMax
+      });
       that.renderSummary();
     },
 
-    extenalSelectTerms: function( values ) {
+    extenalSetValues: function( values ) {
       var that = this;
       that.$el.find("input").data("ionRangeSlider").update({
         from: values[0],
