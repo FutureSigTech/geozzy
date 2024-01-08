@@ -8,7 +8,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
     slider: false,
 
     template: _.template(
-      " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+      " <% if(title){ %> <label><%= title %></label><%}%>  "+
       "<div class='slider'>"+
         "<input type='text'> "+
       "</div>"
@@ -41,7 +41,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         template: false,
         templateOption: false,
         templateSummary: false,
-      
+
         sliderSkin: 'flat',
         prettify: function(num) {return num;}
       };
@@ -195,7 +195,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     },
 
-    
+
     renderSummary: function(  ) {
       var that = this;
       var min;

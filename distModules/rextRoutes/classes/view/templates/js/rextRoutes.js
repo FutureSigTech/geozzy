@@ -46,7 +46,13 @@ var rextRoutesJs = {
             map: routeMap,
             routeModel: routesCollection.get( geozzy.rExtRoutesOptions.resourceId ),
             showGraph: geozzy.rExtRoutesOptions.showGraph,
-            graphContainer: geozzy.rExtRoutesOptions.graphContainer
+            graphContainer: geozzy.rExtRoutesOptions.graphContainer,
+            drawXGrid: geozzy.rExtRoutesOptions.drawXGrid,
+            drawYGrid: geozzy.rExtRoutesOptions.drawYGrid,
+            showLabels: geozzy.rExtRoutesOptions.showLabels,
+            pixelsPerLabel: geozzy.rExtRoutesOptions.pixelsPerLabel,
+            axisLineColor: geozzy.rExtRoutesOptions.axisLineColor,
+            floatLegend: geozzy.rExtRoutesOptions.floatLegend,
           });
 
           var r = route.options.routeModel;
