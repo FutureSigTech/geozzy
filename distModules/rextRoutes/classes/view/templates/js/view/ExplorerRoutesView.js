@@ -21,6 +21,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       hoverGraphDiv: false,
       ShowRouteInZoomLevel: 7,
       routeResolution: 12,
+      highlightCircleSize: 5,
       showMarkerStart: false,
       showMarkerEnd: false,
       alwaysShow: false, // always show, ignore hover
@@ -204,6 +205,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       drawXGrid: false,
       drawYGrid: false,
       pixelsPerLabel:100,
+      highlightCircleSize: that.options.highlightCircleSize,
       axisLineColor: 'transparent',
       allowsTrackHover: !inExplorerHoverShow ,
       hoverTrackMarker: false,
