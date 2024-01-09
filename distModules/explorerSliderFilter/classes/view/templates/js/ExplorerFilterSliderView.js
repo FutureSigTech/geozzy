@@ -231,7 +231,9 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         from: values[0],
         to: values[1]
       });
+      that.filterValue  = [ values[0], values[1] ];
       that.renderSummary();
+      that.parentExplorer.applyFilters();
     }
 
 });
