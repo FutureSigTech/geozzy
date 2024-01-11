@@ -7,7 +7,7 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
   filterValue: null,
 
   template: _.template(
-    " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+    " <% if(title){ %> <label><%= title %></label><%}%>  "+
     "<div class='isSwitch'>"+
       "<input class='switchery' type='checkbox'  <% if(checked) {%> checked <%}%>/>"+
     "</div>"
@@ -15,7 +15,7 @@ geozzy.explorerComponents.filters.filterSwitchView = geozzy.filterView.extend({
 
 
   templateSummary: _.template(
-    " <% if(title){ %> <label><%= title %>:</label><%}%>  "+
+    " <% if(title){ %> <label><%= title %></label><%}%>  "+
     "<span class='<%= filterClass %>-Summary'><%= value %>€</span>"
   ),
 
