@@ -974,7 +974,6 @@ geozzy.explorerComponents.mapView = Backbone.View.extend({
     for(var m in visibleMarkers) {
       if (visibleMarkers[m].getVisible()) {
         bounds.extend(visibleMarkers[m].getPosition());
-        console.log( visibleMarkers[m].getPosition().lat(), visibleMarkers[m].getPosition().lng() );
       }
     }
 
