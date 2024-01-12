@@ -160,6 +160,8 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
             that.renderSummary();
           },
           onChange: function (data) {
+            // render sumary temporal, not apply filter
+            that.renderSummaryTemporal( data.from, data.to );
           },
           onFinish: function (data) {
 
@@ -213,6 +215,11 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
       }
     },
 
+    renderSummaryTemporal: function(start, end) {
+      var that = this;
+      summaryHtml = that.templateSummary( { title: that.options.titleSummary, value:  [start, end]  } );
+      that.$elSummaryContainer.html( summaryHtml );
+    },
 
     reset: function() {
       var that = this;
