@@ -222,6 +222,7 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
         from: that.options.valueMin,
         to: that.options.valueMax
       });
+      that.filterValue  = [ that.options.valueMin, that.options.valueMax ];
       that.renderSummary();
     },
 
