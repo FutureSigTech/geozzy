@@ -235,13 +235,15 @@ geozzy.explorerComponents.filters.filterSliderView = geozzy.filterView.extend({
 
     extenalSetValues: function( values ) {
       var that = this;
-      that.$el.find("input").data("ionRangeSlider").update({
-        from: values[0],
-        to: values[1]
-      });
-      that.filterValue  = [ values[0], values[1] ];
-      that.renderSummary();
-      that.parentExplorer.applyFilters();
+      if( values ) {
+        that.$el.find("input").data("ionRangeSlider").update({
+          from: values[0],
+          to: values[1]
+        });
+        that.filterValue  = [ values[0], values[1] ];
+        that.renderSummary();
+        that.parentExplorer.applyFilters();
+      }
     }
 
 });
