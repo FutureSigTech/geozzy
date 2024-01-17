@@ -91,7 +91,6 @@ geozzy.explorerComponents.filters.filterComboView = geozzy.filterView.extend({
 
         that.renderSummary( selectedOption );
       }
-      console.log('manual',that.selectedTerms)
     });
 
 
