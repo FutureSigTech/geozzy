@@ -45,9 +45,8 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
     });
 
     that.parentExplorer.bindEvent('resourceHover', function( params ){
-
+      that.refreshRoutes();
       var r = that.parentExplorer.resourceMinimalList.get(params.id);
-
       if( r && r.get('routeObj') && r.get('routeObj').routeInstance ) {
         if(r.get('routeObj').inExplorerHoverShow == true) {
           r.get('routeObj').routeInstance.showRoute();
