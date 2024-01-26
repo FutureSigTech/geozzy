@@ -1,5 +1,5 @@
 var geozzy = geozzy || {};
-var EXPLORER_TOUCH_DEVICE = false;
+var EXPLORER_TOUCH_DEVICE = true; // set as touch device as default
 
 //geozzy.explorerComponents.routerInstance = false;
 geozzy.explorer = function( opts ) {
@@ -37,15 +37,32 @@ geozzy.explorer = function( opts ) {
 
   // cogumelo.log( 'ZZZ  CARGAMOS geozzy.explorer '+that.options.fetchType+' '+that.options.explorerId );
 
-  that.explorerTouchDevice = $('html').hasClass('touch');
+  that.explorerTouchDevice = EXPLORER_TOUCH_DEVICE;
   that.forceSetExplorerAsTouchDevice = function() {
-    that.explorerTouchDevice = true;
-    EXPLORER_TOUCH_DEVICE = true;
+    if( that.explorerTouchDevice == false ) {
+      that.explorerTouchDevice = true;
+      EXPLORER_TOUCH_DEVICE = true;
+      console.log('Setting control by touch');
+    }
+
   };
-  document.addEventListener("touchstart", function(event) {
+  that.forceUnSetExplorerAsTouchDevice = function() {
+    if( that.explorerTouchDevice == true ) {
+      that.explorerTouchDevice = false;
+      EXPLORER_TOUCH_DEVICE = false;
+      console.log('Setting control by mouse');
+    }
+  };
+
+  document.addEventListener('touchstart', function(event) {
     that.forceSetExplorerAsTouchDevice()
   });
+  document.addEventListener('pointermove', function(event) {
+    if (event.pointerType === 'mouse' ) {
+      that.forceUnSetExplorerAsTouchDevice()
+    }
 
+  });
 
 
   // events
