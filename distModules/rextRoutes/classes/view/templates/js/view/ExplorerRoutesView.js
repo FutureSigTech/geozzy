@@ -139,9 +139,7 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
         if( r.get('routeObj').inExplorerHoverShow == true || r.get('mapMarker').visible == false ) {
           r.get('routeObj').routeInstance.hideRoute();
         }
-        else {
-          r.get('routeObj').routeInstance.showRoute();
-        }
+
       }
     });
   },
@@ -210,11 +208,11 @@ geozzy.explorerComponents.routesView = Backbone.View.extend({
       hoverTrackMarker: false,
       onMouseover: function(id) {
         if( inExplorerHoverShow == false ) {
-          that.parentExplorer.triggerEvent('resourceHover', { id: id });
+          //that.parentExplorer.triggerEvent('resourceHover', { id: id });
         }
       },
       onMouseOut: function(id) {
-        that.parentExplorer.triggerEvent('resourceMouseOut', {id: id });
+        //that.parentExplorer.triggerEvent('resourceMouseOut', {id: id });
       },
       onMouseClick: function( id ) {
         if( that.options.avoidClick != true && inExplorerHoverShow == false ) {
