@@ -2,7 +2,7 @@
 
 
 {block name="headClientIncludes" prepend}
-{$gMaps = "https://maps.googleapis.com/maps/api/js?language=`$cogumelo.publicConf.lang_available[$cogumelo.publicConf.C_LANG].i18n`"}
+{$gMaps = "https://maps.googleapis.com/maps/api/js?v=3.65&language=`$cogumelo.publicConf.lang_available[$cogumelo.publicConf.C_LANG].i18n`"}
 {if isset($cogumelo.publicConf.google_maps_key) && $cogumelo.publicConf.google_maps_key}
 {$gMaps = "`$gMaps`&key=`$cogumelo.publicConf.google_maps_key`"}
 {/if}
